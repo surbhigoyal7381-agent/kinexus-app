@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
+import logo from '../assets/Logo.png'; // updated logo image
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,8 +12,8 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Kinexus
+            <Link to="/">
+              <img src={logo} alt="Kinexus logo" className="h-8 w-auto" />
             </Link>
           </div>
 
