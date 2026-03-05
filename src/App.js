@@ -38,7 +38,8 @@ const styles = `
     color: var(--deep-navy);
     background-color: var(--pure-white);
     -webkit-font-smoothing: antialiased;
-    line-height: 1.7;
+    line-height: 1.5;
+    font-size: 14px;
     overflow-x: hidden;
   }
 
@@ -98,6 +99,11 @@ const styles = `
     to { opacity: 1; transform: translateY(0); }
   }
   .animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+  /* Parallax helpers */
+  .parallax-root { scroll-behavior: smooth; }
+  .parallax-section { position: relative; }
+  .parallax-section:nth-child(odd) { background-attachment: fixed; background-size: cover; background-position: center; }
+  .parallax-section:nth-child(even) { background-color: #ffffff; }
 `;
 
 // --- INITIAL DATA SEEDING (THE "DATABASE") ---
@@ -192,7 +198,7 @@ const ScrollReveal = ({ children, className = '', delay = 0 }) => {
 };
 
 const Button = ({ children, variant = 'primary', className = '', onClick, icon: Icon, type = 'button', disabled = false }) => {
-  const baseStyle = "inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 text-[16px] tracking-wide relative overflow-hidden group";
+  const baseStyle = "inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold transition-all duration-300 text-[14px] tracking-wide relative overflow-hidden group";
   
   const variants = {
     primary: "bg-[#2EC5CE] text-white hover:bg-[#25a8b0] hover:shadow-lg hover:-translate-y-1 shadow-md disabled:bg-gray-300",
@@ -213,11 +219,51 @@ const Button = ({ children, variant = 'primary', className = '', onClick, icon: 
 };
 
 const SectionHeading = ({ title, subtitle, centered = false }) => (
-  <ScrollReveal className={`mb-16 ${centered ? 'text-center' : ''}`}>
-    <h2 className="text-[42px] md:text-[56px] leading-tight mb-6 text-gradient font-bold tracking-tight">{title}</h2>
-    {subtitle && <p className="text-[18px] md:text-[20px] text-[#6B6B6B] max-w-3xl mx-auto leading-relaxed">{subtitle}</p>}
+  <ScrollReveal className={`mb-12 ${centered ? 'text-center' : ''}`}>
+    <h2 className="text-[28px] md:text-[36px] leading-tight mb-4 text-gradient font-semibold tracking-tight">{title}</h2>
+    {subtitle && <p className="text-[16px] md:text-[18px] text-[#6B6B6B] max-w-3xl mx-auto leading-relaxed">{subtitle}</p>}
   </ScrollReveal>
 );
+
+// --- PARALLAX PAGE (combines sections into a single scrollable page) ---
+const ParallaxPage = ({ navigate, industries, useCases }) => {
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  useEffect(() => {
+    // enable deep-link scroll if URL contains a hash
+    if (window.location.hash) {
+      const id = window.location.hash.replace('#', '');
+      setTimeout(() => scrollTo(id), 50);
+    }
+  }, []);
+
+  return (
+    <div className="parallax-root">
+      <div id="home-section" className="parallax-section">{/* reuse HomePage content */}
+        <HomePage navigate={navigate} />
+      </div>
+
+      <div id="industries-section" className="parallax-section"> 
+        <IndustriesPage navigate={navigate} industries={industries} />
+      </div>
+
+      <div id="services-section" className="parallax-section">
+        <ServicesPage navigate={navigate} />
+      </div>
+
+      <div id="usecases-section" className="parallax-section">
+        <UseCasesPage navigate={navigate} useCases={useCases} industries={industries} />
+      </div>
+
+      <div id="contact-section" className="parallax-section">
+        <ContactPage navigate={navigate} />
+      </div>
+    </div>
+  );
+};
 
 // --- MAIN APPLICATION COMPONENTS ---
 
@@ -236,17 +282,17 @@ const UseCasesPage = ({ navigate, useCases, industries }) => {
   }, [selectedIndustry, searchQuery, useCases]);
 
   return (
-    <div className="min-h-screen bg-white pt-32 pb-24 relative overflow-hidden bg-grid-pattern">
+    <div className="min-h-screen bg-white pt-20 pb-24 relative overflow-hidden bg-grid-pattern">
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-6 text-center mb-10 animate-fade-in">
-          <div className="inline-flex items-center space-x-2 bg-[#E8E7FF] text-[#5856D6] px-4 py-2 rounded-full text-sm font-bold mb-6">
+           <div className="inline-flex items-center space-x-2 bg-[#E8E7FF] text-[#5856D6] px-4 py-2 rounded-full text-sm font-semibold mb-6">
              <Workflow className="w-4 h-4" />
              <span>{useCases.length}+ Pre-Built Workflows</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-[#212121] mb-6 tracking-tight">
+          <h1 className="text-3xl md:text-4xl font-semibold text-[#212121] mb-4 tracking-tight">
             Library of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5856D6] to-[#2EC5CE]">Autonomous Agents</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Browse our catalog of industry-specific AI agents ready to deploy.
           </p>
         </div>
@@ -291,7 +337,7 @@ const UseCasesPage = ({ navigate, useCases, industries }) => {
                   </div>
                   <div className="bg-gray-100 text-gray-500 px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">{useCase.industry}</div>
                 </div>
-                <h3 className="text-xl font-bold text-[#212121] mb-3 group-hover:text-[#5856D6] transition-colors">{useCase.title}</h3>
+                <h3 className="text-lg font-semibold text-[#212121] mb-3 group-hover:text-[#5856D6] transition-colors">{useCase.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">{useCase.gap}</p>
                 <div className="flex items-center text-[#5856D6] font-bold text-sm group-hover:translate-x-1 transition-transform mt-auto">
                   <span>View Details</span><ArrowRight className="w-4 h-4 ml-2" />
@@ -307,14 +353,14 @@ const UseCasesPage = ({ navigate, useCases, industries }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-[#212121]/60 backdrop-blur-sm" onClick={() => setActiveUseCase(null)}></div>
           <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto animate-fade-in-up">
-            <div className="sticky top-0 bg-white/95 backdrop-blur z-10 p-8 border-b border-gray-100 flex justify-between items-start">
+            <div className="sticky top-0 bg-white/95 backdrop-blur z-10 p-6 border-b border-gray-100 flex justify-between items-start">
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-[#E8E7FF] rounded-2xl flex items-center justify-center text-[#5856D6]">
                   {React.createElement(getIcon(activeUseCase.icon), { className: "w-8 h-8" })}
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-[#5856D6] uppercase tracking-wider mb-1">{activeUseCase.industry}</div>
-                  <h2 className="text-3xl font-bold text-[#212121] leading-tight">{activeUseCase.title}</h2>
+                  <div className="text-sm font-semibold text-[#5856D6] uppercase tracking-wider mb-1">{activeUseCase.industry}</div>
+                  <h2 className="text-2xl font-semibold text-[#212121] leading-tight">{activeUseCase.title}</h2>
                 </div>
               </div>
               <button onClick={() => setActiveUseCase(null)} className="p-2 rounded-full hover:bg-gray-100"><X className="w-6 h-6" /></button>
@@ -358,8 +404,8 @@ const IndustryPage = ({ id, navigate, industries, useCases }) => {
   const Icon = getIcon(industryInfo.icon);
 
   return (
-    <div className="animate-fade-in pt-24 bg-white">
-      <section className="bg-white pt-20 pb-20 lg:pt-32 lg:pb-24 overflow-hidden relative">
+    <div className="animate-fade-in pt-20 bg-white">
+      <section className="bg-white pt-20 pb-12 lg:pt-20 lg:pb-20 overflow-hidden relative">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[#E8E7FF]/30 rounded-bl-[200px] -z-10 animate-blob opacity-40"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <Button variant="text" onClick={() => navigate('industries')} className="mb-8 pl-0 text-sm hover:-translate-x-1">← Back to All Industries</Button>
@@ -367,8 +413,8 @@ const IndustryPage = ({ id, navigate, industries, useCases }) => {
             <div className="p-2 bg-[#E8E7FF] rounded-lg"><Icon className="w-6 h-6 text-[#5856D6]" /></div>
             <span className="text-[#5856D6] font-bold uppercase tracking-wider text-sm">{industryInfo.name} Transformation</span>
           </div>
-          <h1 className="text-[48px] lg:text-[64px] font-bold leading-[1.1] mb-8 max-w-4xl text-[#212121]">{industryInfo.hero}</h1>
-          <p className="text-[20px] lg:text-[24px] text-[#6B6B6B] max-w-3xl mb-12 leading-relaxed">{industryInfo.subhead}</p>
+          <h1 className="text-3xl lg:text-4xl font-semibold leading-[1.15] mb-6 max-w-4xl text-[#212121]">{industryInfo.hero}</h1>
+          <p className="text-base lg:text-lg text-[#6B6B6B] max-w-3xl mb-10 leading-relaxed">{industryInfo.subhead}</p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button onClick={() => navigate('contact')}>Start Your Transformation</Button>
             <Button variant="secondary" onClick={() => navigate('useCases')}>Explore Use Cases</Button>
@@ -382,18 +428,18 @@ const IndustryPage = ({ id, navigate, industries, useCases }) => {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 hover:border-[#5856D6] transition-all hover-lift h-full">
               <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mb-6 text-red-500"><AlertTriangle className="w-7 h-7" /></div>
-              <h3 className="text-[24px] font-bold mb-4 text-[#212121]">The Real Gap</h3>
-              <p className="text-[#6B6B6B] text-[17px] leading-relaxed">{industryInfo.gap}</p>
+              <h3 className="text-lg font-semibold mb-4 text-[#212121]">The Real Gap</h3>
+              <p className="text-[#6B6B6B] text-sm leading-relaxed">{industryInfo.gap}</p>
             </div>
             <div className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 hover:border-[#5856D6] transition-all hover-lift h-full">
               <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center mb-6 text-orange-500"><DollarSign className="w-7 h-7" /></div>
-              <h3 className="text-[24px] font-bold mb-4 text-[#212121]">The Hidden Pain</h3>
-              <p className="text-[#6B6B6B] text-[17px] leading-relaxed">{industryInfo.pain}</p>
+              <h3 className="text-lg font-semibold mb-4 text-[#212121]">The Hidden Pain</h3>
+              <p className="text-[#6B6B6B] text-sm leading-relaxed">{industryInfo.pain}</p>
             </div>
             <div className="bg-[#212121] p-10 rounded-2xl shadow-xl text-white relative overflow-hidden h-full hover-lift">
               <div className="w-14 h-14 bg-[#5856D6] rounded-2xl flex items-center justify-center mb-6 text-white relative z-10"><CheckCircle2 className="w-7 h-7" /></div>
-              <h3 className="text-[24px] font-bold mb-4 text-white relative z-10">The Kinexus Difference</h3>
-              <p className="text-gray-300 text-[17px] leading-relaxed relative z-10">{industryInfo.solution}</p>
+              <h3 className="text-lg font-semibold mb-4 text-white relative z-10">The Kinexus Difference</h3>
+              <p className="text-gray-300 text-sm leading-relaxed relative z-10">{industryInfo.solution}</p>
             </div>
           </div>
         </div>
@@ -653,7 +699,7 @@ export default function App() {
       <style>{styles}</style>
       <Navbar navigate={navigate} />
       <main className="flex-grow">
-        {renderView()}
+        {currentView === 'home' ? <ParallaxPage navigate={navigate} industries={industries} useCases={useCases} /> : renderView()}
       </main>
       <Footer navigate={navigate} />
     </div>
@@ -667,15 +713,15 @@ export default function App() {
 
 const HomePage = ({ navigate }) => (
   <div className="animate-fade-in bg-white overflow-x-hidden">
-    <section className="relative pt-40 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-grid-pattern">
+    <section className="relative pt-0 pb-12 lg:pt-0 lg:pb-16 overflow-hidden bg-grid-pattern">
       <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-[#E8E7FF] rounded-full mix-blend-multiply filter blur-[120px] opacity-40 animate-blob"></div>
       <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
         <ScrollReveal>
           <div className="inline-flex items-center space-x-2 bg-white/50 backdrop-blur-sm border border-purple-100 text-[#5856D6] px-4 py-2 rounded-full text-sm font-bold mb-8 shadow-sm">
              <Zap className="w-4 h-4 fill-current" /><span>Enterprise Agentic AI Platform</span>
           </div>
-          <h1 className="text-[56px] lg:text-[72px] font-bold leading-[1.1] mb-6 text-[#212121] tracking-tight">Your Teams Deserve Better Than <span className="text-gradient">Endless Manual Work</span></h1>
-          <p className="text-[20px] text-[#6B6B6B] mb-10 leading-relaxed max-w-xl">Kinexus builds AI agents that take over the tedious work—so your people can focus on what actually moves your business forward. Real autonomy. Real results.</p>
+          <h1 className="text-4xl lg:text-5xl font-semibold leading-[1.12] mb-4 text-[#212121] tracking-tight">Your Teams Deserve Better Than <span className="text-gradient">Endless Manual Work</span></h1>
+          <p className="text-base text-[#6B6B6B] mb-8 leading-relaxed max-w-xl">Kinexus builds AI agents that take over the tedious work—so your people can focus on what actually moves your business forward. Real autonomy. Real results.</p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
             <Button onClick={() => navigate('contact')} icon={ArrowRight}>Let's Talk About Your Reality</Button>
             <Button variant="secondary" onClick={() => navigate('useCases')} icon={PlayCircle}>Explore Use Cases</Button>
@@ -688,9 +734,9 @@ const HomePage = ({ navigate }) => (
 );
 
 const IndustriesPage = ({ navigate, industries }) => (
-  <div className="pt-32 pb-24 animate-fade-in bg-white min-h-screen bg-grid-pattern">
-    <div className="max-w-7xl mx-auto px-6 text-center mb-16">
-      <h1 className="text-5xl font-bold text-[#212121] mb-6">Industries We <span className="text-gradient">Transform</span></h1>
+  <div className="pt-20 pb-12 animate-fade-in bg-white min-h-screen bg-grid-pattern">
+    <div className="max-w-7xl mx-auto px-6 text-center mb-12">
+      <h1 className="text-3xl font-semibold text-[#212121] mb-4">Industries We <span className="text-gradient">Transform</span></h1>
     </div>
     <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {industries.map((ind) => {
@@ -709,8 +755,8 @@ const IndustriesPage = ({ navigate, industries }) => (
 );
 
 const ServicesPage = ({ navigate }) => (
-  <div className="pt-40 pb-24 animate-fade-in text-center min-h-screen bg-grid-pattern">
-    <h1 className="text-5xl font-bold text-[#212121] mb-8">Our <span className="text-gradient">Services</span></h1>
+  <div className="pt-20 pb-16 animate-fade-in text-center min-h-screen bg-grid-pattern">
+    <h1 className="text-3xl font-semibold text-[#212121] mb-6">Our <span className="text-gradient">Services</span></h1>
     <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
        {[{id: '1', name: 'Full AI Transformation', icon: Workflow}, {id: '2', name: 'Autonomous Workflows', icon: Activity}].map((s) => (
          <div key={s.id} className="glass-card p-10 rounded-3xl hover-lift text-left"><div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-6"><s.icon className="w-7 h-7 text-[#5856D6]"/></div><h3 className="text-2xl font-bold mb-4">{s.name}</h3></div>
@@ -732,10 +778,10 @@ const ContactPage = ({ navigate }) => {
       setStatus('success');
     }, 1000);
   };
-  if (status === 'success') return <div className="pt-40 text-center"><h2 className="text-3xl font-bold">Request Received</h2><Button onClick={() => navigate('home')} className="mt-8">Home</Button></div>;
+  if (status === 'success') return <div className="pt-20 text-center"><h2 className="text-3xl font-bold">Request Received</h2><Button onClick={() => navigate('home')} className="mt-8">Home</Button></div>;
   return (
-    <div className="pt-40 pb-24 max-w-2xl mx-auto px-6">
-      <h1 className="text-4xl font-bold mb-8">Let's Talk</h1>
+    <div className="pt-20 pb-20 max-w-2xl mx-auto px-6">
+      <h1 className="text-2xl font-semibold mb-6">Let's Talk</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input required placeholder="Name" className="w-full border p-4 rounded-xl" onChange={e => setFormData({...formData, name: e.target.value})} />
         <input required placeholder="Email" className="w-full border p-4 rounded-xl" onChange={e => setFormData({...formData, email: e.target.value})} />
@@ -748,25 +794,37 @@ const ContactPage = ({ navigate }) => {
 };
 
 // --- NAVBAR & FOOTER ---
-const Navbar = ({ navigate }) => (
-  <nav className="bg-white shadow-md">
-    <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div className="text-xl font-bold cursor-pointer" onClick={() => navigate('home')}>Kinexus</div>
-      <div className="space-x-6 hidden md:flex">
-        <button onClick={() => navigate('home')} className="text-black hover:text-[#5856D6]">Home</button>
-        <button onClick={() => navigate('services')} className="text-black hover:text-[#5856D6]">Services</button>
-        <button onClick={() => navigate('industries')} className="text-black hover:text-[#5856D6]">Industries</button>
-        <button onClick={() => navigate('useCases')} className="text-black hover:text-[#5856D6]">Use Cases</button>
-        <button onClick={() => navigate('about')} className="text-black hover:text-[#5856D6]">About</button>
-        <button onClick={() => navigate('contact')} className="bg-[#25a8b0] text-white px-4 py-2 rounded-lg hover:bg-[#1e8b98]">Contact</button>
+const Navbar = ({ navigate }) => {
+  const go = (section, fallbackView) => {
+    // ensure we're on the parallax home view, then scroll
+    navigate('home');
+    setTimeout(() => {
+      const el = document.getElementById(section);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      else if (fallbackView) navigate(fallbackView);
+    }, 80);
+  };
+
+  return (
+    <nav className="bg-white shadow-md">
+      <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
+        <div className="text-xl font-bold cursor-pointer" onClick={() => go('home-section', 'home')}>Kinexus</div>
+        <div className="space-x-6 hidden md:flex">
+          <button onClick={() => go('home-section', 'home')} className="text-black hover:text-[#5856D6]">Home</button>
+          <button onClick={() => go('services-section', 'services')} className="text-black hover:text-[#5856D6]">Services</button>
+          <button onClick={() => go('industries-section', 'industries')} className="text-black hover:text-[#5856D6]">Industries</button>
+          <button onClick={() => go('usecases-section', 'useCases')} className="text-black hover:text-[#5856D6]">Use Cases</button>
+          <button onClick={() => go('about-section', 'about')} className="text-black hover:text-[#5856D6]">About</button>
+          <button onClick={() => go('contact-section', 'contact')} className="bg-[#25a8b0] text-white px-4 py-2 rounded-lg hover:bg-[#1e8b98]">Contact</button>
+        </div>
+        <div className="md:hidden">
+          {/* mobile menu placeholder */}
+          <button className="text-black">Menu</button>
+        </div>
       </div>
-      <div className="md:hidden">
-        {/* mobile menu placeholder */}
-        <button className="text-black">Menu</button>
-      </div>
-    </div>
-  </nav>
-);
+    </nav>
+  );
+};
 
 const Footer = ({ navigate }) => (
   <footer className="bg-black text-white py-12">

@@ -16,6 +16,9 @@ export default {
       fontFamily: {
         sans: ['Segoe UI', 'Roboto', 'Helvetica Neue', 'sans-serif'],
       },
+      spacing: {
+        '100': '20rem',
+      },
     },
   },
   plugins: [],
