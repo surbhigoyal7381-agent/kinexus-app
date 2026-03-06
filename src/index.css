@@ -34,3 +34,24 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* Parallax helpers */
+.parallax-section {
+  position: relative;
+  overflow: visible;
+}
+.parallax-layer {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+.parallax-content {
+  position: relative;
+  will-change: transform;
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.85;
+}

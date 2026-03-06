@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="600" viewBox="0 0 1600 600">
+  <defs><linearGradient id="g5" x1="0" x2="1"><stop offset="0%" stop-color="#E6FFFB"/><stop offset="100%" stop-color="#DFFCF7"/></linearGradient></defs>
+  <rect width="100%" height="100%" fill="url(#g5)" />
+  <g font-family="Poppins, sans-serif" fill="#212121">
+    <text x="50%" y="50%" text-anchor="middle" font-size="48" font-weight="700">Banking</text>
+    <text x="50%" y="62%" text-anchor="middle" font-size="20">Frictionless KYC & onboarding</text>
+  </g>
+</svg>

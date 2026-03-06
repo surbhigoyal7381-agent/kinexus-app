@@ -1,13 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.f9c4a4ce.css",
-    "main.js": "/static/js/main.d0fb63b1.js",
+    "main.css": "/static/css/main.321fa588.css",
+    "main.js": "/static/js/main.857e4942.js",
+    "static/media/hero-manufacturing.svg": "/static/media/hero-manufacturing.4b10b7479172a11ce039786f42819a6a.svg",
+    "static/media/hero-hospitality.svg": "/static/media/hero-hospitality.fbc9641ce5423932df35f288f1cff906.svg",
+    "static/media/hero-education.svg": "/static/media/hero-education.fe9561a3d9fef9680f0ff1b4bd1e966c.svg",
+    "static/media/hero-healthcare.svg": "/static/media/hero-healthcare.6e8332a3479670949480400d0f55bd7e.svg",
+    "static/media/hero-insurance.svg": "/static/media/hero-insurance.b7eaacca000ad2589853090298ca8eae.svg",
+    "static/media/hero-energy.svg": "/static/media/hero-energy.7e2131cc08f12346718eb08dc267adbe.svg",
+    "static/media/hero-real-estate.svg": "/static/media/hero-real-estate.4b8d90e2ef917e02449c0fe82a48dc3c.svg",
+    "static/media/hero-logistics.svg": "/static/media/hero-logistics.465fb10b29f9cfb6c9fb412fe6cafd3d.svg",
+    "static/media/hero-pharma.svg": "/static/media/hero-pharma.03efbc8d90bce4d485a15f3adf1fcd55.svg",
+    "static/media/hero-retail.svg": "/static/media/hero-retail.29bc4ce14f7e9e67d326a082f6de3051.svg",
+    "static/media/hero-banking.svg": "/static/media/hero-banking.d57905b642f2ced808709435a4da6268.svg",
     "index.html": "/index.html",
-    "main.f9c4a4ce.css.map": "/static/css/main.f9c4a4ce.css.map",
-    "main.d0fb63b1.js.map": "/static/js/main.d0fb63b1.js.map"
+    "main.321fa588.css.map": "/static/css/main.321fa588.css.map",
+    "main.857e4942.js.map": "/static/js/main.857e4942.js.map"
   },
   "entrypoints": [
-    "static/css/main.f9c4a4ce.css",
-    "static/js/main.d0fb63b1.js"
+    "static/css/main.321fa588.css",
+    "static/js/main.857e4942.js"
   ]
 }
