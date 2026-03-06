@@ -55,6 +55,15 @@ const puppeteer = require('puppeteer');
     fs.writeFileSync(outFile, html, 'utf8');
     console.log('Saved snapshot to', outFile);
 
+    // Also take a full-page screenshot for quick preview
+    try {
+      const imgOut = path.resolve(outDir, 'usecases-snapshot.png');
+      await page.screenshot({ path: imgOut, fullPage: true });
+      console.log('Saved screenshot to', imgOut);
+    } catch (sErr) {
+      console.warn('Screenshot failed:', sErr && sErr.message);
+    }
+
     console.log(html);
     await browser.close();
     process.exit(0);
