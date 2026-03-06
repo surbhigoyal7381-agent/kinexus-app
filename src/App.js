@@ -1,12 +1,28 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import About from './pages/About';
+import IndustryPage from './pages/IndustryPage';
+// local hero assets
+import heroManufacturing from './assets/hero-manufacturing.svg';
+import heroLogistics from './assets/hero-logistics.svg';
+import heroPharma from './assets/hero-pharma.svg';
+import heroRealEstate from './assets/hero-real-estate.svg';
+import heroRetail from './assets/hero-retail.svg';
+import heroBanking from './assets/hero-banking.svg';
+import heroInsurance from './assets/hero-insurance.svg';
+import heroEnergy from './assets/hero-energy.svg';
+import heroHealthcare from './assets/hero-healthcare.svg';
+import heroHospitality from './assets/hero-hospitality.svg';
+import heroEducation from './assets/hero-education.svg';
+import BackToTop from './components/BackToTop';
+import CaseCarousel from './components/CaseCarousel';
 import { 
-  ChevronDown, ChevronRight, ArrowRight, Activity, Clock, Shield, 
+  ArrowRight, Activity, Clock, Shield, 
   Workflow, Zap, BarChart, CheckCircle2, Globe, Users, Settings, 
   Factory, Truck, Pill, Building, ShoppingCart, Landmark, 
-  Lightbulb, GraduationCap, HeartPulse, Coffee, FileText, Menu, X,
+  Lightbulb, GraduationCap, HeartPulse, Coffee, FileText, X,
   Search, PlayCircle, Download, HelpCircle, XCircle, DollarSign,
   Briefcase, Smile, AlertTriangle, Cpu, TrendingUp, Mail, Phone, 
-  MapPin, Database, Sparkles, Filter, Maximize2, Battery, Signal, Plus, Trash2, Edit3, Save
+  MapPin, Database, Sparkles, Filter, Maximize2, Battery, Signal, Plus
 } from 'lucide-react';
 
 // --- ICON MAPPER (For Dynamic Storage) ---
@@ -99,11 +115,31 @@ const styles = `
     to { opacity: 1; transform: translateY(0); }
   }
   .animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-fade-in { animation: fadeIn 0.45s ease-out forwards; }
   /* Parallax helpers */
   .parallax-root { scroll-behavior: smooth; }
   .parallax-section { position: relative; }
   .parallax-section:nth-child(odd) { background-attachment: fixed; background-size: cover; background-position: center; }
   .parallax-section:nth-child(even) { background-color: #ffffff; }
+  .parallax-layer { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .parallax-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: visible; }
+  /* Fixed-sized centered bg strip that sits behind hero/CTA areas (Home) */
+  .parallax-bg.strip { display: flex; justify-content: center; }
+  .parallax-bg.strip .bg-image { position: absolute; left: 50%; top: calc(var(--nav-height) + 12px); transform: translateX(-50%) translateY(0); width: 100%; max-width: 1400px; height: 520px; background-size: cover; background-position: center; filter: saturate(1.05) contrast(1.03) blur(3px) brightness(0.98); transition: transform 0.08s linear; opacity: 0.44; z-index: 0; border-radius: 12px; pointer-events: none; }
+  /* Full-page background layers for industry pages */
+  .parallax-bg.fullpage { inset: 0; display: block; }
+  .parallax-bg.fullpage .bg-image { position: absolute; inset: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: saturate(1.02) contrast(1.02) blur(4px) brightness(0.95); transition: transform 0.12s linear; opacity: 0.22; pointer-events: none; }
+  .parallax-bg.fullpage .bg-image.layer-top { opacity: 0.42; filter: saturate(1.05) contrast(1.03) blur(2px) brightness(0.98); }
+  .parallax-layer .blob { position: absolute; border-radius: 9999px; filter: blur(40px); opacity: 0.45; }
+  .parallax-content { position: relative; z-index: 10; }
+
+  :root { --nav-height: 64px; }
+  html, body, #root { height: 100%; }
+  body { overflow: hidden; }
+  .app-scroll { height: calc(100vh - var(--nav-height)); overflow-y: auto; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+  /* reduce top padding so hero sits closer to fixed navbar */
+  main.app-scroll { padding-top: calc(var(--nav-height) - 8px); }
 `;
 
 // --- INITIAL DATA SEEDING (THE "DATABASE") ---
@@ -113,30 +149,41 @@ const INITIAL_INDUSTRIES = [
   { 
     id: 'manufacturing', name: 'Manufacturing', icon: 'Factory', 
     desc: 'Reduce downtime 40%, boost OEE 25%',
+    backgrounds: ['hero-manufacturing.jpg','hero-manufacturing-800.jpg'],
     hero: "Stop Running Your Factory on Excel and Gut Feel.",
+    heroSvg: heroManufacturing,
     subhead: "70% of production plans are outdated within 2 hours. Kinexus autonomous agents adapt to disruptions in real-time.",
     gap: "Most manufacturers rely on static, planner-dependent scheduling that can't adapt to real-world chaos.",
     pain: "Frequent rescheduling, underutilised capacity (8-12% loss), and material shortages.",
     solution: "An autonomous planning agent that reads ERP/MES data and recalibrates schedules instantly."
+    ,customSections: [
+      { title: 'Operational Resilience', body: 'We build agents that keep lines running during supply shocks and equipment failures by auto-resequencing and reallocating resources.' },
+      { title: 'Quality at Scale', body: 'Agent-assisted inspection reduces human error and standardises deviation handling across plants.' }
+    ]
   },
   { 
     id: 'logistics', name: 'Logistics', icon: 'Truck', 
     desc: 'Optimize routes, automate warehouses',
     hero: "Dispatch is Science, Not Art. Stop Guessing.",
+    heroSvg: heroLogistics,
     subhead: "Inefficient dispatching increases costs by 12-18%. Let agents handle the complexity.",
     gap: "Dispatchers rely on gut feel. Truck allocation is reactive and rarely optimized.",
     pain: "Delayed dispatches, high freight costs, and wasted truck capacity.",
     solution: "Agents automate dispatch end-to-end—reading orders and SLAs to auto-assign resources."
+    ,customSections: [
+      { title: 'Dynamic Routing', body: 'Agents re-route fleets in real-time using traffic, ETA windows, and driver availability to cut fuel and improve on-time performance.' },
+      { title: 'Warehouse Automation', body: 'Automated orchestration across WMS and TMS reduces manual handoffs and speeds throughput.' }
+    ]
   },
-  { id: 'pharma', name: 'Pharma', icon: 'Pill', desc: 'Automate clinical trials & compliance', hero: 'Paperwork is the Silent Killer of Pharma Agility.', subhead: 'Automate compliance, don\'t just digitise it.', gap: 'Batch records are manual and error-prone.', pain: 'Batch release delays and regulatory risk.', solution: 'Agents automate BMR/BPR end-to-end, reading logs to auto-fill records.' },
-  { id: 'real-estate', name: 'Real Estate', icon: 'Building', desc: 'Streamline project mgmt & procurement', hero: 'Build with Certainty.', subhead: 'Projects exceed timelines by 20-80%.', gap: 'Progress reporting is subjective.', pain: 'Cost overruns and overpayments.', solution: 'Agents analyse site photos to verify progress objectively.' },
-  { id: 'retail', name: 'Retail', icon: 'ShoppingCart', desc: 'Optimize inventory & dynamic pricing', hero: 'Retail is Detail. Automate it.', subhead: 'High volume means high inefficiency.', gap: 'Inventory managed by averages.', pain: 'Stockouts and overstock.', solution: 'Agents forecast demand at SKU level and adjust pricing.' },
-  { id: 'banking', name: 'Banking', icon: 'Landmark', desc: 'Automate KYC & fraud detection', hero: 'Frictionless Banking.', subhead: 'Banks lose 20-40% of customers due to friction.', gap: 'KYC is manual.', pain: 'High drop-off rates and fraud.', solution: 'Agents read ID proofs and validate instantly.' },
-  { id: 'insurance', name: 'Insurance', icon: 'Shield', desc: 'Automate claims & underwriting', hero: 'Stop Paying for Leakage.', subhead: 'Underwriting inefficiency reduces profitability.', gap: 'Underwriting is manual and slow.', pain: 'High claims leakage and slow issuance.', solution: 'Agents read reports to assess risk autonomously.' },
-  { id: 'energy', name: 'Energy', icon: 'Lightbulb', desc: 'Grid optimization & predictive maintenance', hero: 'Stabilize the Grid.', subhead: 'Load forecasting errors cost millions.', gap: 'Static models miss real-time shifts.', pain: 'Peak load stress and grid instability.', solution: 'Agents forecast load using weather and consumption data.' },
-  { id: 'healthcare', name: 'Healthcare', icon: 'HeartPulse', desc: 'Coordinate patient care & claims', hero: 'Let Clinicians Care.', subhead: 'Clinicians spend 40% time on paperwork.', gap: 'Intake is manual.', pain: 'Long wait times and burnout.', solution: 'Agents triage patients and generate notes.' },
-  { id: 'hospitality', name: 'Hospitality', icon: 'Coffee', desc: 'Automate bookings & guest experience', hero: 'Turn Guests into Loyalists.', subhead: 'Generic service leads to low loyalty.', gap: 'Guest data is siloed.', pain: 'Low repeat business.', solution: 'Agents build unified profiles to predict preferences.' },
-  { id: 'education', name: 'Education', icon: 'GraduationCap', desc: 'Automate student onboarding & scheduling', hero: 'Focus on Learning.', subhead: 'Admissions inefficiency loses applicants.', gap: 'Admissions are manual.', pain: 'Lost applicants and revenue.', solution: 'Agents score leads and optimise timetables.' },
+  { id: 'pharma', name: 'Pharma', icon: 'Pill', desc: 'Automate clinical trials & compliance', hero: 'Paperwork is the Silent Killer of Pharma Agility.', heroSvg: heroPharma, subhead: 'Automate compliance, don\'t just digitise it.', gap: 'Batch records are manual and error-prone.', pain: 'Batch release delays and regulatory risk.', solution: 'Agents automate BMR/BPR end-to-end, reading logs to auto-fill records.', customSections: [{ title: 'Compliance Automation', body: 'We create auditable automation that reduces review cycles and enforces SOPs automatically.' }] },
+  { id: 'real-estate', name: 'Real Estate', icon: 'Building', desc: 'Streamline project mgmt & procurement', hero: 'Build with Certainty.', heroSvg: heroRealEstate, subhead: 'Projects exceed timelines by 20-80%.', gap: 'Progress reporting is subjective.', pain: 'Cost overruns and overpayments.', solution: 'Agents analyse site photos to verify progress objectively.', customSections: [{ title: 'Photo-Based Verification', body: 'Agents compare images to project plans to validate progress and trigger payments only for verified work.' }] },
+  { id: 'retail', name: 'Retail', icon: 'ShoppingCart', desc: 'Optimize inventory & dynamic pricing', hero: 'Retail is Detail. Automate it.', heroSvg: heroRetail, subhead: 'High volume means high inefficiency.', gap: 'Inventory managed by averages.', pain: 'Stockouts and overstock.', solution: 'Agents forecast demand at SKU level and adjust pricing.', customSections: [{ title: 'Node-Level Forecasting', body: 'Per-store, per-SKU forecasts and automated replenishment rules reduce lost sales and excess working capital.' }] },
+  { id: 'banking', name: 'Banking', icon: 'Landmark', desc: 'Automate KYC & fraud detection', hero: 'Frictionless Banking.', heroSvg: heroBanking, subhead: 'Banks lose 20-40% of customers due to friction.', gap: 'KYC is manual.', pain: 'High drop-off rates and fraud.', solution: 'Agents read ID proofs and validate instantly.', customSections: [{ title: 'Secure & Compliant KYC', body: 'Automated document verification with audit trails and exception workflows reduces onboarding drop-off and compliance risk.' }] },
+  { id: 'insurance', name: 'Insurance', icon: 'Shield', desc: 'Automate claims & underwriting', hero: 'Stop Paying for Leakage.', heroSvg: heroInsurance, subhead: 'Underwriting inefficiency reduces profitability.', gap: 'Underwriting is manual and slow.', pain: 'High claims leakage and slow issuance.', solution: 'Agents read reports to assess risk autonomously.', customSections: [{ title: 'Claims Automation', body: 'Fast triage and straight-through processing for routine claims with human-in-the-loop for exceptions.' }] },
+  { id: 'energy', name: 'Energy', icon: 'Lightbulb', desc: 'Grid optimization & predictive maintenance', hero: 'Stabilize the Grid.', heroSvg: heroEnergy, subhead: 'Load forecasting errors cost millions.', gap: 'Static models miss real-time shifts.', pain: 'Peak load stress and grid instability.', solution: 'Agents forecast load using weather and consumption data.', customSections: [{ title: 'Predictive Maintenance', body: 'Sensors + agents detect early faults and schedule maintenance before failures.' }] },
+  { id: 'healthcare', name: 'Healthcare', icon: 'HeartPulse', desc: 'Coordinate patient care & claims', hero: 'Let Clinicians Care.', heroSvg: heroHealthcare, subhead: 'Clinicians spend 40% time on paperwork.', gap: 'Intake is manual.', pain: 'Long wait times and burnout.', solution: 'Agents triage patients and generate notes.', customSections: [{ title: 'Clinical Triage', body: 'Automated triage routes cases to the right clinician and prepares succinct notes to reduce admin time.' }] },
+  { id: 'hospitality', name: 'Hospitality', icon: 'Coffee', desc: 'Automate bookings & guest experience', hero: 'Turn Guests into Loyalists.', heroSvg: heroHospitality, subhead: 'Generic service leads to low loyalty.', gap: 'Guest data is siloed.', pain: 'Low repeat business.', solution: 'Agents build unified profiles to predict preferences.', customSections: [{ title: 'Personalised Guest Journeys', body: 'Agents manage preferences and personalise offers across stays to lift loyalty and RevPAR.' }] },
+  { id: 'education', name: 'Education', icon: 'GraduationCap', desc: 'Automate student onboarding & scheduling', hero: 'Focus on Learning.', heroSvg: heroEducation, subhead: 'Admissions inefficiency loses applicants.', gap: 'Admissions are manual.', pain: 'Lost applicants and revenue.', solution: 'Agents score leads and optimise timetables.', customSections: [{ title: 'Admissions Optimisation', body: 'Automated lead scoring, scheduling and document verification to reduce lost applicants.' }] },
 ];
 
 const INITIAL_USE_CASES = [
@@ -169,6 +216,44 @@ const INITIAL_USE_CASES = [
 
   // Retail
   { id: 'ret-1', industry: 'Retail', icon: 'ShoppingCart', title: 'Inventory Optimisation', gap: 'Inventory managed by averages.', pain: 'Stockouts and overstock.', solution: 'Predicts SKU-level demand per store.', metrics: ['15% Less Stockouts', 'Lower Working Cap'] }
+  ,
+  // Healthcare
+  { id: 'health-1', industry: 'Healthcare', icon: 'HeartPulse', title: 'Intelligent Patient Intake & Triage Agent', gap: 'Patient intake is still:\nManual and paper-heavy\nSlow and inconsistent\nDependent on front-desk staff\nNot integrated with EMR\nNot linked to clinical urgency\nProne to errors', pain: 'Long waiting times; Delayed diagnosis; Patient dissatisfaction; High staff workload; Inaccurate triage; Risk of adverse events.', solution: 'Kinexus agents triage patients intelligently: read symptoms, vitals and history, prioritise by urgency, auto-fill EMR, flag red flags and guide staff.', metrics: ['30% Less Wait Time', 'Better Clinical Safety'] },
+  { id: 'health-2', industry: 'Healthcare', icon: 'FileText', title: 'Clinical Documentation & EMR Automation Agent', gap: 'Clinicians spend 30–40% of their time on documentation: notes typed manually, inconsistent templates, coding errors and slow EMR navigation.', pain: 'Reduced face time with patients; Clinician burnout; Inaccurate records; Billing errors and compliance risk.', solution: 'Kinexus agents generate clinical notes automatically, suggest ICD/CPT codes, update EMR and flag missing information to improve accuracy and reduce burden.', metrics: ['Reduced Burnout', 'Accurate Billing'] },
+  { id: 'health-3', industry: 'Healthcare', icon: 'CalendarCheck', title: 'Appointment Scheduling & Capacity Optimisation', gap: 'Scheduling remains manual and disconnected from clinician availability or case complexity; not predictive.', pain: 'Long waiting lists; Idle clinician time; High no-show rates; Revenue leakage and operational inefficiency.', solution: 'Kinexus agents predict appointment duration, reduce no-shows, balance workload and recommend optimal slots while syncing with EMR.', metrics: ['10-25% Throughput Gain', 'Lower No-Shows'] },
+  { id: 'health-4', industry: 'Healthcare', icon: 'Stethoscope', title: 'Diagnostic Reporting & Radiology Assistant', gap: 'Radiology reporting faces high backlogs, manual reviews and inconsistent quality with slow turnaround.', pain: 'Delayed clinical decisions; Radiologist burnout; Risk of missed findings.', solution: 'Kinexus agents assist radiologists by analysing scans, highlighting abnormalities, suggesting structured reports and flagging urgent findings.', metrics: ['Faster Diagnosis', 'Reduced Burnout'] },
+  { id: 'health-5', industry: 'Healthcare', icon: 'BedDouble', title: 'Hospital Bed Management & Patient Flow', gap: 'Bed management is manual, spreadsheet-driven, not real-time and poorly linked to discharge planning or ED/ICU.', pain: 'ED overcrowding; Delayed admissions; Poor bed utilisation; High staff stress.', solution: 'Kinexus agents track bed availability in real time, predict discharges, recommend placements and flag bottlenecks to optimise flow.', metrics: ['Optimised Patient Flow', 'Reduced ED Overcrowding'] },
+
+  // Hospitality
+  { id: 'hosp-1', industry: 'Hospitality', icon: 'Coffee', title: 'Intelligent Guest Experience & Personalisation', gap: 'Hotels collect guest data but don\'t use it: preferences not captured consistently, no unified profile, and no real-time personalisation.', pain: 'Low repeat business; Weak loyalty; Missed upsells; Inconsistent service and negative reviews.', solution: 'Kinexus builds unified guest profiles, predicts preferences, triggers personalised outreach and recommends upsells while syncing with PMS and CRM.', metrics: ['↑ RevPAR', '↑ Repeat Guests'] },
+  { id: 'hosp-2', industry: 'Hospitality', icon: 'DollarSign', title: 'Dynamic Pricing & Revenue Management', gap: 'Revenue management is manual, slow to react and not optimised for ancillary revenue.', pain: 'Suboptimal room rates; Low occupancy off-peak; Lost revenue during peaks.', solution: 'Kinexus analyses demand, events and competitor pricing to recommend optimal rates and distribution to maximise yield.', metrics: ['5-15% Revenue Uplift', 'Better Yield'] },
+  { id: 'hosp-3', industry: 'Hospitality', icon: 'BedDouble', title: 'Housekeeping Productivity & Room Readiness', gap: 'Housekeeping coordination is manual and not aligned with check-in patterns or PMS status.', pain: 'Delayed room readiness; Guest dissatisfaction; High staff fatigue.', solution: 'Kinexus predicts room readiness, assigns tasks based on workload, optimises routes and syncs with PMS for timely check-ins.', metrics: ['Faster Turnaround', 'Higher Staff Productivity'] },
+  { id: 'hosp-4', industry: 'Hospitality', icon: 'Coffee', title: 'F&B Demand Forecasting & Menu Optimisation', gap: 'F&B forecasting is manual; menu engineering is not data-driven and inventory is poorly aligned.', pain: 'Food wastage; Stockouts; Poor menu profitability.', solution: 'Kinexus forecasts demand by outlet and daypart, recommends menu engineering and aligns inventory to consumption to improve margins.', metrics: ['Lower Wastage', 'Higher F&B Profitability'] },
+  { id: 'hosp-5', industry: 'Hospitality', icon: 'UserCheck', title: 'Front Desk Automation & Service Excellence', gap: 'Front desk workflows are manual, slow and error-prone, not integrated with guest profiles.', pain: 'Long check-in times; Inaccurate billing; Low upsell conversion.', solution: 'Kinexus auto-fills guest details, predicts needs, recommends upsells, flags VIPs and syncs with housekeeping/F&B/CRM to improve service.', metrics: ['Faster Check-in', 'Higher Upsell Conversion'] }
+];
+
+const CASE_STUDIES = [
+  {
+    title: '₹2000 Cr Manufacturing Company, Pune',
+    challenge: 'Quality control was manual. 40% of inspection time wasted on paperwork.',
+    solution: 'We deployed AI agents to automate QC documentation and defect routing.',
+    metrics: ['35% reduction in inspection time','50% fewer defects','₹4.2 Cr annual savings'],
+    quote: 'Our QC team used to work weekends to keep up. Now they leave at 5 PM and quality improved.'
+  },
+  {
+    title: 'Large Logistics Fleet, Delhi',
+    challenge: 'Dispatch scheduling caused late deliveries and idle trucks.',
+    solution: 'Dynamic dispatch agents reduced empty miles and improved on-time performance.',
+    metrics: ['18% fuel savings','99% SLA'],
+    quote: 'We cut fuel costs and improved customer satisfaction overnight.'
+  },
+  {
+    title: 'Regional Pharma Manufacturer',
+    challenge: 'Batch record paperwork delayed releases.',
+    solution: 'Agents auto-filled BMRs from equipment logs and QA checks.',
+    metrics: ['40% faster release','Zero paperwork errors'],
+    quote: 'Regulatory reviews are straightforward now — no surprises.'
+  }
 ];
 
 // --- UTILITY COMPONENTS ---
@@ -186,8 +271,9 @@ const ScrollReveal = ({ children, className = '', delay = 0 }) => {
       },
       { threshold: 0.1 }
     );
-    if (ref.current) observer.observe(ref.current);
-    return () => { if (ref.current) observer.unobserve(ref.current); };
+    const node = ref.current;
+    if (node) observer.observe(node);
+    return () => { if (node) observer.unobserve(node); };
   }, [delay]);
 
   return (
@@ -218,52 +304,39 @@ const Button = ({ children, variant = 'primary', className = '', onClick, icon: 
   );
 };
 
-const SectionHeading = ({ title, subtitle, centered = false }) => (
-  <ScrollReveal className={`mb-12 ${centered ? 'text-center' : ''}`}>
-    <h2 className="text-[28px] md:text-[36px] leading-tight mb-4 text-gradient font-semibold tracking-tight">{title}</h2>
-    {subtitle && <p className="text-[16px] md:text-[18px] text-[#6B6B6B] max-w-3xl mx-auto leading-relaxed">{subtitle}</p>}
-  </ScrollReveal>
-);
-
-// --- PARALLAX PAGE (combines sections into a single scrollable page) ---
-const ParallaxPage = ({ navigate, industries, useCases }) => {
-  const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+const SectionHeading = ({ title, subtitle, centered = false, className = '' }) => {
+  // allow `title` to be either a string (old behavior) or a React node
+  const renderTitle = () => {
+    if (typeof title === 'string') {
+      const parts = String(title).trim().split(' ');
+      const last = parts.pop();
+      const first = parts.join(' ');
+      return (
+        <h2 className="text-[#212121] text-[22px] md:text-[34px] lg:text-[40px] leading-tight font-bold tracking-tight">
+          {first && <span className="mr-2">{first}</span>}
+          <span className="text-gradient">{last}</span>
+        </h2>
+      );
+    }
+    // if it's not a string, render whatever node was passed (allows custom highlighting)
+    return (
+      <h2 className="text-[#212121] text-[22px] md:text-[34px] lg:text-[40px] leading-tight font-bold tracking-tight">
+        {title}
+      </h2>
+    );
   };
 
-  useEffect(() => {
-    // enable deep-link scroll if URL contains a hash
-    if (window.location.hash) {
-      const id = window.location.hash.replace('#', '');
-      setTimeout(() => scrollTo(id), 50);
-    }
-  }, []);
-
   return (
-    <div className="parallax-root">
-      <div id="home-section" className="parallax-section">{/* reuse HomePage content */}
-        <HomePage navigate={navigate} />
+    <ScrollReveal className={`mb-4 ${className} ${centered ? 'text-center' : ''}`}>
+      <div className={`mb-2 ${centered ? 'flex flex-col items-center' : ''}`}>
+        {renderTitle()}
       </div>
-
-      <div id="industries-section" className="parallax-section"> 
-        <IndustriesPage navigate={navigate} industries={industries} />
-      </div>
-
-      <div id="services-section" className="parallax-section">
-        <ServicesPage navigate={navigate} />
-      </div>
-
-      <div id="usecases-section" className="parallax-section">
-        <UseCasesPage navigate={navigate} useCases={useCases} industries={industries} />
-      </div>
-
-      <div id="contact-section" className="parallax-section">
-        <ContactPage navigate={navigate} />
-      </div>
-    </div>
+      {subtitle && <p className="text-[14px] md:text-[16px] text-[#4B5563] max-w-3xl mx-auto leading-relaxed">{subtitle}</p>}
+    </ScrollReveal>
   );
 };
+
+// ParallaxPage was removed — site uses separate pages and sections now.
 
 // --- MAIN APPLICATION COMPONENTS ---
 
@@ -282,7 +355,7 @@ const UseCasesPage = ({ navigate, useCases, industries }) => {
   }, [selectedIndustry, searchQuery, useCases]);
 
   return (
-    <div className="min-h-screen bg-white pt-20 pb-24 relative overflow-hidden bg-grid-pattern">
+    <div className="min-h-screen bg-white pt-16 pb-16 relative overflow-hidden bg-grid-pattern animate-fade-in-up">
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-6 text-center mb-10 animate-fade-in">
            <div className="inline-flex items-center space-x-2 bg-[#E8E7FF] text-[#5856D6] px-4 py-2 rounded-full text-sm font-semibold mb-6">
@@ -398,78 +471,7 @@ const UseCasesPage = ({ navigate, useCases, industries }) => {
   );
 };
 
-const IndustryPage = ({ id, navigate, industries, useCases }) => {
-  const industryInfo = industries.find(i => i.id === id) || industries[0];
-  const industryUseCases = useCases.filter(uc => uc.industry === industryInfo.name);
-  const Icon = getIcon(industryInfo.icon);
-
-  return (
-    <div className="animate-fade-in pt-20 bg-white">
-      <section className="bg-white pt-20 pb-12 lg:pt-20 lg:pb-20 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[#E8E7FF]/30 rounded-bl-[200px] -z-10 animate-blob opacity-40"></div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <Button variant="text" onClick={() => navigate('industries')} className="mb-8 pl-0 text-sm hover:-translate-x-1">← Back to All Industries</Button>
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="p-2 bg-[#E8E7FF] rounded-lg"><Icon className="w-6 h-6 text-[#5856D6]" /></div>
-            <span className="text-[#5856D6] font-bold uppercase tracking-wider text-sm">{industryInfo.name} Transformation</span>
-          </div>
-          <h1 className="text-3xl lg:text-4xl font-semibold leading-[1.15] mb-6 max-w-4xl text-[#212121]">{industryInfo.hero}</h1>
-          <p className="text-base lg:text-lg text-[#6B6B6B] max-w-3xl mb-10 leading-relaxed">{industryInfo.subhead}</p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button onClick={() => navigate('contact')}>Start Your Transformation</Button>
-            <Button variant="secondary" onClick={() => navigate('useCases')}>Explore Use Cases</Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-white relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading title="The Reality Check" subtitle="Why traditional methods are failing your teams." centered />
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 hover:border-[#5856D6] transition-all hover-lift h-full">
-              <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mb-6 text-red-500"><AlertTriangle className="w-7 h-7" /></div>
-              <h3 className="text-lg font-semibold mb-4 text-[#212121]">The Real Gap</h3>
-              <p className="text-[#6B6B6B] text-sm leading-relaxed">{industryInfo.gap}</p>
-            </div>
-            <div className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 hover:border-[#5856D6] transition-all hover-lift h-full">
-              <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center mb-6 text-orange-500"><DollarSign className="w-7 h-7" /></div>
-              <h3 className="text-lg font-semibold mb-4 text-[#212121]">The Hidden Pain</h3>
-              <p className="text-[#6B6B6B] text-sm leading-relaxed">{industryInfo.pain}</p>
-            </div>
-            <div className="bg-[#212121] p-10 rounded-2xl shadow-xl text-white relative overflow-hidden h-full hover-lift">
-              <div className="w-14 h-14 bg-[#5856D6] rounded-2xl flex items-center justify-center mb-6 text-white relative z-10"><CheckCircle2 className="w-7 h-7" /></div>
-              <h3 className="text-lg font-semibold mb-4 text-white relative z-10">The Kinexus Difference</h3>
-              <p className="text-gray-300 text-sm leading-relaxed relative z-10">{industryInfo.solution}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-white bg-grid-pattern">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading title={`High-ROI Use Cases for ${industryInfo.name}`} subtitle="These aren't experiments. These are deployable, autonomous agents." />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {industryUseCases.map((uc) => {
-              const Icon = getIcon(uc.icon);
-              return (
-                <div key={uc.id} className="glass-card p-8 rounded-2xl hover-lift group cursor-default h-full">
-                  <div className="flex justify-between items-start mb-6">
-                     <div className="p-3 bg-[#E8E7FF] rounded-xl group-hover:bg-[#5856D6] transition-colors"><Icon className="w-6 h-6 text-[#5856D6] group-hover:text-white" /></div>
-                  </div>
-                  <h3 className="text-[20px] font-bold mb-3 text-[#212121] group-hover:text-[#5856D6] transition-colors">{uc.title}</h3>
-                  <p className="text-[#6B6B6B] text-[16px] leading-relaxed">{uc.solution}</p>
-                </div>
-              );
-            })}
-          </div>
-          <div className="mt-24 text-center">
-            <Button onClick={() => navigate('contact')} className="shadow-xl shadow-purple-200">Schedule a {industryInfo.name} Demo</Button>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
+// `IndustryPage` is provided as a separate file at `src/pages/IndustryPage.js`.
 
 // --- ADMIN DASHBOARD ---
 const AdminDashboard = ({ navigate, leads, clearLeads, downloadLeads, useCases, setUseCases, industries, setIndustries }) => {
@@ -513,7 +515,7 @@ const AdminDashboard = ({ navigate, leads, clearLeads, downloadLeads, useCases, 
   };
 
   return (
-    <div className="pt-32 pb-24 px-6 min-h-screen bg-gray-100 animate-fade-in">
+    <div className="pt-24 pb-16 px-6 min-h-screen bg-gray-100 animate-fade-in">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center space-x-3">
@@ -635,13 +637,128 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const scroller = document.querySelector('.app-scroll');
+    if (scroller) scroller.scrollTo({ top: 0, left: 0 });
+    else window.scrollTo(0, 0);
   }, [currentView, viewParams]);
+
+  // parallax state
+  const [scrollY, setScrollY] = useState(0);
+  const mainRef = useRef(null);
+  // support multiple background layers
+  const [bgUrls, setBgUrls] = useState([]);
 
   const navigate = (view, params = null) => {
     setCurrentView(view);
     setViewParams(params);
   };
+
+  // pick the best available background image variant for the current view
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      const tryUrls = async (urls) => {
+        for (const u of urls) {
+          try {
+            const res = await fetch(u, { method: 'HEAD' });
+            if (res.ok) return u;
+          } catch (e) {
+            // ignore and try next
+          }
+        }
+        return null;
+      };
+
+        if (currentView === 'industry' && viewParams?.id) {
+          const id = viewParams.id;
+          // look up industry record to see if multiple backgrounds are defined
+          const industry = industries.find(it => it.id === id);
+          if (industry && Array.isArray(industry.backgrounds) && industry.backgrounds.length) {
+            const results = [];
+            for (const bg of industry.backgrounds) {
+              // allow either full path or id-like name
+              const base = bg.startsWith('/') ? bg : `/assets/${bg}`;
+              const candidates = [
+                `${base.replace(/\.jpg$/, '')}-1600.jpg`,
+                `${base.replace(/\.jpg$/, '')}-1200.jpg`,
+                `${base.replace(/\.jpg$/, '')}-800.jpg`,
+                `${base.replace(/\.jpg$/, '')}-480.jpg`,
+                base
+              ];
+              const found = await tryUrls(candidates);
+              results.push(found || null);
+            }
+            if (mounted) { console.debug('parallax: industry multi-bg found', results); setBgUrls(results.filter(Boolean)); }
+            return;
+          }
+
+          const candidates = [
+            `/assets/hero-${id}-1600.jpg`,
+            `/assets/hero-${id}-1200.jpg`,
+            `/assets/hero-${id}-800.jpg`,
+            `/assets/hero-${id}-480.jpg`,
+            `/assets/hero-${id}.jpg`
+          ];
+          // build layered set from available variants (largest -> smallest)
+          const available = [];
+          for (const u of candidates) {
+            try {
+              const res = await fetch(u, { method: 'HEAD' });
+              if (res.ok) available.push(u);
+            } catch (e) {
+              // ignore
+            }
+          }
+          if (mounted) { console.debug('parallax: industry bg layers', available); setBgUrls(available); }
+          return;
+        }
+
+      if (currentView === 'home') {
+        // pick the section in view that has `data-bg` set
+        try {
+          const root = mainRef.current;
+          if (root) {
+            const sections = Array.from(root.querySelectorAll('.home-section[data-bg]'));
+            // find first section whose bounding rect intersects the viewport center
+            const viewportHeight = root.clientHeight || window.innerHeight;
+            const centerY = viewportHeight * 0.45;
+            let chosen = null;
+            for (const s of sections) {
+              const rect = s.getBoundingClientRect();
+              // rect is relative to viewport; adjust if scroller is not window
+              const top = rect.top;
+              const bottom = rect.bottom;
+              if (top <= centerY && bottom >= centerY) { chosen = s; break; }
+            }
+            if (!chosen && sections.length) chosen = sections[0];
+            if (chosen) {
+              const bg = chosen.getAttribute('data-bg');
+              // prefer high-res variants if available
+              const idMatch = bg && bg.match(/hero-([a-zA-Z0-9-]+)(?:-\d+)?\.jpg$/);
+              if (idMatch) {
+                const id = idMatch[1];
+                const candidates = [`/assets/hero-${id}-1600.jpg`,`/assets/hero-${id}-1200.jpg`,`/assets/hero-${id}-800.jpg`,`/assets/hero-${id}-480.jpg`, `/assets/hero-${id}.jpg`];
+                const found = await tryUrls(candidates);
+                if (mounted) { console.debug('parallax: home section bg found', found); setBgUrls(found ? [found] : []); }
+                return;
+              }
+              if (mounted) { console.debug('parallax: home section bg (raw)', bg); setBgUrls(bg ? [bg] : []); }
+              return;
+            }
+          }
+        } catch (e) {
+          // fallback to static retail hero
+        }
+        const candidates = ['/assets/hero-retail-1600.jpg','/assets/hero-retail-1200.jpg','/assets/hero-retail.jpg'];
+        const found = await tryUrls(candidates);
+        if (mounted) { console.debug('parallax: fallback bg found', found); setBgUrls(found ? [found] : []); }
+        return;
+      }
+
+      if (mounted) setBgUrls([]);
+    })();
+    return () => { mounted = false; };
+  }, [currentView, viewParams, industries]);
 
   // Lead Helpers
   const clearLeads = () => {
@@ -675,9 +792,9 @@ export default function App() {
       case 'industries': return <IndustriesPage navigate={navigate} industries={industries} />; 
       case 'services': return <ServicesPage navigate={navigate} />;
       case 'service': return <ServicesPage navigate={navigate} />;
-      case 'useCases': return <UseCasesPage navigate={navigate} useCases={useCases} industries={industries} />;
+      case 'useCases': return <UseCasesPage navigate={navigate} useCases={useCases} industries={industries} initialIndustry={viewParams?.industry} />;
       case 'contact': return <ContactPage navigate={navigate} />;
-      case 'about': return <HomePage navigate={navigate} />;
+      case 'about': return <About navigate={navigate} />;
       case 'admin': return (
         <AdminDashboard 
           navigate={navigate} 
@@ -694,14 +811,35 @@ export default function App() {
     }
   };
 
+  // bgUrl is computed by effect; default null
+
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <style>{styles}</style>
       <Navbar navigate={navigate} />
-      <main className="flex-grow">
-        {currentView === 'home' ? <ParallaxPage navigate={navigate} industries={industries} useCases={useCases} /> : renderView()}
+      <main ref={mainRef} onScroll={(e) => setScrollY(e.target.scrollTop)} className="flex-grow app-scroll no-scrollbar relative">
+        {/* Parallax background: only show the centered strip on Home; hide on industry pages */}
+        {currentView === 'home' ? (
+          <div className={`parallax-bg strip`} aria-hidden>
+            {bgUrls && bgUrls.length > 0 ? (
+              bgUrls.map((u, i) => {
+                const depth = 0.15 + (i * 0.02);
+                const transform = `translateX(-50%) translateY(${Math.round(scrollY * depth)}px)`;
+                const className = `bg-image`;
+                return <div key={`bg-${i}`} className={className} style={{ backgroundImage: `url(${u})`, transform }} />;
+              })
+            ) : null}
+          </div>
+        ) : (
+          <div className="parallax-bg" aria-hidden />
+        )}
+
+        <div className="parallax-content relative z-10">
+          {renderView()}
+        </div>
       </main>
       <Footer navigate={navigate} />
+      <BackToTop />
     </div>
   );
 }
@@ -711,30 +849,229 @@ export default function App() {
 // These components are reused from previous logic but receive 'navigate' prop.
 // Below are the essential ones needed for context.
 
-const HomePage = ({ navigate }) => (
-  <div className="animate-fade-in bg-white overflow-x-hidden">
-    <section className="relative pt-0 pb-12 lg:pt-0 lg:pb-16 overflow-hidden bg-grid-pattern">
-      <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-[#E8E7FF] rounded-full mix-blend-multiply filter blur-[120px] opacity-40 animate-blob"></div>
-      <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-        <ScrollReveal>
-          <div className="inline-flex items-center space-x-2 bg-white/50 backdrop-blur-sm border border-purple-100 text-[#5856D6] px-4 py-2 rounded-full text-sm font-bold mb-8 shadow-sm">
-             <Zap className="w-4 h-4 fill-current" /><span>Enterprise Agentic AI Platform</span>
+const HomePage = ({ navigate }) => {
+
+  return (
+    <div className="animate-fade-in bg-white overflow-x-hidden">
+      <section className="home-section relative pt-0 pb-8 lg:pt-0 lg:pb-12 overflow-hidden bg-grid-pattern" data-bg="/assets/hero-retail-1600.jpg">
+        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-[#E8E7FF] rounded-full mix-blend-multiply filter blur-[120px] opacity-40 animate-blob"></div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+          <ScrollReveal>
+            <div className="inline-flex items-center space-x-2 bg-white/50 backdrop-blur-sm border border-purple-100 text-[#5856D6] px-4 py-2 rounded-full text-sm font-bold -mt-2 mb-3 shadow-sm">
+               <Zap className="w-4 h-4 fill-current" /><span>Enterprise Agentic AI Platform</span>
+            </div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.12] mb-4 text-[#212121] tracking-tight">Your Teams Deserve Better Than <span className="text-gradient">Endless Manual Work</span></h1>
+            <p className="text-base text-[#6B6B6B] mb-8 leading-relaxed max-w-xl">Kinexus builds AI agents that take over the tedious work—so your people can focus on what actually moves your business forward. Real autonomy. Real results.</p>
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+              <Button onClick={() => navigate('contact')} icon={ArrowRight}>Let's Talk About Your Reality</Button>
+              <Button variant="secondary" onClick={() => navigate('useCases')} icon={PlayCircle}>Explore Use Cases</Button>
+            </div>
+          </ScrollReveal>
+          <div className="relative"><div className="w-full aspect-square relative flex items-center justify-center"><div className="absolute inset-0 bg-gradient-to-tr from-[#E8E7FF] to-white rounded-full opacity-30 blur-3xl"></div><Activity className="w-32 h-32 text-[#5856D6] animate-float" /></div></div>
+        </div>
+      </section>
+
+      {/* Reality Check */}
+      <section className="home-section py-12 bg-white" data-bg="/assets/hero-manufacturing-1600.jpg">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeading className="-mt-6" title={<>If This Sounds Familiar, You're in the <span className="text-gradient">Right</span> <span className="text-gradient">Place</span></>} />
+          <div className="grid md:grid-cols-3 gap-6 mt-8">
+            <div className="p-6 rounded-2xl bg-[#F7F5FF]">
+              <h4 className="font-bold text-lg mb-2">Your Teams Are Tired</h4>
+              <p className="text-gray-600">They're working late not because they're slow—but because manual processes eat their days.</p>
+            </div>
+            <div className="p-6 rounded-2xl bg-[#FFF7F0]">
+              <h4 className="font-bold text-lg mb-2">Your Costs Keep Climbing</h4>
+              <p className="text-gray-600">Headcount and tools didn't reduce operating costs — you need smarter workflows.</p>
+            </div>
+            <div className="p-6 rounded-2xl bg-[#F0FFF7]">
+              <h4 className="font-bold text-lg mb-2">AI Pilots Haven't Worked</h4>
+              <p className="text-gray-600">Too many pilots deliver slides, not working agents that actually run your operations.</p>
+            </div>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-semibold leading-[1.12] mb-4 text-[#212121] tracking-tight">Your Teams Deserve Better Than <span className="text-gradient">Endless Manual Work</span></h1>
-          <p className="text-base text-[#6B6B6B] mb-8 leading-relaxed max-w-xl">Kinexus builds AI agents that take over the tedious work—so your people can focus on what actually moves your business forward. Real autonomy. Real results.</p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
-            <Button onClick={() => navigate('contact')} icon={ArrowRight}>Let's Talk About Your Reality</Button>
-            <Button variant="secondary" onClick={() => navigate('useCases')} icon={PlayCircle}>Explore Use Cases</Button>
+        </div>
+      </section>
+
+      {/* How We Work (Timeline) */}
+      <section className="home-section py-6 bg-[#F8F9FF]" data-bg="/assets/hero-logistics-1600.jpg">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeading title="Here's What Happens When You Work With Kinexus" />
+          <div className="mt-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 items-start">
+              {[
+                {
+                  step: 'Week 1-2',
+                  title: 'We Study Your Reality',
+                  desc: 'We embed with your teams, observe actual workflows, interview stakeholders, and map systems and data flows to identify root causes, constraints, and quick-win automation opportunities.'
+                },
+                {
+                  step: 'Week 3-4',
+                  title: 'We Pick the Right Battle',
+                  desc: 'We analyze impact vs complexity, prioritize 2–3 workflows with measurable ROI, define success metrics and acceptance criteria, and align stakeholders on a rapid pilot plan.'
+                },
+                {
+                  step: 'Week 5-12',
+                  title: 'We Build Your First Agent',
+                  desc: 'We design, integrate, and iterate a production-ready agent that automates end-to-end tasks, including integrations, validation, error handling, and user feedback loops; we pilot with real users and refine.'
+                },
+                {
+                  step: 'Month 3-6',
+                  title: 'We Scale What Works',
+                  desc: 'We expand proven agents across teams and systems, harden reliability and performance, onboard operators, and establish monitoring, governance, and deployment practices for wider rollout.'
+                },
+                {
+                  step: 'Ongoing',
+                  title: 'We Stay With You',
+                  desc: 'We operate and continuously improve your agents—monitoring outcomes, retraining models, adding capabilities, and providing SLA-backed support and quarterly roadmaps to sustain value.'
+                }
+              ].map((t, i) => (
+                <div key={i} className="bg-white p-4 rounded-xl shadow-sm flex flex-col items-start text-left">
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#E8E7FF] text-[#5856D6] font-bold text-sm mb-2">{i+1}</div>
+                  <div className="text-xs text-gray-500 mb-1">{t.step}</div>
+                  <div className="font-semibold text-sm md:text-base text-[#212121] mb-1">{t.title}</div>
+                  <div className="text-sm text-gray-600 leading-tight">{t.desc}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </ScrollReveal>
-        <div className="relative"><div className="w-full aspect-square relative flex items-center justify-center"><div className="absolute inset-0 bg-gradient-to-tr from-[#E8E7FF] to-white rounded-full opacity-30 blur-3xl"></div><Activity className="w-32 h-32 text-[#5856D6] animate-float" /></div></div>
-      </div>
-    </section>
-  </div>
-);
+        </div>
+      </section>
+
+      {/* Who This Isn't For */}
+      <section className="home-section py-12 bg-white" data-bg="/assets/hero-banking-1600.jpg">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <SectionHeading title="Let's Be Honest: Kinexus Isn't for Everyone" />
+          <p className="text-[#212121] text-lg max-w-3xl mx-auto mb-4">If you're looking for a cheap chatbot, we're not your people. If you expect magic without investment, this won't work. If your team isn't ready for change, it's too early. But if you're tired of throwing people at problems that AI should solve—if you're ready to invest seriously in transformation—then yes, let's talk.</p>
+          <p className="text-sm text-gray-500 italic mb-6">We work with manufacturing, logistics, pharma, banking, retail, real estate, energy, education, healthcare, hospitality, and insurance companies.</p>
+          <div className="flex justify-center"><Button onClick={() => navigate('contact')}>I Want to Explore This for My Company →</Button></div>
+        </div>
+      </section>
+
+      {/* Real Results (Case Cards) */}
+      <section className="home-section py-6 bg-[#F8F9FF]" data-bg="/assets/hero-energy-1600.jpg">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeading title="It's Not Theory. It's Working Right Now." />
+          <div className="mt-4">
+            <CaseCarousel items={CASE_STUDIES} />
+          </div>
+        </div>
+      </section>
+
+      {/* What Makes Us Different */}
+      <section className="home-section py-20 bg-white" data-bg="/assets/hero-education-1600.jpg">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeading title="Why Companies Choose Kinexus Over Point Solutions" />
+          <div className="mt-8 grid md:grid-cols-2 gap-6">
+            <div className="bg-gray-50 p-8 rounded-2xl">
+              <h4 className="font-bold mb-4 text-gray-700">Most 'AI' Solutions</h4>
+              <ul className="space-y-3 text-gray-600">
+                <li>Automate one task</li>
+                <li>You integrate it yourself</li>
+                <li>Generic AI models</li>
+                <li>Works in isolation</li>
+                <li>They disappear after sale</li>
+              </ul>
+            </div>
+            <div className="bg-gradient-to-br from-[#5856D6] to-[#2EC5CE] p-8 rounded-2xl text-white">
+              <h4 className="font-bold mb-4">Kinexus</h4>
+              <ul className="space-y-3">
+                <li>Transform entire workflows</li>
+                <li>We handle integrations</li>
+                <li>Custom agents for your industry</li>
+                <li>Agents collaborate autonomously</li>
+                <li>We stay and maintain — long term partner</li>
+              </ul>
+            </div>
+          </div>
+          <p className="text-center text-sm text-gray-600 mt-6">*Terms apply. Based on 12-month transformation engagements.</p>
+        </div>
+      </section>
+
+      {/* Results & Industries & FAQ */}
+      <section className="home-section py-20 bg-white" data-bg="/assets/hero-healthcare-1600.jpg">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeading title="It's Not Theory. It's Working Right Now." />
+          <div className="grid md:grid-cols-3 gap-6 mt-8">
+            <div className="p-6 rounded-2xl bg-[#E8F7FF]">
+              <div className="text-3xl font-extrabold">35%</div>
+              <div className="text-sm text-gray-600">Reduction in inspection time</div>
+            </div>
+            <div className="p-6 rounded-2xl bg-[#FFF4F0]">
+              <div className="text-3xl font-extrabold">50%</div>
+              <div className="text-sm text-gray-600">Fewer defects reaching customers</div>
+            </div>
+            <div className="p-6 rounded-2xl bg-[#F0FFF7]">
+              <div className="text-3xl font-extrabold">10x</div>
+              <div className="text-sm text-gray-600">Typical ROI within 24 months</div>
+            </div>
+          </div>
+
+          <div className="mt-12">
+            <SectionHeading title="Industries We Transform" />
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+              {INITIAL_INDUSTRIES.map(ind => (
+                <div key={ind.id} onClick={() => navigate('industry', { id: ind.id })} className="p-6 border rounded-2xl hover:shadow-lg cursor-pointer">
+                  <div className="font-bold text-lg mb-2">{ind.name}</div>
+                  <div className="text-sm text-gray-600">{ind.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-12">
+            <SectionHeading title="The Answer Is Yes." subtitle="We do the heavy lifting — integrations, operations, and measurable outcomes." centered />
+            <p className="text-gray-600 max-w-3xl mx-auto text-sm mb-6">You can deploy agentic automation in real operations without heroic data projects. Below are the guarantees we offer when we work together.</p>
+
+            <div className="mt-6 grid gap-6 md:grid-cols-3">
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+                <h4 className="font-semibold text-lg mb-2">We integrate with your systems</h4>
+                <p className="text-gray-600 text-sm">ERP, MES, WMS, CRMs — agents orchestrate across your stack without replacing it.</p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+                <h4 className="font-semibold text-lg mb-2">Pilot to production</h4>
+                <p className="text-gray-600 text-sm">Fast pilots that demonstrate impact in 8–12 weeks and production rollouts that scale reliably.</p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+                <h4 className="font-semibold text-lg mb-2">We operate with you</h4>
+                <p className="text-gray-600 text-sm">Monitoring, governance, and SLA-backed operations — we stay until outcomes are repeatable.</p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+                <h4 className="font-semibold text-lg mb-2">Security & compliance</h4>
+                <p className="text-gray-600 text-sm">Audit trails, role-based controls, and privacy-first integrations are standard in every deployment.</p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+                <h4 className="font-semibold text-lg mb-2">Human-in-the-loop</h4>
+                <p className="text-gray-600 text-sm">We design decision gates so humans retain control where necessary, with rich context and suggested actions.</p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+                <h4 className="font-semibold text-lg mb-2">Measurable ROI</h4>
+                <p className="text-gray-600 text-sm">Throughput, cost, and quality metrics tracked from day one — so you see the value in dollars and time saved.</p>
+              </div>
+            </div>
+            <div className="mt-8 flex justify-center"><Button onClick={() => navigate('contact')}>Talk with an Engineer →</Button></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="home-section py-12 bg-[#2EC5CE] text-white" data-bg="/assets/hero-hospitality-1600.jpg">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Free Your Team from the Tedium?</h2>
+          <p className="mb-6">Let's have an honest conversation about your reality.</p>
+          <Button onClick={() => navigate('contact')} className="bg-white text-[#2EC5CE]">Start the Conversation</Button>
+        </div>
+      </section>
+    </div>
+  );
+};
 
 const IndustriesPage = ({ navigate, industries }) => (
-  <div className="pt-20 pb-12 animate-fade-in bg-white min-h-screen bg-grid-pattern">
+  <div className="pt-16 pb-10 animate-fade-in-up bg-white min-h-screen bg-grid-pattern">
     <div className="max-w-7xl mx-auto px-6 text-center mb-12">
       <h1 className="text-3xl font-semibold text-[#212121] mb-4">Industries We <span className="text-gradient">Transform</span></h1>
     </div>
@@ -755,14 +1092,34 @@ const IndustriesPage = ({ navigate, industries }) => (
 );
 
 const ServicesPage = ({ navigate }) => (
-  <div className="pt-20 pb-16 animate-fade-in text-center min-h-screen bg-grid-pattern">
+  <div className="pt-16 pb-12 animate-fade-in-up text-center min-h-screen bg-grid-pattern">
     <h1 className="text-3xl font-semibold text-[#212121] mb-6">Our <span className="text-gradient">Services</span></h1>
-    <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6">
-       {[{id: '1', name: 'Full AI Transformation', icon: Workflow}, {id: '2', name: 'Autonomous Workflows', icon: Activity}].map((s) => (
-         <div key={s.id} className="glass-card p-10 rounded-3xl hover-lift text-left"><div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-6"><s.icon className="w-7 h-7 text-[#5856D6]"/></div><h3 className="text-2xl font-bold mb-4">{s.name}</h3></div>
-       ))}
+    <div className="max-w-7xl mx-auto px-6 mt-8">
+      <div className="grid md:grid-cols-3 gap-8">
+        {[
+          { id: 'ai-readiness', name: 'AI Readiness Audit', desc: 'We assess your data, systems and processes to create a clear roadmap for agentic transformation.', bullets: ['Data maturity review', 'Systems & API map', 'Roadmap & quick wins'] },
+          { id: 'pilot-production', name: 'Pilot → Production', desc: 'Fast pilots (8–12 weeks) that transition to hardened production agents with monitoring and SLAs.', bullets: ['Prototype agent', 'Operationalize & harden', 'Runbooks & SLAs'] },
+          { id: 'integration', name: 'Systems Integration & Orchestration', desc: 'We connect ERP, MES, TMS and legacy systems so agents can act across your stack.', bullets: ['API connectors', 'UI automation fallbacks', 'Event orchestration'] },
+          { id: 'agent-design', name: 'Agentic Workflow Design', desc: 'Design and build autonomous agents that make decisions, not just move data.', bullets: ['Decision modeling', 'Human-in-the-loop flows', 'Monitoring hooks'] },
+          { id: 'governance', name: 'Governance & Security', desc: 'Security-first delivery: audit trails, access controls, and compliance (SOC2/ISO/GDPR).', bullets: ['Audit logs & traceability', 'Access controls', 'Compliance packaging'] },
+          { id: 'training', name: 'Change & Adoption', desc: 'Role-based training, playbooks and ops-runbooks to embed agents into daily work.', bullets: ['Operator playbooks', 'Hands-on workshops', 'Adoption metrics'] }
+        ].map(s => (
+          <div key={s.id} className="glass-card p-8 rounded-3xl hover-lift text-left">
+            <div className="mb-4">
+              <div className="w-12 h-12 bg-[#E8E7FF] rounded-lg flex items-center justify-center text-[#5856D6] font-bold">{s.name.split(' ').map(w => w[0]).slice(0,2).join('')}</div>
+            </div>
+            <h3 className="text-xl font-bold mb-2 text-[#212121]">{s.name}</h3>
+            <p className="text-gray-600 mb-3">{s.desc}</p>
+            <ul className="text-sm text-gray-600 list-disc list-inside space-y-1">
+              {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div className="mt-12 text-center">
+        <Button onClick={() => navigate('contact')}>Book an AI Readiness Audit</Button>
+      </div>
     </div>
-    <Button onClick={() => navigate('home')} className="mt-16">Return Home</Button>
   </div>
 );
 
@@ -770,52 +1127,87 @@ const ContactPage = ({ navigate }) => {
   const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
   const [status, setStatus] = useState('idle');
   const handleSubmit = (e) => {
-    e.preventDefault(); setStatus('submitting');
+    e.preventDefault();
+    setStatus('submitting');
     setTimeout(() => {
-      const newLead = { id: Date.now(), date: new Date().toLocaleString(), ...formData, industry: 'Unknown' };
-      const leads = JSON.parse(localStorage.getItem('kinexus_leads') || '[]');
-      localStorage.setItem('kinexus_leads', JSON.stringify([newLead, ...leads]));
-      setStatus('success');
-    }, 1000);
+      // simulate submit success
+      setStatus('sent');
+      setFormData({ name: '', email: '', company: '', message: '' });
+    }, 800);
   };
-  if (status === 'success') return <div className="pt-20 text-center"><h2 className="text-3xl font-bold">Request Received</h2><Button onClick={() => navigate('home')} className="mt-8">Home</Button></div>;
   return (
-    <div className="pt-20 pb-20 max-w-2xl mx-auto px-6">
-      <h1 className="text-2xl font-semibold mb-6">Let's Talk</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input required placeholder="Name" className="w-full border p-4 rounded-xl" onChange={e => setFormData({...formData, name: e.target.value})} />
-        <input required placeholder="Email" className="w-full border p-4 rounded-xl" onChange={e => setFormData({...formData, email: e.target.value})} />
-        <input required placeholder="Company" className="w-full border p-4 rounded-xl" onChange={e => setFormData({...formData, company: e.target.value})} />
-        <textarea required placeholder="Message" className="w-full border p-4 rounded-xl h-32" onChange={e => setFormData({...formData, message: e.target.value})} />
-        <Button type="submit" className="w-full" disabled={status === 'submitting'}>Submit</Button>
-      </form>
+    <div className="pt-16 pb-16 min-h-screen bg-white animate-fade-in-up">
+      <div className="max-w-3xl mx-auto px-6">
+        <SectionHeading title="Contact Us" subtitle="Start a conversation — we'll respond within 48 hours." centered />
+        <form onSubmit={handleSubmit} className="space-y-4 mt-8">
+          <input required placeholder="Full name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full border p-3 rounded-lg" />
+          <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full border p-3 rounded-lg" />
+          <input placeholder="Company" value={formData.company} onChange={e => setFormData({...formData, company: e.target.value})} className="w-full border p-3 rounded-lg" />
+          <textarea placeholder="Tell us about your challenge" required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full border p-3 rounded-lg h-36" />
+          <div className="flex justify-between items-center">
+            <div className="text-sm text-gray-500">{status === 'submitting' ? 'Sending…' : status === 'sent' ? 'Thanks — we will be in touch.' : ''}</div>
+            <Button type="submit" disabled={status === 'submitting'}>Send Message</Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
 
 // --- NAVBAR & FOOTER ---
 const Navbar = ({ navigate }) => {
-  const go = (section, fallbackView) => {
-    // ensure we're on the parallax home view, then scroll
-    navigate('home');
-    setTimeout(() => {
-      const el = document.getElementById(section);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      else if (fallbackView) navigate(fallbackView);
-    }, 80);
-  };
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+
+  useEffect(() => {
+    const scroller = document.querySelector('.app-scroll') || window;
+    lastY.current = scroller === window ? window.scrollY : scroller.scrollTop;
+    let ticking = false;
+    const onScroll = () => {
+      const y = scroller === window ? window.scrollY : scroller.scrollTop;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (y > lastY.current && y > 100) setHidden(true); // scrolling down
+          else setHidden(false); // scrolling up or near top
+          lastY.current = y;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    scroller.addEventListener('scroll', onScroll, { passive: true });
+    return () => scroller.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Show navbar when mouse moves near the top on desktop
+  useEffect(() => {
+    const onMove = (e) => {
+      try {
+        if (window.innerWidth >= 768 && e.clientY <= 80) {
+          setHidden(false);
+        }
+      } catch (err) {
+        // ignore
+      }
+    };
+    window.addEventListener('mousemove', onMove);
+    return () => window.removeEventListener('mousemove', onMove);
+  }, []);
+
+  // simple page navigation (no parallax scrolling)
+  const goTo = (view) => navigate(view);
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
-        <div className="text-xl font-bold cursor-pointer" onClick={() => go('home-section', 'home')}>Kinexus</div>
+    <nav className={`fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-md z-50 transform transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
+      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+        <div className="text-xl font-bold cursor-pointer" onClick={() => goTo('home')}>Kinexus</div>
         <div className="space-x-6 hidden md:flex">
-          <button onClick={() => go('home-section', 'home')} className="text-black hover:text-[#5856D6]">Home</button>
-          <button onClick={() => go('services-section', 'services')} className="text-black hover:text-[#5856D6]">Services</button>
-          <button onClick={() => go('industries-section', 'industries')} className="text-black hover:text-[#5856D6]">Industries</button>
-          <button onClick={() => go('usecases-section', 'useCases')} className="text-black hover:text-[#5856D6]">Use Cases</button>
-          <button onClick={() => go('about-section', 'about')} className="text-black hover:text-[#5856D6]">About</button>
-          <button onClick={() => go('contact-section', 'contact')} className="bg-[#25a8b0] text-white px-4 py-2 rounded-lg hover:bg-[#1e8b98]">Contact</button>
+          <button onClick={() => goTo('home')} className="text-black hover:text-[#5856D6]">Home</button>
+          <button onClick={() => goTo('services')} className="text-black hover:text-[#5856D6]">Services</button>
+          <button onClick={() => goTo('industries')} className="text-black hover:text-[#5856D6]">Industries</button>
+          <button onClick={() => goTo('useCases')} className="text-black hover:text-[#5856D6]">Use Cases</button>
+          <button onClick={() => goTo('about')} className="text-black hover:text-[#5856D6]">About</button>
+          <button onClick={() => goTo('contact')} className="bg-[#25a8b0] text-white px-4 py-2 rounded-lg hover:bg-[#1e8b98]">Contact</button>
         </div>
         <div className="md:hidden">
           {/* mobile menu placeholder */}
