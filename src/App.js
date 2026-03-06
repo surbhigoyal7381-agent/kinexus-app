@@ -630,10 +630,33 @@ export default function App() {
   });
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('admin') === 'true') {
-      setCurrentView('admin');
-    }
+    const navigateFromPath = () => {
+      const path = window.location.pathname || '/';
+      if (path === '/admin') {
+        setCurrentView('admin');
+        setViewParams(null);
+        return;
+      }
+      if (path.startsWith('/industry/')) {
+        const parts = path.split('/');
+        const id = parts[2];
+        setCurrentView('industry');
+        setViewParams({ id });
+        return;
+      }
+      if (path === '/use-cases' || path === '/usecases') {
+        setCurrentView('useCases');
+        setViewParams(null);
+        return;
+      }
+      if (path === '/contact') { setCurrentView('contact'); setViewParams(null); return; }
+      if (path === '/about') { setCurrentView('about'); setViewParams(null); return; }
+      setCurrentView('home');
+    };
+
+    navigateFromPath();
+    window.addEventListener('popstate', navigateFromPath);
+    return () => window.removeEventListener('popstate', navigateFromPath);
   }, []);
 
   useEffect(() => {
@@ -651,6 +674,18 @@ export default function App() {
   const navigate = (view, params = null) => {
     setCurrentView(view);
     setViewParams(params);
+    // update browser URL for deep-linking to admin and industry pages
+    try {
+      let path = '/';
+      if (view === 'admin') path = '/admin';
+      else if (view === 'industry' && params?.id) path = `/industry/${params.id}`;
+      else if (view === 'useCases') path = '/use-cases';
+      else if (view === 'contact') path = '/contact';
+      else if (view === 'about') path = '/about';
+      window.history.pushState({}, '', path);
+    } catch (e) {
+      // ignore
+    }
   };
 
   // pick the best available background image variant for the current view
