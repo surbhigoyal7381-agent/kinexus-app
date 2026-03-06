@@ -784,6 +784,16 @@ export default function App() {
     link.click();
   };
 
+  const addLead = (lead) => {
+    const id = `lead-${Date.now()}`;
+    const date = new Date().toISOString();
+    const record = { id, date, ...lead };
+    const updated = [record, ...leads];
+    setLeads(updated);
+    localStorage.setItem('kinexus_leads', JSON.stringify(updated));
+    return record;
+  };
+
   // View Routing
   const renderView = () => {
     switch (currentView) {
@@ -793,7 +803,7 @@ export default function App() {
       case 'services': return <ServicesPage navigate={navigate} />;
       case 'service': return <ServicesPage navigate={navigate} />;
       case 'useCases': return <UseCasesPage navigate={navigate} useCases={useCases} industries={industries} initialIndustry={viewParams?.industry} />;
-      case 'contact': return <ContactPage navigate={navigate} />;
+      case 'contact': return <ContactPage navigate={navigate} addLead={addLead} industries={industries} />;
       case 'about': return <About navigate={navigate} />;
       case 'admin': return (
         <AdminDashboard 
@@ -1155,29 +1165,41 @@ const ContactPage = ({ navigate }) => {
 };
 
 // --- NAVBAR & FOOTER ---
-const Navbar = ({ navigate }) => {
-  const [hidden, setHidden] = useState(false);
-  const lastY = useRef(0);
-
-  useEffect(() => {
-    const scroller = document.querySelector('.app-scroll') || window;
-    lastY.current = scroller === window ? window.scrollY : scroller.scrollTop;
-    let ticking = false;
-    const onScroll = () => {
-      const y = scroller === window ? window.scrollY : scroller.scrollTop;
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
+const ContactPage = ({ navigate, addLead, industries = [] }) => {
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', industry: industries[0]?.name || '', message: '' });
+  const [status, setStatus] = useState('idle');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStatus('submitting');
+    try {
+      const lead = {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || '',
+        industry: formData.industry || '',
+        message: formData.message || ''
+      };
+      addLead(lead);
+      setStatus('sent');
+      setFormData({ name: '', email: '', company: '', industry: industries[0]?.name || '', message: '' });
+    } catch (err) {
+      console.error('Failed to save lead', err);
+      setStatus('error');
+    }
+  };
           if (y > lastY.current && y > 100) setHidden(true); // scrolling down
-          else setHidden(false); // scrolling up or near top
-          lastY.current = y;
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    scroller.addEventListener('scroll', onScroll, { passive: true });
-    return () => scroller.removeEventListener('scroll', onScroll);
-  }, []);
+          <input required placeholder="Full name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full border p-3 rounded-lg" />
+          <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full border p-3 rounded-lg" />
+          <input placeholder="Company" value={formData.company} onChange={e => setFormData({...formData, company: e.target.value})} className="w-full border p-3 rounded-lg" />
+          <select value={formData.industry} onChange={e => setFormData({...formData, industry: e.target.value})} className="w-full border p-3 rounded-lg">
+            <option value="">Select industry (optional)</option>
+            {industries.map(i => <option key={i.id} value={i.name}>{i.name}</option>)}
+          </select>
+          <textarea placeholder="Tell us about your challenge" required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full border p-3 rounded-lg h-36" />
+          <div className="flex justify-between items-center">
+            <div className="text-sm text-gray-500">{status === 'submitting' ? 'Sending…' : status === 'sent' ? 'Thanks — we will be in touch.' : status === 'error' ? 'Failed to send. Try again.' : ''}</div>
+            <Button type="submit" disabled={status === 'submitting'}>Send Message</Button>
+          </div>
 
   // Show navbar when mouse moves near the top on desktop
   useEffect(() => {
