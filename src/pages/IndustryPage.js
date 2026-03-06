@@ -1,8 +1,125 @@
 import React, { useEffect } from 'react';
 import { ArrowRight, Activity, Factory, Truck, BarChart, Globe, Users, ShoppingCart, FileText } from 'lucide-react';
+import { useState, useMemo } from 'react';
 
 const ICON_MAP = { Activity, Factory, Truck, BarChart, Globe, Users, ShoppingCart, FileText };
 const getIcon = (name) => ICON_MAP[name] || Activity;
+
+// --- ROI Calculator ---
+const ROI_CONFIG = {
+  manufacturing: {
+    fields: [
+      { key: 'laborCostPerHour', label: 'Average labour cost (per hour)', placeholder: '50', unit: '$' },
+      { key: 'hoursSavedPerDay', label: 'Labour hours saved (per day)', placeholder: '10', unit: 'h' },
+      { key: 'daysPerYear', label: 'Working days per year', placeholder: '250', unit: 'd' },
+      { key: 'revenuePerDay', label: 'Revenue per day', placeholder: '20000', unit: '$' },
+      { key: 'productionGainPercent', label: 'Expected production gain (%)', placeholder: '5', unit: '%' },
+      { key: 'implementationCost', label: 'Implementation cost (one-time)', placeholder: '50000', unit: '$' }
+    ],
+    compute: (v) => {
+      const labor = v.laborCostPerHour * v.hoursSavedPerDay * v.daysPerYear;
+      const revenueGain = v.revenuePerDay * v.daysPerYear * (v.productionGainPercent/100);
+      const annual = labor + revenueGain;
+      return { annualSavings: annual, paybackMonths: v.implementationCost > 0 ? (v.implementationCost / (annual/12)) : null };
+    }
+  },
+  logistics: {
+    fields: [
+      { key: 'vehicles', label: 'Number of vehicles', placeholder: '10' },
+      { key: 'milesPerVehiclePerDay', label: 'Avg miles per vehicle / day', placeholder: '120', unit: 'mi' },
+      { key: 'costPerMile', label: 'Operating cost per mile', placeholder: '1.2', unit: '$' },
+      { key: 'fuelSavingsPercent', label: 'Expected cost reduction (%)', placeholder: '8', unit: '%' },
+      { key: 'daysPerYear', label: 'Operating days / year', placeholder: '300' },
+      { key: 'implementationCost', label: 'Implementation cost (one-time)', placeholder: '40000', unit: '$' }
+    ],
+    compute: (v) => {
+      const annualKmCost = v.vehicles * v.milesPerVehiclePerDay * v.costPerMile * v.daysPerYear;
+      const annual = annualKmCost * (v.fuelSavingsPercent/100);
+      return { annualSavings: annual, paybackMonths: v.implementationCost > 0 ? (v.implementationCost / (annual/12)) : null };
+    }
+  },
+  banking: {
+    fields: [
+      { key: 'avgProcessMin', label: 'Avg manual processing time (min)', placeholder: '20', unit: 'min' },
+      { key: 'applicationsPerDay', label: 'Applications processed / day', placeholder: '200' },
+      { key: 'staffCostPerHour', label: 'Staff cost per hour', placeholder: '30', unit: '$' },
+      { key: 'reductionPercent', label: 'Time reduction (%)', placeholder: '60', unit: '%' },
+      { key: 'daysPerYear', label: 'Working days / year', placeholder: '250' },
+      { key: 'implementationCost', label: 'Implementation cost (one-time)', placeholder: '30000', unit: '$' }
+    ],
+    compute: (v) => {
+      const timeSavedHours = (v.avgProcessMin/60) * v.applicationsPerDay * (v.reductionPercent/100) * v.daysPerYear;
+      const annual = timeSavedHours * v.staffCostPerHour;
+      return { annualSavings: annual, paybackMonths: v.implementationCost > 0 ? (v.implementationCost / (annual/12)) : null };
+    }
+  },
+  healthcare: {
+    fields: [
+      { key: 'clinicianHoursSavedPerDay', label: 'Clinician hours saved / day', placeholder: '5', unit: 'h' },
+      { key: 'clinicianCostPerHour', label: 'Clinician cost / hour', placeholder: '90', unit: '$' },
+      { key: 'daysPerYear', label: 'Working days / year', placeholder: '250' },
+      { key: 'patientsPerDay', label: 'Patients seen / day', placeholder: '80' },
+      { key: 'revenuePerPatient', label: 'Revenue per patient', placeholder: '100', unit: '$' },
+      { key: 'revenueIncreasePercent', label: 'Revenue increase (%)', placeholder: '2', unit: '%' },
+      { key: 'implementationCost', label: 'Implementation cost (one-time)', placeholder: '60000', unit: '$' }
+    ],
+    compute: (v) => {
+      const labor = v.clinicianHoursSavedPerDay * v.clinicianCostPerHour * v.daysPerYear;
+      const revenue = v.patientsPerDay * v.revenuePerPatient * v.daysPerYear * (v.revenueIncreasePercent/100);
+      const annual = labor + revenue;
+      return { annualSavings: annual, paybackMonths: v.implementationCost > 0 ? (v.implementationCost / (annual/12)) : null };
+    }
+  },
+  retail: {
+    fields: [
+      { key: 'avgInventoryValue', label: 'Average inventory value', placeholder: '500000', unit: '$' },
+      { key: 'inventoryReductionPercent', label: 'Working capital reduction (%)', placeholder: '8', unit: '%' },
+      { key: 'implementationCost', label: 'Implementation cost (one-time)', placeholder: '30000', unit: '$' }
+    ],
+    compute: (v) => {
+      const annual = v.avgInventoryValue * (v.inventoryReductionPercent/100);
+      return { annualSavings: annual, paybackMonths: v.implementationCost > 0 ? (v.implementationCost / (annual/12)) : null };
+    }
+  }
+};
+
+const number = (v) => (isNaN(Number(v)) ? 0 : Number(v));
+
+function ROIForm({ industryId, industryName }) {
+  const cfg = ROI_CONFIG[industryId] || ROI_CONFIG['manufacturing'];
+  const initial = cfg.fields.reduce((acc, f) => ({ ...acc, [f.key]: number(f.placeholder) }), {});
+  const [values, setValues] = useState(initial);
+
+  const onChange = (k, v) => setValues(prev => ({ ...prev, [k]: number(v) }));
+
+  const result = useMemo(() => {
+    try {
+      return cfg.compute(values);
+    } catch (e) {
+      return { annualSavings: 0, paybackMonths: null };
+    }
+  }, [values, cfg]);
+
+  return (
+    <div>
+      <div className="space-y-3">
+        {cfg.fields.map(f => (
+          <div key={f.key} className="flex items-center gap-3">
+            <label className="w-56 text-sm text-gray-700">{f.label}</label>
+            <input type="number" value={values[f.key]} onChange={e => onChange(f.key, e.target.value)} placeholder={f.placeholder} className="flex-1 border p-2 rounded-lg" />
+            {f.unit && <div className="w-16 text-right text-sm text-gray-500">{f.unit}</div>}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-4 p-4 bg-white border rounded-lg">
+        <div className="text-sm text-gray-600">Estimated annual savings</div>
+        <div className="text-2xl font-bold text-[#212121]">${Math.round(result.annualSavings).toLocaleString()}</div>
+        <div className="text-sm text-gray-600 mt-2">{result.paybackMonths ? `Payback: ${Math.round(result.paybackMonths)} months` : 'Payback: N/A'}</div>
+      </div>
+    </div>
+  );
+}
 
 export default function IndustryPage({ id, navigate, industries = [], useCases = [] }) {
   const industry = industries.find(i => i.id === id) || industries.find(i => i.name === id);
@@ -148,7 +265,14 @@ export default function IndustryPage({ id, navigate, industries = [], useCases =
           </div>
         </div>
 
-        <div className="mt-12 bg-[#F8F9FF] p-8 rounded-2xl">
+        {/* ROI Calculator */}
+        <div className="mt-10 grid lg:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-2xl shadow-sm">
+            <h3 className="text-xl font-bold mb-4">ROI Calculator</h3>
+            <p className="text-sm text-gray-600 mb-4">Estimate annual savings and payback for automations in the {industry.name} vertical.</p>
+            <ROIForm industryId={industry.id} industryName={industry.name} />
+          </div>
+          <div className="bg-[#F8F9FF] p-6 rounded-2xl">
           <div className="grid md:grid-cols-3 gap-6">
             <div>
               <div className="text-3xl font-extrabold">35%</div>
