@@ -18,7 +18,7 @@ export default function CaseCarousel({ items = [], autoplay = true, interval = 6
   return (
     <div className="relative">
       {/* Constrained carousel container so section height equals carousel */}
-      <div className="relative overflow-hidden h-72 md:h-80">
+      <div className="relative overflow-hidden h-64 md:h-72">
         {items.map((c, i) => (
           <div
             key={i}
@@ -40,23 +40,16 @@ export default function CaseCarousel({ items = [], autoplay = true, interval = 6
         ))}
       </div>
 
-      {/* Controls */}
-      <div className="absolute top-1/2 transform -translate-y-1/2 left-2 md:left-4">
-        <button onClick={prev} aria-label="Previous" className="p-2 bg-white/90 backdrop-blur rounded-full shadow hover:shadow-md">
-          <ArrowRight className="w-5 h-5 transform -rotate-180 text-[#5856D6]" />
+      {/* Controls (larger hit area) */}
+      <div className="absolute top-1/2 transform -translate-y-1/2 left-2 md:left-4 z-40">
+        <button onClick={prev} aria-label="Previous" className="p-3 bg-white/80 backdrop-blur rounded-full shadow hover:shadow-md focus:outline-none">
+          <ArrowRight className="w-6 h-6 transform -rotate-180 text-[#5856D6]" />
         </button>
       </div>
-      <div className="absolute top-1/2 transform -translate-y-1/2 right-2 md:right-4">
-        <button onClick={next} aria-label="Next" className="p-2 bg-white/90 backdrop-blur rounded-full shadow hover:shadow-md">
-          <ArrowRight className="w-5 h-5 text-[#5856D6]" />
+      <div className="absolute top-1/2 transform -translate-y-1/2 right-2 md:right-4 z-40">
+        <button onClick={next} aria-label="Next" className="p-3 bg-white/80 backdrop-blur rounded-full shadow hover:shadow-md focus:outline-none">
+          <ArrowRight className="w-6 h-6 text-[#5856D6]" />
         </button>
-      </div>
-
-      {/* Dots */}
-      <div className="mt-3 flex items-center justify-center space-x-2">
-        {items.map((_, i) => (
-          <button key={i} onClick={() => setIndex(i)} className={`w-3 h-3 rounded-full ${i === index ? 'bg-[#5856D6]' : 'bg-gray-300'}`}></button>
-        ))}
       </div>
     </div>
   );

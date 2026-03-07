@@ -3,7 +3,7 @@ const path = require('path');
 const sharp = require('sharp');
 
 const ASSETS_DIR = path.resolve(__dirname, '..', 'public', 'assets');
-const ids = ['manufacturing','logistics','pharma','real-estate','retail','banking','insurance','energy','healthcare','hospitality','education'];
+const ids = ['manufacturing','logistics','pharma','real-estate','retail','energy','hospitality','education'];
 const widths = [480,800,1200,1600];
 
 async function checkFile(filePath) {

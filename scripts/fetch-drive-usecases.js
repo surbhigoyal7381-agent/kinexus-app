@@ -118,7 +118,7 @@ function parseDocText(text) {
 
   // Fallbacks: if title missing, use first non-empty line
   if (!result.title && lines.length) result.title = lines[0];
-  if (!result.industry) result.industry = 'Healthcare'; // default if unknown
+  if (!result.industry) result.industry = 'Other'; // default if unknown
   result.metrics = result.metrics || [];
   return result;
 }

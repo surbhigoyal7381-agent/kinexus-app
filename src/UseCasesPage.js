@@ -1083,7 +1083,9 @@ const UseCaseModal = ({ useCase, onClose }) => {
               <Icon className="w-8 h-8" />
             </div>
             <div>
-              <div className="text-sm font-bold text-[#5856D6] uppercase tracking-wider mb-1">{useCase.industry}</div>
+              { !['Banking','Insurance','Healthcare'].includes(useCase.industry) && (
+                <div className="text-sm font-bold text-[#5856D6] uppercase tracking-wider mb-1">{useCase.industry}</div>
+              ) }
               <h2 className="text-3xl font-bold text-[#212121] leading-tight">{useCase.title}</h2>
             </div>
           </div>
@@ -1231,9 +1233,11 @@ const UseCasesPage = ({ navigate, initialIndustry = null }) => {
                     <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-[#5856D6] group-hover:bg-[#5856D6] group-hover:text-white transition-colors duration-300">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <div className="bg-gray-100 text-gray-500 px-3 py-1 rounded text-xs font-bold uppercase tracking-wider group-hover:bg-[#E8E7FF] group-hover:text-[#5856D6] transition-colors">
-                      {useCase.industry}
-                    </div>
+                    { !['Banking','Insurance','Healthcare'].includes(useCase.industry) && (
+                      <div className="bg-gray-100 text-gray-500 px-3 py-1 rounded text-xs font-bold uppercase tracking-wider group-hover:bg-[#E8E7FF] group-hover:text-[#5856D6] transition-colors">
+                        {useCase.industry}
+                      </div>
+                    ) }
                   </div>
 
                   <h3 className="text-xl font-bold text-[#212121] mb-3 group-hover:text-[#5856D6] transition-colors relative z-10">
