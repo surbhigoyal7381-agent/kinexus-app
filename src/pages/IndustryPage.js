@@ -228,20 +228,7 @@ export default function IndustryPage({ id, navigate, industries = [], useCases =
           </div>
         )}
 
-        <div className="mt-8">
-          <h3 className="text-xl font-bold mb-4">Real use cases</h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {relatedCases.length ? relatedCases.map((c, idx) => (
-              <div key={idx} className="p-4 border rounded-xl bg-white/90">
-                <div className="text-sm text-gray-500 mb-1">{c.title}</div>
-                <div className="text-gray-700 text-sm mb-2">{c.challenge}</div>
-                <div className="text-xs text-gray-600">Solution: {c.solution}</div>
-              </div>
-            )) : (
-              <div className="p-6 bg-gray-50 rounded-xl text-gray-600">No pre-built use cases found for this industry yet. We can design tailored pilots during Week 1-4.</div>
-            )}
-          </div>
-        </div>
+        {/* Real use cases section removed per request */}
 
         <div className="mt-10">
           <div className="bg-[#F7F5FF] p-6 rounded-2xl">

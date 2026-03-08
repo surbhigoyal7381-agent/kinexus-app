@@ -2,7 +2,7 @@
   "name": "kinexus-app",
   "version": "1.0.0",
   "private": true,
-    "homepage": "https://www.kinexus.co.in",
+  "homepage": "https://www.kinexus.co.in",
   "dependencies": {
     "lucide-react": "^0.564.0",
     "puppeteer": "^24.38.0",
