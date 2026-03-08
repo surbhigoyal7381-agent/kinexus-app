@@ -1580,8 +1580,8 @@ const HomePage = ({ navigate, blogs = [] }) => {
             <div className="inline-flex items-center space-x-2 bg-white/50 backdrop-blur-sm border border-purple-100 text-[#5856D6] px-4 py-2 rounded-full text-sm font-bold -mt-2 mb-3 shadow-sm">
                <Zap className="w-4 h-4 fill-current" /><span>Enterprise Agentic AI Platform</span>
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.12] mb-4 text-[#212121] tracking-tight">Your Teams Deserve Better Than <span className="text-gradient">Endless Manual Work</span></h1>
-            <p className="text-base text-[#6B6B6B] mb-8 leading-relaxed max-w-xl">Kinexus builds AI agents that take over the tedious work—so your people can focus on what actually moves your business forward. Real autonomy. Real results.</p>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.12] mb-4 text-[#212121] tracking-tight"><span className="text-gradient">Scale your operations</span>, not your overhead.</h1>
+            <p className="text-base text-[#6B6B6B] mb-8 leading-relaxed max-w-xl">Manual workflows are a tax on your growth. Reclaim thousands of high-value hours by deploying autonomous agents that handle the <span className="text-gradient">how</span>, so your team can focus on the <span className="text-gradient">why</span>.</p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
               <Button onClick={() => navigate('contact')} icon={ArrowRight}>Let's Talk About Your Reality</Button>
               <Button variant="secondary" onClick={() => navigate('useCases')} icon={PlayCircle}>Explore Use Cases</Button>
@@ -1773,7 +1773,7 @@ const HomePage = ({ navigate, blogs = [] }) => {
       {/* Results & Industries & FAQ */}
       <section className="home-section py-20 bg-white" data-bg="/assets/hero-energy-1600.jpg">
         <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading title="It's Not Theory. It's Working Right Now." />
+          {/* Removed large title per request */}
           {/* metrics moved into hero overlay */}
 
           
