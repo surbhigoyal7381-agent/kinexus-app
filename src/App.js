@@ -4,7 +4,6 @@ import About from './pages/About';
 import IndustryPage from './pages/IndustryPage';
 import ROIPage from './pages/ROIPage';
 import ExternalUseCasesPage from './pages/UseCasesPage';
-import BlogAdminPage from './pages/BlogAdminPage';
 import AdminHub from './pages/AdminHub';
 import AdminGate from './pages/AdminGate';
 // local hero assets
@@ -18,7 +17,6 @@ import heroHospitality from './assets/hero-hospitality.svg';
 import heroEducation from './assets/hero-education.svg';
 import kinexusHero from './assets/kinexus-hero.png';
 import BackToTop from './components/BackToTop';
-import CaseCarousel from './components/CaseCarousel';
 import { 
   ArrowRight, Activity, Clock, Shield, 
   Workflow, Zap, BarChart, CheckCircle2, Globe, Users, Settings, 
@@ -286,6 +284,7 @@ const INITIAL_USE_CASES = [
 ];
 
 // Short slide metrics per industry for richer carousel cards
+/* eslint-disable-next-line no-unused-vars */
 const INDUSTRY_SLIDE_METRICS = {
   manufacturing: ['35% throughput improvement', '40% fewer manual reviews', '10x ROI (12–24 months)'],
   logistics: ['18% fuel & cost savings', '22% on-time delivery improvement', '3x ROI (12 months)'],
@@ -489,6 +488,7 @@ INITIAL_USE_CASES.push(
   { id: 'ev-20', industry: 'electric-vehicles', icon: 'Cpu', title: 'Multi-Agent Orchestration for EV Manufacturing', gap: 'EV operations are siloed and decisions are fragmented across battery, powertrain, OTA and telematics.', pain: 'High cost of poor quality, slow improvement cycles and production delays.', solution: 'Orchestrates agents across the EV ecosystem so they share data, decisions and actions autonomously.', metrics: ['System-wide Coordination','Lower Warranty Cost','Higher Throughput'] }
 );
 
+/* eslint-disable-next-line no-unused-vars */
 const CASE_STUDIES = [
   {
     title: '₹2000 Cr Manufacturing Company, Pune',
@@ -633,6 +633,7 @@ const SectionHeading = ({ title, subtitle, centered = false, className = '' }) =
 
 // --- MAIN APPLICATION COMPONENTS ---
 
+/* eslint-disable-next-line no-unused-vars */
 const UseCasesPage = ({ navigate, useCases, industries, initialIndustry = null, filter = null, onFilterChange = null }) => {
   const [selectedIndustry, setSelectedIndustry] = useState(initialIndustry || 'All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -845,6 +846,7 @@ const UseCasesPage = ({ navigate, useCases, industries, initialIndustry = null, 
 // `IndustryPage` is provided as a separate file at `src/pages/IndustryPage.js`.
 
 // --- ADMIN DASHBOARD ---
+/* eslint-disable-next-line no-unused-vars */
 const AdminDashboard = ({ navigate, leads, clearLeads, downloadLeads, useCases, setUseCases, industries, setIndustries, blogs, setBlogs }) => {
   const [activeTab, setActiveTab] = useState('leads');
   
@@ -1831,7 +1833,7 @@ const HomePage = ({ navigate, blogs = [] }) => {
                   <p className="text-gray-600 text-sm mb-4">{(b.excerpt || '').slice(0,140)}</p>
                   <div className="flex justify-between items-center">
                     <Button onClick={() => navigate('blog', { id: b.id })}>Read</Button>
-                    <a href="#" onClick={(e) => { e.preventDefault(); navigator.clipboard && navigator.clipboard.writeText(window.location.origin + window.location.pathname + `#blog-${b.id}`); alert('Link copied'); }} className="text-sm text-gray-400">Share</a>
+                    <button type="button" onClick={(e) => { e.preventDefault(); navigator.clipboard && navigator.clipboard.writeText(window.location.origin + window.location.pathname + `#blog-${b.id}`); alert('Link copied'); }} className="text-sm text-gray-400">Share</button>
                   </div>
                 </div>
               ))}

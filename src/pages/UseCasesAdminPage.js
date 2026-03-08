@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Plus, Trash, Edit } from 'lucide-react';
+import { Trash, Edit } from 'lucide-react';
 
 const Button = ({ children, variant = 'primary', onClick, type = 'button' }) => (
   <button type={type} onClick={onClick} className={`inline-flex items-center px-3 py-2 rounded ${variant === 'primary' ? 'bg-[#2EC5CE] text-white' : 'border'}`}>{children}</button>
@@ -26,9 +26,6 @@ const UseCasesAdminPage = ({ navigate, useCases = [], setUseCases = () => {}, in
     // scroll after saving
     try { setTimeout(() => { listingRef.current && listingRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80); } catch (err) {}
   };
-
-  // call scroll after save (invoke where appropriate)
-  const afterSave = () => { scrollToListing(); };
 
   const listingRef = useRef(null);
 

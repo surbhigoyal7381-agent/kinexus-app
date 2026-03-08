@@ -8,31 +8,7 @@ import {
 const ICON_MAP = { Activity, Workflow, Search, ArrowRight, ChevronDown, ChevronUp, X, AlertTriangle, DollarSign, CheckCircle2 };
 const getIcon = (name) => ICON_MAP[name] || Activity;
 
-const ScrollReveal = ({ children, className = '', delay = 0 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    const node = ref.current;
-    if (node) observer.observe(node);
-    return () => { if (node) observer.unobserve(node); };
-  }, [delay]);
-
-  return (
-    <div ref={ref} className={`reveal-section ${isVisible ? 'is-visible' : ''} ${className}`}>
-      {children}
-    </div>
-  );
-};
+// ScrollReveal helper removed from this file to avoid duplicate definition (App.js provides it)
 
 const UseCasesPage = ({ navigate, useCases = [], industries = [], initialIndustry = null, filter = null, onFilterChange = null }) => {
   const [selectedIndustry, setSelectedIndustry] = useState(initialIndustry || 'All');

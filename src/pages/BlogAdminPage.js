@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Database, Plus, Download } from 'lucide-react';
+import { Database } from 'lucide-react';
 
 const Button = ({ children, variant = 'primary', className = '', onClick, type = 'button' }) => {
   const variants = { primary: 'bg-[#2EC5CE] text-white', secondary: 'border-2 border-[#5856D6] text-[#5856D6]' };
