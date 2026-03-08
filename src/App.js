@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect, useRef } from 'react';
 import About from './pages/About';
 import IndustryPage from './pages/IndustryPage';
 import ROIPage from './pages/ROIPage';
@@ -24,14 +23,10 @@ import {
   Lightbulb, GraduationCap, HeartPulse, Coffee, FileText, X,
   Search, PlayCircle, Download, HelpCircle, XCircle, DollarSign,
   Briefcase, Smile, AlertTriangle, Cpu, TrendingUp, Mail, Phone, 
-  MapPin, Database, Sparkles, Filter, Maximize2, Battery, Signal, Plus,
-  ChevronDown, ChevronUp
+  MapPin, Database, Sparkles, Filter, Maximize2, Battery, Signal
 } from 'lucide-react';
 
-// Rich text editor
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { INDUSTRY_SLIDE_METRICS, CASE_STUDIES } from './data/constants';
+// Note: Rich text editor and some large constants are imported where needed in admin pages or data files.
 
 // --- ICON MAPPER (For Dynamic Storage) ---
 const ICON_MAP = {

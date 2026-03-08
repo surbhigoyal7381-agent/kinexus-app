@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.6d35a11b.css",
-    "main.js": "/static/js/main.e7cd4fb6.js",
+    "main.css": "/static/css/main.c0ca0f95.css",
+    "main.js": "/static/js/main.9ecf3a96.js",
     "static/media/realestate_hero.png": "/static/media/realestate_hero.3dd4af4b330d52fc4245.png",
     "static/media/Manufacturing_hero.png": "/static/media/Manufacturing_hero.1295256d7c3ed7220236.png",
     "static/media/retail_hero.png": "/static/media/retail_hero.ee3d373081a3474fea79.png",
@@ -19,11 +19,11 @@
     "static/media/hero-pharma.svg": "/static/media/hero-pharma.03efbc8d90bce4d485a15f3adf1fcd55.svg",
     "static/media/hero-retail.svg": "/static/media/hero-retail.29bc4ce14f7e9e67d326a082f6de3051.svg",
     "index.html": "/index.html",
-    "main.6d35a11b.css.map": "/static/css/main.6d35a11b.css.map",
-    "main.e7cd4fb6.js.map": "/static/js/main.e7cd4fb6.js.map"
+    "main.c0ca0f95.css.map": "/static/css/main.c0ca0f95.css.map",
+    "main.9ecf3a96.js.map": "/static/js/main.9ecf3a96.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d35a11b.css",
-    "static/js/main.e7cd4fb6.js"
+    "static/css/main.c0ca0f95.css",
+    "static/js/main.9ecf3a96.js"
   ]
 }
