@@ -29,10 +29,7 @@ const UseCasesAdminPage = ({ navigate, useCases = [], setUseCases = () => {}, in
 
   const listingRef = useRef(null);
 
-  // scroll to listing after save
-  const scrollToListing = () => {
-    try { setTimeout(() => { listingRef.current && listingRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80); } catch (err) {}
-  };
+  // listingRef used directly after save; helper removed to avoid unused-var lint
 
   return (
     <div className="pt-6 pb-12">

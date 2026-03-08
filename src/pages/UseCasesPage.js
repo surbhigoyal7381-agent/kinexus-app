@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import {
   ArrowRight, Activity, Workflow, Search, ChevronDown, ChevronUp, X, AlertTriangle, DollarSign, CheckCircle2

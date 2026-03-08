@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.90fcb110.css",
+    "main.js": "/static/js/main.d3453e47.js",
+    "static/media/realestate_hero.png": "/static/media/realestate_hero.3dd4af4b330d52fc4245.png",
+    "static/media/Manufacturing_hero.png": "/static/media/Manufacturing_hero.1295256d7c3ed7220236.png",
+    "static/media/retail_hero.png": "/static/media/retail_hero.ee3d373081a3474fea79.png",
+    "static/media/pharma_hero.png": "/static/media/pharma_hero.421fcecd2761ccffcad9.png",
+    "static/media/energy_hero.png": "/static/media/energy_hero.f62324b5156bcb12dc59.png",
+    "static/media/logistic_hero.png": "/static/media/logistic_hero.e1d02097fd6957aed555.png",
+    "static/media/hospitality_hero.png": "/static/media/hospitality_hero.54f37bbbea03e0da0fc1.png",
+    "static/media/kinexus-hero.png": "/static/media/kinexus-hero.9c7fc0baeaa3cb8c3601.png",
+    "static/media/hero-manufacturing.svg": "/static/media/hero-manufacturing.4b10b7479172a11ce039786f42819a6a.svg",
+    "static/media/hero-hospitality.svg": "/static/media/hero-hospitality.fbc9641ce5423932df35f288f1cff906.svg",
+    "static/media/hero-education.svg": "/static/media/hero-education.fe9561a3d9fef9680f0ff1b4bd1e966c.svg",
+    "static/media/hero-energy.svg": "/static/media/hero-energy.7e2131cc08f12346718eb08dc267adbe.svg",
+    "static/media/hero-real-estate.svg": "/static/media/hero-real-estate.4b8d90e2ef917e02449c0fe82a48dc3c.svg",
+    "static/media/hero-logistics.svg": "/static/media/hero-logistics.465fb10b29f9cfb6c9fb412fe6cafd3d.svg",
+    "static/media/hero-pharma.svg": "/static/media/hero-pharma.03efbc8d90bce4d485a15f3adf1fcd55.svg",
+    "static/media/hero-retail.svg": "/static/media/hero-retail.29bc4ce14f7e9e67d326a082f6de3051.svg",
+    "index.html": "/index.html",
+    "main.90fcb110.css.map": "/static/css/main.90fcb110.css.map",
+    "main.d3453e47.js.map": "/static/js/main.d3453e47.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.90fcb110.css",
+    "static/js/main.d3453e47.js"
+  ]
+}
