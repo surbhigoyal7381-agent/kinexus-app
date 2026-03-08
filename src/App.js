@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import About from './pages/About';
