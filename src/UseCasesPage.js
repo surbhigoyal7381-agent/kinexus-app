@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { 
-  Search, X, ArrowRight,  
+  Search, X, ArrowRight, ChevronDown, ChevronUp,  
   Factory, Truck, Pill, Building, ShoppingCart, Landmark, 
   Shield, Lightbulb, HeartPulse, Coffee, GraduationCap, 
   Workflow, CheckCircle2, AlertTriangle, DollarSign, Activity,
@@ -966,6 +966,19 @@ const USE_CASE_DB = [
   }
 ];
 
+// Remove duplicates from USE_CASE_DB by normalized title+industry
+const _dedupeUseCases = (arr) => {
+  const seen = new Set();
+  const out = [];
+  arr.forEach(u => {
+    const key = ((u.title || '') + '|' + (u.industry || '')).toString().toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (!seen.has(key)) { seen.add(key); out.push(u); }
+  });
+  return out;
+};
+
+let UNIQUE_USE_CASE_DB = _dedupeUseCases(USE_CASE_DB);
+
 // If a developer has generated `src/useCases.import.json` (from the Drive export),
 // merge those entries into the database at runtime for review. Imported entries
 // will be normalized and deduped by `id`.
@@ -1001,6 +1014,9 @@ try {
 } catch (e) {
   // file missing or parse error — that's fine in development
 }
+
+// recompute unique DB after any runtime merges
+UNIQUE_USE_CASE_DB = _dedupeUseCases(USE_CASE_DB);
 
 const INDUSTRIES = [
   'All', 
@@ -1043,7 +1059,7 @@ const FilterBar = ({ selected, onSelect }) => (
   </div>
 );
 
-const SearchBar = ({ value, onChange }) => (
+const SearchBar = ({ value, onChange, suggestions, onSelectSuggestion }) => (
   <div className="relative max-w-xl mx-auto mb-12 group">
     <div className="relative bg-white rounded-full shadow-sm border border-gray-200 flex items-center px-6 py-4 transition-all focus-within:shadow-md focus-within:border-[#5856D6]">
       <Search className="w-5 h-5 text-gray-400 mr-4" />
@@ -1060,6 +1076,15 @@ const SearchBar = ({ value, onChange }) => (
         </button>
       )}
     </div>
+    {suggestions && suggestions.length > 0 && (
+      <div className="absolute left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-40">
+        {suggestions.map((s, i) => (
+          <button key={i} onClick={() => onSelectSuggestion(s)} className="w-full text-left px-4 py-2 hover:bg-gray-50">
+            {s}
+          </button>
+        ))}
+      </div>
+    )}
   </div>
 );
 
@@ -1147,13 +1172,22 @@ const UseCaseModal = ({ useCase, onClose }) => {
 
 // --- MAIN PAGE COMPONENT ---
 const UseCasesPage = ({ navigate, initialIndustry = null }) => {
+  // If this page wasn't opened for a specific industry, redirect back to Industries
+  useEffect(() => {
+    if (!initialIndustry) {
+      try { navigate('industries'); } catch (e) { /* ignore */ }
+    }
+  }, [initialIndustry, navigate]);
+
   const [selectedIndustry, setSelectedIndustry] = useState(initialIndustry || 'All');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeUseCase, setActiveUseCase] = useState(null);
+  const [expandedId, setExpandedId] = useState(null);
+  const [suggestions, setSuggestions] = useState([]);
   const casesRef = useRef(null);
 
   const filteredCases = useMemo(() => {
-    return USE_CASE_DB.filter(item => {
+    return UNIQUE_USE_CASE_DB.filter(item => {
       const normSelected = (selectedIndustry || 'All').toString().trim().toLowerCase();
       const normItemInd = (item.industry || '').toString().trim().toLowerCase();
       const matchesIndustry = normSelected === 'all' || normItemInd === normSelected;
@@ -1187,8 +1221,41 @@ const UseCasesPage = ({ navigate, initialIndustry = null }) => {
           </p>
         </div>
 
-        <SearchBar value={searchQuery} onChange={setSearchQuery} />
-        <FilterBar selected={selectedIndustry} onSelect={(ind) => {
+        <div className="max-w-7xl mx-auto px-6 mb-4 flex items-center justify-between">
+          <div className="flex-1">
+            <SearchBar
+          value={searchQuery}
+          onChange={(v) => {
+            setSearchQuery(v);
+            if (!v) { setSuggestions([]); return; }
+            const q = v.toLowerCase();
+            const matches = [
+              ...new Set([
+                ...UNIQUE_USE_CASE_DB.filter(u => (u.title||'').toLowerCase().includes(q)).map(u => u.title),
+                ...INDUSTRIES.filter(i => (i||'').toLowerCase().includes(q))
+              ])
+            ].slice(0,6);
+            setSuggestions(matches);
+          }}
+          suggestions={suggestions}
+          onSelectSuggestion={(s) => {
+            setSearchQuery(s);
+            setSuggestions([]);
+            const ind = INDUSTRIES.find(it => it === s);
+            if (ind && !initialIndustry) setSelectedIndustry(ind);
+          }}
+            />
+          </div>
+          <div className="ml-4">
+            {initialIndustry && (
+              <button onClick={() => navigate('industry', { id: initialIndustry })} className="px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50">
+                Back to Industry
+              </button>
+            )}
+          </div>
+        </div>
+        {!initialIndustry && (
+          <FilterBar selected={selectedIndustry} onSelect={(ind) => {
           setSelectedIndustry(ind);
           // ensure layout updates then scroll to the use-cases area both inside the app scroller and the viewport
           setTimeout(() => {
@@ -1215,7 +1282,8 @@ const UseCasesPage = ({ navigate, initialIndustry = null }) => {
 
             try { casesRef.current.focus({ preventScroll: true }); } catch (e) {}
           }, 60);
-        }} />
+          }} />
+        )}
 
         <div ref={casesRef} tabIndex={-1} className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up">
           {filteredCases.length > 0 ? (
@@ -1227,7 +1295,7 @@ const UseCasesPage = ({ navigate, initialIndustry = null }) => {
                   onClick={() => setActiveUseCase(useCase)}
                   className="group bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-[0_20px_40px_-15px_rgba(88,86,214,0.15)] hover:border-[#5856D6]/30 transition-all duration-300 cursor-pointer flex flex-col h-full relative overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#E8E7FF]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#E8E7FF]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
                   <div className="flex justify-between items-start mb-6 relative z-10">
                     <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-[#5856D6] group-hover:bg-[#5856D6] group-hover:text-white transition-colors duration-300">
@@ -1248,10 +1316,41 @@ const UseCasesPage = ({ navigate, initialIndustry = null }) => {
                     {useCase.gap}
                   </p>
 
-                  <div className="flex items-center text-[#5856D6] font-bold text-sm group-hover:translate-x-1 transition-transform relative z-10 mt-auto">
-                    <span>View Details</span>
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                  <div className="flex items-center justify-between text-[#5856D6] font-bold text-sm group-hover:translate-x-1 transition-transform relative z-10 mt-auto">
+                    <div className="flex items-center">
+                      <span>View Details</span>
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </div>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setExpandedId(expandedId === useCase.id ? null : useCase.id); }}
+                      aria-expanded={expandedId === useCase.id}
+                      className="ml-4 text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-full hover:bg-gray-100"
+                    >
+                      {expandedId === useCase.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    </button>
                   </div>
+
+                  {expandedId === useCase.id && (
+                    <div className="mt-4 p-4 bg-gray-50 rounded-lg text-sm text-gray-700">
+                      <div className="mb-3">
+                        <div className="font-bold text-[13px] text-gray-600 mb-1">Problem</div>
+                        <div className="text-sm">{useCase.gap}</div>
+                      </div>
+                      <div className="mb-3">
+                        <div className="font-bold text-[13px] text-gray-600 mb-1">Impact</div>
+                        <div className="text-sm">{useCase.pain}</div>
+                      </div>
+                      <div className="mb-3">
+                        <div className="font-bold text-[13px] text-gray-600 mb-1">Kinexus Solution</div>
+                        <div className="text-sm">{useCase.solution}</div>
+                      </div>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {useCase.metrics.map((m, idx) => (
+                          <div key={idx} className="px-3 py-1 bg-white border rounded-full text-xs font-semibold">{m}</div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })

@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import ReactDOM from 'react-dom';
 import About from './pages/About';
 import IndustryPage from './pages/IndustryPage';
 import ROIPage from './pages/ROIPage';
+import ExternalUseCasesPage from './pages/UseCasesPage';
+import BlogAdminPage from './pages/BlogAdminPage';
+import AdminHub from './pages/AdminHub';
+import AdminGate from './pages/AdminGate';
 // local hero assets
 import heroManufacturing from './assets/hero-manufacturing.svg';
 import heroLogistics from './assets/hero-logistics.svg';
@@ -21,8 +26,13 @@ import {
   Lightbulb, GraduationCap, HeartPulse, Coffee, FileText, X,
   Search, PlayCircle, Download, HelpCircle, XCircle, DollarSign,
   Briefcase, Smile, AlertTriangle, Cpu, TrendingUp, Mail, Phone, 
-  MapPin, Database, Sparkles, Filter, Maximize2, Battery, Signal, Plus
+  MapPin, Database, Sparkles, Filter, Maximize2, Battery, Signal, Plus,
+  ChevronDown, ChevronUp
 } from 'lucide-react';
+
+// Rich text editor
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 // --- ICON MAPPER (For Dynamic Storage) ---
 const ICON_MAP = {
@@ -46,7 +56,8 @@ const styles = `
     --light-lavender: #E8E7FF;
     --pure-white: #FFFFFF;
     --supporting-gray: #6B6B6B;
-    --hero-offset: 6pt;
+    --nav-height: 64px;
+    --hero-offset: var(--nav-height);
   }
 
   body {
@@ -58,6 +69,9 @@ const styles = `
     font-size: 14px;
     overflow-x: hidden;
   }
+
+  /* make sizing predictable and avoid unexpected overflow */
+  *, *:before, *:after { box-sizing: border-box; }
 
   /* --- UTILITIES --- */
   .bg-grid-pattern {
@@ -168,12 +182,31 @@ const styles = `
   .parallax-layer .blob { position: absolute; border-radius: 9999px; filter: blur(40px); opacity: 0.45; }
   .parallax-content { position: relative; z-index: 10; }
 
-  :root { --nav-height: 64px; }
+  /* nav height already declared in :root above */
   html, body, #root { height: 100%; }
-  body { overflow: hidden; }
+  /* prevent horizontal overflow while using an internal vertical scroller */
+  body { overflow-x: hidden; }
   .app-scroll { height: calc(100vh - var(--nav-height)); overflow-y: auto; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
   /* reduce top padding so hero sits closer to fixed navbar */
   main.app-scroll { padding-top: 0pt; }
+`;
+
+/* Blog-specific enhancements */
+const blogStyles = `
+  .blog-hero { border-radius: 12px; overflow: hidden; position: relative; }
+  .blog-hero img { width: 100%; height: 420px; object-fit: cover; display: block; }
+  .blog-hero .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55)); }
+  .blog-hero .meta { position: absolute; left: 32px; bottom: 28px; z-index: 20; color: white; max-width: 70%; }
+  .blog-hero .meta h1 { font-size: 32px; line-height: 1.08; margin: 0 0 8px 0; }
+  .blog-meta-row { display:flex; gap:12px; align-items:center; color:#9CA3AF; font-size:14px; }
+  .blog-container { display: grid; grid-template-columns: 1fr 320px; gap: 36px; align-items:start; }
+  @media (max-width: 1024px) { .blog-container { grid-template-columns: 1fr; } .blog-hero img { height: 260px; } }
+  .blog-content .prose { max-width: 760px; margin: 0; }
+  .blog-content .prose p:first-of-type::first-letter { float:left; font-size:48px; line-height:40px; padding-right:8px; font-weight:700; color:#222; }
+  .blog-sidebar { position:sticky; top: calc(var(--nav-height) + 24px); }
+  .share-buttons { display:flex; gap:8px; flex-wrap:wrap; }
+  .share-button { background:#F3F4F6; padding:8px 10px; border-radius:8px; font-weight:600; font-size:13px; color:#374151; }
+  .related-post { display:flex; gap:12px; align-items:center; padding:8px 0; border-bottom:1px solid #F3F4F6; }
 `;
 
 // --- INITIAL DATA SEEDING (THE "DATABASE") ---
@@ -217,6 +250,7 @@ const INITIAL_INDUSTRIES = [
   // Healthcare industry removed per request
   { id: 'hospitality', name: 'Hospitality', icon: 'Coffee', desc: 'Automate bookings & guest experience', hero: 'Turn Guests into Loyalists.', heroSvg: heroHospitality, subhead: 'Generic service leads to low loyalty.', gap: 'Guest data is siloed.', pain: 'Low repeat business.', solution: 'Agents build unified profiles to predict preferences.', customSections: [{ title: 'Personalised Guest Journeys', body: 'Agents manage preferences and personalise offers across stays to lift loyalty and RevPAR.' }] },
   { id: 'education', name: 'Education', icon: 'GraduationCap', desc: 'Automate student onboarding & scheduling', hero: 'Focus on Learning.', heroSvg: heroEducation, subhead: 'Admissions inefficiency loses applicants.', gap: 'Admissions are manual.', pain: 'Lost applicants and revenue.', solution: 'Agents score leads and optimise timetables.', customSections: [{ title: 'Admissions Optimisation', body: 'Automated lead scoring, scheduling and document verification to reduce lost applicants.' }] },
+  { id: 'electric-vehicles', name: 'Electric Vehicles', icon: 'Battery', desc: 'Secure battery quality, production and supply', hero: 'Build Electric Vehicles Customers Trust.', heroSvg: heroEnergy, subhead: 'Kinexus understands EV engineering complexity, supply fragility and production pressure.', gap: 'Battery & powertrain quality, supplier variability and software/hardware integration gaps create risk.', pain: 'Warranty risk, recalls, delayed launches and brand damage.', solution: 'Agentic monitoring across battery, powertrain, supply chain and telematics to predict failures and protect production.', customSections: [{ title: 'Battery Confidence', body: 'Continuous cell-level monitoring, predictive degradation and supplier benchmarking to reduce warranty risk.' }, { title: 'Orchestrated Production', body: 'End-to-end orchestration across MES, procurement and quality to keep EV lines running.' }] },
 ];
 
 const INITIAL_USE_CASES = [
@@ -250,6 +284,20 @@ const INITIAL_USE_CASES = [
   { id: 'ret-1', industry: 'Retail', icon: 'ShoppingCart', title: 'Inventory Optimisation', gap: 'Inventory managed by averages.', pain: 'Stockouts and overstock.', solution: 'Predicts SKU-level demand per store.', metrics: ['15% Less Stockouts', 'Lower Working Cap'] },
   { id: 'health-1', industry: 'Other', icon: 'HeartPulse', title: 'Intelligent Patient Intake & Triage Agent', gap: 'Patient intake is manual and slow.', pain: 'Long waits and burnout.', solution: 'Triages patients and auto-fills EMR.', metrics: ['30% Less Wait Time', 'Better Clinical Safety'] }
 ];
+
+// Short slide metrics per industry for richer carousel cards
+const INDUSTRY_SLIDE_METRICS = {
+  manufacturing: ['35% throughput improvement', '40% fewer manual reviews', '10x ROI (12–24 months)'],
+  logistics: ['18% fuel & cost savings', '22% on-time delivery improvement', '3x ROI (12 months)'],
+  pharma: ['40% faster batch release', 'Zero paperwork errors', 'Audit-ready compliance'],
+  'real-estate': ['Faster progress verification', 'Reduced billing leakage', 'Shorter handover time'],
+  retail: ['15% fewer stockouts', 'Lower working capital', 'Higher conversion rate'],
+  energy: ['Reduced peak procurement cost', 'Improved grid stability', 'Faster outage restoration'],
+  hospitality: ['Higher RevPAR', 'Increased repeat bookings', 'Lower energy & labour cost'],
+  education: ['Higher enrollment conversion', 'Fewer timetable conflicts', 'Improved student retention'],
+  other: ['Operational efficiency', 'Measured cost savings', 'Faster time to value'],
+  'electric-vehicles': ['Higher battery reliability', 'Fewer warranty claims', 'Improved production uptime']
+};
 
 // --- HOSPITALITY USE CASES (added) ---
 INITIAL_USE_CASES.push(
@@ -417,6 +465,30 @@ INITIAL_USE_CASES.push(
   { id: 'mfg-20', industry: 'Manufacturing', icon: 'Cpu', title: 'Multi-Agent Orchestration for End-to-End Operations', gap: 'Digital tools stay siloed; functions don’t share signals.', pain: 'Cascading delays, manual handovers and high friction.', solution: 'Orchestrates planning, MRP, quality, maintenance and logistics agents to act collaboratively and autonomously.', metrics: ['System Coordination','Lower Operational Friction'] }
 );
 
+// --- ELECTRIC VEHICLES USE CASES (added) ---
+INITIAL_USE_CASES.push(
+  { id: 'ev-1', industry: 'electric-vehicles', icon: 'Battery', title: 'Battery Cell Quality & Degradation Prediction Agent', gap: 'Cell testing is slow, degradation patterns are not predicted, and data is scattered across labs, BMS and suppliers.', pain: 'Thermal runaway risk, high warranty claims, inconsistent range, supplier disputes and brand damage.', solution: 'Continuously analyses cell-level test data, predicts degradation and failure risk, flags supplier inconsistencies and syncs with BMS and quality systems.', metrics: ['Lower Warranty Claims','Fewer Recalls','Improved Cell Yield'] },
+  { id: 'ev-2', industry: 'electric-vehicles', icon: 'Tool', title: 'EV Powertrain Assembly & Torque Quality Agent', gap: 'Assembly depends on technician skill and torque consistency is not monitored or traced in real time.', pain: 'Motor noise, vibration, premature wear, rework and safety concerns.', solution: 'Analyses torque signatures, predicts assembly defects, recommends corrective actions and flags operator/tool deviations.', metrics: ['Lower Rework Rate','Fewer NVH Issues','Higher Assembly Yield'] },
+  { id: 'ev-3', industry: 'electric-vehicles', icon: 'Globe', title: 'EV Supply Chain Risk & Semiconductor Availability Agent', gap: 'Semiconductor volatility, scarce battery materials and poor multi-tier visibility create fragile supply.', pain: 'Line shutdowns, delayed deliveries, high inventory cost and lost market share.', solution: 'Predicts supplier shortages, recommends alternate sourcing and flags geopolitical/logistics risks.', metrics: ['Reduced Line Downtime','Faster Sourcing','Lower Stockouts'] },
+  { id: 'ev-4', industry: 'electric-vehicles', icon: 'Battery', title: 'EV Range Prediction & Calibration Intelligence Agent', gap: 'Range estimates are inconsistent and not personalised or predictive.', pain: 'Range anxiety, customer complaints and poor BMS calibration.', solution: 'Analyses driving patterns, predicts real-world range, recommends BMS calibration and flags energy anomalies.', metrics: ['More Accurate Range','Fewer Range Complaints','Improved Customer Satisfaction'] },
+  { id: 'ev-5', industry: 'electric-vehicles', icon: 'BarChart', title: 'EV Plant Throughput & Bottleneck Prediction Agent', gap: 'Variable takt times and complex assembly create unpredictable bottlenecks.', pain: 'Missed targets, high WIP, overtime and revenue leakage.', solution: 'Predicts bottlenecks, recommends line balancing, optimises takt times and flags slow equipment.', metrics: ['Higher OEE','Lower WIP','On-time Delivery Rate'] },
+  { id: 'ev-6', industry: 'electric-vehicles', icon: 'Battery', title: 'Battery Pack Assembly & Thermal Management Agent', gap: 'Pack assembly is sensitive to alignment, compression and TIM application, with hotspots hard to predict.', pain: 'Thermal incidents, reduced battery life, high scrap and regulatory scrutiny.', solution: 'Analyses assembly torque/pressure/TIM patterns, predicts hotspot formation and recommends corrective actions.', metrics: ['Fewer Thermal Events','Lower Scrap','Higher Pack Consistency'] },
+  { id: 'ev-7', industry: 'electric-vehicles', icon: 'Cpu', title: 'Motor & Inverter Testing Intelligence Agent', gap: 'Motor and inverter testing is manual, slow and not correlated with field data.', pain: 'Noise/vibration, inverter overheating and warranty claims.', solution: 'Analyses torque curves and thermal signatures, predicts failure modes and recommends calibration.', metrics: ['Lower Warranty Exposure','Better Efficiency','Fewer Field Failures'] },
+  { id: 'ev-8', industry: 'electric-vehicles', icon: 'MapPin', title: 'EV Charging Infrastructure Planning Agent', gap: 'Charging planning is reactive and not integrated with telematics.', pain: 'Underutilised chargers, overloaded stations and poor customer satisfaction.', solution: 'Analyses telematics and heatmaps, predicts charging demand and recommends station locations.', metrics: ['Higher Charger Utilisation','Lower Capex Waste','Better Coverage'] },
+  { id: 'ev-9', industry: 'electric-vehicles', icon: 'FileText', title: 'Warranty Claims & Field Failure Prediction Agent', gap: 'Warranty management is reactive and not linked to manufacturing or telematics.', pain: 'High payouts, recalls and poor product improvement cycles.', solution: 'Analyses telematics, service and manufacturing data to predict failures and recommend proactive service.', metrics: ['Lower Payouts','Faster Root-Cause','Fewer Recalls'] },
+  { id: 'ev-10', industry: 'electric-vehicles', icon: 'Download', title: 'EV Software OTA Update Intelligence Agent', gap: 'OTA updates are not personalised or validated across variants.', pain: 'Field software bugs, inconsistent UX and high service load.', solution: 'Analyses vehicle behaviour, predicts software issues, recommends targeted OTAs and validates compatibility.', metrics: ['Fewer Field Issues','Higher Feature Adoption','Lower Service Calls'] },
+  { id: 'ev-11', industry: 'electric-vehicles', icon: 'CheckCircle2', title: 'Supplier Quality & PPAP Automation Agent', gap: 'PPAP and supplier validation are manual and slow to connect with production data.', pain: 'Late-stage escapes, supplier disputes and stoppages.', solution: 'Automates PPAP analysis, predicts supplier risk and flags documentation gaps.', metrics: ['Faster Supplier Validation','Lower Incoming Rejections','Reduced Supplier Risk'] },
+  { id: 'ev-12', industry: 'electric-vehicles', icon: 'AlertTriangle', title: 'EV Safety & Crashworthiness Simulation Agent', gap: 'CAE cycles are slow and not predictive of real-world failures.', pain: 'Failed tests, redesign cost and delayed launches.', solution: 'Analyses simulation data, predicts failure zones, recommends reinforcements and optimises materials.', metrics: ['Faster Homologation','Fewer Design Iterations','Lower Crash Risk'] },
+  { id: 'ev-13', industry: 'electric-vehicles', icon: 'DollarSign', title: 'Material Cost Optimisation & Design-to-Value Agent', gap: 'BOM costs are high and optimisation is manual and siloed.', pain: 'High vehicle price, low margins and slow design cycles.', solution: 'Analyses BOM drivers, recommends substitutions and predicts cost trends.', metrics: ['Lower BOM Cost','Improved Margin','Faster Design Iteration'] },
+  { id: 'ev-14', industry: 'electric-vehicles', icon: 'Truck', title: 'Logistics & Finished Vehicle Distribution Agent', gap: 'EV logistics are battery-sensitive and not optimised for transit.', pain: 'Late deliveries, battery discharge and dealer dissatisfaction.', solution: 'Optimises routing, predicts delays, monitors SOC and syncs with dealers.', metrics: ['Fewer Transit Issues','Lower Transport Cost','Improved Delivery SLA'] },
+  { id: 'ev-15', industry: 'electric-vehicles', icon: 'Recycle', title: 'EV Recycling & Battery Second-Life Agent', gap: 'End-of-life battery management is manual and not integrated with health data.', pain: 'High recycling cost and missed second-life revenue.', solution: 'Predicts second-life suitability, recommends repurposing vs recycling and optimises recovery.', metrics: ['Higher Recovery Value','Lower Disposal Cost','New Revenue Streams'] },
+  { id: 'ev-16', industry: 'electric-vehicles', icon: 'Eye', title: 'Autonomous Driving Sensor Calibration Agent', gap: 'Sensor calibration drifts and is not validated across variants.', pain: 'Lane-keeping failures, phantom braking and safety risk.', solution: 'Analyses sensor fusion, predicts drift, recommends recalibration and validates performance.', metrics: ['Improved ADAS Reliability','Fewer Calibration Failures','Lower Service Interventions'] },
+  { id: 'ev-17', industry: 'electric-vehicles', icon: 'Database', title: 'Telematics Data Intelligence Agent', gap: 'Telematics data is underutilised and not tied to design or service.', pain: 'Missed failure signals, poor range optimisation and slow product iteration.', solution: 'Turns telematics into predictive intelligence for maintenance, OTA and design feedback.', metrics: ['Faster Issue Detection','Better Range Predictions','Improved Product Iteration'] },
+  { id: 'ev-18', industry: 'electric-vehicles', icon: 'Wrench', title: 'Dealer Service Operations Agent', gap: 'Service ops are unstandardized and not predictive, causing long repair times.', pain: 'High part replacements, low dealer productivity and customer frustration.', solution: 'Predicts service needs, recommends diagnostics and optimises scheduling for dealers.', metrics: ['Shorter Service Time','Lower Parts Cost','Higher Dealer Efficiency'] },
+  { id: 'ev-19', industry: 'electric-vehicles', icon: 'Sparkles', title: 'EV Customer Experience & Personalisation Agent', gap: 'Customer experience is generic and not personalised to driving/charging behaviour.', pain: 'Low loyalty, weak app engagement and missed upsell.', solution: 'Analyses driving and charging, personalises communication and triggers proactive outreach.', metrics: ['Higher Retention','Better App Engagement','More Upsell'] },
+  { id: 'ev-20', industry: 'electric-vehicles', icon: 'Cpu', title: 'Multi-Agent Orchestration for EV Manufacturing', gap: 'EV operations are siloed and decisions are fragmented across battery, powertrain, OTA and telematics.', pain: 'High cost of poor quality, slow improvement cycles and production delays.', solution: 'Orchestrates agents across the EV ecosystem so they share data, decisions and actions autonomously.', metrics: ['System-wide Coordination','Lower Warranty Cost','Higher Throughput'] }
+);
+
 const CASE_STUDIES = [
   {
     title: '₹2000 Cr Manufacturing Company, Pune',
@@ -438,6 +510,40 @@ const CASE_STUDIES = [
     solution: 'Agents auto-filled BMRs from equipment logs and QA checks.',
     metrics: ['40% faster release','Zero paperwork errors'],
     quote: 'Regulatory reviews are straightforward now — no surprises.'
+  }
+];
+
+// --- BLOGS / THOUGHT LEADERSHIP (Latest 3) ---
+const BLOGS = [
+  {
+    id: 'blog-when-machines-lead',
+    title: "When Machines Lead: The Human Future of Agentic AI",
+    date: 'March 8, 2026',
+    image: 'https://source.unsplash.com/1200x800/?artificial-intelligence,ai',
+    excerpt: 'Agentic AI is no longer a lab curiosity — it is a new class of software that reasons, decides and acts. This essay explores how leaders can design agentic systems that augment human judgment while preserving accountability.',
+    content: `<p>Agentic AI — systems that take decisions and execute tasks with minimal human supervision — is arriving faster than most organisations expect. Unlike narrow automation, agentic systems are designed to perceive, plan and act across multiple systems and stakeholders. That power is transformative: when done right, agents reduce cognitive load, shorten decision cycles and unlock entirely new operating models.</p>
+    <p>But power without guardrails is dangerous. The real leadership question is not "Can we build agents?" but "How do we embed them so humans retain oversight, values, and accountability?" Successful deployments pair agent autonomy with clear decision gates, transparent reasoning traces, and human-in-the-loop escalation for edge cases. They invest more in orchestration and governance than in models alone.</p>
+    <p>Practical steps: start with high-frequency low-risk workflows, instrument decision logs from day one, codify acceptance criteria and measure outcomes in dollars and time — not just accuracy. Agentic systems that earn trust become partners, not replacements.</p>`
+  },
+  {
+    id: 'blog-orchestra-autonomy',
+    title: 'The Orchestra of Autonomy: Designing Agentic Systems that Earn Trust',
+    date: 'February 24, 2026',
+    image: 'https://source.unsplash.com/1200x800/?technology,network',
+    excerpt: 'Agentic systems must operate like an orchestra — many specialised agents playing together under a conductor of governance and metrics. This post outlines design patterns and metrics that turn promising pilots into repeatable value.',
+    content: `<p>Think of agentic AI as an orchestra: many specialised players (agents) each perform distinct parts, but they must harmonise to produce value. The conductor is your orchestration layer: policies, contracts, signal routing, and error handling that ensure agents don’t contradict each other or create unsafe side effects.</p>
+    <p>Design patterns that work include capability contracts (clear input/output expectations), heartbeat & health channels (live telemetry), rollback & compensation flows, and human approval lanes. Metrics should focus on business outcomes — cycle time, touch avoidance, cost-per-transaction — rather than model-centric measures alone.</p>
+    <p>Organisations that succeed treat orchestration and operational engineering as first-class products. The result is resilient autonomy that scales across teams and legacy systems.</p>`
+  },
+  {
+    id: 'blog-from-bots-to-colleagues',
+    title: 'From Bots to Colleagues: The Radical ROI of Truly Agentic AI',
+    date: 'January 15, 2026',
+    image: 'https://source.unsplash.com/1200x800/?robot,industry',
+    excerpt: 'Early adopters are no longer asking whether agentic AI works — they are asking how fast they can scale it. This article shows case-driven ROI patterns and practical playbooks for industrial adopters.',
+    content: `<p>When agents move from pilots into live operations, their impact compounds. One deployed agent that eliminates manual handoffs in a production line prevents dozens of downstream delays, slashes rework, and changes how teams prioritise work. That compound effect — not isolated model improvements — drives the most meaningful ROI.</p>
+    <p>Leaders should map value chains, identify choke points, and ask: which repetitive, cross-system decisions would benefit from continuous sensing and automated action? Start small with measurable KPIs, instrument end-to-end value flows, and reinvest measured gains into expanding agent coverage.</p>
+    <p>The future of work will see agents as colleagues: they surface options, execute agreed actions, and leave auditable trails. The companies that reframe roles and incentives around this new reality will capture disproportionate advantage.</p>`
   }
 ];
 
@@ -530,7 +636,9 @@ const SectionHeading = ({ title, subtitle, centered = false, className = '' }) =
 const UseCasesPage = ({ navigate, useCases, industries, initialIndustry = null, filter = null, onFilterChange = null }) => {
   const [selectedIndustry, setSelectedIndustry] = useState(initialIndustry || 'All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
   const [activeUseCase, setActiveUseCase] = useState(null);
+  const [expandedId, setExpandedId] = useState(null);
 
   useEffect(() => {
     if (initialIndustry) {
@@ -591,26 +699,43 @@ const UseCasesPage = ({ navigate, useCases, industries, initialIndustry = null, 
             <input
               type="text"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                const v = e.target.value;
+                setSearchQuery(v);
+                if (!v) { setSuggestions([]); return; }
+                const q = v.toLowerCase();
+                const matches = [
+                  ...new Set([
+                    ...useCases.filter(u => (u.title||'').toLowerCase().includes(q)).map(u => u.title),
+                    ...industries.filter(i => (i.name||'').toLowerCase().includes(q)).map(i => i.name)
+                  ])
+                ].slice(0,6);
+                setSuggestions(matches);
+              }}
               placeholder="Search workflows..."
               className="w-full bg-transparent focus:outline-none text-[#212121]"
             />
+            {suggestions.length > 0 && (
+              <div className="absolute left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-40">
+                {suggestions.map((s, i) => (
+                  <button key={i} onClick={() => {
+                    setSearchQuery(s);
+                    setSuggestions([]);
+                    const ind = industries.find(it => it.name === s);
+                    if (ind) {
+                      if (onFilterChange) onFilterChange(ind.id); else setSelectedIndustry(ind.id);
+                    }
+                  }} className="w-full text-left px-4 py-2 hover:bg-gray-50">
+                    {s}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Filter */}
-        <div className="sticky top-20 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 py-4 mb-8">
-          <div className="max-w-7xl mx-auto px-6 overflow-x-auto no-scrollbar">
-            <div className="flex space-x-2">
-              <button onClick={() => { const v='All'; if (onFilterChange) onFilterChange(v); else setSelectedIndustry(v); }} className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${selectedIndustry === 'All' ? 'bg-[#212121] text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>All</button>
-              {industries.map((ind) => (
-                <button key={ind.id} onClick={() => { const v=ind.id; if (onFilterChange) onFilterChange(v); else setSelectedIndustry(v); }} className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${selectedIndustry === ind.id ? 'bg-[#212121] text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
-                  {ind.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* This Use Cases view is intended to be industry-scoped. If opened without an industry, the page redirects to Industries. */}
+        {/* Filter bar intentionally removed to avoid an 'All' view. */}
 
         {/* Grid */}
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up">
@@ -619,6 +744,7 @@ const UseCasesPage = ({ navigate, useCases, industries, initialIndustry = null, 
             const displayIndustry = industries.find(i => i.id === useCase.industry)?.name || useCase.industry || '';
             return (
               <div key={useCase.id} onClick={() => setActiveUseCase(useCase)} className="group bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:border-[#5856D6]/30 transition-all cursor-pointer flex flex-col h-full relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#E8E7FF]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 <div className="flex justify-between items-start mb-6">
                   <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-[#5856D6] group-hover:bg-[#5856D6] group-hover:text-white transition-colors">
                     <Icon className="w-6 h-6" />
@@ -629,20 +755,47 @@ const UseCasesPage = ({ navigate, useCases, industries, initialIndustry = null, 
                 </div>
                 <h3 className="text-lg font-semibold text-[#212121] mb-3 group-hover:text-[#5856D6] transition-colors">{useCase.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">{useCase.gap}</p>
-                <div className="flex items-center text-[#5856D6] font-bold text-sm group-hover:translate-x-1 transition-transform mt-auto">
-                  <span>View Details</span><ArrowRight className="w-4 h-4 ml-2" />
+                <div className="flex items-center justify-between text-[#5856D6] font-bold text-sm group-hover:translate-x-1 transition-transform mt-auto">
+                  <div className="flex items-center">
+                    <span>View Details</span><ArrowRight className="w-4 h-4 ml-2" />
+                  </div>
+                  <button onClick={(e) => { e.stopPropagation(); setExpandedId(expandedId === useCase.id ? null : useCase.id); }} aria-expanded={expandedId === useCase.id} className="ml-4 text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-full hover:bg-gray-100">
+                    {expandedId === useCase.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  </button>
                 </div>
+
+                {expandedId === useCase.id && (
+                  <div className="mt-4 p-4 bg-gray-50 rounded-lg text-sm text-gray-700">
+                    <div className="mb-3">
+                      <div className="font-bold text-[13px] text-gray-600 mb-1">Problem</div>
+                      <div className="text-sm">{useCase.gap}</div>
+                    </div>
+                    <div className="mb-3">
+                      <div className="font-bold text-[13px] text-gray-600 mb-1">Impact</div>
+                      <div className="text-sm">{useCase.pain}</div>
+                    </div>
+                    <div className="mb-3">
+                      <div className="font-bold text-[13px] text-gray-600 mb-1">Kinexus Solution</div>
+                      <div className="text-sm">{useCase.solution}</div>
+                    </div>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {useCase.metrics.map((m, i) => (
+                        <div key={i} className="px-3 py-1 bg-white border rounded-full text-xs font-semibold">{m}</div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
         </div>
       </div>
 
-      {/* Modal */}
-      {activeUseCase && (
+      {/* Modal (rendered via portal to avoid clipping by transformed/overflowed ancestors) */}
+      {activeUseCase && ReactDOM.createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-[#212121]/60 backdrop-blur-sm" onClick={() => setActiveUseCase(null)}></div>
-          <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto animate-fade-in-up">
+          <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-full sm:max-w-4xl max-h-[90vh] overflow-y-auto animate-fade-in-up mx-4 sm:mx-auto">
               <div className="sticky top-0 bg-white/95 backdrop-blur z-10 p-6 border-b border-gray-100 flex justify-between items-start">
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-[#E8E7FF] rounded-2xl flex items-center justify-center text-[#5856D6]">
@@ -682,7 +835,8 @@ const UseCasesPage = ({ navigate, useCases, industries, initialIndustry = null, 
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
@@ -691,7 +845,7 @@ const UseCasesPage = ({ navigate, useCases, industries, initialIndustry = null, 
 // `IndustryPage` is provided as a separate file at `src/pages/IndustryPage.js`.
 
 // --- ADMIN DASHBOARD ---
-const AdminDashboard = ({ navigate, leads, clearLeads, downloadLeads, useCases, setUseCases, industries, setIndustries }) => {
+const AdminDashboard = ({ navigate, leads, clearLeads, downloadLeads, useCases, setUseCases, industries, setIndustries, blogs, setBlogs }) => {
   const [activeTab, setActiveTab] = useState('leads');
   
   // Use Case Form State
@@ -703,6 +857,55 @@ const AdminDashboard = ({ navigate, leads, clearLeads, downloadLeads, useCases, 
   const [newIndustry, setNewIndustry] = useState({
     name: '', icon: 'Factory', desc: '', hero: '', subhead: '', gap: '', pain: '', solution: ''
   });
+
+  // Blog management state
+  const [editingBlog, setEditingBlog] = useState(null);
+  const [blogForm, setBlogForm] = useState({ title: '', date: '', image: '', excerpt: '', content: '', status: 'draft', author: 'Kinexus Team' });
+
+  const resetBlogForm = () => setBlogForm({ title: '', date: '', image: '', excerpt: '', content: '', status: 'draft', author: 'Kinexus Team' });
+  const [previewMode, setPreviewMode] = useState(false);
+
+  const handleEditBlog = (b) => {
+    setEditingBlog(b.id);
+    setBlogForm({ ...b });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleDeleteBlog = (id) => {
+    if (!window.confirm('Delete this blog?')) return;
+    const updated = blogs.filter(b => b.id !== id);
+    setBlogs(updated);
+    if (editingBlog === id) { setEditingBlog(null); resetBlogForm(); }
+  };
+
+  const handleTogglePublish = (id) => {
+    const updated = blogs.map(b => b.id === id ? { ...b, status: b.status === 'published' ? 'draft' : 'published', date: b.status === 'published' ? b.date : new Date().toLocaleDateString() } : b);
+    setBlogs(updated);
+  };
+
+  const handleImageUpload = (file) => {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => { setBlogForm(f => ({ ...f, image: reader.result })); };
+    reader.readAsDataURL(file);
+  };
+
+  const handleSaveBlog = (e) => {
+    e.preventDefault();
+    const payload = { ...blogForm };
+    if (!payload.title) { alert('Title required'); return; }
+    if (!payload.date && payload.status === 'published') payload.date = new Date().toLocaleDateString();
+    if (editingBlog) {
+      const updated = blogs.map(b => b.id === editingBlog ? { ...b, ...payload } : b);
+      setBlogs(updated);
+      setEditingBlog(null);
+    } else {
+      const id = `blog-${Date.now()}`;
+      const newBlog = { id, ...payload };
+      setBlogs([newBlog, ...blogs]);
+    }
+    resetBlogForm();
+  };
 
   const handleAddUseCase = (e) => {
     e.preventDefault();
@@ -806,6 +1009,62 @@ const AdminDashboard = ({ navigate, leads, clearLeads, downloadLeads, useCases, 
                 <Button type="submit" className="w-full">Publish Use Case</Button>
               </form>
             </div>
+            <div className="bg-white p-8 rounded-2xl shadow-card mt-8">
+              <h2 className="text-2xl font-bold mb-4">Manage Blogs</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <form onSubmit={handleSaveBlog} className="space-y-3">
+                    <input required placeholder="Title" className="w-full border p-3 rounded-lg" value={blogForm.title} onChange={e => setBlogForm({...blogForm, title: e.target.value})} />
+                    <input placeholder="Date (optional)" className="w-full border p-3 rounded-lg" value={blogForm.date} onChange={e => setBlogForm({...blogForm, date: e.target.value})} />
+                    <input placeholder="Excerpt" className="w-full border p-3 rounded-lg" value={blogForm.excerpt} onChange={e => setBlogForm({...blogForm, excerpt: e.target.value})} />
+                    <input placeholder="Author" className="w-full border p-3 rounded-lg" value={blogForm.author} onChange={e => setBlogForm({...blogForm, author: e.target.value})} />
+                    <div>
+                      <label className="text-sm block mb-1">Image (URL or upload)</label>
+                      <input type="text" placeholder="Image URL" className="w-full border p-3 rounded-lg mb-2" value={blogForm.image} onChange={e => setBlogForm({...blogForm, image: e.target.value})} />
+                      <input type="file" accept="image/*" onChange={e => handleImageUpload(e.target.files && e.target.files[0])} />
+                    </div>
+                    <div>
+                      <label className="text-sm block mb-1">Content</label>
+                      <ReactQuill theme="snow" value={blogForm.content} onChange={val => setBlogForm({...blogForm, content: val})} />
+                    </div>
+                    <div className="flex items-center space-x-4">
+                      <label className="flex items-center space-x-2"><input type="checkbox" checked={blogForm.status === 'published'} onChange={e => setBlogForm({...blogForm, status: e.target.checked ? 'published' : 'draft'})} /> <span className="text-sm">Publish</span></label>
+                      <Button type="submit">Save</Button>
+                      <Button variant="secondary" onClick={() => { setEditingBlog(null); resetBlogForm(); }}>Reset</Button>
+                      <button type="button" onClick={() => setPreviewMode(v => !v)} className="text-sm text-gray-600 underline">{previewMode ? 'Hide Preview' : 'Preview'}</button>
+                    </div>
+                  </form>
+                </div>
+
+                <div>
+                  {previewMode ? (
+                    <div className="p-4 border rounded-lg">
+                      <div className="text-sm text-gray-400 mb-1">{blogForm.date || new Date().toLocaleDateString()}</div>
+                      <h3 className="text-xl font-bold mb-2">{blogForm.title || 'Preview Title'}</h3>
+                      <div className="text-sm text-gray-500 mb-4">By {blogForm.author || 'Kinexus Team'} • {Math.max(1, Math.ceil((blogForm.content || '').replace(/<[^>]+>/g,'').split(/\s+/).length / 200))} min read</div>
+                      {blogForm.image && <img src={blogForm.image} alt="preview" className="w-full h-48 object-cover rounded mb-4" />}
+                      <div className="prose max-w-none text-gray-700" dangerouslySetInnerHTML={{ __html: blogForm.content || '<p>Preview content</p>' }} />
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {blogs.length === 0 ? <div className="text-sm text-gray-500">No blogs yet.</div> : blogs.map(b => (
+                        <div key={b.id} className="p-3 border rounded-lg flex items-center justify-between">
+                          <div>
+                            <div className="font-semibold">{b.title} <span className="text-xs text-gray-400">{b.status === 'published' ? `• ${b.date}` : '• Draft'}</span></div>
+                            <div className="text-sm text-gray-600">{b.excerpt}</div>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <button onClick={() => handleEditBlog(b)} className="text-sm text-[#5856D6]">Edit</button>
+                            <button onClick={() => handleTogglePublish(b.id)} className="text-sm">{b.status === 'published' ? 'Unpublish' : 'Publish'}</button>
+                            <button onClick={() => handleDeleteBlog(b.id)} className="text-sm text-red-500">Delete</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
 
             {/* Add Industry Form */}
             <div className="bg-white p-8 rounded-2xl shadow-card">
@@ -858,7 +1117,7 @@ export default function App() {
     const saved = localStorage.getItem('kinexus_useCases');
     const source = saved ? JSON.parse(saved) : INITIAL_USE_CASES;
     // canonicalize industry values to industry.id where possible
-    return source.map(u => {
+    const canonicalized = source.map(u => {
       try {
         const canonical = resolveIndustryId(u.industry || u.industry === 0 ? u.industry : '', INITIAL_INDUSTRIES) || u.industry;
         return { ...u, industry: canonical };
@@ -866,12 +1125,49 @@ export default function App() {
         return u;
       }
     });
+
+    // remove duplicates (by normalized title + industry)
+    const seen = new Set();
+    const unique = [];
+    canonicalized.forEach(u => {
+      const key = ((u.title || '') + '|' + (u.industry || '')).toString().toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (!seen.has(key)) {
+        seen.add(key);
+        unique.push(u);
+      }
+    });
+    return unique;
   });
+
+  // Ensure useCases industry fields stay canonical if `industries` changes
+  useEffect(() => {
+    setUseCases(prev => prev.map(u => {
+      try {
+        const canonical = resolveIndustryId(u.industry || '', industries) || u.industry;
+        return { ...u, industry: canonical };
+      } catch (e) {
+        return u;
+      }
+    }));
+  }, [industries]);
 
   // Leads State
   const [leads, setLeads] = useState(() => {
     return JSON.parse(localStorage.getItem('kinexus_leads') || '[]');
   });
+
+  // Blogs State (persisted)
+  const [blogs, setBlogs] = useState(() => {
+    const saved = localStorage.getItem('kinexus_blogs');
+    if (saved) return JSON.parse(saved);
+    // default seed: mark existing BLOGS published
+    return BLOGS.map(b => ({ ...b, status: b.status || 'published' }));
+  });
+
+  // ensure blogs persist
+  useEffect(() => {
+    try { localStorage.setItem('kinexus_blogs', JSON.stringify(blogs)); } catch (e) {}
+  }, [blogs]);
 
   // Centralized filter for Use Cases so clicks from any page use the same function
   const [useCasesFilter, setUseCasesFilter] = useState('All');
@@ -929,6 +1225,7 @@ export default function App() {
       if (view === 'admin') path = '/admin';
       else if (view === 'industry' && params?.id) path = `/industry/${params.id}`;
       else if (view === 'useCases') path = '/use-cases';
+      else if (view === 'blog' && params?.id) path = `/blog/${params.id}`;
       else if (view === 'contact') path = '/contact';
       else if (view === 'about') path = '/about';
       else if (view === 'roi') path = '/roi';
@@ -1082,26 +1379,31 @@ export default function App() {
   // View Routing
   const renderView = () => {
     switch (currentView) {
-      case 'home': return <HomePage navigate={navigate} />;
+      case 'home': return <HomePage navigate={navigate} blogs={blogs} />;
+      case 'blog': return <BlogPage id={viewParams?.id} navigate={navigate} blogs={blogs} />;
       case 'industry': return <IndustryPage id={viewParams?.id} navigate={navigate} industries={industries} useCases={useCases} />;
       case 'industries': return <IndustriesPage navigate={navigate} industries={industries} />; 
       case 'services': return <ServicesPage navigate={navigate} />;
       case 'service': return <ServicesPage navigate={navigate} />;
-      case 'useCases': return <UseCasesPage navigate={navigate} useCases={useCases} industries={industries} initialIndustry={viewParams?.industry} filter={useCasesFilter} onFilterChange={(v) => setUseCasesFilter(v)} />;
+      case 'useCases': return <ExternalUseCasesPage navigate={navigate} useCases={useCases} industries={industries} initialIndustry={viewParams?.industry} filter={useCasesFilter} onFilterChange={(v) => setUseCasesFilter(v)} />;
       case 'roi': return <ROIPage navigate={navigate} industries={industries} initialIndustry={viewParams?.id} />;
       case 'contact': return <ContactPage navigate={navigate} addLead={addLead} industries={industries} />;
       case 'about': return <About navigate={navigate} />;
       case 'admin': return (
-        <AdminDashboard 
-          navigate={navigate} 
-          leads={leads} 
-          clearLeads={clearLeads} 
-          downloadLeads={downloadLeads}
-          useCases={useCases}
-          setUseCases={setUseCases}
-          industries={industries}
-          setIndustries={setIndustries}
-        />
+        <AdminGate>
+          <AdminHub
+            navigate={navigate}
+            leads={leads}
+            clearLeads={clearLeads}
+            downloadLeads={downloadLeads}
+            useCases={useCases}
+            setUseCases={setUseCases}
+            industries={industries}
+            setIndustries={setIndustries}
+            blogs={blogs}
+            setBlogs={setBlogs}
+          />
+        </AdminGate>
       );
       default: return <HomePage navigate={navigate} />;
     }
@@ -1265,7 +1567,9 @@ export default function App() {
 
 // (metrics overlay functions removed — restoring static overlay below)
 
-const HomePage = ({ navigate }) => {
+const HomePage = ({ navigate, blogs = [] }) => {
+
+  const showInsights = (typeof process !== 'undefined' && process.env && process.env.REACT_APP_SHOW_INSIGHTS === 'true') || (typeof window !== 'undefined' && window.localStorage && window.localStorage.getItem('kinexus_show_insights') === 'true');
 
   return (
     <div className="animate-fade-in bg-white overflow-x-hidden">
@@ -1392,16 +1696,7 @@ const HomePage = ({ navigate }) => {
 
       
 
-      {/* Real Results (Case Cards) */}
-      <section className="home-section py-8 bg-[#F8F9FF]" data-bg="/assets/hero-energy-1600.jpg">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading title="It's Not Theory. It's Working Right Now." />
-          <div className="mt-2">
-            <CaseCarousel items={CASE_STUDIES} />
-          </div>
-          {/* metrics moved into hero overlay */}
-        </div>
-      </section>
+      
 
       {/* What Makes Us Different */}
       <section className="home-section py-12 bg-white" data-bg="/assets/hero-education-1600.jpg">
@@ -1433,6 +1728,38 @@ const HomePage = ({ navigate }) => {
         </div>
       </section>
 
+      {/* Agentic Implementation Workflow (business-friendly sneak peek) */}
+      <section className="home-section py-12 bg-white" data-bg="/assets/hero-services-1600.jpg">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeading title="Agentic Implementation Workflow" subtitle="A concise, business-friendly sneak peek at how we deliver production-ready agentic workflows" />
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-5 gap-6 items-start">
+            {[
+              { step: '01', title: 'Discover', subtitle: 'Prioritise high-impact workflows', body: 'We run rapid ROI audits and stakeholder interviews to identify decision-heavy processes and measurable KPIs.' },
+              { step: '02', title: 'Design', subtitle: 'Agent spec & orchestration plan', body: 'Define agent responsibilities, inputs/outputs, failure modes and orchestration contracts (LangGraph/Swarms).' },
+              { step: '03', title: 'Build', subtitle: 'Integrations & agent development', body: 'Implement connectors, build agents, and instrument monitoring and telemetry for operational visibility.' },
+              { step: '04', title: 'Validate', subtitle: 'HITL safety & governance', body: 'Establish guardrails, audit logs, escalation paths and rollout criteria so leaders can trust agent decisions.' },
+              { step: '05', title: 'Scale', subtitle: 'Operationalise & expand', body: 'Harden reliability, measure outcomes against KPIs, and extend agents across processes for sustained value.' }
+            ].map((s, i) => (
+              <div key={i} className="p-6 rounded-2xl bg-white border shadow-sm flex flex-col h-full">
+                <div className="flex items-start space-x-4 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-[#F3F5FF] text-[#5856D6] flex items-center justify-center font-bold">{s.step}</div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-semibold text-lg">{s.title}</h4>
+                    </div>
+                    <div className="text-sm text-gray-500 mb-2">{s.subtitle}</div>
+                    <p className="text-gray-600 text-sm">{s.body}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Button onClick={() => navigate('contact')} className="px-8">Talk to an Engineer</Button>
+          </div>
+        </div>
+      </section>
+
       {/* Who This Isn't For (moved below 'Why Companies Choose...') */}
       <section className="home-section py-12 bg-white" data-bg="/assets/hero-education-1600.jpg">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -1449,57 +1776,69 @@ const HomePage = ({ navigate }) => {
           <SectionHeading title="It's Not Theory. It's Working Right Now." />
           {/* metrics moved into hero overlay */}
 
-          <div className="mt-12">
-            <SectionHeading title="Industries We Transform" />
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
-              {INITIAL_INDUSTRIES.map(ind => (
-                <div key={ind.id} onClick={() => navigate('industry', { id: ind.id })} className="p-6 border rounded-2xl hover:shadow-lg cursor-pointer">
-                  <div className="font-bold text-lg mb-2">{ind.name}</div>
-                  <div className="text-sm text-gray-600">{ind.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+          
 
           <div className="mt-12">
             <SectionHeading title="The Answer Is Yes." subtitle="We do the heavy lifting — integrations, operations, and measurable outcomes." centered />
             <p className="text-gray-600 max-w-3xl mx-auto text-sm mb-6">You can deploy agentic automation in real operations without heroic data projects. Below are the guarantees we offer when we work together.</p>
 
             <div className="mt-6 grid gap-6 md:grid-cols-3">
-              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left flex flex-col h-full min-h-[140px]">
                 <h4 className="font-semibold text-lg mb-2">We integrate with your systems</h4>
-                <p className="text-gray-600 text-sm">ERP, MES, WMS, CRMs — agents orchestrate across your stack without replacing it.</p>
+                <p className="text-gray-600 text-sm mt-auto break-words">ERP, MES, WMS, CRMs — agents orchestrate across your stack without replacing it.</p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left flex flex-col h-full min-h-[140px]">
                 <h4 className="font-semibold text-lg mb-2">Pilot to production</h4>
-                <p className="text-gray-600 text-sm">Fast pilots that demonstrate impact in 8–12 weeks and production rollouts that scale reliably.</p>
+                <p className="text-gray-600 text-sm mt-auto break-words">Fast pilots that demonstrate impact in 8–12 weeks and production rollouts that scale reliably.</p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left flex flex-col h-full min-h-[140px]">
                 <h4 className="font-semibold text-lg mb-2">We operate with you</h4>
-                <p className="text-gray-600 text-sm">Monitoring, governance, and SLA-backed operations — we stay until outcomes are repeatable.</p>
+                <p className="text-gray-600 text-sm mt-auto break-words">Monitoring, governance, and SLA-backed operations — we stay until outcomes are repeatable.</p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left flex flex-col h-full min-h-[140px]">
                 <h4 className="font-semibold text-lg mb-2">Security & compliance</h4>
-                <p className="text-gray-600 text-sm">Audit trails, role-based controls, and privacy-first integrations are standard in every deployment.</p>
+                <p className="text-gray-600 text-sm mt-auto break-words">Audit trails, role-based controls, and privacy-first integrations are standard in every deployment.</p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left flex flex-col h-full min-h-[140px]">
                 <h4 className="font-semibold text-lg mb-2">Human-in-the-loop</h4>
-                <p className="text-gray-600 text-sm">We design decision gates so humans retain control where necessary, with rich context and suggested actions.</p>
+                <p className="text-gray-600 text-sm mt-auto break-words">We design decision gates so humans retain control where necessary, with rich context and suggested actions.</p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left">
+              <div className="p-6 rounded-2xl bg-white/90 border shadow-sm text-left flex flex-col h-full min-h-[140px]">
                 <h4 className="font-semibold text-lg mb-2">Measurable ROI</h4>
-                <p className="text-gray-600 text-sm">Throughput, cost, and quality metrics tracked from day one — so you see the value in dollars and time saved.</p>
+                <p className="text-gray-600 text-sm mt-auto break-words">Throughput, cost, and quality metrics tracked from day one — so you see the value in dollars and time saved.</p>
               </div>
             </div>
             <div className="mt-8 flex justify-center"><Button onClick={() => navigate('contact')}>Talk with an Engineer →</Button></div>
           </div>
         </div>
       </section>
+
+      {showInsights && (
+        <section className="home-section py-12 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <SectionHeading title="Latest Insights" subtitle="Research, case studies, and thinking from the Kinexus team" />
+            <div className="mt-8 grid md:grid-cols-3 gap-6">
+              {(blogs || []).slice(0,3).map(b => (
+                <div key={b.id} className="bg-white border rounded-2xl p-6 hover-lift">
+                  {b.image && <img src={b.image} alt={b.title} className="w-full h-44 object-cover rounded-md mb-4" />}
+                  <div className="text-sm text-gray-400 mb-1">{b.date} • {b.author || 'Kinexus Team'}</div>
+                  <h3 className="font-semibold text-lg mb-2">{b.title}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{(b.excerpt || '').slice(0,140)}</p>
+                  <div className="flex justify-between items-center">
+                    <Button onClick={() => navigate('blog', { id: b.id })}>Read</Button>
+                    <a href="#" onClick={(e) => { e.preventDefault(); navigator.clipboard && navigator.clipboard.writeText(window.location.origin + window.location.pathname + `#blog-${b.id}`); alert('Link copied'); }} className="text-sm text-gray-400">Share</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Final CTA */}
       <section className="home-section py-12 bg-[#2EC5CE] text-white" data-bg="/assets/hero-hospitality-1600.jpg">
@@ -1509,6 +1848,79 @@ const HomePage = ({ navigate }) => {
           <Button onClick={() => navigate('contact')} className="" style={{ backgroundColor: '#ffffff', color: '#2EC5CE' }}>Start the Conversation</Button>
         </div>
       </section>
+      
+    </div>
+  );
+};
+
+const BlogPage = ({ id, navigate, blogs = [] }) => {
+  const source = (blogs && blogs.length) ? blogs : BLOGS;
+  const blog = source.find(b => b.id === id);
+  if (!blog) {
+    return (
+      <div className="pt-24 pb-16 min-h-screen bg-white animate-fade-in-up">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h2 className="text-2xl font-bold mb-4">Post not found</h2>
+          <p className="text-gray-600 mb-6">We couldn't find the article you're looking for.</p>
+          <Button onClick={() => navigate('home')}>Return Home</Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="pt-24 pb-16 min-h-screen bg-white animate-fade-in-up">
+      <div className="max-w-7xl mx-auto px-6">
+        <style>{blogStyles}</style>
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <div className="text-sm text-gray-400 mb-1">{blog.date} • By {blog.author || 'Kinexus Team'} • {Math.max(1, Math.ceil(((blog.content||'').replace(/<[^>]+>/g,'').split(/\s+/).length || 0) / 200))} min read</div>
+            <h1 className="text-3xl font-bold leading-tight mb-2">{blog.title}</h1>
+          </div>
+          <div>
+            <Button variant="text" onClick={() => navigate('home')}>Back</Button>
+          </div>
+        </div>
+        {blog.image && (
+          <div className="blog-hero mb-8">
+            <img src={blog.image} alt={blog.title} />
+            <div className="overlay" />
+            <div className="meta">
+              <div className="blog-meta-row">{blog.date} • By {blog.author || 'Kinexus Team'} • {Math.max(1, Math.ceil(((blog.content||'').replace(/<[^>]+>/g,'').split(/\s+/).length || 0) / 200))} min read</div>
+              <h1 style={{ color: '#fff', marginTop: 8 }}>{blog.title}</h1>
+            </div>
+          </div>
+        )}
+
+        <div className="blog-container">
+          <div className="blog-content">
+            <div className="prose max-w-none text-gray-700 mb-8" dangerouslySetInnerHTML={{ __html: blog.content }} />
+            <div className="mt-8 flex items-center justify-between">
+              <div className="text-sm text-gray-500">Was this article helpful?</div>
+              <div className="share-buttons">
+                <button className="share-button" onClick={() => { navigator.clipboard && navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard'); }}>Copy link</button>
+                <a className="share-button" href={`mailto:?subject=${encodeURIComponent(blog.title)}&body=${encodeURIComponent(window.location.href)}`}>Email</a>
+                <a className="share-button" target="_blank" rel="noreferrer" href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(blog.title)}&url=${encodeURIComponent(window.location.href)}`}>Tweet</a>
+              </div>
+            </div>
+          </div>
+
+          <aside className="blog-sidebar">
+            <div className="bg-white p-6 rounded-2xl shadow-sm">
+              <div className="mb-4 font-semibold">Related Posts</div>
+              {blogs.filter(b => b.id !== blog.id).slice(0,4).map(r => (
+                <div key={r.id} className="related-post">
+                  <img src={r.image} alt={r.title} className="w-16 h-12 object-cover rounded" />
+                  <div style={{flex:1}}>
+                    <div className="text-sm font-semibold cursor-pointer text-[#1f2937]" onClick={() => navigate('blog', { id: r.id })}>{r.title}</div>
+                    <div className="text-xs text-gray-400">{r.date}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </div>
     </div>
   );
 };
@@ -1668,27 +2080,55 @@ const ContactPage = ({ navigate, addLead, industries = [] }) => {
             <button onClick={() => goTo('home')} className="text-black hover:text-[#5856D6]">Home</button>
             <button onClick={() => goTo('services')} className="text-black hover:text-[#5856D6]">Services</button>
             <button onClick={() => goTo('industries')} className="text-black hover:text-[#5856D6]">Industries</button>
-            <button onClick={() => goTo('useCases')} className="text-black hover:text-[#5856D6]">Use Cases</button>
+            {/* Use Cases removed from main nav - industry pages link directly to filtered use cases */}
             <button onClick={() => goTo('about')} className="text-black hover:text-[#5856D6]">About</button>
             <button onClick={() => goTo('contact')} className="bg-[#25a8b0] text-white px-4 py-2 rounded-lg hover:bg-[#1e8b98]">Contact</button>
           </div>
-          <div className="md:hidden">
-            {/* mobile menu placeholder */}
-            <button className="text-black">Menu</button>
+          <div className="md:hidden relative">
+            <MobileMenu navigate={navigate} />
           </div>
         </div>
       </nav>
     );
   };
 
+  const MobileMenu = ({ navigate }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    return (
+      <div className="relative">
+        <button
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setIsOpen(v => !v)}
+          className="inline-flex items-center justify-center p-2 rounded-md text-black hover:bg-gray-100"
+        >
+          {isOpen ? <X className="w-5 h-5" /> : <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+        </button>
+
+        {isOpen && (
+          <div id="mobile-menu" className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 py-3 z-50">
+            <div className="flex flex-col px-4 space-y-2">
+              <button onClick={() => { setIsOpen(false); navigate('home'); }} className="text-left px-3 py-2 rounded hover:bg-gray-100">Home</button>
+              <button onClick={() => { setIsOpen(false); navigate('services'); }} className="text-left px-3 py-2 rounded hover:bg-gray-100">Services</button>
+              <button onClick={() => { setIsOpen(false); navigate('industries'); }} className="text-left px-3 py-2 rounded hover:bg-gray-100">Industries</button>
+              {/* Use Cases removed from mobile menu - industries link to their use cases directly */}
+              <button onClick={() => { setIsOpen(false); navigate('about'); }} className="text-left px-3 py-2 rounded hover:bg-gray-100">About</button>
+              <button onClick={() => { setIsOpen(false); navigate('contact'); }} className="mt-2 px-3 py-2 rounded bg-[#25a8b0] text-white hover:bg-[#1e8b98]">Contact</button>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
 const Footer = ({ navigate }) => (
-  <footer className="bg-black text-white py-12">
-    <div className="max-w-7xl mx-auto px-6 text-center">
-      <p className="mb-4">© {new Date().getFullYear()} Kinexus. All rights reserved.</p>
+  <footer className="bg-black text-white" style={{ height: 'var(--nav-height)' }}>
+    <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-full">
+      <p className="m-0">© {new Date().getFullYear()} Kinexus. All rights reserved.</p>
       <div className="space-x-4">
-        <button onClick={() => navigate('home')} className="hover:underline">Home</button>
-        <button onClick={() => navigate('about')} className="hover:underline">About</button>
-        <button onClick={() => navigate('contact')} className="hover:underline">Contact</button>
+        <button onClick={() => navigate('home')} className="text-white opacity-90 hover:opacity-100 text-sm">Home</button>
+        <button onClick={() => navigate('about')} className="text-white opacity-90 hover:opacity-100 text-sm">About</button>
+        <button onClick={() => navigate('contact')} className="text-white opacity-90 hover:opacity-100 text-sm">Contact</button>
       </div>
     </div>
   </footer>

@@ -124,9 +124,7 @@ export default function IndustryPage({ id, navigate, industries = [], useCases =
   }
 
   const Icon = getIcon(industry.icon);
-  const normalizeKey = (v) => (v || '').toString().toLowerCase().replace(/[^a-z0-9]/g, '');
-  const targetKey = normalizeKey(industry.id || industry.name);
-  const relatedCases = useCases.filter(c => normalizeKey(c.industry) === targetKey);
+  
 
   // Industry-specific impact metrics (read-only)
   const INDUSTRY_METRICS = {
@@ -194,8 +192,8 @@ export default function IndustryPage({ id, navigate, industries = [], useCases =
               onError={() => setImgAttempt(a => a + 1)}
             />
 
-            {/* Metrics overlay — bottom-right, overlaying hero image (20% width, 15pt right padding) */}
-            <div className="absolute z-40" style={{ right: '15pt', bottom: '6%', width: '20%', minWidth: '200px' }}>
+            {/* Metrics overlay — responsive: full width on small screens, compact on md+ */}
+            <div className="absolute z-40 right-4 bottom-6 w-11/12 md:w-1/5 md:min-w-[200px] mx-auto md:mx-0">
               <div className="glass-card p-4 rounded-2xl shadow-lg hover-lift">
                 <div className="grid grid-cols-1 gap-3 text-center">
                   {metrics.slice(0,3).map((m, i) => (
