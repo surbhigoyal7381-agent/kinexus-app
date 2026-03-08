@@ -51,7 +51,7 @@ const styles = `
     --pure-white: #FFFFFF;
     --supporting-gray: #6B6B6B;
     --nav-height: 64px;
-    --hero-offset: var(--nav-height);
+    --hero-offset: 40px;
   }
 
   body {
@@ -1236,37 +1236,7 @@ const HomePage = ({ navigate, blogs = [] }) => {
         </div>
       </section>
 
-      {/* Agentic Implementation Workflow (business-friendly sneak peek) */}
-      <section className="home-section py-12 bg-white" data-bg="/assets/hero-services-1600.jpg">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading title="Agentic Implementation Workflow" subtitle="A concise, business-friendly sneak peek at how we deliver production-ready agentic workflows" />
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-5 gap-6 items-start">
-            {[
-              { step: '01', title: 'Discover', subtitle: 'Prioritise high-impact workflows', body: 'We run rapid ROI audits and stakeholder interviews to identify decision-heavy processes and measurable KPIs.' },
-              { step: '02', title: 'Design', subtitle: 'Agent spec & orchestration plan', body: 'Define agent responsibilities, inputs/outputs, failure modes and orchestration contracts (LangGraph/Swarms).' },
-              { step: '03', title: 'Build', subtitle: 'Integrations & agent development', body: 'Implement connectors, build agents, and instrument monitoring and telemetry for operational visibility.' },
-              { step: '04', title: 'Validate', subtitle: 'HITL safety & governance', body: 'Establish guardrails, audit logs, escalation paths and rollout criteria so leaders can trust agent decisions.' },
-              { step: '05', title: 'Scale', subtitle: 'Operationalise & expand', body: 'Harden reliability, measure outcomes against KPIs, and extend agents across processes for sustained value.' }
-            ].map((s, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white border shadow-sm flex flex-col h-full">
-                <div className="flex items-start space-x-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-[#F3F5FF] text-[#5856D6] flex items-center justify-center font-bold">{s.step}</div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-semibold text-lg">{s.title}</h4>
-                    </div>
-                    <div className="text-sm text-gray-500 mb-2">{s.subtitle}</div>
-                    <p className="text-gray-600 text-sm">{s.body}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Button onClick={() => navigate('contact')} className="px-8">Talk to an Engineer</Button>
-          </div>
-        </div>
-      </section>
+      {/* Agentic Implementation Workflow removed */}
 
       {/* Who This Isn't For (moved below 'Why Companies Choose...') */}
       <section className="home-section py-12 bg-white" data-bg="/assets/hero-education-1600.jpg">
@@ -1630,8 +1600,8 @@ const ContactPage = ({ navigate, addLead, industries = [] }) => {
   };
 
 const Footer = ({ navigate }) => (
-  <footer className="bg-black text-white" style={{ height: 'var(--nav-height)' }}>
-    <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-full">
+  <footer className="bg-black text-white" style={{ height: '48px' }}>
+    <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-full text-sm">
       <p className="m-0">© {new Date().getFullYear()} Kinexus. All rights reserved.</p>
       <div className="space-x-4">
         <button onClick={() => navigate('home')} className="text-white opacity-90 hover:opacity-100 text-sm">Home</button>

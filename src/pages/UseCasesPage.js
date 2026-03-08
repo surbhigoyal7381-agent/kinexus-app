@@ -48,6 +48,10 @@ const UseCasesPage = ({ navigate, useCases = [], industries = [], initialIndustr
           <p className="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">Browse our catalog of industry-specific AI agents ready to deploy.</p>
         </div>
 
+        <div className="max-w-7xl mx-auto px-6 mb-6 text-center">
+          <button onClick={() => navigate && navigate('industries')} className="inline-flex items-center px-4 py-2 rounded-full bg-[#5856D6] text-white font-semibold hover:bg-[#4644ab] transition">Explore Industries</button>
+        </div>
+
         <div className="relative max-w-xl mx-auto mb-12">
           <div className="relative bg-white rounded-full shadow-sm border border-gray-200 flex items-center px-6 py-4 focus-within:shadow-md focus-within:border-[#5856D6] transition-all">
             <Search className="w-5 h-5 text-gray-400 mr-4" />
@@ -59,6 +63,25 @@ const UseCasesPage = ({ navigate, useCases = [], industries = [], initialIndustr
                 ))}
               </div>
             )}
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 mb-6">
+          <div className="flex items-center justify-center">
+            <div className="w-full">
+              <div className="mb-3 md:hidden">
+                <select value={selectedIndustry} onChange={(e) => { const v = e.target.value; setSelectedIndustry(v); if (onFilterChange) onFilterChange(v); }} className="w-full rounded-full border border-gray-200 px-4 py-2">
+                  <option value="All">All industries</option>
+                  {industries.map(i => (<option key={i.id} value={i.id}>{i.name}</option>))}
+                </select>
+              </div>
+              <div className="hidden md:flex items-center justify-center gap-3 overflow-x-auto">
+                <button onClick={() => { setSelectedIndustry('All'); if (onFilterChange) onFilterChange('All'); }} className={`px-4 py-2 rounded-full text-sm font-semibold ${selectedIndustry === 'All' ? 'bg-[#5856D6] text-white' : 'bg-gray-100 text-gray-700'}`}>All</button>
+                {industries.map(i => (
+                  <button key={i.id} onClick={() => { setSelectedIndustry(i.id); if (onFilterChange) onFilterChange(i.id); }} className={`px-4 py-2 rounded-full text-sm font-semibold ${selectedIndustry === i.id ? 'bg-[#5856D6] text-white' : 'bg-gray-100 text-gray-700'}`}>{i.name}</button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
