@@ -1574,7 +1574,7 @@ const HomePage = ({ navigate, blogs = [] }) => {
   return (
     <div className="animate-fade-in bg-white overflow-x-hidden">
       <section className="home-section relative pt-0 pb-8 lg:pt-0 lg:pb-12 overflow-hidden bg-grid-pattern" data-bg="/assets/hero-retail-1600.jpg">
-        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-[#E8E7FF] rounded-full mix-blend-multiply filter blur-[120px] opacity-40 animate-blob"></div>
+        <div className="hidden md:block absolute top-20 right-0 w-[600px] h-[600px] bg-[#E8E7FF] rounded-full mix-blend-multiply filter blur-[120px] opacity-40 animate-blob"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
           <ScrollReveal>
             <div className="inline-flex items-center space-x-2 bg-white/50 backdrop-blur-sm border border-purple-100 text-[#5856D6] px-4 py-2 rounded-full text-sm font-bold -mt-2 mb-3 shadow-sm">
@@ -1596,11 +1596,11 @@ const HomePage = ({ navigate, blogs = [] }) => {
                 <img
                   src={kinexusHero}
                   alt="Kinexus hero"
-                  className="block w-[110%] md:w-[120%] lg:w-[130%] h-auto object-cover rounded-3xl shadow-2xl transform transition-transform duration-700 hover:scale-105 -ml-6 md:-ml-12 animate-float"
+                  className="block w-full md:w-[120%] lg:w-[130%] h-auto object-cover rounded-3xl shadow-2xl transform transition-transform duration-700 hover:scale-105 -ml-0 md:-ml-12 animate-float"
                 />
 
-                {/* Metrics overlay — bottom-right, overlaying hero image (20% width, 15pt right padding) */}
-                <div className="absolute z-40" style={{ right: '15pt', bottom: '6%', width: '20%', minWidth: '200px' }}>
+                {/* Metrics overlay — bottom-right, overlaying hero image (hidden on small screens) */}
+                <div className="hidden md:block absolute z-40" style={{ right: '15pt', bottom: '6%', width: '20%', minWidth: '200px' }}>
                   <div className="glass-card p-4 rounded-2xl shadow-lg hover-lift">
                     <div className="grid grid-cols-1 gap-3 text-center">
                       <div className="p-3 rounded-lg bg-[#E8F7FF]">

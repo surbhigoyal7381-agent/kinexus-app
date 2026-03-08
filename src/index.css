@@ -55,3 +55,32 @@ body {
   filter: blur(28px);
   opacity: 0.85;
 }
+
+/* Small-screen responsive helpers */
+@media (max-width: 767px) {
+  /* Reduce heavy paddings and hide decorative blobs */
+  .home-section { padding-top: 1.5rem !important; padding-bottom: 2rem !important; }
+  .blob, .animate-blob { display: none !important; }
+
+  /* Make hero image fully responsive and avoid overflow */
+  .hero-figure img, .hero-figure { width: 100% !important; max-width: 100% !important; margin-left: 0 !important; transform: none !important; }
+
+  /* Hide metrics overlays and similar floating cards on mobile */
+  .glass-card, .metrics-overlay, .hero-metrics, .overlay-metrics { display: none !important; }
+
+  /* Stack admin forms and listings vertically for small screens */
+  .admin-grid, .grid.md\:grid-cols-2, .grid.md\:grid-cols-3 { grid-template-columns: 1fr !important; }
+  .max-w-7xl { padding-left: 1rem !important; padding-right: 1rem !important; }
+
+  /* Improve readability: slightly larger body text on small screens */
+  p, .text-base { font-size: 1rem !important; line-height: 1.5 !important; }
+
+  /* Prevent wide cards from causing horizontal scroll */
+  .rounded-3xl, .shadow-2xl, .prose img { max-width: 100% !important; height: auto !important; }
+}
+
+@media (max-width: 1023px) {
+  /* Medium screens: tone down oversized transforms */
+  .animate-float { transform: none !important; }
+  .hover\:scale-105:hover { transform: none !important; }
+}
