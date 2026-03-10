@@ -1,4 +1,4 @@
-# Kinexus App - Modern React Application with Tailwind CSS
+# Kinexus - Modern React Application with Tailwind CSS
 
 A beautiful, modern React application built with **Tailwind CSS**, featuring a responsive design, smooth navigation, and multiple interactive pages.
 
@@ -23,7 +23,7 @@ A beautiful, modern React application built with **Tailwind CSS**, featuring a r
 ## Project Structure
 
 ```
-kinexus-app/
+kinexus/
 ├── src/
 │   ├── components/
 │   │   ├── Navigation.js      - Top navigation bar
@@ -56,7 +56,7 @@ kinexus-app/
 ### Option 1: Using Docker Compose (Recommended)
 
 ```bash
-cd kinexus-app
+cd kinexus
 docker-compose up -d
 ```
 
@@ -65,7 +65,7 @@ The application will be available at: **http://localhost:3001**
 ### Option 2: Local Development
 
 ```bash
-cd kinexus-app
+cd kinexus
 npm install
 npm start
 ```

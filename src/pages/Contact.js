@@ -23,7 +23,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 px-4">
+    <div className="min-h-screen bg-gray-50 pt-6 px-4">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900 mb-4 text-center">Get In Touch</h1>
         <p className="text-lg text-gray-600 mb-8 text-center">We'd love to hear from you. Send us a message!</p>

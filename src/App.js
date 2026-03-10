@@ -1482,7 +1482,7 @@ const ContactPage = ({ navigate, addLead, industries = [] }) => {
     }
   };
     return (
-      <div className="pt-16 pb-16 min-h-screen bg-white animate-fade-in-up">
+      <div className="pt-6 pb-16 min-h-screen bg-white animate-fade-in-up">
         <div className="max-w-3xl mx-auto px-6">
           <SectionHeading title="Contact Us" subtitle="Start a conversation — we'll respond within 48 hours." centered />
           <form onSubmit={handleSubmit} className="space-y-4 mt-8">
