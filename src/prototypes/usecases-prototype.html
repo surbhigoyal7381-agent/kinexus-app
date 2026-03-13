@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Use Cases — Prototype</title>
+  <style>
+    :root{
+      --bg1:#071120; --bg2:#0b1f2c; --card:#ffffff; --accent:#2EC5CE; --muted:#94A3B8;
+      --glass: rgba(255,255,255,0.06);
+    }
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#e6eef6}
+    .wrap{max-width:1200px;margin:32px auto;padding:20px}
+    .frame{display:flex;gap:24px}
+
+    /* LEFT */
+    .left{width:280px}
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:16px}
+    .title{font-weight:700;color:#fff;margin-bottom:6px}
+    .micro{color:var(--muted);font-size:13px}
+    .industry-list{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+    .ind-btn{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:10px;color:#dff8f7;background:transparent;border:1px solid transparent;cursor:pointer}
+    .ind-btn:hover{background:rgba(255,255,255,0.02)}
+    .ind-active{background:linear-gradient(90deg, rgba(46,197,206,0.08), rgba(4,18,26,0.04));box-shadow:0 6px 20px rgba(46,197,206,0.06);border-left:4px solid var(--accent)}
+    .count{color:var(--muted);font-size:13px}
+
+    .quick{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.03);display:flex;gap:8px}
+    .chip{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-size:13px;border:1px solid rgba(255,255,255,0.02);cursor:pointer}
+
+    /* RIGHT */
+    .right{flex:1}
+    .card{background:var(--card);color:#0b1f2c;border-radius:12px;padding:18px}
+    .header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+    .h-title{font-size:20px;font-weight:800;color:var(--bg2)}
+    .h-sub{color:#64748b;font-size:13px}
+
+    .filters{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+    .filter-chip{padding:6px 10px;border-radius:999px;background:#f3f4f6;color:#0b1f2c;font-size:13px;border:1px solid #e6eef6;cursor:pointer}
+    .filter-active{background:var(--accent);color:#fff}
+    .search{flex:1;display:flex;align-items:center;border-radius:999px;border:1px solid #e6eef6;padding:8px 12px;background:#fff}
+    .search input{border:0;outline:0;font-size:14px}
+
+    .cluster{margin-top:18px}
+    .cluster h3{color:#0b1f2c;margin:0 0 8px 0}
+    .row{display:flex;gap:12px;overflow:auto;padding-bottom:8px}
+    .agent{min-width:320px;background:#fff;border-radius:12px;padding:14px;color:#0b1f2c;box-shadow:0 6px 18px rgba(12,23,30,0.06);transition:transform .18s ease, box-shadow .18s ease}
+    .agent:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(12,23,30,0.12);background-image:linear-gradient(135deg, rgba(6,18,26,0.01) 0%, rgba(46,197,206,0.015) 100%)}
+    .agent .meta{font-size:12px;color:#475569;font-weight:700}
+    .agent h4{margin:8px 0 6px 0;font-size:16px}
+    .agent p{margin:0;color:#64748b;font-size:13px}
+    .metrics{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+    .m{background:#f1f5f9;padding:6px 8px;border-radius:8px;font-size:12px;color:#0b1f2c}
+    .cta{margin-top:12px;display:flex;justify-content:space-between;align-items:center}
+    .btn{padding:8px 12px;border-radius:8px;border:1px solid var(--accent);color:var(--accent);background:transparent;cursor:pointer}
+
+    /* small */
+    .no-result{background:#fff;border-radius:12px;padding:30px;color:#0b1f2c;text-align:center}
+
+    /* scrollbar tidy */
+    .row::-webkit-scrollbar{height:8px}
+    .row::-webkit-scrollbar-thumb{background:rgba(11,31,44,0.12);border-radius:12px}
+
+    @media (max-width:900px){.frame{flex-direction:column}.left{width:100%}.right{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="frame">
+      <div class="left">
+        <div class="panel">
+          <div class="title">Industry Explorer</div>
+          <div id="micro" class="micro">Select an industry to see where agents replace manual ops.</div>
+
+          <div class="industry-list" id="industry-list"></div>
+
+          <div class="quick">
+            <div class="chip" id="reset">Reset</div>
+            <div class="chip" id="fav-btn">Favourites</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="card">
+          <div class="header">
+            <div>
+              <div class="h-title" id="canvas-title">Agent Library</div>
+              <div class="h-sub" id="canvas-sub">Browse curated agents</div>
+            </div>
+            <div style="min-width:320px">
+              <div class="filters">
+                <div id="problem-filters" style="display:flex;gap:8px"></div>
+                <div style="flex:1"></div>
+              </div>
+              <div style="margin-top:10px;display:flex;gap:8px">
+                <div class="search"><input id="search" placeholder="Search by pain, e.g. 'ETA', 'slotting'…"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="canvas" style="margin-top:14px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+// sample data
+const SAMPLE = [
+  {id:'log-1', industry:'Logistics', cluster:'Dispatch & Routing', title:'Dispatch Automation Agent', gap:'Dispatch is manual and gut-feel based.', metrics:['Go-live: 2–4 weeks','ROI: 8–12% line-haul cost','Integrates: TMS, GPS, WMS']},
+  {id:'log-2', industry:'Logistics', cluster:'Dispatch & Routing', title:'ETA Prediction Agent', gap:'ETA predictions are unreliable across routes.', metrics:['Go-live: 1–3 weeks','ROI: Improved ETA accuracy','Integrates: GPS, Telematics']},
+  {id:'log-3', industry:'Logistics', cluster:'Warehouse & Inventory', title:'Slotting & Replenishment Agent', gap:'Manual slotting causes inefficiency', metrics:['Go-live: 3–6 weeks','ROI: 5–10% DC throughput','Integrates: WMS']},
+  {id:'ph-1', industry:'Pharma', cluster:'Compliance', title:'BMR Automation', gap:'Batch records are paper-heavy and error-prone.', metrics:['Go-live: 4–8 weeks','ROI: Faster release','Integrates: MES, LIMS']}
+];
+
+const industries = ['All','Favourites','Logistics','Pharma','Manufacturing','Retail','Energy'];
+const counts = {};
+SAMPLE.forEach(s=> counts[s.industry] = (counts[s.industry]||0)+1);
+
+// state
+let favs = JSON.parse(localStorage.getItem('kinexus_favs')||'[]');
+let activeIndustry = new URLSearchParams(location.search).get('industry') || 'all';
+activeIndustry = activeIndustry.toLowerCase();
+
+// microcopy rotate
+const micro = document.getElementById('micro');
+const microCopy = ['Select an industry to see where agents replace manual ops.','Agents reduce manual effort and improve throughput.','Explore pre-built blueprints and integration patterns.'];
+let mi=0; setInterval(()=>{mi=(mi+1)%microCopy.length; micro.textContent = microCopy[mi];},4200);
+
+// left list
+const listEl = document.getElementById('industry-list');
+function renderLeft(){ listEl.innerHTML=''; industries.forEach(ind=>{
+  const btn = document.createElement('button'); btn.className='ind-btn';
+  const key = ind;
+  if ((activeIndustry==='all' && ind==='All') || activeIndustry===ind.toLowerCase()) btn.classList.add('ind-active');
+  btn.onclick = ()=>{ activeIndustry = ind.toLowerCase(); history.pushState({},'', activeIndustry==='all'?location.pathname:`?industry=${activeIndustry}`); render(); };
+  const name = document.createElement('div'); name.textContent = ind;
+  const cnt = document.createElement('div'); cnt.className='count'; cnt.textContent = ind==='All'?SAMPLE.length:(counts[ind]||0);
+  btn.appendChild(name); btn.appendChild(cnt); listEl.appendChild(btn);
+}); }
+
+// problem filters
+const problems = ['Planning','Execution','Visibility','Finance','Customer Experience'];
+const pf = document.getElementById('problem-filters');
+problems.forEach(p=>{ const b=document.createElement('button'); b.className='filter-chip'; b.textContent=p; b.onclick=()=>{ b.classList.toggle('filter-active'); render(); }; pf.appendChild(b); });
+
+// canvas render
+const canvas = document.getElementById('canvas');
+const title = document.getElementById('canvas-title');
+const sub = document.getElementById('canvas-sub');
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', ()=>render());
+
+defaultRender = ()=>{};
+
+function render(){
+  renderLeft();
+  const selected = activeIndustry==='all'?null:activeIndustry;
+  title.textContent = selected?`${selected.charAt(0).toUpperCase()+selected.slice(1)} Agent Library`:'Agent Library';
+  const q = (searchInput.value||'').toLowerCase();
+  const activeProblems = Array.from(document.querySelectorAll('.filter-active')).map(n=>n.textContent.toLowerCase());
+  let items = SAMPLE.filter(s=>{ if(selected && selected!=='favourites' && s.industry.toLowerCase()!==selected) return false; if(selected==='favourites' && !favs.includes(s.id)) return false; if(q && !(s.title.toLowerCase().includes(q)||s.gap.toLowerCase().includes(q))) return false; for(const p of activeProblems){ if(!(s.title+' '+s.gap).toLowerCase().includes(p)) return false; } return true; });
+  sub.textContent = `${items.length} pre-built agents to explore`;
+
+  // group by cluster
+  const groups = items.reduce((acc,it)=>{ acc[it.cluster]=acc[it.cluster]||[]; acc[it.cluster].push(it); return acc; },{});
+  canvas.innerHTML='';
+  if(items.length===0){ canvas.innerHTML = '<div class="no-result"><h3>No agents match this combo yet</h3><p>Tell us what you want to automate.</p></div>'; return; }
+  for(const [cluster, arr] of Object.entries(groups)){
+    const sec = document.createElement('div'); sec.className='cluster';
+    const h = document.createElement('h3'); h.textContent = cluster; sec.appendChild(h);
+    const row = document.createElement('div'); row.className='row';
+    arr.forEach(a=>{
+      const card = document.createElement('div'); card.className='agent';
+      card.innerHTML = `<div class="meta">${a.industry.toUpperCase()} · ${cluster}</div><h4>${a.title}</h4><p>${a.gap}</p>`;
+      const line = document.createElement('div'); line.className='metrics'; a.metrics.forEach(m=>{ const mEl=document.createElement('div'); mEl.className='m'; mEl.textContent=m; line.appendChild(mEl); }); card.appendChild(line);
+      const cta = document.createElement('div'); cta.className='cta'; const left = document.createElement('div'); left.textContent='Ideal for fleets > 50 vehicles'; left.className='muted'; const btn = document.createElement('button'); btn.className='btn'; btn.textContent='View Blueprint'; cta.appendChild(left); cta.appendChild(btn); card.appendChild(cta);
+      row.appendChild(card);
+    });
+    sec.appendChild(row); canvas.appendChild(sec);
+  }
+}
+
+// reset/favs
+document.getElementById('reset').onclick = ()=>{ history.pushState({},'',location.pathname); activeIndustry='all'; document.querySelectorAll('.filter-active').forEach(n=>n.classList.remove('filter-active')); searchInput.value=''; render(); }
+document.getElementById('fav-btn').onclick = ()=>{ activeIndustry='favourites'; history.pushState({},'', '?industry=favourites'); render(); }
+
+render();
+</script>
+</body>
+</html>

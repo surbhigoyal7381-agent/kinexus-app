@@ -1,0 +1,572 @@
+{
+  "calculators": [
+    {
+      "id": "manufacturing_general",
+      "name": "Manufacturing AI ROI Calculator",
+      "inputs": [
+        { "id": "annual_revenue", "label": "Annual Revenue (₹)", "type": "number" },
+        { "id": "num_machines", "label": "Number of Machines", "type": "number" },
+        { "id": "monthly_downtime_hours_per_machine", "label": "Monthly Downtime Hours per Machine", "type": "number" },
+        { "id": "rejection_cost_per_year", "label": "Annual Rejection Cost (₹)", "type": "number" },
+        { "id": "annual_procurement_spend", "label": "Annual Procurement Spend (₹)", "type": "number" },
+        { "id": "setup_cost", "label": "AI Setup Cost (₹)", "type": "number" },
+        { "id": "annual_subscription", "label": "Annual Subscription (₹)", "type": "number" }
+      ],
+      "computed": [
+        {
+          "id": "machine_hours_per_year",
+          "label": "Machine Hours per Year",
+          "formula": "num_machines * 24 * 365"
+        },
+        {
+          "id": "downtime_cost_per_hour",
+          "label": "Downtime Cost per Hour (₹)",
+          "formula": "annual_revenue / machine_hours_per_year"
+        },
+        {
+          "id": "annual_downtime_hours",
+          "label": "Annual Downtime Hours",
+          "formula": "monthly_downtime_hours_per_machine * num_machines * 12"
+        },
+        {
+          "id": "downtime_savings",
+          "label": "Downtime Savings (₹/year)",
+          "formula": "downtime_cost_per_hour * annual_downtime_hours * 0.30"
+        },
+        {
+          "id": "quality_savings",
+          "label": "Quality/Rejection Savings (₹/year)",
+          "formula": "rejection_cost_per_year * 0.15"
+        },
+        {
+          "id": "procurement_savings",
+          "label": "Procurement Savings (₹/year)",
+          "formula": "annual_procurement_spend * 0.12"
+        },
+        {
+          "id": "total_annual_savings",
+          "label": "Total Annual Savings (₹/year)",
+          "formula": "downtime_savings + quality_savings + procurement_savings"
+        },
+        {
+          "id": "total_annual_savings_lakhs",
+          "label": "Total Annual Savings (₹ Lakhs/year)",
+          "formula": "total_annual_savings / 100000"
+        },
+        {
+          "id": "monthly_savings",
+          "label": "Monthly Savings (₹/month)",
+          "formula": "total_annual_savings / 12"
+        },
+        {
+          "id": "total_cost_year1",
+          "label": "Total AI Cost Year 1 (₹)",
+          "formula": "setup_cost + annual_subscription"
+        },
+        {
+          "id": "payback_months",
+          "label": "Payback Period (months)",
+          "formula": "total_cost_year1 / monthly_savings"
+        }
+      ]
+    },
+    {
+      "id": "ev_manufacturing",
+      "name": "EV Manufacturing AI ROI Calculator",
+      "inputs": [
+        { "id": "units_per_year", "label": "Annual Production Volume (units/year)", "type": "number" },
+        { "id": "asp_per_unit", "label": "Average Selling Price per Unit (₹)", "type": "number" },
+        { "id": "battery_cost_per_unit", "label": "Battery Pack Cost per Unit (₹)", "type": "number" },
+        { "id": "battery_scrap_rate", "label": "Battery Scrap Rate (%)", "type": "number" },
+        { "id": "monthly_downtime_hours", "label": "Monthly Line Downtime Hours", "type": "number" },
+        { "id": "line_hours_per_year", "label": "Line Hours per Year", "type": "number" },
+        { "id": "annual_procurement_spend", "label": "Annual Procurement Spend (₹)", "type": "number" },
+        { "id": "setup_cost", "label": "AI Setup Cost (₹)", "type": "number" },
+        { "id": "annual_subscription", "label": "Annual Subscription (₹)", "type": "number" }
+      ],
+      "computed": [
+        {
+          "id": "annual_revenue",
+          "label": "Annual Revenue (₹)",
+          "formula": "units_per_year * asp_per_unit"
+        },
+        {
+          "id": "battery_scrap_value",
+          "label": "Battery Scrap Value (₹/year)",
+          "formula": "battery_cost_per_unit * units_per_year * (battery_scrap_rate / 100)"
+        },
+        {
+          "id": "battery_scrap_savings",
+          "label": "Battery Scrap Savings (₹/year)",
+          "formula": "battery_scrap_value * 0.12"
+        },
+        {
+          "id": "downtime_cost_per_hour",
+          "label": "Downtime Cost per Hour (₹)",
+          "formula": "annual_revenue / line_hours_per_year"
+        },
+        {
+          "id": "annual_downtime_hours",
+          "label": "Annual Downtime Hours",
+          "formula": "monthly_downtime_hours * 12"
+        },
+        {
+          "id": "downtime_savings",
+          "label": "Downtime Savings (₹/year)",
+          "formula": "downtime_cost_per_hour * annual_downtime_hours * 0.28"
+        },
+        {
+          "id": "procurement_savings",
+          "label": "Procurement Savings (₹/year)",
+          "formula": "annual_procurement_spend * 0.10"
+        },
+        {
+          "id": "throughput_savings",
+          "label": "Throughput Uplift Savings (₹/year)",
+          "formula": "annual_revenue * 0.05"
+        },
+        {
+          "id": "total_annual_savings",
+          "label": "Total Annual Savings (₹/year)",
+          "formula": "battery_scrap_savings + downtime_savings + procurement_savings + throughput_savings"
+        },
+        {
+          "id": "total_annual_savings_lakhs",
+          "label": "Total Annual Savings (₹ Lakhs/year)",
+          "formula": "total_annual_savings / 100000"
+        },
+        {
+          "id": "monthly_savings",
+          "label": "Monthly Savings (₹/month)",
+          "formula": "total_annual_savings / 12"
+        },
+        {
+          "id": "total_cost_year1",
+          "label": "Total AI Cost Year 1 (₹)",
+          "formula": "setup_cost + annual_subscription"
+        },
+        {
+          "id": "payback_months",
+          "label": "Payback Period (months)",
+          "formula": "total_cost_year1 / monthly_savings"
+        }
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "Logistics AI ROI Calculator",
+      "inputs": [
+        { "id": "annual_shipments", "label": "Annual Shipments", "type": "number" },
+        { "id": "delay_cost_per_shipment", "label": "Delay Cost per Shipment (₹)", "type": "number" },
+        { "id": "annual_fuel_spend", "label": "Annual Fuel Spend (₹)", "type": "number" },
+        { "id": "annual_revenue", "label": "Annual Revenue (₹)", "type": "number" },
+        { "id": "setup_cost", "label": "AI Setup Cost (₹)", "type": "number" },
+        { "id": "annual_subscription", "label": "Annual Subscription (₹)", "type": "number" }
+      ],
+      "computed": [
+        {
+          "id": "delay_savings",
+          "label": "Delay Savings (₹/year)",
+          "formula": "annual_shipments * delay_cost_per_shipment * 0.20"
+        },
+        {
+          "id": "fuel_savings",
+          "label": "Fuel Savings (₹/year)",
+          "formula": "annual_fuel_spend * 0.10"
+        },
+        {
+          "id": "utilisation_savings",
+          "label": "Fleet Utilisation Savings (₹/year)",
+          "formula": "annual_revenue * 0.07"
+        },
+        {
+          "id": "total_annual_savings",
+          "label": "Total Annual Savings (₹/year)",
+          "formula": "delay_savings + fuel_savings + utilisation_savings"
+        },
+        {
+          "id": "total_annual_savings_lakhs",
+          "label": "Total Annual Savings (₹ Lakhs/year)",
+          "formula": "total_annual_savings / 100000"
+        },
+        {
+          "id": "monthly_savings",
+          "label": "Monthly Savings (₹/month)",
+          "formula": "total_annual_savings / 12"
+        },
+        {
+          "id": "total_cost_year1",
+          "label": "Total AI Cost Year 1 (₹)",
+          "formula": "setup_cost + annual_subscription"
+        },
+        {
+          "id": "payback_months",
+          "label": "Payback Period (months)",
+          "formula": "total_cost_year1 / monthly_savings"
+        }
+      ]
+    },
+    {
+      "id": "pharma",
+      "name": "Pharma Manufacturing AI ROI Calculator",
+      "inputs": [
+        { "id": "annual_batches", "label": "Annual Production Batches", "type": "number" },
+        { "id": "batch_value", "label": "Batch Value (₹)", "type": "number" },
+        { "id": "batch_failure_rate", "label": "Batch Failure Rate (%)", "type": "number" },
+        { "id": "qa_hours_per_year", "label": "QA/QC Hours per Year", "type": "number" },
+        { "id": "qa_cost_per_hour", "label": "QA/QC Cost per Hour (₹)", "type": "number" },
+        { "id": "annual_procurement_spend", "label": "Annual Procurement Spend (₹)", "type": "number" },
+        { "id": "compliance_deviation_cost_per_year", "label": "Compliance Deviation Cost per Year (₹)", "type": "number" },
+        { "id": "setup_cost", "label": "AI Setup Cost (₹)", "type": "number" },
+        { "id": "annual_subscription", "label": "Annual Subscription (₹)", "type": "number" }
+      ],
+      "computed": [
+        {
+          "id": "batch_failure_value",
+          "label": "Batch Failure Value (₹/year)",
+          "formula": "annual_batches * batch_value * (batch_failure_rate / 100)"
+        },
+        {
+          "id": "batch_savings",
+          "label": "Batch Failure Savings (₹/year)",
+          "formula": "batch_failure_value * 0.14"
+        },
+        {
+          "id": "qa_savings",
+          "label": "QA/QC Savings (₹/year)",
+          "formula": "qa_hours_per_year * qa_cost_per_hour * 0.25"
+        },
+        {
+          "id": "procurement_savings",
+          "label": "Procurement Savings (₹/year)",
+          "formula": "annual_procurement_spend * 0.10"
+        },
+        {
+          "id": "compliance_savings",
+          "label": "Compliance Savings (₹/year)",
+          "formula": "compliance_deviation_cost_per_year * 0.20"
+        },
+        {
+          "id": "total_annual_savings",
+          "label": "Total Annual Savings (₹/year)",
+          "formula": "batch_savings + qa_savings + procurement_savings + compliance_savings"
+        },
+        {
+          "id": "total_annual_savings_lakhs",
+          "label": "Total Annual Savings (₹ Lakhs/year)",
+          "formula": "total_annual_savings / 100000"
+        },
+        {
+          "id": "monthly_savings",
+          "label": "Monthly Savings (₹/month)",
+          "formula": "total_annual_savings / 12"
+        },
+        {
+          "id": "total_cost_year1",
+          "label": "Total AI Cost Year 1 (₹)",
+          "formula": "setup_cost + annual_subscription"
+        },
+        {
+          "id": "payback_months",
+          "label": "Payback Period (months)",
+          "formula": "total_cost_year1 / monthly_savings"
+        }
+      ]
+    },
+    {
+      "id": "real_estate",
+      "name": "Real Estate AI ROI Calculator",
+      "inputs": [
+        { "id": "annual_maintenance_spend", "label": "Annual Maintenance Spend (₹)", "type": "number" },
+        { "id": "vacancy_loss_per_year", "label": "Vacancy Loss per Year (₹)", "type": "number" },
+        { "id": "annual_energy_spend", "label": "Annual Energy Spend (₹)", "type": "number" },
+        { "id": "tenant_churn_cost_per_year", "label": "Tenant Churn Cost per Year (₹)", "type": "number" },
+        { "id": "setup_cost", "label": "AI Setup Cost (₹)", "type": "number" },
+        { "id": "annual_subscription", "label": "Annual Subscription (₹)", "type": "number" }
+      ],
+      "computed": [
+        {
+          "id": "maintenance_savings",
+          "label": "Maintenance Savings (₹/year)",
+          "formula": "annual_maintenance_spend * 0.20"
+        },
+        {
+          "id": "vacancy_savings",
+          "label": "Vacancy Savings (₹/year)",
+          "formula": "vacancy_loss_per_year * 0.07"
+        },
+        {
+          "id": "energy_savings",
+          "label": "Energy Savings (₹/year)",
+          "formula": "annual_energy_spend * 0.12"
+        },
+        {
+          "id": "churn_savings",
+          "label": "Tenant Churn Savings (₹/year)",
+          "formula": "tenant_churn_cost_per_year * 0.15"
+        },
+        {
+          "id": "total_annual_savings",
+          "label": "Total Annual Savings (₹/year)",
+          "formula": "maintenance_savings + vacancy_savings + energy_savings + churn_savings"
+        },
+        {
+          "id": "total_annual_savings_lakhs",
+          "label": "Total Annual Savings (₹ Lakhs/year)",
+          "formula": "total_annual_savings / 100000"
+        },
+        {
+          "id": "monthly_savings",
+          "label": "Monthly Savings (₹/month)",
+          "formula": "total_annual_savings / 12"
+        },
+        {
+          "id": "total_cost_year1",
+          "label": "Total AI Cost Year 1 (₹)",
+          "formula": "setup_cost + annual_subscription"
+        },
+        {
+          "id": "payback_months",
+          "label": "Payback Period (months)",
+          "formula": "total_cost_year1 / monthly_savings"
+        }
+      ]
+    },
+    {
+      "id": "retail",
+      "name": "Retail AI ROI Calculator",
+      "inputs": [
+        { "id": "inventory_value", "label": "Average Inventory Value (₹)", "type": "number" },
+        { "id": "inventory_holding_cost_rate", "label": "Inventory Holding Cost (%)", "type": "number" },
+        { "id": "lost_sales_due_to_stockouts", "label": "Lost Sales due to Stockouts per Year (₹)", "type": "number" },
+        { "id": "shrinkage_cost_per_year", "label": "Shrinkage Cost per Year (₹)", "type": "number" },
+        { "id": "annual_marketing_spend", "label": "Annual Marketing Spend (₹)", "type": "number" },
+        { "id": "setup_cost", "label": "AI Setup Cost (₹)", "type": "number" },
+        { "id": "annual_subscription", "label": "Annual Subscription (₹)", "type": "number" }
+      ],
+      "computed": [
+        {
+          "id": "inventory_holding_cost_value",
+          "label": "Inventory Holding Cost Value (₹/year)",
+          "formula": "inventory_value * (inventory_holding_cost_rate / 100)"
+        },
+        {
+          "id": "inventory_savings",
+          "label": "Inventory Savings (₹/year)",
+          "formula": "inventory_holding_cost_value * 0.15"
+        },
+        {
+          "id": "stockout_savings",
+          "label": "Stockout Savings (₹/year)",
+          "formula": "lost_sales_due_to_stockouts * 0.25"
+        },
+        {
+          "id": "shrinkage_savings",
+          "label": "Shrinkage Savings (₹/year)",
+          "formula": "shrinkage_cost_per_year * 0.12"
+        },
+        {
+          "id": "marketing_savings",
+          "label": "Marketing Savings (₹/year)",
+          "formula": "annual_marketing_spend * 0.10"
+        },
+        {
+          "id": "total_annual_savings",
+          "label": "Total Annual Savings (₹/year)",
+          "formula": "inventory_savings + stockout_savings + shrinkage_savings + marketing_savings"
+        },
+        {
+          "id": "total_annual_savings_lakhs",
+          "label": "Total Annual Savings (₹ Lakhs/year)",
+          "formula": "total_annual_savings / 100000"
+        },
+        {
+          "id": "monthly_savings",
+          "label": "Monthly Savings (₹/month)",
+          "formula": "total_annual_savings / 12"
+        },
+        {
+          "id": "total_cost_year1",
+          "label": "Total AI Cost Year 1 (₹)",
+          "formula": "setup_cost + annual_subscription"
+        },
+        {
+          "id": "payback_months",
+          "label": "Payback Period (months)",
+          "formula": "total_cost_year1 / monthly_savings"
+        }
+      ]
+    },
+    {
+      "id": "energy",
+      "name": "Energy & Utilities AI ROI Calculator",
+      "inputs": [
+        { "id": "outage_cost_per_year", "label": "Outage Cost per Year (₹)", "type": "number" },
+        { "id": "energy_loss_value_per_year", "label": "Energy Loss Value per Year (₹)", "type": "number" },
+        { "id": "annual_maintenance_spend", "label": "Annual Maintenance Spend (₹)", "type": "number" },
+        { "id": "annual_procurement_spend", "label": "Fuel/Energy Procurement Spend (₹)", "type": "number" },
+        { "id": "setup_cost", "label": "AI Setup Cost (₹)", "type": "number" },
+        { "id": "annual_subscription", "label": "Annual Subscription (₹)", "type": "number" }
+      ],
+      "computed": [
+        {
+          "id": "outage_savings",
+          "label": "Outage Savings (₹/year)",
+          "formula": "outage_cost_per_year * 0.28"
+        },
+        {
+          "id": "loss_savings",
+          "label": "Energy Loss Savings (₹/year)",
+          "formula": "energy_loss_value_per_year * 0.07"
+        },
+        {
+          "id": "maintenance_savings",
+          "label": "Maintenance Savings (₹/year)",
+          "formula": "annual_maintenance_spend * 0.12"
+        },
+        {
+          "id": "procurement_savings",
+          "label": "Procurement Savings (₹/year)",
+          "formula": "annual_procurement_spend * 0.08"
+        },
+        {
+          "id": "total_annual_savings",
+          "label": "Total Annual Savings (₹/year)",
+          "formula": "outage_savings + loss_savings + maintenance_savings + procurement_savings"
+        },
+        {
+          "id": "total_annual_savings_lakhs",
+          "label": "Total Annual Savings (₹ Lakhs/year)",
+          "formula": "total_annual_savings / 100000"
+        },
+        {
+          "id": "monthly_savings",
+          "label": "Monthly Savings (₹/month)",
+          "formula": "total_annual_savings / 12"
+        },
+        {
+          "id": "total_cost_year1",
+          "label": "Total AI Cost Year 1 (₹)",
+          "formula": "setup_cost + annual_subscription"
+        },
+        {
+          "id": "payback_months",
+          "label": "Payback Period (months)",
+          "formula": "total_cost_year1 / monthly_savings"
+        }
+      ]
+    },
+    {
+      "id": "hospitality",
+      "name": "Hospitality AI ROI Calculator",
+      "inputs": [
+        { "id": "annual_revenue", "label": "Annual Revenue (₹)", "type": "number" },
+        { "id": "annual_energy_spend", "label": "Annual Energy Spend (₹)", "type": "number" },
+        { "id": "annual_staff_cost", "label": "Annual Staff Cost (₹)", "type": "number" },
+        { "id": "complaint_cost_per_year", "label": "Guest Complaint Cost per Year (₹)", "type": "number" },
+        { "id": "setup_cost", "label": "AI Setup Cost (₹)", "type": "number" },
+        { "id": "annual_subscription", "label": "Annual Subscription (₹)", "type": "number" }
+      ],
+      "computed": [
+        {
+          "id": "occupancy_savings",
+          "label": "Occupancy Uplift Savings (₹/year)",
+          "formula": "annual_revenue * 0.05"
+        },
+        {
+          "id": "energy_savings",
+          "label": "Energy Savings (₹/year)",
+          "formula": "annual_energy_spend * 0.12"
+        },
+        {
+          "id": "staff_savings",
+          "label": "Staff Productivity Savings (₹/year)",
+          "formula": "annual_staff_cost * 0.10"
+        },
+        {
+          "id": "complaint_savings",
+          "label": "Complaint Savings (₹/year)",
+          "formula": "complaint_cost_per_year * 0.15"
+        },
+        {
+          "id": "total_annual_savings",
+          "label": "Total Annual Savings (₹/year)",
+          "formula": "occupancy_savings + energy_savings + staff_savings + complaint_savings"
+        },
+        {
+          "id": "total_annual_savings_lakhs",
+          "label": "Total Annual Savings (₹ Lakhs/year)",
+          "formula": "total_annual_savings / 100000"
+        },
+        {
+          "id": "monthly_savings",
+          "label": "Monthly Savings (₹/month)",
+          "formula": "total_annual_savings / 12"
+        },
+        {
+          "id": "total_cost_year1",
+          "label": "Total AI Cost Year 1 (₹)",
+          "formula": "setup_cost + annual_subscription"
+        },
+        {
+          "id": "payback_months",
+          "label": "Payback Period (months)",
+          "formula": "total_cost_year1 / monthly_savings"
+        }
+      ]
+    },
+    {
+      "id": "innovation",
+      "name": "Innovation & R&D AI ROI Calculator",
+      "inputs": [
+        { "id": "annual_rd_spend", "label": "Annual R&D Spend (₹)", "type": "number" },
+        { "id": "failure_cost_per_year", "label": "Project Failure Cost per Year (₹)", "type": "number" },
+        { "id": "ttm_delay_cost_per_year", "label": "Time-to-Market Delay Cost per Year (₹)", "type": "number" },
+        { "id": "setup_cost", "label": "AI Setup Cost (₹)", "type": "number" },
+        { "id": "annual_subscription", "label": "Annual Subscription (₹)", "type": "number" }
+      ],
+      "computed": [
+        {
+          "id": "cycle_savings",
+          "label": "Cycle Time Savings (₹/year)",
+          "formula": "annual_rd_spend * 0.15"
+        },
+        {
+          "id": "failure_savings",
+          "label": "Failure Rate Savings (₹/year)",
+          "formula": "failure_cost_per_year * 0.10"
+        },
+        {
+          "id": "ttm_savings",
+          "label": "Time-to-Market Savings (₹/year)",
+          "formula": "ttm_delay_cost_per_year * 0.07"
+        },
+        {
+          "id": "total_annual_savings",
+          "label": "Total Annual Savings (₹/year)",
+          "formula": "cycle_savings + failure_savings + ttm_savings"
+        },
+        {
+          "id": "total_annual_savings_lakhs",
+          "label": "Total Annual Savings (₹ Lakhs/year)",
+          "formula": "total_annual_savings / 100000"
+        },
+        {
+          "id": "monthly_savings",
+          "label": "Monthly Savings (₹/month)",
+          "formula": "total_annual_savings / 12"
+        },
+        {
+          "id": "total_cost_year1",
+          "label": "Total AI Cost Year 1 (₹)",
+          "formula": "setup_cost + annual_subscription"
+        },
+        {
+          "id": "payback_months",
+          "label": "Payback Period (months)",
+          "formula": "total_cost_year1 / monthly_savings"
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { 
-  Search, X, ArrowRight, ChevronDown, ChevronUp,  
-  Factory, Truck, Pill, Building, ShoppingCart, Landmark, 
+  Search, X, Factory, Truck, Pill, Building, ShoppingCart, Landmark, 
   Shield, Lightbulb, HeartPulse, Coffee, GraduationCap, 
   Workflow, CheckCircle2, AlertTriangle, DollarSign, Activity,
   Battery, Cpu, Signal, Zap, FileText, Users, BarChart3,
@@ -1018,369 +1018,353 @@ try {
 // recompute unique DB after any runtime merges
 UNIQUE_USE_CASE_DB = _dedupeUseCases(USE_CASE_DB);
 
-const INDUSTRIES = [
-  'All', 
-  'Manufacturing', 
-  'EV Manufacturing',
-  'Logistics', 
-  'Pharma', 
-  'Banking', 
-  'Insurance', 
-  'Real Estate', 
-  'Retail',
-  'Energy', 
-  'Healthcare', 
-  'Hospitality', 
-  'Education'
-];
+// Industries list is computed at runtime from the DB (see 'industries' useMemo)
 
 // --- HELPER COMPONENTS ---
-
-const FilterBar = ({ selected, onSelect }) => (
-  <div className="sticky top-20 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 py-4 mb-8">
-    <div className="max-w-7xl mx-auto px-6 overflow-x-auto no-scrollbar">
-      <div className="flex space-x-2">
-        {INDUSTRIES.map((ind) => (
-          <button
-            key={ind}
-            onClick={() => onSelect(ind)}
-            className={`
-              px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300
-              ${selected === ind 
-                ? 'bg-[#212121] text-white shadow-lg transform -translate-y-0.5' 
-                : 'bg-gray-50 text-gray-600 hover:bg-[#E8E7FF] hover:text-[#5856D6]'}
-            `}
-          >
-            {ind}
-          </button>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
-const SearchBar = ({ value, onChange, suggestions, onSelectSuggestion }) => (
-  <div className="relative max-w-xl mx-auto mb-12 group">
-    <div className="relative bg-white rounded-full shadow-sm border border-gray-200 flex items-center px-6 py-4 transition-all focus-within:shadow-md focus-within:border-[#5856D6]">
-      <Search className="w-5 h-5 text-gray-400 mr-4" />
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder="Search workflows (e.g., 'Planning', 'KYC', 'Maintenance')..."
-        className="w-full bg-transparent focus:outline-none text-[#212121] placeholder-gray-400 font-medium"
-      />
-      {value && (
-        <button onClick={() => onChange('')} className="ml-2 text-gray-400 hover:text-[#5856D6]">
-          <X className="w-4 h-4" />
-        </button>
-      )}
-    </div>
-    {suggestions && suggestions.length > 0 && (
-      <div className="absolute left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-40">
-        {suggestions.map((s, i) => (
-          <button key={i} onClick={() => onSelectSuggestion(s)} className="w-full text-left px-4 py-2 hover:bg-gray-50">
-            {s}
-          </button>
-        ))}
-      </div>
-    )}
-  </div>
-);
+// (FilterBar and SearchBar removed to avoid unused-var lint warnings)
 
 const UseCaseModal = ({ useCase, onClose }) => {
   if (!useCase) return null;
   const Icon = getIcon(useCase.icon);
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-[#212121]/60 backdrop-blur-sm transition-opacity"
-        onClick={onClose}
-      ></div>
-
-      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto animate-fade-in-up">
-        {/* Header */}
-        <div className="sticky top-0 bg-white/98 backdrop-blur z-10 p-8 border-b border-gray-100 flex justify-between items-start">
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6">
+        <div className="sticky top-0 bg-white/95 z-10 p-4 border-b border-gray-100 flex justify-between items-start">
           <div className="flex items-center space-x-4">
-            <div className="w-16 h-16 bg-[#E8E7FF] rounded-2xl flex items-center justify-center text-[#5856D6]">
-              <Icon className="w-8 h-8" />
-            </div>
+            <div className="w-14 h-14 bg-[#E8E7FF] rounded-2xl flex items-center justify-center text-[#5856D6]"><Icon className="w-8 h-8" /></div>
             <div>
-              { !['Banking','Insurance','Healthcare'].includes(useCase.industry) && (
-                <div className="text-sm font-bold text-[#5856D6] uppercase tracking-wider mb-1">{useCase.industry}</div>
-              ) }
-              <h2 className="text-3xl font-bold text-[#212121] leading-tight">{useCase.title}</h2>
+              <div className="text-sm font-semibold text-[#5856D6] uppercase tracking-wider mb-1">{useCase.industry}</div>
+              <h2 className="text-2xl font-semibold text-[#212121] leading-tight">{useCase.title}</h2>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 rounded-full hover:bg-gray-100 text-gray-500">
-            <X className="w-6 h-6" />
-          </button>
+          <button onClick={onClose} className="p-2 rounded-full hover:bg-gray-100"><X className="w-6 h-6" /></button>
         </div>
 
-        {/* Body */}
-        <div className="p-8 space-y-8">
+        <div className="p-6 space-y-6">
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-red-50 p-6 rounded-2xl border border-red-100">
-              <div className="flex items-center space-x-2 mb-4 text-red-600 font-bold">
-                <AlertTriangle className="w-5 h-5" />
-                <span>The Real Gap</span>
-              </div>
-              <p className="text-[#212121] text-sm leading-relaxed opacity-90">{useCase.gap}</p>
+              <div className="flex items-center space-x-2 mb-4 text-red-600 font-bold"><AlertTriangle className="w-5 h-5" /><span>The Real Gap</span></div>
+              <p className="text-[#212121] text-sm opacity-90">{useCase.gap}</p>
             </div>
-
             <div className="bg-orange-50 p-6 rounded-2xl border border-orange-100">
-              <div className="flex items-center space-x-2 mb-4 text-orange-600 font-bold">
-                <DollarSign className="w-5 h-5" />
-                <span>The Hidden Pain</span>
-              </div>
-              <p className="text-[#212121] text-sm leading-relaxed opacity-90">{useCase.pain}</p>
+              <div className="flex items-center space-x-2 mb-4 text-orange-600 font-bold"><DollarSign className="w-5 h-5" /><span>The Hidden Pain</span></div>
+              <p className="text-[#212121] text-sm opacity-90">{useCase.pain}</p>
             </div>
-
-            <div className="bg-[#212121] p-6 rounded-2xl border border-gray-800 text-white shadow-lg relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-[#5856D6] opacity-30 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2"></div>
-              <div className="flex items-center space-x-2 mb-4 text-[#2EC5CE] font-bold relative z-10">
-                <CheckCircle2 className="w-5 h-5" />
-                <span>Kinexus Solution</span>
-              </div>
-              <p className="text-gray-300 text-sm leading-relaxed relative z-10">{useCase.solution}</p>
+            <div className="bg-[#212121] p-6 rounded-2xl text-white shadow-lg relative overflow-hidden">
+              <div className="flex items-center space-x-2 mb-4 text-[#2EC5CE] font-bold relative z-10"><CheckCircle2 className="w-5 h-5" /><span>Kinexus Solution</span></div>
+              <p className="text-gray-300 text-sm relative z-10">{useCase.solution}</p>
             </div>
           </div>
 
-          <div className="bg-[#F8F9FC] rounded-2xl p-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0">
-              <h4 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Projected Impact</h4>
-              <div className="flex flex-wrap gap-3">
-                {useCase.metrics.map((m, i) => (
-                  <div key={i} className="flex items-center space-x-2 bg-white px-4 py-2 rounded-lg border border-gray-200">
-                    <Activity className="w-4 h-4 text-[#5856D6]" />
-                    <span className="text-sm font-bold text-[#212121]">{m}</span>
-                  </div>
-                ))}
-              </div>
+          <div className="bg-[#F8F9FC] rounded-2xl p-6">
+            <h4 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Projected Impact</h4>
+            <div className="flex flex-wrap gap-4">
+              {(useCase.metrics || []).map((m, i) => (
+                <div key={i} className="flex items-center space-x-2 bg-white px-4 py-2 rounded-lg border border-gray-100 shadow-sm">
+                  <Activity className="w-4 h-4 text-[#5856D6]" />
+                  <span className="text-sm font-bold text-[#212121]">{m}</span>
+                </div>
+              ))}
             </div>
-            <button className="bg-[#5856D6] text-white px-8 py-3 rounded-xl font-bold hover:bg-[#4644ab] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
-              Deploy This Agent
-            </button>
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
-// --- MAIN PAGE COMPONENT ---
+// --- MAIN PAGE COMPONENT (Premium 2-pane Industry Explorer + Canvas) ---
 const UseCasesPage = ({ navigate, initialIndustry = null }) => {
-  // If this page wasn't opened for a specific industry, redirect back to Industries
+  const [searchParams, setSearchParamsState] = useState(() => new URLSearchParams(window.location.search));
+  const [loading, setLoading] = useState(false);
+  // omit prefers-reduced-motion handling for now (unused)
+
+  const getParam = (k) => searchParams.get(k);
+  const getArray = (k) => (searchParams.get(k) || '').split(',').filter(Boolean);
+
   useEffect(() => {
-    if (!initialIndustry) {
-      try { navigate('industries'); } catch (e) { /* ignore */ }
+    const onPop = () => setSearchParamsState(new URLSearchParams(window.location.search));
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  useEffect(() => {
+    if (initialIndustry) {
+      const p = new URLSearchParams(window.location.search);
+      if (!p.get('industry')) {
+        p.set('industry', initialIndustry.toString().toLowerCase());
+        window.history.replaceState({}, '', p.toString() ? `?${p.toString()}` : window.location.pathname);
+        setSearchParamsState(new URLSearchParams(window.location.search));
+      }
     }
-  }, [initialIndustry, navigate]);
-
-  const [selectedIndustry, setSelectedIndustry] = useState(initialIndustry || 'All');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeUseCase, setActiveUseCase] = useState(null);
-  const [expandedId, setExpandedId] = useState(null);
-  const [suggestions, setSuggestions] = useState([]);
-  const casesRef = useRef(null);
-
-  const filteredCases = useMemo(() => {
-    return UNIQUE_USE_CASE_DB.filter(item => {
-      const normSelected = (selectedIndustry || 'All').toString().trim().toLowerCase();
-      const normItemInd = (item.industry || '').toString().trim().toLowerCase();
-      const matchesIndustry = normSelected === 'all' || normItemInd === normSelected;
-      const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            item.gap.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            item.industry.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesIndustry && matchesSearch;
-    });
-  }, [selectedIndustry, searchQuery]);
-
-  useEffect(() => {
-    if (initialIndustry) setSelectedIndustry(initialIndustry);
   }, [initialIndustry]);
 
-  return (
-    <div className="min-h-screen bg-white pt-32 pb-24 relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="fixed top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoODgsIDg2LCAyMTQsIDAuMDUpIi8+PC9zdmc+')] z-0 pointer-events-none"></div>
-      
-      <div className="relative z-10">
-        <div className="max-w-7xl mx-auto px-6 text-center mb-10 animate-fade-in">
-          <div className="inline-flex items-center space-x-2 bg-[#E8E7FF] text-[#5856D6] px-4 py-2 rounded-full text-sm font-bold mb-6">
-             <Workflow className="w-4 h-4" />
-             <span>60+ Enterprise Workflows</span>
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-[#212121] mb-6 tracking-tight">
-            Library of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5856D6] to-[#2EC5CE]">Autonomous Agents</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Browse our catalog of industry-specific AI agents ready to deploy into your existing architecture.
-          </p>
-        </div>
+  const setParams = (updater) => {
+    setLoading(true);
+    const p = new URLSearchParams(window.location.search);
+    updater(p);
+    const qs = p.toString();
+    window.history.pushState({}, '', qs ? `?${qs}` : window.location.pathname + window.location.hash);
+    setTimeout(() => {
+      setSearchParamsState(new URLSearchParams(window.location.search));
+      setLoading(false);
+      try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {}
+    }, 220);
+  };
 
-        <div className="max-w-7xl mx-auto px-6 mb-4 flex items-center justify-between">
-          <div className="flex-1">
-            <SearchBar
-          value={searchQuery}
-          onChange={(v) => {
-            setSearchQuery(v);
-            if (!v) { setSuggestions([]); return; }
-            const q = v.toLowerCase();
-            const matches = [
-              ...new Set([
-                ...UNIQUE_USE_CASE_DB.filter(u => (u.title||'').toLowerCase().includes(q)).map(u => u.title),
-                ...INDUSTRIES.filter(i => (i||'').toLowerCase().includes(q))
-              ])
-            ].slice(0,6);
-            setSuggestions(matches);
-          }}
-          suggestions={suggestions}
-          onSelectSuggestion={(s) => {
-            setSearchQuery(s);
-            setSuggestions([]);
-            const ind = INDUSTRIES.find(it => it === s);
-            if (ind && !initialIndustry) setSelectedIndustry(ind);
-          }}
-            />
-          </div>
-          <div className="ml-4">
-            {initialIndustry && (
-              <button onClick={() => navigate('industry', { id: initialIndustry })} className="px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50">
-                Back to Industry
-              </button>
-            )}
-          </div>
-        </div>
-        {!initialIndustry && (
-          <FilterBar selected={selectedIndustry} onSelect={(ind) => {
-          setSelectedIndustry(ind);
-          // ensure layout updates then scroll to the use-cases area both inside the app scroller and the viewport
-          setTimeout(() => {
-            if (!casesRef.current) return;
-            const sticky = document.querySelector('.sticky.top-20');
-            const stickyHeight = sticky ? sticky.getBoundingClientRect().height : 0;
+  const industryParam = (getParam('industry') || 'all').toString().toLowerCase();
+  const qParam = getParam('q') || '';
+  const problemParam = getArray('problem');
+  const complexityParam = getArray('complexity');
 
-            // Scroll internal scroller if present
-            const scroller = document.querySelector('.app-scroll');
-            if (scroller) {
-              const scrollerRect = scroller.getBoundingClientRect();
-              const targetRect = casesRef.current.getBoundingClientRect();
-              const topInScroller = targetRect.top - scrollerRect.top;
-              const targetScroll = Math.max(0, scroller.scrollTop + topInScroller - stickyHeight - 12);
-              try { scroller.scrollTo({ top: targetScroll, behavior: 'smooth' }); } catch (e) { scroller.scrollTop = targetScroll; }
+  const industries = useMemo(() => {
+    const map = new Map();
+    UNIQUE_USE_CASE_DB.forEach(u => map.set(u.industry || 'Other', (map.get(u.industry) || 0) + 1));
+    const list = ['All', 'Favourites', ...Array.from(map.keys())];
+    return { list, counts: map };
+  }, []);
+
+  const microCopy = [
+    'Select an industry to see where agents replace manual ops.',
+    'Agents reduce manual effort and improve throughput.',
+    'Explore pre-built blueprints and integration patterns.'
+  ];
+  const [mcIndex, setMcIndex] = useState(0);
+  useEffect(() => { const t = setInterval(() => setMcIndex(i => (i+1) % microCopy.length), 4200); return () => clearInterval(t); }, [microCopy.length]);
+
+  const [favs, setFavs] = useState(() => { try { return JSON.parse(localStorage.getItem('kinexus_favs') || '[]'); } catch (e) { return []; } });
+  const toggleFav = (id) => { const next = favs.includes(id) ? favs.filter(x=>x!==id) : [...favs, id]; setFavs(next); localStorage.setItem('kinexus_favs', JSON.stringify(next)); };
+  const [activeUseCase, setActiveUseCase] = useState(null);
+  // admin import handled in admin pages
+
+  const clusterFor = (u) => {
+    const s = `${u.title} ${u.gap} ${u.solution}`.toLowerCase();
+    if (s.includes('dispatch') || s.includes('route') || s.includes('eta') || s.includes('driver')) return 'Dispatch & Routing';
+    if (s.includes('warehouse') || s.includes('inventory') || s.includes('slot') || s.includes('replenish')) return 'Warehouse & Inventory';
+    if (s.includes('audit') || s.includes('freight') || s.includes('cost')) return 'Network & Cost Optimisation';
+    if (s.includes('predict') || s.includes('forecast') || s.includes('demand')) return 'Forecasting & Visibility';
+    return 'Other Outcomes';
+  };
+
+  // Merge any admin-imported usecases saved in localStorage at runtime
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('kinexus_imported_usecases');
+      if (raw) {
+        const imported = JSON.parse(raw);
+        if (Array.isArray(imported) && imported.length) {
+          const existingIds = new Set(USE_CASE_DB.map(u => u.id));
+          let nextIdx = 1;
+          for (const item of imported) {
+            const it = typeof item === 'object' && item ? item : {};
+            let id = (it.id || '').toString().trim();
+            if (!id) {
+              const base = (it.industry || 'misc').toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'uc';
+              id = `${base}-import-${nextIdx++}`;
             }
+            if (existingIds.has(id)) continue;
+            existingIds.add(id);
+            USE_CASE_DB.push({
+              id,
+              industry: it.industry || 'Other',
+              icon: it.icon || 'Activity',
+              title: it.title || it.name || 'Imported Use Case',
+              gap: it.gap || it.description || '',
+              pain: it.pain || '',
+              solution: it.solution || '',
+              metrics: Array.isArray(it.metrics) ? it.metrics : (it.metrics ? [it.metrics] : [])
+            });
+          }
+          UNIQUE_USE_CASE_DB = _dedupeUseCases(USE_CASE_DB);
+          setSearchParamsState(s => new URLSearchParams(s.toString()));
+        }
+      }
+    } catch (e) {
+      // ignore parse errors
+    }
+  }, []);
 
-            // Also scroll the window to ensure the section is visible on small/other layouts
-            try {
-              const rect = casesRef.current.getBoundingClientRect();
-              const target = window.pageYOffset + rect.top - stickyHeight - 12;
-              window.scrollTo({ top: target, behavior: 'smooth' });
-            } catch (e) {}
+  const filtered = useMemo(() => {
+    const q = (qParam || '').toLowerCase().trim();
+    return UNIQUE_USE_CASE_DB.filter(u => {
+      const ind = (u.industry || '').toLowerCase();
+      if (industryParam !== 'all') {
+        if (industryParam === 'favourites') { if (!favs.includes(u.id)) return false; }
+        else if (industryParam !== ind) return false;
+      }
+      if (q) { const hay = `${u.title} ${u.gap} ${u.pain} ${u.solution} ${u.metrics.join(' ')}`.toLowerCase(); if (!hay.includes(q)) return false; }
+      for (const tok of problemParam) if (!`${u.title} ${u.gap} ${u.solution}`.toLowerCase().includes(tok.toLowerCase())) return false;
+      for (const c of complexityParam) { const t = c.toLowerCase(); if (t === 'basic' && `${u.solution}`.toLowerCase().includes('predict')) return false; }
+      return true;
+    });
+  }, [industryParam, qParam, problemParam, complexityParam, favs]);
 
-            try { casesRef.current.focus({ preventScroll: true }); } catch (e) {}
-          }, 60);
-          }} />
-        )}
+  const groups = useMemo(() => { const m = new Map(); filtered.forEach(u => { const cl = clusterFor(u); if (!m.has(cl)) m.set(cl, []); m.get(cl).push(u); }); return m; }, [filtered]);
 
-        <div ref={casesRef} tabIndex={-1} className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up">
-          {filteredCases.length > 0 ? (
-            filteredCases.map((useCase) => {
-              const Icon = getIcon(useCase.icon);
-              return (
-                <div 
-                  key={useCase.id}
-                  onClick={() => setActiveUseCase(useCase)}
-                  className="group bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-[0_20px_40px_-15px_rgba(88,86,214,0.15)] hover:border-[#5856D6]/30 transition-all duration-300 cursor-pointer flex flex-col h-full relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#E8E7FF]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+  const setIndustry = (label) => setParams(p => { if (!label || label==='All') p.delete('industry'); else p.set('industry', label.toString().toLowerCase()); });
+  const onSearch = (v) => setParams(p => { if (v) p.set('q', v); else p.delete('q'); });
+  const toggleChip = (k,v) => setParams(p => { const arr = (p.get(k)||'').split(',').filter(Boolean); const idx = arr.indexOf(v); if (idx>=0) arr.splice(idx,1); else arr.push(v); if (arr.length) p.set(k, arr.join(',')); else p.delete(k); });
 
-                  <div className="flex justify-between items-start mb-6 relative z-10">
-                    <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-[#5856D6] group-hover:bg-[#5856D6] group-hover:text-white transition-colors duration-300">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    { !['Banking','Insurance','Healthcare'].includes(useCase.industry) && (
-                      <div className="bg-gray-100 text-gray-500 px-3 py-1 rounded text-xs font-bold uppercase tracking-wider group-hover:bg-[#E8E7FF] group-hover:text-[#5856D6] transition-colors">
-                        {useCase.industry}
-                      </div>
-                    ) }
-                  </div>
+  const countFor = (industry) => { if (industry === 'All') return UNIQUE_USE_CASE_DB.length; if (industry === 'Favourites') return UNIQUE_USE_CASE_DB.filter(u=>favs.includes(u.id)).length; return UNIQUE_USE_CASE_DB.filter(u => (u.industry||'').toLowerCase() === industry.toLowerCase()).length; };
 
-                  <h3 className="text-xl font-bold text-[#212121] mb-3 group-hover:text-[#5856D6] transition-colors relative z-10">
-                    {useCase.title}
-                  </h3>
-                  
-                  <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3 relative z-10 flex-grow">
-                    {useCase.gap}
-                  </p>
+  const problemChips = ['Planning','Execution','Visibility','Finance','Customer Experience'];
+  const complexityChips = ['Basic','Advanced','Multi-agent'];
 
-                  <div className="flex items-center justify-between text-[#5856D6] font-bold text-sm group-hover:translate-x-1 transition-transform relative z-10 mt-auto">
-                    <div className="flex items-center">
-                      <span>View Details</span>
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </div>
+  const canvasRef = useRef(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
+  const localStyles = `
+  .usecases-root { --bg: var(--pure-white); color: var(--deep-navy); }
+  .usecases-root .panel { background: linear-gradient(180deg, var(--pure-white), #fbfbff); border-radius: 18px; }
+  .usecases-root .usecases-hero { background: var(--pure-white); border-radius: 18px; padding: 28px; }
+  .usecases-root .usecases-card { background: var(--pure-white); border-radius: 14px; border: 1px solid rgba(17,24,39,0.04); box-shadow: 0 10px 30px rgba(17,24,39,0.04); padding: 22px; }
+  .usecases-root .usecase-title { font-size: 1.125rem; line-height: 1.45; margin-bottom: 0.75rem; color: var(--deep-navy); }
+  .usecases-root .usecase-desc { line-height: 1.8; color: var(--supporting-gray); margin-bottom: 0.75rem; }
+  .usecases-root .industry-badge { background: rgba(88,86,214,0.06); color: var(--primary-purple); padding: 6px 10px; border-radius: 9999px; font-weight:700; font-size: 12px; }
+  .usecases-root .left-aside { background: linear-gradient(180deg, rgba(8,38,58,0.04), rgba(6,50,67,0.02)); border-radius: 14px; }
+  .usecases-root .right-scroll { max-height: calc(100vh - 6.5rem); overflow-y: auto; scrollbar-gutter: stable both-edges; padding-right: 8px; }
+  .usecases-root .right-scroll::-webkit-scrollbar { width: 12px; }
+  .usecases-root .right-scroll::-webkit-scrollbar-thumb { background: rgba(17,24,39,0.06); border-radius: 8px; }
+  @media (max-width: 768px) { .usecases-root .usecase-title { font-size: 1rem; } }
+  `;
+
+  return (
+    <div className="usecases-root min-h-screen bg-white pt-16 pb-16 relative overflow-hidden">
+      <style>{localStyles}</style>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex gap-8">
+          <aside className="w-80 text-sm">
+            <div className="bg-white border border-gray-100 rounded-2xl p-5 sticky top-24 text-[#0b1f2c]">
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <h3 className="text-white text-lg font-bold">Industry Explorer</h3>
+                  <div className="text-xs text-slate-300 mt-1">{microCopy[mcIndex]}</div>
+                </div>
+                <div className="text-xs text-slate-300">{loading ? 'Updating…' : ''}</div>
+              </div>
+
+              <div className="mt-3 space-y-2">
+                {industries.list.map((ind) => {
+                  const key = ind;
+                  const active = (industryParam === ind.toString().toLowerCase()) || (industryParam === 'all' && ind === 'All');
+                  return (
                     <button
-                      onClick={(e) => { e.stopPropagation(); setExpandedId(expandedId === useCase.id ? null : useCase.id); }}
-                      aria-expanded={expandedId === useCase.id}
-                      className="ml-4 text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-full hover:bg-gray-100"
+                      key={key}
+                      onClick={() => setIndustry(ind)}
+                      className={`w-full text-left flex items-center justify-between px-3 py-2 rounded-lg transition-all border-l-4 border-transparent ${active ? 'bg-transparent border-[#2EC5CE] shadow-sm' : 'hover:bg-gray-50'}`}
                     >
-                      {expandedId === useCase.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      <div className="flex items-center gap-3">
+                        <div className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${active ? 'bg-[#2EC5CE] text-white' : 'bg-white/5 text-slate-400'}`}>{ind}</div>
+                      </div>
+                      <div className="text-xs text-slate-400">{countFor(ind)}</div>
                     </button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-5 pt-4 border-t border-white/6">
+                <div className="text-xs text-slate-300 mb-2">Quick filters</div>
+                <div className="flex flex-wrap gap-2">
+                  <button onClick={() => setParams(p => { p.delete('q'); p.delete('problem'); p.delete('complexity'); p.delete('industry'); })} className="px-3 py-1 rounded-full bg-white/5 text-xs">Reset</button>
+                  <button onClick={() => setIndustry('Favourites')} className="px-3 py-1 rounded-full bg-white/5 text-xs">Favourites</button>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <main className="flex-1" ref={canvasRef}>
+            <div className="right-scroll">
+              <div className="bg-white rounded-2xl p-4 shadow-sm sticky top-0 z-20">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold" style={{color: 'var(--deep-navy)'}}>{industryParam==='all' ? 'Agent Library' : `${industryParam.charAt(0).toUpperCase()+industryParam.slice(1)} Agent Library`}</h2>
+                  <div className="text-sm text-gray-600 mt-1">{filtered.length} pre-built agents to explore</div>
+                </div>
+                <div className="flex items-center gap-3">
+                    <button onClick={() => setFiltersOpen(s => !s)} className="px-3 py-1 rounded-md bg-gray-100 text-sm">{filtersOpen ? 'Hide filters' : 'Show filters'}</button>
+                </div>
+              </div>
+
+              {filtersOpen && (
+                <div className="mt-4">
+                  <div className="hidden md:flex gap-2 mb-3">
+                    {problemChips.map(c => <button key={c} onClick={() => toggleChip('problem', c)} className={`px-3 py-1 rounded-full text-sm ${getArray('problem').includes(c) ? 'bg-[#2EC5CE] text-white' : 'bg-gray-100 text-gray-700'}`}>{c}</button>)}
                   </div>
 
-                  {expandedId === useCase.id && (
-                    <div className="mt-4 p-4 bg-gray-50 rounded-lg text-sm text-gray-700">
-                      <div className="mb-3">
-                        <div className="font-bold text-[13px] text-gray-600 mb-1">Problem</div>
-                        <div className="text-sm">{useCase.gap}</div>
-                      </div>
-                      <div className="mb-3">
-                        <div className="font-bold text-[13px] text-gray-600 mb-1">Impact</div>
-                        <div className="text-sm">{useCase.pain}</div>
-                      </div>
-                      <div className="mb-3">
-                        <div className="font-bold text-[13px] text-gray-600 mb-1">Kinexus Solution</div>
-                        <div className="text-sm">{useCase.solution}</div>
-                      </div>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {useCase.metrics.map((m, idx) => (
-                          <div key={idx} className="px-3 py-1 bg-white border rounded-full text-xs font-semibold">{m}</div>
-                        ))}
-                      </div>
+                  <div className="w-full">
+                    <div className="relative bg-white rounded-full border border-gray-200 px-4 py-3">
+                      <Search className="w-5 h-5 text-gray-400 inline-block mr-3" />
+                      <input defaultValue={qParam} onChange={(e)=> onSearch(e.target.value)} placeholder="Search by pain, e.g. 'ETA', 'slotting'…" className="w-full px-2 text-sm focus:outline-none" />
+                    </div>
+                  </div>
+
+                  <div className="mt-3 flex gap-2">
+                    {complexityChips.map(c => <button key={c} onClick={() => toggleChip('complexity', c)} className={`px-3 py-1 rounded-lg text-sm ${getArray('complexity').includes(c) ? 'bg-[#2EC5CE] text-white' : 'bg-gray-100 text-gray-700'}`}>{c}</button>)}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="mt-6 space-y-6">
+              {loading && (<div className="p-6 bg-white/5 rounded-lg animate-pulse text-center text-gray-400">Loading agents…</div>)}
+
+              {!loading && (groups.size === 0) && (
+                <div className="bg-white rounded-2xl p-12 text-center">
+                  <div className="mb-4 text-6xl">🤖</div>
+                  <h3 className="text-xl font-bold">No agents match this combo yet</h3>
+                  <p className="text-gray-600">Tell us what you want to automate and we'll build it.</p>
+                </div>
+              )}
+
+              {!loading && Array.from(groups.entries()).map(([cluster, items]) => (
+                <section key={cluster}>
+                  {cluster !== 'Other Outcomes' && (
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="text-lg font-semibold">{cluster}</h4>
+                      <div className="text-sm text-gray-500">{items.length} agents</div>
                     </div>
                   )}
-                </div>
-              );
-            })
-          ) : (
-            <div className="col-span-full text-center py-20">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
-                <Search className="w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-700">No workflows found</h3>
-              <p className="text-gray-500">Try adjusting your search or filters.</p>
-            </div>
-          )}
-        </div>
 
-        <div className="max-w-7xl mx-auto px-6 mt-24 mb-12">
-          <div className="bg-[#212121] rounded-3xl p-12 text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#5856D6] rounded-full opacity-20 blur-[80px]"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#2EC5CE] rounded-full opacity-20 blur-[80px]"></div>
-            
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 relative z-10">Can't find what you need?</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto mb-8 relative z-10">
-              We build custom agents for specific enterprise needs. Our architecture is flexible enough to handle any workflow.
-            </p>
-            <button onClick={() => navigate('contact')} className="bg-white text-[#212121] px-8 py-4 rounded-xl font-bold hover:bg-[#E8E7FF] transition-colors relative z-10">
-              Request Custom Agent
-            </button>
-          </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {items.map((u) => {
+                        const Icon = getIcon(u.icon);
+                        return (
+                          <div key={u.id} className="usecases-card p-6 transition-transform hover:-translate-y-1">
+                            <div className="flex items-center justify-between">
+                              <div className="text-xs text-slate-500 font-semibold">{u.industry.toUpperCase()} · {cluster}</div>
+                              <div className="flex items-center gap-3">
+                                <button onClick={(e)=>{ e.stopPropagation(); toggleFav(u.id); }} className={`p-1 rounded-full ${favs.includes(u.id)?'bg-yellow-100':'bg-white'}`}><HeartPulse className="w-4 h-4 text-red-500" /></button>
+                                <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center" style={{color: 'var(--primary-purple)'}}><Icon className="w-5 h-5" /></div>
+                              </div>
+                            </div>
+
+                            <h5 className="usecase-title font-bold mt-3">{u.title}</h5>
+                            <p className="usecase-desc text-sm mt-2 line-clamp-3">{u.gap}</p>
+
+                            <div className="mt-4 flex items-center gap-2 text-xs text-gray-600 card-metrics">
+                              <div className="px-2 py-1 bg-gray-100 rounded-full">Go-live: 2–4 weeks</div>
+                              <div className="px-2 py-1 bg-gray-100 rounded-full">ROI: {u.metrics && u.metrics[0] ? u.metrics[0] : 'Varies'}</div>
+                              <div className="px-2 py-1 bg-gray-100 rounded-full">Integrates: TMS, GPS, WMS</div>
+                            </div>
+
+                            <div className="mt-4 flex items-center justify-between">
+                              <div className="text-sm text-gray-500">Ideal for fleets &gt; 50 vehicles</div>
+                              <button onClick={() => setActiveUseCase(u)} className="px-3 py-1 rounded-lg border font-semibold" style={{borderColor: 'var(--primary-purple)', color: 'var(--primary-purple)'}}>View Details</button>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </section>
+              ))}
+            </div>
+            </div>
+          </main>
         </div>
       </div>
-
       <UseCaseModal useCase={activeUseCase} onClose={() => setActiveUseCase(null)} />
     </div>
   );
