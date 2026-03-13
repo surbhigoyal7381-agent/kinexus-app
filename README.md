@@ -1,4 +1,4 @@
-# Kinexus - Modern React Application with Tailwind CSS
+# Kinexus - Modern React website with Tailwind CSS
 
 A beautiful, modern React application built with **Tailwind CSS**, featuring a responsive design, smooth navigation, and multiple interactive pages.
 
