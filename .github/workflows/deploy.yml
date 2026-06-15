@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy static site to GitHub Pages
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -19,21 +19,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Prepare public_html
+      - name: Prepare `public_html`
         run: |
           rm -rf public_html || true
           mkdir -p public_html
           rsync -av --exclude='.git' --exclude='.github' --exclude='public_html' ./ public_html/
 
-      - name: Show public_html contents (debug)
+      - name: List `public_html` (debug)
         run: |
           echo "Contents of public_html:"
           ls -la public_html || true
           du -sh public_html || true
 
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload site artifact for Pages
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: public_html
-          publish_branch: gh-pages
+          path: public_html
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
