@@ -22,3 +22,6 @@ build/
 # Python
 __pycache__/
 *.pyc
+
+# DB credentials — never commit
+db-config.php
