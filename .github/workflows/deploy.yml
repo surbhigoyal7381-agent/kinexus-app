@@ -14,13 +14,10 @@ jobs:
 
       - name: Generate db-config.php from secrets
         run: |
-          cat > db-config.php <<'PHPEOF'
-          <?php
-          define('DB_HOST', '${{ secrets.DB_HOST }}');
-          define('DB_NAME', '${{ secrets.DB_NAME }}');
-          define('DB_USER', '${{ secrets.DB_USER }}');
-          define('DB_PASS', '${{ secrets.DB_PASS }}');
-          PHPEOF
+          printf '<?php\ndefine("DB_HOST","localhost");\ndefine("DB_NAME","%s");\ndefine("DB_USER","%s");\ndefine("DB_PASS","%s");\n' \
+            '${{ secrets.DB_NAME }}' \
+            '${{ secrets.DB_USER }}' \
+            '${{ secrets.DB_PASS }}' > db-config.php
 
       - name: Deploy via FTP to MilesWeb
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
