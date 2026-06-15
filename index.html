@@ -1647,4 +1647,31 @@ function showResult(){
     cta="Start with Sprint 1: Machine Sensors + Daily Report Bot"
   } else if(total<=8){
     stage='WALK';cls='result-walk'
-    desc="You have the basics in place but your systems aren't talking to each other yet. Sprint 1 will connect your 
+    desc="You have the basics in place but your systems aren't talking to each other yet. Sprint 1 will connect your islands of data into a single live view — giving you the visibility to act fast instead of react late."
+    cta="Start with Sprint 2: Connected Ops Dashboard"
+  } else if(total<=12){
+    stage='RUN';cls='result-run'
+    desc="Your systems are connected and your team is data-fluent. The next leap is agentic automation — letting AI handle the routine decisions so your people focus on the ones that need judgment."
+    cta="Start with Sprint 3: Agentic Workflow Automation"
+  } else {
+    stage='FLY';cls='result-fly'
+    desc="You're already operating at the frontier. Kinexus can help you layer in export-readiness, compliance automation, and buyer-facing traceability to turn your operational edge into a market advantage."
+    cta="Explore Export OS: Buyer Traceability & Compliance Layer"
+  }
+  document.getElementById('quizCard').innerHTML=`
+    <div class="quiz-result">
+      <div style="font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:.5rem">Your Stage</div>
+      <div class="result-badge ${cls}">${stage}</div>
+      <p class="result-desc">${desc}</p>
+      <p style="font-size:.82rem;font-weight:600;color:var(--slate);margin-bottom:1rem;text-transform:uppercase;letter-spacing:.08em">Recommended next step</p>
+      <p style="font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:1.75rem">${cta}</p>
+      <a href="#contact" class="btn btn-primary">Book a Free TRA to Confirm →</a>
+      <div style="margin-top:1.25rem"><button onclick="qIdx=0;answers=[];quizDone=false;initQuiz()" style="background:none;border:none;color:var(--slate);font-size:.85rem;cursor:pointer;text-decoration:underline">Retake the assessment</button></div>
+    </div>
+  `
+}
+
+initQuiz() 
+</script>
+</body>
+</html>
