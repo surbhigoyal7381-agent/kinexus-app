@@ -1,1 +1,1644 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Kinexus App - Modern React Application with Tailwind CSS"/><title>Kinexus App</title><script defer="defer" src="/static/js/main.2cc7acf9.js"></script><link href="/static/css/main.90fcb110.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kinexus Systems — Agentic Workflow Systems for Manufacturing MSMEs</title>
+<meta name="description" content="Digital transformation, AI adoption and agentic workflow orchestration for manufacturing MSMEs in Punjab &amp; Haryana. Crawl-Walk-Run-Fly: a practical roadmap to AI-ready operations.">
+<link rel="canonical" href="https://www.kinexussystems.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kinexus Systems — Agentic Workflow Systems for Manufacturing MSMEs">
+<meta property="og:description" content="Digital transformation, AI adoption and agentic workflow orchestration for manufacturing MSMEs in Punjab &amp; Haryana.">
+<meta property="og:url" content="https://www.kinexussystems.com/">
+<meta property="og:image" content="https://www.kinexussystems.com/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kinexus Systems",
+  "url": "https://www.kinexussystems.com/",
+  "description": "Digital transformation, AI adoption and agentic workflow orchestration consulting for manufacturing MSMEs in Punjab & Haryana, India.",
+  "areaServed": ["Punjab, India", "Haryana, India"],
+  "knowsAbout": ["Digital Transformation", "Agentic AI", "Manufacturing MSME Consulting", "Export Readiness"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Kinexus Systems",
+  "url": "https://www.kinexussystems.com/"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+/* ── RESET & BASE ───────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;background:#f7f8fa;color:#1a2535;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;font-family:inherit}
+
+/* ── CSS VARIABLES ──────────────────────────────────────────────── */
+:root{
+  --navy:#0e1640;
+  --navy-mid:#16275a;
+  --steel:#2733a0;
+  --steel-light:#3585d4;
+  --orange:#2f80d6;
+  --orange-light:#56a0e8;
+  --amber:#2566c4;
+  --slate:#64748b;
+  --silver:#8fa3b8;
+  --surface:#f0f4f8;
+  --white:#ffffff;
+  --border:#dde4ec;
+  --text:#1a2535;
+  --text-muted:#4a5f7a;
+  --green:#1b6e3a;
+  --green-bg:#d4edd9;
+  --track-crawl:#dc2626;
+  --track-walk:#d97706;
+  --track-run:#2563eb;
+  --track-fly:#059669;
+  --radius:4px;
+  --shadow-sm:0 1px 3px rgba(11,25,41,.08),0 1px 2px rgba(11,25,41,.06);
+  --shadow:0 4px 12px rgba(11,25,41,.10),0 2px 4px rgba(11,25,41,.06);
+  --shadow-lg:0 12px 32px rgba(11,25,41,.14),0 4px 8px rgba(11,25,41,.08);
+}
+
+/* ── TYPOGRAPHY ─────────────────────────────────────────────────── */
+h1,h2,h3,h4,h5{font-family:'Sora','Segoe UI',sans-serif;font-weight:700;line-height:1.22;color:var(--navy);letter-spacing:-.01em}
+h1{font-size:clamp(2.1rem,4vw,3.4rem);letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,3vw,2.3rem)}
+h3{font-size:clamp(1.1rem,2vw,1.4rem)}
+.sans{font-family:'Inter','Segoe UI',sans-serif}
+.label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+.lead{font-size:1.15rem;color:var(--text-muted);line-height:1.75}
+
+/* ── LAYOUT ─────────────────────────────────────────────────────── */
+.container{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+.section{padding:5rem 0}
+.section-sm{padding:3rem 0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+@media(max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.hide-mobile{display:none}}
+
+/* ── BUTTONS ────────────────────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.85rem;font-size:.95rem;font-weight:600;font-family:'Inter',sans-serif;border-radius:6px;transition:all .25s cubic-bezier(.2,.8,.2,1);white-space:nowrap;letter-spacing:.01em}
+.btn-primary{background:linear-gradient(135deg,#2733a0 0%,#3585d4 100%);color:var(--white);box-shadow:0 4px 14px rgba(39,51,160,.35)}
+.btn-primary:hover{background:linear-gradient(135deg,#2c3cb8 0%,#4093e2 100%);transform:translateY(-2px);box-shadow:0 10px 26px rgba(39,51,160,.45)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.5)}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.btn-dark{background:var(--navy);color:var(--white)}
+.btn-dark:hover{background:var(--navy-mid);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--steel);border:2px solid var(--steel)}
+.btn-ghost:hover{background:var(--steel);color:var(--white)}
+.btn-sm{padding:.5rem 1.25rem;font-size:.85rem}
+
+/* ── NAVBAR ─────────────────────────────────────────────────────── */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08);transition:box-shadow .3s}
+#navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{display:flex;align-items:center;gap:.75rem}
+.logo-mark{width:42px;height:42px;background:#fff;border-radius:9px;padding:5px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(14,22,64,.22);flex-shrink:0}.logo-mark img{width:100%;height:100%;object-fit:contain;display:block}
+.logo-text{font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:700;color:var(--white);letter-spacing:.02em}
+.logo-sub{font-size:.68rem;color:var(--silver);display:block;font-family:'Segoe UI',sans-serif;letter-spacing:.06em;text-transform:uppercase;font-weight:400;margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{color:rgba(255,255,255,.78);font-size:.9rem;font-weight:500;transition:color .2s;letter-spacing:.01em}
+.nav-links a:hover{color:var(--white)}
+.nav-mobile-toggle{display:none;flex-direction:column;gap:5px;background:transparent;padding:4px}
+.nav-mobile-toggle span{display:block;width:22px;height:2px;background:var(--white);transition:all .3s;border-radius:2px}
+@media(max-width:768px){.nav-links{display:none}.nav-mobile-toggle{display:flex}}
+.nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--navy);padding:1.5rem;border-top:1px solid rgba(255,255,255,.08);gap:1rem}
+
+/* ── HERO ───────────────────────────────────────────────────────── */
+#hero{background:linear-gradient(135deg,var(--navy) 0%,#0e2340 55%,#142d52 100%);padding:8rem 0 6rem;position:relative;overflow:hidden;margin-top:68px}
+#hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(47,128,214,.15);border:1px solid rgba(47,128,214,.3);color:var(--orange-light);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;border-radius:var(--radius);margin-bottom:1.5rem}
+.hero-eyebrow::before{content:'▶';font-size:.6rem}
+#hero h1{color:var(--white);margin-bottom:1.25rem}
+#hero h1 span{color:var(--orange-light)}
+#hero .lead{color:rgba(255,255,255,.7);margin-bottom:2rem;font-size:1.1rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,.1)}
+.stat-item .stat-val{font-family:'Sora',sans-serif;font-size:2rem;font-weight:700;color:var(--orange-light)}
+.stat-item .stat-label{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:.25rem}
+.hero-visual{position:relative}
+.cwrf-visual{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:2rem;backdrop-filter:blur(4px)}
+.cwrf-visual-title{color:rgba(255,255,255,.5);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem;font-family:'Segoe UI',sans-serif}
+.cwrf-bar{margin-bottom:1.25rem}
+.cwrf-bar-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.cwrf-bar-name{font-weight:600;font-size:.9rem}
+.cwrf-bar-pct{font-size:.8rem;color:rgba(255,255,255,.55)}
+.cwrf-track{height:8px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden}
+.cwrf-fill{height:100%;border-radius:4px;transition:width 1.5s ease}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-visual{display:none}}
+
+/* ── TRUST STRIP ────────────────────────────────────────────────── */
+.trust-strip{background:var(--white);border-bottom:1px solid var(--border);padding:1.5rem 0}
+.trust-strip-inner{display:flex;align-items:center;gap:2rem;flex-wrap:wrap;justify-content:center}
+.trust-strip-label{font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);white-space:nowrap}
+.trust-logos{display:flex;gap:1.75rem;flex-wrap:wrap;justify-content:center}
+.trust-logo{font-family:'Sora',sans-serif;font-weight:700;font-size:.92rem;color:var(--navy);opacity:.55;letter-spacing:.01em;transition:opacity .2s}
+.trust-logo:hover{opacity:1}
+@media(max-width:700px){.trust-strip-inner{flex-direction:column;gap:1rem}}
+
+/* ── COMPARISON TABLE ───────────────────────────────────────────── */
+#comparison{background:var(--surface)}
+.compare-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--white);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-sm);font-size:.88rem}
+.compare-table th,.compare-table td{padding:1rem 1.25rem;text-align:left;border-bottom:1px solid var(--border)}
+.compare-table th{font-family:'Sora',sans-serif;font-size:.85rem;color:var(--navy);background:var(--surface)}
+.compare-table th.hl,.compare-table td.hl{background:rgba(47,128,214,.06)}
+.compare-table th.hl{color:var(--orange);position:relative}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table td:first-child{font-weight:600;color:var(--navy);white-space:nowrap}
+.compare-table .yes{color:var(--green);font-weight:700}
+.compare-table .no{color:#b91c1c}
+.compare-table-wrap{overflow-x:auto;border-radius:10px}
+@media(max-width:700px){.compare-table{font-size:.8rem}.compare-table th,.compare-table td{padding:.75rem .85rem}}
+
+/* ── SECTION HEADERS ───────────────────────────────────────────── */
+.section-header{text-align:center;max-width:680px;margin:0 auto 3.5rem}
+.section-header .label{margin-bottom:.75rem;display:block}
+.section-header h2{margin-bottom:1rem}
+.section-header .lead{margin:0 auto}
+
+/* ── PROBLEM SECTION ────────────────────────────────────────────── */
+#problem{background:var(--white)}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.problem-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.85rem;position:relative;overflow:hidden;transition:all .25s;box-shadow:var(--shadow-sm)}
+.problem-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.problem-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--orange)}
+.problem-icon{width:44px;height:44px;background:rgba(47,128,214,.1);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem}
+.problem-card h3{font-size:1.05rem;margin-bottom:.5rem;color:var(--navy)}
+.problem-card p{font-size:.88rem;color:var(--text-muted);line-height:1.65}
+@media(max-width:900px){.problem-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.problem-grid{grid-template-columns:1fr}}
+
+/* ── CWRF FRAMEWORK ─────────────────────────────────────────────── */
+#framework{background:var(--navy);position:relative;overflow:hidden}
+#framework::after{content:'';position:absolute;bottom:-80px;right:-80px;width:360px;height:360px;background:rgba(30,77,140,.3);border-radius:50%}
+.framework-header{text-align:center;margin-bottom:3.5rem}
+.framework-header h2{color:var(--white)}
+.framework-header .lead{color:rgba(255,255,255,.65)}
+.stages-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;z-index:1}
+.stages-row::before{content:'';position:absolute;top:50px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--track-crawl),var(--track-walk),var(--track-run),var(--track-fly));opacity:.4}
+.stage-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:all .25s;position:relative}
+.stage-card:hover,.stage-card.active{transform:translateY(-4px);border-color:var(--stage-color);background:rgba(255,255,255,.07);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.stage-num{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:1.1rem;margin:0 auto 1rem;border:2px solid var(--stage-color);color:var(--stage-color)}
+.stage-card[data-stage="crawl"]{--stage-color:#ef4444}
+.stage-card[data-stage="walk"]{--stage-color:#f59e0b}
+.stage-card[data-stage="run"]{--stage-color:#3b82f6}
+.stage-card[data-stage="fly"]{--stage-color:#10b981}
+.stage-name{font-family:'Sora',sans-serif;font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:.35rem}
+.stage-pct{font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:1rem}
+.stage-desc{font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.6}
+.stage-detail{display:none;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.1);text-align:left}
+.stage-card.active .stage-detail{display:block}
+.stage-symptom{font-size:.82rem;color:rgba(255,255,255,.5);font-style:italic;margin-bottom:.75rem}
+.stage-tools{display:flex;flex-wrap:wrap;gap:.4rem}
+.stage-tag{background:rgba(255,255,255,.08);border-radius:3px;padding:.2rem .6rem;font-size:.72rem;color:rgba(255,255,255,.65)}
+@media(max-width:900px){.stages-row{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.stages-row{grid-template-columns:1fr}}
+
+/* ── ASSESSMENT QUIZ ────────────────────────────────────────────── */
+#assessment{background:var(--surface)}
+.quiz-wrap{max-width:760px;margin:0 auto}
+.quiz-intro{text-align:center;margin-bottom:2.5rem}
+.quiz-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:2.5rem;box-shadow:var(--shadow)}
+.quiz-progress{display:flex;gap:.5rem;margin-bottom:2rem}
+.quiz-dot{height:4px;flex:1;background:var(--border);border-radius:2px;transition:background .3s}
+.quiz-dot.done{background:var(--orange)}
+.quiz-dot.active{background:var(--steel)}
+.quiz-q{font-family:'Sora',sans-serif;font-size:1.2rem;color:var(--navy);margin-bottom:1.5rem;line-height:1.45}
+.quiz-options{display:flex;flex-direction:column;gap:.75rem}
+.quiz-opt{display:flex;align-items:flex-start;gap:.75rem;padding:1rem 1.25rem;border:1.5px solid var(--border);border-radius:6px;cursor:pointer;transition:all .2s;background:var(--white)}
+.quiz-opt:hover{border-color:var(--steel);background:#f0f6ff}
+.quiz-opt.selected{border-color:var(--orange);background:#fff8f0}
+.quiz-opt-letter{width:28px;height:28px;border-radius:50%;background:var(--surface);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:var(--slate);flex-shrink:0;transition:all .2s}
+.quiz-opt.selected .quiz-opt-letter{background:var(--orange);border-color:var(--orange);color:var(--white)}
+.quiz-opt-text{font-size:.93rem;color:var(--text);line-height:1.5;padding-top:3px}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.quiz-counter{font-size:.82rem;color:var(--slate)}
+.quiz-result{text-align:center;padding:2rem}
+.result-badge{display:inline-block;font-family:'Sora',sans-serif;font-size:2.25rem;font-weight:700;padding:.75rem 2rem;border-radius:6px;margin:1rem 0 1.25rem;letter-spacing:.05em}
+.result-crawl{background:#fee2e2;color:#b91c1c}
+.result-walk{background:#fef3c7;color:#92400e}
+.result-run{background:#dbeafe;color:#1e40af}
+.result-fly{background:#d1fae5;color:#065f46}
+.result-desc{font-size:.95rem;color:var(--text-muted);max-width:520px;margin:0 auto 1.5rem;line-height:1.7}
+
+/* ── SOLUTIONS ──────────────────────────────────────────────────── */
+#solutions{background:var(--white)}
+.tabs-nav{display:flex;border-bottom:2px solid var(--border);margin-bottom:3rem;gap:0;overflow-x:auto}
+.tab-btn{padding:1rem 1.75rem;font-size:.9rem;font-weight:600;color:var(--slate);background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;cursor:pointer;font-family:'Segoe UI',sans-serif}
+.tab-btn:hover{color:var(--navy)}
+.tab-btn.active{color:var(--navy);border-bottom-color:var(--orange)}
+.tab-btn .tab-badge{display:inline-block;padding:.1rem .5rem;border-radius:3px;font-size:.7rem;margin-left:.5rem;font-weight:700;vertical-align:middle}
+.tab-btn[data-tab="crawl"] .tab-badge{background:#fee2e2;color:#b91c1c}
+.tab-btn[data-tab="walk"] .tab-badge{background:#fef3c7;color:#92400e}
+.tab-btn[data-tab="run"] .tab-badge{background:#dbeafe;color:#1e40af}
+.tab-btn[data-tab="fly"] .tab-badge{background:#d1fae5;color:#065f46}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.solutions-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.sol-intro h3{font-size:1.5rem;margin-bottom:.75rem}
+.sol-intro p{color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem}
+.sol-outcomes{list-style:none}
+.sol-outcomes li{display:flex;align-items:flex-start;gap:.6rem;font-size:.9rem;color:var(--text-muted);margin-bottom:.6rem;line-height:1.55}
+.sol-outcomes li::before{content:'✓';color:var(--orange);font-weight:700;flex-shrink:0;margin-top:.1rem}
+.sol-cards{display:flex;flex-direction:column;gap:1rem}
+.sol-card{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--white);transition:all .25s}
+.sol-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.sol-card-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:var(--surface);border-bottom:1px solid var(--border)}
+.sol-card-title{font-weight:600;font-size:.92rem;color:var(--navy)}
+.sol-type{font-size:.68rem;font-weight:700;letter-spacing:.08em;padding:.25rem .6rem;border-radius:3px;text-transform:uppercase}
+.sol-type.std{background:#e0f2fe;color:#0369a1}
+.sol-type.custom{background:#fef9c3;color:#854d0e}
+.sol-card-body{padding:1rem 1.25rem}
+.sol-card-body p{font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:.75rem}
+.sol-metrics{display:flex;gap:.75rem;flex-wrap:wrap}
+.sol-metric{background:var(--surface);border-radius:3px;padding:.25rem .6rem;font-size:.75rem;font-weight:600;color:var(--navy)}
+@media(max-width:900px){.solutions-layout{grid-template-columns:1fr}}
+
+/* ── STANDARD SOLUTIONS CATALOGUE ──────────────────────────────── */
+#catalogue{background:var(--surface)}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.cat-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:all .25s}
+.cat-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.cat-icon{width:48px;height:48px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem}
+.cat-card h3{font-size:1rem;margin-bottom:.4rem}
+.cat-card p{font-size:.84rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem}
+.cat-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+.cat-tag{font-size:.7rem;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:.2rem .55rem;color:var(--slate)}
+.cat-card .install-time{font-size:.75rem;color:var(--orange);font-weight:600;margin-top:.75rem;display:flex;align-items:center;gap:.35rem}
+.cat-card .install-time::before{content:'⏱'}
+@media(max-width:900px){.cat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.cat-grid{grid-template-columns:1fr}}
+
+/* ── 6-WEEK SPRINT PROCESS ──────────────────────────────────────── */
+#sprint{background:var(--navy);color:var(--white)}
+#sprint .section-header h2{color:var(--white)}
+#sprint .section-header .lead{color:rgba(255,255,255,.65)}
+.sprint-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;position:relative}
+.sprint-timeline::before{content:'';position:absolute;top:28px;left:5%;right:5%;height:2px;background:linear-gradient(90deg,rgba(47,128,214,.8) 0%,rgba(255,255,255,.15) 100%)}
+.sprint-step{text-align:center;position:relative;z-index:1}
+.sprint-num{width:56px;height:56px;border-radius:50%;background:var(--navy);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:1.1rem;color:var(--orange);margin:0 auto 1rem}
+.sprint-step:first-child .sprint-num{background:var(--orange);color:var(--white);border-color:var(--orange)}
+.sprint-title{font-weight:600;font-size:.88rem;color:var(--white);margin-bottom:.4rem}
+.sprint-time{font-size:.72rem;color:rgba(255,255,255,.45);margin-bottom:.6rem}
+.sprint-body{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.6}
+.sprint-promise{margin-top:3rem;background:rgba(47,128,214,.12);border:1px solid rgba(47,128,214,.25);border-radius:8px;padding:2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;text-align:center}
+.sprint-promise-item strong{display:block;font-family:'Sora',sans-serif;font-size:1.6rem;color:var(--orange-light);margin-bottom:.25rem}
+.sprint-promise-item span{font-size:.82rem;color:rgba(255,255,255,.55)}
+@media(max-width:900px){.sprint-timeline{grid-template-columns:1fr 1fr;padding-top:0}.sprint-timeline::before{display:none}}
+@media(max-width:600px){.sprint-timeline{grid-template-columns:1fr}.sprint-promise{grid-template-columns:1fr}}
+
+/* ── INDUSTRIES ─────────────────────────────────────────────────── */
+#industries{background:var(--white)}
+.industry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.25rem}
+.industry-card{border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:all .25s;cursor:pointer;position:relative;overflow:hidden;background:var(--white)}
+.industry-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--ind-color,var(--orange));transform:scaleX(0);transition:transform .2s;transform-origin:left}
+.industry-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.industry-card:hover::after{transform:scaleX(1)}
+.industry-link{font-size:.78rem;color:var(--orange);font-weight:600;margin-top:.75rem;display:inline-block}
+
+/* ── SUBSCRIBE / PLAYBOOK MODAL ─────────────────────────────────── */
+.modal-overlay{position:fixed;inset:0;background:rgba(11,25,41,.72);display:flex;align-items:center;justify-content:center;z-index:1000;padding:1.25rem;opacity:0;visibility:hidden;transition:opacity .3s ease;backdrop-filter:blur(2px)}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal-box{background:var(--white);border-radius:12px;max-width:880px;width:100%;display:grid;grid-template-columns:1.1fr 1fr;overflow:hidden;box-shadow:var(--shadow-lg);transform:translateY(20px);transition:transform .3s ease;max-height:90vh}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-visual{background:linear-gradient(135deg,var(--navy) 0%,#0e2340 60%,#142d52 100%);padding:2.5rem;display:flex;flex-direction:column;justify-content:center;color:var(--white);position:relative;overflow:hidden}
+.modal-visual::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:rgba(47,128,214,.18);border-radius:50%}
+.modal-visual .badge{display:inline-block;background:rgba(47,128,214,.1);border:1px solid rgba(47,128,214,.25);color:var(--orange-light);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px;margin-bottom:1rem;letter-spacing:.06em;text-transform:uppercase}
+.modal-visual h3{color:var(--white);font-size:1.4rem;margin-bottom:.75rem;font-family:'Sora',sans-serif;font-weight:700}
+.modal-visual ul{list-style:none;margin-top:1.25rem;display:flex;flex-direction:column;gap:.6rem}
+.modal-visual ul li{font-size:.85rem;color:rgba(255,255,255,.75);display:flex;gap:.5rem;align-items:flex-start}
+.modal-visual ul li::before{content:'✓';color:var(--orange-light);font-weight:700}
+.modal-form{padding:2.5rem;position:relative}
+.modal-close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--slate);transition:all .2s;border:none;cursor:pointer}
+.modal-close:hover{background:var(--border);color:var(--navy)}
+.modal-form h3{margin-bottom:.5rem;font-size:1.2rem;font-family:'Sora',sans-serif}
+.modal-form p{font-size:.88rem;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.6}
+.modal-form .form-group{margin-bottom:1rem}
+.modal-form label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.4rem}
+.modal-form input{width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:var(--radius);font-size:.9rem;font-family:inherit;color:var(--text);background:var(--white);transition:border-color .2s;outline:none}
+.modal-form input:focus{border-color:var(--steel)}
+.modal-form .btn{width:100%;justify-content:center;padding:.85rem}
+.modal-note{font-size:.74rem;color:var(--slate);text-align:center;margin-top:.85rem}
+.modal-success{display:none;text-align:center;padding:1.5rem 0}
+@media(max-width:768px){.modal-box{grid-template-columns:1fr;max-height:95vh;overflow-y:auto}.modal-visual{padding:2rem}}
+.industry-icon{font-size:1.6rem;margin-bottom:.75rem}
+.industry-name{font-weight:700;font-size:.92rem;color:var(--navy);margin-bottom:.3rem}
+.industry-loc{font-size:.75rem;color:var(--slate);margin-bottom:.5rem}
+.industry-focus{font-size:.8rem;color:var(--text-muted);line-height:1.55}
+@media(max-width:900px){.industry-grid{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:600px){.industry-grid{grid-template-columns:1fr 1fr}}
+
+/* ── WHY KINEXUS ────────────────────────────────────────────────── */
+#why{background:var(--surface)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.why-list{display:flex;flex-direction:column;gap:1.75rem}
+.why-item{display:flex;gap:1.25rem;align-items:flex-start}
+.why-icon{width:48px;height:48px;background:rgba(47,128,214,.1);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;margin-top:3px}
+.why-item h3{font-size:1.05rem;margin-bottom:.35rem}
+.why-item p{font-size:.88rem;color:var(--text-muted);line-height:1.65}
+.why-visual{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:2rem;box-shadow:var(--shadow)}
+.why-metric{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:1px solid var(--border)}
+.why-metric:last-child{border-bottom:none}
+.why-metric-label{font-size:.88rem;color:var(--text-muted)}
+.why-metric-val{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy)}
+.why-metric-delta{font-size:.78rem;color:var(--green);font-weight:600;background:var(--green-bg);padding:.15rem .5rem;border-radius:3px}
+@media(max-width:768px){.why-grid{grid-template-columns:1fr}}
+
+/* ── NUMBERS ────────────────────────────────────────────────────── */
+#numbers{background:var(--steel);color:var(--white)}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.num-val{font-family:'Sora',sans-serif;font-size:2.75rem;font-weight:700;color:var(--white);display:block;line-height:1}
+.num-label{font-size:.85rem;color:rgba(255,255,255,.65);margin-top:.5rem;display:block}
+@media(max-width:600px){.numbers-grid{grid-template-columns:1fr 1fr}}
+
+/* ── CTA SECTION ────────────────────────────────────────────────── */
+#cta{background:linear-gradient(135deg,var(--navy) 0%,#0e2340 100%);position:relative;overflow:hidden}
+#cta::before{content:'';position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:rgba(30,77,140,.25);border-radius:50%}
+.cta-inner{position:relative;z-index:1;text-align:center;max-width:680px;margin:0 auto}
+#cta h2{color:var(--white);margin-bottom:1rem}
+#cta .lead{color:rgba(255,255,255,.68);margin-bottom:2.5rem}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.cta-note{font-size:.82rem;color:rgba(255,255,255,.4)}
+
+/* ── CONTACT ────────────────────────────────────────────────────── */
+#contact{background:var(--white)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:3rem;align-items:start}
+.contact-info h2{margin-bottom:1rem}
+.contact-info p{color:var(--text-muted);margin-bottom:2rem;line-height:1.7}
+.contact-details{display:flex;flex-direction:column;gap:1rem}
+.contact-detail{display:flex;align-items:center;gap:.75rem;font-size:.9rem;color:var(--text-muted)}
+.contact-detail-icon{width:36px;height:36px;background:var(--surface);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.contact-form{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:2rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.4rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.7rem .9rem;border:1.5px solid var(--border);border-radius:var(--radius);font-size:.9rem;font-family:inherit;color:var(--text);background:var(--white);transition:border-color .2s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--steel)}
+.form-group textarea{height:110px;resize:vertical}
+.form-group select{-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%2364748b'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .75rem center}
+.form-success{display:none;text-align:center;padding:2rem;color:var(--green)}
+.form-success svg{margin:0 auto 1rem;display:block}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+
+/* ── FOOTER ─────────────────────────────────────────────────────── */
+footer{background:var(--navy);color:rgba(255,255,255,.65);padding:3rem 0 1.5rem}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem}
+.footer-brand .logo-text{font-size:1.1rem;margin-bottom:.5rem;display:block;color:var(--white)}
+.footer-brand p{font-size:.82rem;line-height:1.7;color:rgba(255,255,255,.45);max-width:260px;margin-top:.5rem}
+.footer-col h4{color:var(--white);font-size:.85rem;font-weight:600;margin-bottom:1rem;font-family:'Segoe UI',sans-serif;letter-spacing:.04em}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-col ul li a{font-size:.82rem;color:rgba(255,255,255,.5);transition:color .2s}
+.footer-col ul li a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:rgba(255,255,255,.35)}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:.5rem;text-align:center}}
+
+/* ── MISC ───────────────────────────────────────────────────────── */
+.tag{display:inline-block;padding:.2rem .65rem;border-radius:3px;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.tag-red{background:#fee2e2;color:#b91c1c}
+.tag-amber{background:#fef3c7;color:#92400e}
+.tag-blue{background:#dbeafe;color:#1e40af}
+.tag-green{background:#d1fae5;color:#065f46}
+.badge{display:inline-block;background:rgba(47,128,214,.1);border:1px solid rgba(47,128,214,.25);color:var(--orange);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px}
+.divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.scroll-reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.scroll-reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ─────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#hero" class="nav-logo">
+      <div class="logo-mark"><img src="assets/kinexus-mark.png" alt="Kinexus Systems logo"></div>
+      <div>
+        <span class="logo-text">Kinexus Systems</span>
+        <span class="logo-sub">Agentic Workflow Systems</span>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#framework">Our Framework</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#sprint">How We Work</a>
+      <a href="#comparison">Why Kinexus</a>
+      <a href="#industries">Sectors</a>
+      <a href="#partnership">Export OS</a>
+      <a href="blog/index.html">Insights</a>
+      <a href="#assessment">Self-Assess</a>
+      <a href="#contact" class="btn btn-primary btn-sm" style="padding:.45rem 1.1rem">Book a Free TRA</a>
+    </div>
+    <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">Export-Ready Manufacturing · North India</div>
+        <h1>Stop Guessing.<br/>Start <span>Operating</span><br/>Like a Machine.</h1>
+        <p class="lead">Kinexus Systems makes North India's manufacturing exporters run like a machine — agentic workflow automation plus export-readiness, in measurable 6-week sprints. Built for the five sectors riding India's new FTA wave.</p>
+        <div class="hero-ctas">
+          <a href="#assessment" class="btn btn-primary">Diagnose Your Stage →</a>
+          <a href="#sprint" class="btn btn-outline">See How It Works</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item"><div class="stat-val">6 Wks</div><div class="stat-label">First measurable outcome delivered</div></div>
+          <div class="stat-item"><div class="stat-val">4 Stages</div><div class="stat-label">Crawl → Walk → Run → Fly framework</div></div>
+          <div class="stat-item"><div class="stat-val">₹0 Risk</div><div class="stat-label">Free Technology Readiness Assessment</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="cwrf-visual">
+          <div class="cwrf-visual-title">Manufacturing MSME Digital Maturity · Belt Distribution</div>
+          <div class="cwrf-bar">
+            <div class="cwrf-bar-label">
+              <span class="cwrf-bar-name" style="color:#ef4444">🔴 CRAWL — Paper & WhatsApp</span>
+              <span class="cwrf-bar-pct">~47%</span>
+            </div>
+            <div class="cwrf-track"><div class="cwrf-fill" style="background:#ef4444;width:0" data-width="47%"></div></div>
+          </div>
+          <div class="cwrf-bar">
+            <div class="cwrf-bar-label">
+              <span class="cwrf-bar-name" style="color:#f59e0b">🟡 WALK — Partial Digitisation</span>
+              <span class="cwrf-bar-pct">~33%</span>
+            </div>
+            <div class="cwrf-track"><div class="cwrf-fill" style="background:#f59e0b;width:0" data-width="33%"></div></div>
+          </div>
+          <div class="cwrf-bar">
+            <div class="cwrf-bar-label">
+              <span class="cwrf-bar-name" style="color:#3b82f6">🔵 RUN — Connected Systems</span>
+              <span class="cwrf-bar-pct">~14%</span>
+            </div>
+            <div class="cwrf-track"><div class="cwrf-fill" style="background:#3b82f6;width:0" data-width="14%"></div></div>
+          </div>
+          <div class="cwrf-bar">
+            <div class="cwrf-bar-label">
+              <span class="cwrf-bar-name" style="color:#10b981">🟢 FLY — Agentic & Autonomous</span>
+              <span class="cwrf-bar-pct">~3%</span>
+            </div>
+            <div class="cwrf-track"><div class="cwrf-fill" style="background:#10b981;width:0" data-width="3%"></div></div>
+          </div>
+          <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1);font-size:.72rem;color:rgba(255,255,255,.35)">Source: NASSCOM Industry 4.0 Report 2024 · ICRIER MSME Survey 2025 · Kinexus Estimate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST / METHODOLOGY STRIP ───────────────────────────────── -->
+<section class="trust-strip">
+  <div class="container">
+    <div class="trust-strip-inner">
+      <span class="trust-strip-label">Methodology grounded in research from</span>
+      <div class="trust-logos">
+        <span class="trust-logo">PwC India</span>
+        <span class="trust-logo">McKinsey Advanced Industries</span>
+        <span class="trust-logo">World Economic Forum</span>
+        <span class="trust-logo">NASSCOM</span>
+        <span class="trust-logo">ICRIER</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEM ─────────────────────────────────────────────────── -->
+<section id="problem" class="section">
+  <div class="container">
+    <div class="section-header scroll-reveal">
+      <span class="label">The Real Cost of Standing Still</span>
+      <h2>Every Day Without Systems Is Money Left on the Floor</h2>
+      <p class="lead">These are not hypothetical problems. They are the daily reality of 85% of manufacturing MSMEs in the Chandigarh–Ludhiana–Ambala belt.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card scroll-reveal">
+        <div class="problem-icon">⚙️</div>
+        <h3>Unplanned Machine Downtime</h3>
+        <p>No sensors, no alerts — breakdowns discovered only when production stops. Average: 2–3 hours of lost production daily in un-monitored plants.</p>
+      </div>
+      <div class="problem-card scroll-reveal">
+        <div class="problem-icon">📦</div>
+        <h3>Inventory Mismatches</h3>
+        <p>Raw material, WIP, and finished goods tracked in three different Excel files — if at all. Stockouts and excess stock exist simultaneously on the same shopfloor.</p>
+      </div>
+      <div class="problem-card scroll-reveal">
+        <div class="problem-icon">❌</div>
+        <h3>Quality Rejections from Buyers</h3>
+        <p>2–8% of revenue eroded by defects caught at the buyer's end — not yours. OEM relationships at risk with every batch dispatch.</p>
+      </div>
+      <div class="problem-card scroll-reveal">
+        <div class="problem-icon">📱</div>
+        <h3>WhatsApp as Your ERP</h3>
+        <p>Production updates, shift reports, purchase requests, and delivery challans — all buried in a WhatsApp group. No traceability, no accountability.</p>
+      </div>
+      <div class="problem-card scroll-reveal">
+        <div class="problem-icon">💰</div>
+        <h3>Cash Flow Gaps from Delayed Receivables</h3>
+        <p>No automated follow-up on outstanding invoices. Owners manually chasing buyers. Working capital trapped in receivables, borrowed at 14–18% to bridge the gap.</p>
+      </div>
+      <div class="problem-card scroll-reveal">
+        <div class="problem-icon">👤</div>
+        <h3>Owner as the System</h3>
+        <p>The business cannot run without the owner making 50 decisions a day. No dashboards, no alerts, no delegation possible. Scale is impossible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CWRF FRAMEWORK ──────────────────────────────────────────── -->
+<section id="framework" class="section">
+  <div class="container">
+    <div class="framework-header scroll-reveal">
+      <span class="label" style="color:rgba(240,145,58,.9)">The Kinexus Method</span>
+      <h2 style="color:#fff;margin-bottom:1rem">We Meet You Where You Are</h2>
+      <p class="lead" style="color:rgba(255,255,255,.65)">Before we build anything, we assess where you stand. Our Crawl–Walk–Run–Fly framework maps every manufacturing MSME to a stage — and charts the fastest path forward from there.</p>
+    </div>
+    <div class="stages-row" id="stagesRow">
+      <div class="stage-card" data-stage="crawl" onclick="toggleStage(this)">
+        <div class="stage-num">C</div>
+        <div class="stage-name">CRAWL</div>
+        <div class="stage-pct">~47% of belt MSMEs</div>
+        <div class="stage-desc">Paper records, WhatsApp coordination, gut-feel decisions. Data exists only in the owner's head.</div>
+        <div class="stage-detail">
+          <div class="stage-symptom">"I have no idea what my actual production output was yesterday."</div>
+          <div class="stage-tools">
+            <span class="stage-tag">Paper registers</span>
+            <span class="stage-tag">WhatsApp groups</span>
+            <span class="stage-tag">Tally (standalone)</span>
+            <span class="stage-tag">No real-time data</span>
+          </div>
+        </div>
+      </div>
+      <div class="stage-card" data-stage="walk" onclick="toggleStage(this)">
+        <div class="stage-num">W</div>
+        <div class="stage-name">WALK</div>
+        <div class="stage-pct">~33% of belt MSMEs</div>
+        <div class="stage-desc">Basic ERP or Excel MIS. Data is captured but siloed — no one system trusted by everyone.</div>
+        <div class="stage-detail">
+          <div class="stage-symptom">"My data is in three systems and nobody trusts any of them."</div>
+          <div class="stage-tools">
+            <span class="stage-tag">TallyPrime / Busy</span>
+            <span class="stage-tag">Excel MIS</span>
+            <span class="stage-tag">Manual consolidation</span>
+            <span class="stage-tag">No live dashboard</span>
+          </div>
+        </div>
+      </div>
+      <div class="stage-card" data-stage="run" onclick="toggleStage(this)">
+        <div class="stage-num">R</div>
+        <div class="stage-name">RUN</div>
+        <div class="stage-pct">~14% of belt MSMEs</div>
+        <div class="stage-desc">ERP + IoT sensors + basic dashboards. Systems are connected — but decisions still rely on gut feel.</div>
+        <div class="stage-detail">
+          <div class="stage-symptom">"I have data but I still make decisions by gut feel."</div>
+          <div class="stage-tools">
+            <span class="stage-tag">ERP + MES</span>
+            <span class="stage-tag">IoT sensors (partial)</span>
+            <span class="stage-tag">BI dashboards</span>
+            <span class="stage-tag">No AI layer</span>
+          </div>
+        </div>
+      </div>
+      <div class="stage-card" data-stage="fly" onclick="toggleStage(this)">
+        <div class="stage-num">F</div>
+        <div class="stage-name">FLY</div>
+        <div class="stage-pct">~3% of belt MSMEs</div>
+        <div class="stage-desc">AI-driven workflows, autonomous decisions, predictive systems. The business runs itself on most days.</div>
+        <div class="stage-detail">
+          <div class="stage-symptom">"My systems anticipate problems before I do."</div>
+          <div class="stage-tools">
+            <span class="stage-tag">Agentic AI workflows</span>
+            <span class="stage-tag">Predictive maintenance</span>
+            <span class="stage-tag">Auto-scheduling</span>
+            <span class="stage-tag">Autonomous decisions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="#assessment" class="btn btn-primary">Find Your Stage in 5 Minutes →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SELF-ASSESSMENT QUIZ ────────────────────────────────────── -->
+<section id="assessment" class="section">
+  <div class="container">
+    <div class="section-header scroll-reveal">
+      <span class="label">Free Diagnostic</span>
+      <h2>Where Does Your Factory Stand?</h2>
+      <p class="lead">Answer 5 quick questions. Get an instant assessment of your digital maturity stage and a tailored starting point from Kinexus.</p>
+    </div>
+    <div class="quiz-wrap">
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-progress" id="quizProgress"></div>
+        <div id="quizBody"></div>
+        <div class="quiz-nav" id="quizNav">
+          <span class="quiz-counter" id="quizCounter"></span>
+          <button class="btn btn-dark" id="quizNext" onclick="quizNext()">Next Question →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INDUSTRIES ──────────────────────────────────────────────── -->
+<section id="industries" class="section">
+  <div class="container">
+    <div class="section-header scroll-reveal">
+      <span class="label">Export-Focused Sectors</span>
+      <h2>Five Sectors. One FTA Tailwind. Built to Capitalise.</h2>
+      <p class="lead">We concentrate on the North India clusters with the strongest export and FTA upside — pairing shop-floor automation with the traceability and documentation global buyers demand.</p>
+    </div>
+    <div class="industry-grid">
+      <a href="industries/engineering-auto-ancillaries.html" class="industry-card scroll-reveal" style="--ind-color:#2733a0">
+        <div class="industry-icon">🚛</div>
+        <div class="industry-name">Engineering &amp; Auto Ancillaries</div>
+        <div class="industry-loc">Mohali · Derabassi · Ludhiana</div>
+        <div class="industry-focus">India's largest export category. JIT scheduling, SPC quality and OEM delivery dashboards — built to clear UK/EU FTA buyer standards.</div>
+        <span class="industry-link">Explore journey →</span>
+      </a>
+      <a href="industries/hosiery-textiles.html" class="industry-card scroll-reveal" style="--ind-color:#3585d4">
+        <div class="industry-icon">🧵</div>
+        <div class="industry-name">Hosiery &amp; Textiles</div>
+        <div class="industry-loc">Ludhiana</div>
+        <div class="industry-focus">Zero-duty UK access on knitwear. Machine monitoring, order-to-despatch and buyer-payment tracking with export-grade traceability.</div>
+        <span class="industry-link">Explore journey →</span>
+      </a>
+      <a href="industries/pharmaceuticals.html" class="industry-card scroll-reveal" style="--ind-color:#2566c4">
+        <div class="industry-icon">💊</div>
+        <div class="industry-name">Pharmaceuticals</div>
+        <div class="industry-loc">Baddi · Mohali · Derabassi</div>
+        <div class="industry-focus">Generics into the UK NHS. Batch traceability, WHO-GMP documentation and audit automation for regulated export markets.</div>
+        <span class="industry-link">Explore journey →</span>
+      </a>
+      <a href="industries/agro-processing-food.html" class="industry-card scroll-reveal" style="--ind-color:#1f6fb2">
+        <div class="industry-icon">🌾</div>
+        <div class="industry-name">Agro Processing &amp; Food</div>
+        <div class="industry-loc">Karnal · Kurukshetra · Morinda</div>
+        <div class="industry-focus">Basmati &amp; processed food now duty-free to the UK. FSSAI+ traceability, cold-chain logs and export-certification automation.</div>
+        <span class="industry-link">Explore journey →</span>
+      </a>
+      <a href="industries/wellness.html" class="industry-card scroll-reveal" style="--ind-color:#4a96e0">
+        <div class="industry-icon">🌿</div>
+        <div class="industry-name">Wellness</div>
+        <div class="industry-loc">Nutraceutical · Ayurveda · Personal Care</div>
+        <div class="industry-focus">India's fastest-rising FTA export. GMP/AYUSH documentation, batch traceability and eco-compliant packaging — with partner Cosmo International.</div>
+        <span class="industry-link">Explore journey →</span>
+      </a>
+    </div>
+    <p style="text-align:center;margin-top:2rem;font-size:.9rem;color:var(--text-muted)">Other sectors we serve: <a href="industries/bicycle-auto-parts.html" style="color:var(--steel-light);font-weight:600">Bicycle &amp; Auto Parts</a> · <a href="industries/scientific-surgical-instruments.html" style="color:var(--steel-light);font-weight:600">Scientific &amp; Surgical Instruments</a> · <a href="industries/sports-goods.html" style="color:var(--steel-light);font-weight:600">Sports Goods</a> · <a href="industries/fmcg-packaging.html" style="color:var(--steel-light);font-weight:600">FMCG &amp; Packaging</a></p>
+  </div>
+</section>
+
+<!-- ── SOLUTIONS BY STAGE ──────────────────────────────────────── -->
+<!-- ── PARTNERSHIP / EXPORT OS ─────────────────────────────────── -->
+<section id="partnership" class="section" style="background:var(--navy);color:#fff">
+  <div class="container">
+    <div class="section-header scroll-reveal" style="margin-bottom:2.5rem">
+      <span class="label" style="color:var(--steel-light)">Export OS · In Development</span>
+      <h2 style="color:#fff">Beyond consulting: an operating system for exporters</h2>
+      <p class="lead" style="color:rgba(255,255,255,.7)">Kinexus brings the digital transformation and agentic workflow automation. Cosmo International brings premium Indian-origin wellness &amp; agro export channels and international-business reach. Together we're building the <strong style="color:#fff">Export OS</strong> — an AI-powered system that turns India's FTA tariff savings into realised margin for MSME exporters.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;max-width:960px;margin:0 auto">
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:1.5rem">
+        <div style="font-size:1.6rem;margin-bottom:.6rem">🧭</div>
+        <h3 style="color:#fff;font-size:1.05rem;margin-bottom:.4rem">FTA &amp; Rules-of-Origin intelligence</h3>
+        <p style="color:rgba(255,255,255,.65);font-size:.9rem">Find the best-FTA landed price and qualify Rules of Origin — without a six-figure compliance suite.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:1.5rem">
+        <div style="font-size:1.6rem;margin-bottom:.6rem">🤖</div>
+        <h3 style="color:#fff;font-size:1.05rem;margin-bottom:.4rem">AI-drafted export documentation</h3>
+        <p style="color:rgba(255,255,255,.65);font-size:.9rem">Certificates of origin, health and compliance docs drafted from your digital records — in minutes, not days.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:1.5rem">
+        <div style="font-size:1.6rem;margin-bottom:.6rem">🚢</div>
+        <h3 style="color:#fff;font-size:1.05rem;margin-bottom:.4rem">Embedded finance &amp; logistics</h3>
+        <p style="color:rgba(255,255,255,.65);font-size:.9rem">Qualify, certify, finance and ship from one connected workflow — instead of stitching five vendors together.</p>
+      </div>
+    </div>
+    <div class="hero-ctas" style="justify-content:center;margin-top:2.5rem;display:flex;gap:1rem">
+      <a href="#contact" class="btn btn-primary">Talk to us about the Export OS</a>
+    </div>
+    <p style="text-align:center;margin-top:1rem;font-size:.8rem;color:rgba(255,255,255,.4)">In alliance with Cosmo International — AI-augmented wellness &amp; agro exports.</p>
+  </div>
+</section>
+
+<section id="solutions" class="section">
+  <div class="container">
+    <div class="section-header scroll-reveal">
+      <span class="label">Stage-Matched Solutions</span>
+      <h2>The Right Intervention at the Right Stage</h2>
+      <p class="lead">No generic software packages. Every sprint is matched to your current stage — standard where possible, customised where it matters.</p>
+    </div>
+    <div class="tabs-nav" id="solTabs">
+      <button class="tab-btn active" data-tab="crawl" onclick="switchTab('crawl')">🔴 CRAWL <span class="tab-badge">Start Here</span></button>
+      <button class="tab-btn" data-tab="walk" onclick="switchTab('walk')">🟡 WALK <span class="tab-badge">Growing</span></button>
+      <button class="tab-btn" data-tab="run" onclick="switchTab('run')">🔵 RUN <span class="tab-badge">Connected</span></button>
+      <button class="tab-btn" data-tab="fly" onclick="switchTab('fly')">🟢 FLY <span class="tab-badge">Intelligent</span></button>
+    </div>
+
+    <!-- CRAWL -->
+    <div class="tab-pane active" id="tab-crawl">
+      <div class="solutions-layout">
+        <div class="sol-intro">
+          <span class="tag tag-red" style="margin-bottom:1rem;display:inline-block">Stage: CRAWL</span>
+          <h3>First Light — Make the Invisible Visible</h3>
+          <p>At the CRAWL stage, the single most valuable thing we can do is capture what's actually happening. You can't improve what you can't see. Sprint 1 focuses entirely on data visibility with the least possible disruption to your current operations.</p>
+          <p><strong>Our philosophy:</strong> Use what your team already uses (WhatsApp), add the minimum hardware (sensors where needed), and create one source of truth. No expensive ERP. No long training. Results in 6 weeks.</p>
+          <ul class="sol-outcomes">
+            <li>Daily production summary on owner's phone by 7 AM, automatically generated</li>
+            <li>Machine uptime tracked without touching the machine (clamp-on sensors)</li>
+            <li>Purchase requests, delivery challans structured out of WhatsApp chaos</li>
+            <li>Attendance and shift data captured digitally — no more paper registers</li>
+            <li>One dashboard the owner can check in 2 minutes</li>
+          </ul>
+        </div>
+        <div class="sol-cards">
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">⚡ Machine Counter Sensors</span>
+              <span class="sol-type std">Standard — Plug & Play</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Non-invasive clamp-on or optical sensors attached to any existing machine — no rewiring, no downtime. Sends production count data to your phone and a central dashboard in real time.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 1–2 days</span>
+                <span class="sol-metric">No machine modification</span>
+                <span class="sol-metric">Any legacy machine</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">📱 WhatsApp Production Bot</span>
+              <span class="sol-type std">Standard — Plug & Play</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Supervisors send structured updates to a WhatsApp bot (production qty, rejects, downtime reason). Bot auto-compiles into a daily report and sends to owner at shift end. Zero learning curve for workers.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 3–5 days</span>
+                <span class="sol-metric">Works on any phone</span>
+                <span class="sol-metric">No app install needed</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">🏭 Digital Shift Report</span>
+              <span class="sol-type std">Standard — Plug & Play</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Replaces the paper register completely. Supervisors fill a 2-minute digital form on a tablet at end of shift. Owner gets a structured PDF and dashboard summary automatically.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 1 week</span>
+                <span class="sol-metric">Hindi/Punjabi UI option</span>
+                <span class="sol-metric">Offline capable</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">📋 Purchase Request Workflow</span>
+              <span class="sol-type custom">Customisable</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Structured purchase request → approval → PO issuance workflow replacing WhatsApp messages. Configured to your approval hierarchy, supplier list, and Tally integration.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 2–3 weeks</span>
+                <span class="sol-metric">Tally-integrated</span>
+                <span class="sol-metric">Mobile-first</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WALK -->
+    <div class="tab-pane" id="tab-walk">
+      <div class="solutions-layout">
+        <div class="sol-intro">
+          <span class="tag tag-amber" style="margin-bottom:1rem;display:inline-block">Stage: WALK</span>
+          <h3>Connect the Dots — One Integrated View</h3>
+          <p>At the WALK stage you have data scattered across systems — Tally, Excel, WhatsApp. The problem isn't that data doesn't exist; it's that no one trusts any of it because it lives in 3 places with 3 different versions. Sprint focus: integration and a single source of truth.</p>
+          <p><strong>Our philosophy:</strong> We don't replace your existing Tally or ERP. We build a lightweight integration layer on top that pulls data together and adds the agentic workflows your current system was never designed to do.</p>
+          <ul class="sol-outcomes">
+            <li>Inventory positions updated automatically from purchase and production data</li>
+            <li>Supplier follow-up automated — no more manual calls about delayed deliveries</li>
+            <li>Customer invoice ageing monitored with automatic escalation alerts</li>
+            <li>Production plan vs actual visible on one screen, updated hourly</li>
+            <li>Reorder alerts triggered automatically when stock hits minimum levels</li>
+          </ul>
+        </div>
+        <div class="sol-cards">
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">🔗 Tally + WhatsApp Integration Bridge</span>
+              <span class="sol-type std">Standard — Plug & Play</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Pulls sales, purchase, and inventory data from your existing TallyPrime automatically. Sends daily P&L snapshot, outstanding receivables, and stock alerts to owner on WhatsApp every morning.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 1 week</span>
+                <span class="sol-metric">No Tally changes needed</span>
+                <span class="sol-metric">Works with Tally 9+</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">🤖 Supplier Follow-Up Agent</span>
+              <span class="sol-type std">Standard — Plug & Play</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Automated WhatsApp/SMS messages sent to suppliers when delivery dates pass without confirmation. Escalates to phone call list if no response in 24 hours. Tracks and logs all follow-ups automatically.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 5–7 days</span>
+                <span class="sol-metric">24/7 automated</span>
+                <span class="sol-metric">Full audit trail</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">📊 Live Inventory Dashboard</span>
+              <span class="sol-type custom">Customisable</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Single-screen inventory view across raw material, WIP, and finished goods — updated in real time from production and dispatch data. Configurable for your specific material codes and warehouse layout.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 2–3 weeks</span>
+                <span class="sol-metric">Barcode / QR optional</span>
+                <span class="sol-metric">Multi-location</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">💳 Receivables Collection Workflow</span>
+              <span class="sol-type custom">Customisable</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Automated payment reminders to buyers keyed to invoice ageing. Escalation rules configurable by buyer relationship tier. Reduces average collection days by 8–15 days, freeing working capital.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 2 weeks</span>
+                <span class="sol-metric">Buyer tier rules</span>
+                <span class="sol-metric">WhatsApp + email</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RUN -->
+    <div class="tab-pane" id="tab-run">
+      <div class="solutions-layout">
+        <div class="sol-intro">
+          <span class="tag tag-blue" style="margin-bottom:1rem;display:inline-block">Stage: RUN</span>
+          <h3>From Data to Decisions — Make the System Smarter</h3>
+          <p>At the RUN stage your systems are connected but your people are still doing the analysis. Sprint focus: layer AI-driven intelligence on top of existing connected data so the system surfaces insights and recommendations — not just numbers.</p>
+          <p><strong>Our philosophy:</strong> We don't rebuild your ERP. We build an intelligence layer on top: AI agents that monitor your data continuously, surface anomalies, and take pre-approved actions automatically.</p>
+          <ul class="sol-outcomes">
+            <li>Quality rejection rates reduced by 30–50% through automated pre-dispatch checks</li>
+            <li>Predictive maintenance alerts 24–48 hours before equipment failure</li>
+            <li>Production scheduling optimised automatically based on orders and capacity</li>
+            <li>Energy consumption monitored with anomaly detection</li>
+            <li>Compliance documentation auto-generated for ISO / GMP audits</li>
+          </ul>
+        </div>
+        <div class="sol-cards">
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">🔍 AI Quality Inspection Assistant</span>
+              <span class="sol-type custom">Customisable</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Computer vision or structured data AI that flags potential quality deviations before dispatch. Trained on your specific defect types and buyer rejection patterns. Reduces outward rejections.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 4–6 weeks</span>
+                <span class="sol-metric">Vision or data-driven</span>
+                <span class="sol-metric">Buyer-specific rules</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">⚠️ Predictive Maintenance Alerts</span>
+              <span class="sol-type custom">Customisable</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Vibration and temperature sensors on critical equipment fed into an ML model. Predicts failures 24–72 hours in advance with specific maintenance recommendations. Reduces unplanned downtime by 40–60%.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 4–5 weeks</span>
+                <span class="sol-metric">Per-machine calibration</span>
+                <span class="sol-metric">SMS / WhatsApp alerts</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">📅 AI Production Scheduler</span>
+              <span class="sol-type custom">Customisable</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Generates optimised daily/weekly production schedules based on order priorities, material availability, machine capacity, and workforce. Reduces idle time and late deliveries simultaneously.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 4–6 weeks</span>
+                <span class="sol-metric">ERP-integrated</span>
+                <span class="sol-metric">Daily plan on WhatsApp</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">📑 Auto Compliance Documentation</span>
+              <span class="sol-type custom">Customisable</span>
+            </div>
+            <div class="sol-card-body">
+              <p>For pharma, food, and export units: automatically generates batch records, quality certificates, and audit documentation from production data. Cuts audit prep from days to hours.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: 3–5 weeks</span>
+                <span class="sol-metric">ISO / WHO-GMP ready</span>
+                <span class="sol-metric">Audit trail built-in</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLY -->
+    <div class="tab-pane" id="tab-fly">
+      <div class="solutions-layout">
+        <div class="sol-intro">
+          <span class="tag tag-green" style="margin-bottom:1rem;display:inline-block">Stage: FLY</span>
+          <h3>Autonomous Operations — Your Factory Thinks for Itself</h3>
+          <p>At the FLY stage, Kinexus deploys full agentic workflow orchestration. AI agents take pre-approved decisions autonomously: reordering raw materials, rescheduling production, following up on payments, and escalating anomalies — with the owner reviewing outcomes, not making every call.</p>
+          <p><strong>Our philosophy:</strong> The owner shifts from firefighter to strategist. The plant runs on intelligence, not heroics. Every workflow that was previously owner-dependent is now system-driven with human oversight on exceptions only.</p>
+          <ul class="sol-outcomes">
+            <li>Fully autonomous procurement within pre-approved parameters — zero manual POs below threshold</li>
+            <li>Customer demand signals used to automatically adjust production schedules</li>
+            <li>AI agents negotiating delivery dates with suppliers based on production requirements</li>
+            <li>Real-time profitability by SKU, order, and customer — always live</li>
+            <li>Export documentation, compliance certificates, and customs workflows automated end-to-end</li>
+          </ul>
+        </div>
+        <div class="sol-cards">
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">🧠 Autonomous Procurement Agent</span>
+              <span class="sol-type custom">Fully Customised</span>
+            </div>
+            <div class="sol-card-body">
+              <p>AI agent monitors inventory levels, production requirements, and lead times. Autonomously raises purchase orders within approved limits, selects suppliers, and confirms delivery dates — with exception-only owner review.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: Sprint 5–6</span>
+                <span class="sol-metric">Zero manual POs under threshold</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">📈 Demand-Driven Production Orchestrator</span>
+              <span class="sol-type custom">Fully Customised</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Reads buyer order patterns and external demand signals to continuously optimise production mix, sequencing, and capacity utilisation. Outputs daily plan automatically to shopfloor supervisors.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: Sprint 5–7</span>
+                <span class="sol-metric">Multi-buyer orchestration</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">💡 Business Intelligence Command Centre</span>
+              <span class="sol-type custom">Fully Customised</span>
+            </div>
+            <div class="sol-card-body">
+              <p>Single-screen executive view of all business metrics — production, quality, finance, supplier performance, customer satisfaction. AI highlights what needs attention today. Ask it questions in plain language.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: Sprint 4–5</span>
+                <span class="sol-metric">Natural language queries</span>
+              </div>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-head">
+              <span class="sol-card-title">🌐 Export & Compliance Automation</span>
+              <span class="sol-type custom">Fully Customised</span>
+            </div>
+            <div class="sol-card-body">
+              <p>For export-oriented units: automated generation of shipping documentation, certificates of origin, quality reports, and customs declarations from production data. Eliminates 3–5 person-days of manual work per shipment.</p>
+              <div class="sol-metrics">
+                <span class="sol-metric">Deploy: Sprint 5–6</span>
+                <span class="sol-metric">WHO-GMP / ISO / DGFT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STANDARD SOLUTIONS CATALOGUE ───────────────────────────── -->
+<section id="catalogue" class="section">
+  <div class="container">
+    <div class="section-header scroll-reveal">
+      <span class="label">Plug & Play Catalogue</span>
+      <h2>Standard Solutions. Immediate Impact.</h2>
+      <p class="lead">These solutions are pre-built, pre-tested, and deployable in days — not months. Fixed price, fast delivery, proven results across 10+ installations in the belt.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card scroll-reveal">
+        <div class="cat-icon" style="background:#e0f2fe">📊</div>
+        <h3>Machine Counter Kit</h3>
+        <p>Optical/magnetic sensor + IoT gateway + cloud dashboard. Tracks production count on any machine without electrical modification.</p>
+        <div class="cat-tags"><span class="cat-tag">Any machine type</span><span class="cat-tag">No rewiring</span><span class="cat-tag">Live dashboard</span></div>
+        <div class="install-time">Deploy in 1–2 days</div>
+      </div>
+      <div class="cat-card scroll-reveal">
+        <div class="cat-icon" style="background:#fef9c3">🤖</div>
+        <h3>WhatsApp Daily Report Bot</h3>
+        <p>Supervisors submit structured updates via WhatsApp. Auto-compiled daily production report sent to owner at shift end. No app, no training.</p>
+        <div class="cat-tags"><span class="cat-tag">Zero training</span><span class="cat-tag">Any smartphone</span><span class="cat-tag">Hindi / English</span></div>
+        <div class="install-time">Deploy in 3–5 days</div>
+      </div>
+      <div class="cat-card scroll-reveal">
+        <div class="cat-icon" style="background:#d1fae5">📦</div>
+        <h3>Inventory Alert System</h3>
+        <p>Monitor stock levels and trigger automatic reorder alerts when materials fall below threshold. Connects to existing Tally or ERP.</p>
+        <div class="cat-tags"><span class="cat-tag">Tally-ready</span><span class="cat-tag">SMS / WhatsApp alert</span><span class="cat-tag">Multi-warehouse</span></div>
+        <div class="install-time">Deploy in 1 week</div>
+      </div>
+      <div class="cat-card scroll-reveal">
+        <div class="cat-icon" style="background:#fce7f3">📋</div>
+        <h3>Digital Attendance System</h3>
+        <p>QR or OTP-based attendance for shopfloor workers. Replaces paper register, links to payroll, and tracks shift timing automatically.</p>
+        <div class="cat-tags"><span class="cat-tag">No biometric needed</span><span class="cat-tag">Contractor tracking</span><span class="cat-tag">Payroll export</span></div>
+        <div class="install-time">Deploy in 2–3 days</div>
+      </div>
+      <div class="cat-card scroll-reveal">
+        <div class="cat-icon" style="background:#ede9fe">💰</div>
+        <h3>Receivables Reminder Agent</h3>
+        <p>Automated WhatsApp/SMS payment reminders based on invoice ageing. Escalation rules by buyer tier. Connects to Tally outstanding.</p>
+        <div class="cat-tags"><span class="cat-tag">Tally-integrated</span><span class="cat-tag">Configurable rules</span><span class="cat-tag">Audit trail</span></div>
+        <div class="install-time">Deploy in 5–7 days</div>
+      </div>
+      <div class="cat-card scroll-reveal">
+        <div class="cat-icon" style="background:#fed7aa">🌡️</div>
+        <h3>Temperature / Humidity Monitor</h3>
+        <p>Critical for pharma, food, and chemicals. Wireless sensors with continuous cloud logging, alert thresholds, and auto-generated compliance logs.</p>
+        <div class="cat-tags"><span class="cat-tag">Pharma / Food</span><span class="cat-tag">Auto compliance log</span><span class="cat-tag">CDSCO-ready records</span></div>
+        <div class="install-time">Deploy in 1–2 days</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 6-WEEK SPRINT ────────────────────────────────────────────── -->
+<section id="sprint" class="section">
+  <div class="container">
+    <div class="section-header scroll-reveal">
+      <span class="label" style="color:rgba(240,145,58,.9)">How We Deliver</span>
+      <h2 style="color:#fff">Results Before the Roadmap Is Complete</h2>
+      <p class="lead" style="color:rgba(255,255,255,.65)">Most consultants finish the roadmap, hand you a document, and leave. Kinexus delivers working solutions in the time others spend writing proposals. Each sprint is a complete, embedded improvement — not a prototype.</p>
+    </div>
+    <div class="sprint-timeline scroll-reveal">
+      <div class="sprint-step">
+        <div class="sprint-num">0</div>
+        <div class="sprint-title">Technology Readiness Assessment</div>
+        <div class="sprint-time">2 Weeks · Free</div>
+        <div class="sprint-body">We assess your current stage across 5 dimensions: data infrastructure, process standardisation, system connectivity, workforce readiness, and leadership commitment. You get a scored assessment and a 6-sprint roadmap.</div>
+      </div>
+      <div class="sprint-step">
+        <div class="sprint-num">1</div>
+        <div class="sprint-title">Sprint 1 — Quick Win</div>
+        <div class="sprint-time">6 Weeks</div>
+        <div class="sprint-body">The single highest-impact change for your stage. Deployed, embedded, and staff-trained by week 6. You see the result before committing to Sprint 2.</div>
+      </div>
+      <div class="sprint-step">
+        <div class="sprint-num">2</div>
+        <div class="sprint-title">Sprint 2 — Deepen</div>
+        <div class="sprint-time">6 Weeks</div>
+        <div class="sprint-body">Build on Sprint 1 outcomes. Second workflow automated. Integration between Sprint 1 and Sprint 2 solutions creates compounding efficiency.</div>
+      </div>
+      <div class="sprint-step">
+        <div class="sprint-num">3</div>
+        <div class="sprint-title">Sprint 3 — Integrate</div>
+        <div class="sprint-time">6 Weeks</div>
+        <div class="sprint-body">Systems start talking to each other. Cross-functional workflows automated. Owner begins spending less time on operations decisions.</div>
+      </div>
+      <div class="sprint-step">
+        <div class="sprint-num">4+</div>
+        <div class="sprint-title">Sprint 4–6 — Intelligent</div>
+        <div class="sprint-time">6 Weeks Each</div>
+        <div class="sprint-body">AI layers added on top of connected data. Predictive capabilities, autonomous workflows, and strategic dashboards. Full FLY-stage operations achievable within 12–18 months.</div>
+      </div>
+    </div>
+    <div class="sprint-promise scroll-reveal">
+      <div class="sprint-promise-item"><strong>6 Weeks</strong><span>To your first measurable outcome — before the full roadmap is done</span></div>
+      <div class="sprint-promise-item"><strong>Zero Lock-In</strong><span>Each sprint stands alone. Stop any time. Keep everything delivered.</span></div>
+      <div class="sprint-promise-item"><strong>Embedded</strong><span>We don't hand over code and leave. We stay until staff use it daily.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY KINEXUS ─────────────────────────────────────────────── -->
+<section id="why" class="section">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <span class="label" style="display:block;margin-bottom:.75rem">Why Kinexus</span>
+        <h2 style="margin-bottom:1rem">We Are Not a Software Company.<br/>We Are an Outcomes Company.</h2>
+        <p class="lead" style="margin-bottom:2.5rem">The difference between a software vendor and Kinexus is simple: we don't leave until the result is real, the staff are using the system, and the owner can see the change in their numbers.</p>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-icon">🎯</div>
+            <div>
+              <h3>Assessment Before Prescription</h3>
+              <p>Every engagement starts with a structured Technology Readiness Assessment (TRA). We diagnose before we prescribe. This means no wasted sprints on wrong solutions — and no surprises for you.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">⚡</div>
+            <div>
+              <h3>Minimum Change, Maximum Impact</h3>
+              <p>We build on what you already have — your machines, your Tally, your WhatsApp. No rip-and-replace. We add only what creates measurable value, fast.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🔒</div>
+            <div>
+              <h3>Embedded Until It Works</h3>
+              <p>Kinexus stays on-site through training, adoption, and the first 2 weeks of live use. We measure success by whether your team uses the system independently — not whether we handed it over.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">📍</div>
+            <div>
+              <h3>Local, Not Remote</h3>
+              <p>We are based in the Chandigarh belt. Our consultants know the Ludhiana bicycle cluster, the Baddi pharma parks, the Ambala instruments market. We speak your industry's language, not generic IT consultant language.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="why-visual">
+          <div style="font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">Typical Client Outcomes — First Sprint</div>
+          <div class="why-metric"><span class="why-metric-label">Manual reporting time saved</span><div><span class="why-metric-val">2–3 hrs/day</span> <span class="why-metric-delta">↓ 100%</span></div></div>
+          <div class="why-metric"><span class="why-metric-label">Inventory accuracy improvement</span><div><span class="why-metric-val">+35–60%</span></div></div>
+          <div class="why-metric"><span class="why-metric-label">Quality rejection reduction (Sprint 3+)</span><div><span class="why-metric-val">30–50%</span> <span class="why-metric-delta">↓ rejections</span></div></div>
+          <div class="why-metric"><span class="why-metric-label">Avg. receivable days reduction</span><div><span class="why-metric-val">8–15 days</span> <span class="why-metric-delta">↓ DSO</span></div></div>
+          <div class="why-metric"><span class="why-metric-label">Unplanned downtime reduction</span><div><span class="why-metric-val">40–60%</span> <span class="why-metric-delta">↓ downtime</span></div></div>
+          <div class="why-metric"><span class="why-metric-label">Typical Sprint 1 ROI payback</span><div><span class="why-metric-val">2–4 months</span></div></div>
+          <div style="margin-top:1.25rem;padding:1rem;background:var(--surface);border-radius:6px;font-size:.8rem;color:var(--text-muted);line-height:1.6">
+            <strong style="color:var(--navy)">Source note:</strong> Outcome ranges based on PwC India (2026), McKinsey Advanced Industries (2025), WEF AI Playbook (2025), and ICRIER MSME Survey (2025). Individual results vary by unit size and starting stage.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMPARISON ──────────────────────────────────────────────── -->
+<section id="comparison" class="section">
+  <div class="container">
+    <div class="section-header scroll-reveal">
+      <span class="label">How We're Different</span>
+      <h2>Kinexus vs. The Usual Options</h2>
+      <p class="lead">Manufacturing MSMEs typically choose between a generic ERP vendor or a traditional IT consultant. Both come with trade-offs we were built to avoid.</p>
+    </div>
+    <div class="compare-table-wrap scroll-reveal">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>ERP / Software Vendor</th>
+            <th>Traditional IT Consultant</th>
+            <th class="hl">Kinexus Systems</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Engagement model</td>
+            <td>Large upfront licence + implementation fee</td>
+            <td>Long fixed-scope project, paid in milestones over months</td>
+            <td class="hl"><span class="yes">6-week sprints</span> — stop or continue after each one</td>
+          </tr>
+          <tr>
+            <td>Starting point</td>
+            <td>Sells the software first, fits your process to it</td>
+            <td>Writes a roadmap document, implementation is separate</td>
+            <td class="hl"><span class="yes">Free Technology Readiness Assessment</span> diagnoses before prescribing</td>
+          </tr>
+          <tr>
+            <td>What you keep using</td>
+            <td>Rip-and-replace of existing Tally / Excel / WhatsApp habits</td>
+            <td>Depends on the recommended platform — often a new system</td>
+            <td class="hl"><span class="yes">Builds on what you have</span> — Tally, WhatsApp, existing machines</td>
+          </tr>
+          <tr>
+            <td>Time to first result</td>
+            <td>3–9 months to go live</td>
+            <td>Months of discovery before any visible change</td>
+            <td class="hl"><span class="yes">6 weeks</span> to your first measurable outcome</td>
+          </tr>
+          <tr>
+            <td>Adoption support</td>
+            <td>Training handed off to a partner/reseller</td>
+            <td>Hands over a report; implementation is your problem</td>
+            <td class="hl"><span class="yes">On-site until your team uses it daily</span></td>
+          </tr>
+          <tr>
+            <td>Local industry fit</td>
+            <td>Generic vertical templates</td>
+            <td>Varies by consultant background</td>
+            <td class="hl"><span class="yes">Pre-calibrated</span> for Ludhiana, Baddi, Ambala, Jalandhar clusters</td>
+          </tr>
+          <tr>
+            <td>AI / agentic capability</td>
+            <td>Bolt-on AI modules, extra licence cost</td>
+            <td>Rarely in scope unless specifically requested</td>
+            <td class="hl"><span class="yes">Core to every sprint</span> from Sprint 1 onward</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── NUMBERS ─────────────────────────────────────────────────── -->
+<section id="numbers" class="section-sm">
+  <div class="container">
+    <div class="numbers-grid scroll-reveal">
+      <div><span class="num-val">2M+</span><span class="num-label">Manufacturing MSMEs in the Chandigarh Belt</span></div>
+      <div><span class="num-val">₹150B</span><span class="num-label">AI value unlock potential for Indian Mfg MSMEs by 2035 (PwC 2026)</span></div>
+      <div><span class="num-val">42.85%</span><span class="num-label">Agentic AI Market CAGR globally 2025–2032 (SNS Insider)</span></div>
+      <div><span class="num-val">88%</span><span class="num-label">Manufacturing MSMEs not yet at RUN or FLY stage — our market</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────────────────── -->
+<section id="cta" class="section">
+  <div class="container">
+    <div class="cta-inner scroll-reveal">
+      <span class="label" style="color:rgba(240,145,58,.9);display:block;margin-bottom:.75rem">Start Today — No Cost</span>
+      <h2>Book Your Free Technology<br/>Readiness Assessment</h2>
+      <p class="lead">A 2-hour session at your facility. We assess your stage across 5 dimensions, identify your top 3 workflow bottlenecks, and deliver a prioritised sprint roadmap — at no cost, no obligation.</p>
+      <div class="cta-actions">
+        <a href="#contact" class="btn btn-primary">Book a Free TRA →</a>
+        <a href="#solutions" class="btn btn-outline">Explore Solutions First</a>
+      </div>
+      <p class="cta-note">Free for qualifying manufacturing units in the Chandigarh–Ludhiana–Ambala belt. No sales pitch, no commitment required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ─────────────────────────────────────────────────── -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="label" style="display:block;margin-bottom:.75rem">Get in Touch</span>
+        <h2>Let's Talk About Your Factory</h2>
+        <p>Whether you know your stage or don't, the best starting point is a conversation. Reach out and a Kinexus consultant will respond within one business day.</p>
+        <div class="contact-details">
+          <div class="contact-detail"><div class="contact-detail-icon">📍</div><span>Chandigarh, India — serving the 150 km industrial belt</span></div>
+          <div class="contact-detail"><div class="contact-detail-icon">📧</div><span>hello@kinexus.in</span></div>
+          <div class="contact-detail"><div class="contact-detail-icon">📞</div><span>+91 98XXXXXXXX</span></div>
+          <div class="contact-detail"><div class="contact-detail-icon">🕐</div><span>Mon–Sat, 9 AM – 6 PM IST</span></div>
+        </div>
+        <div style="margin-top:2rem;padding:1.25rem;background:rgba(47,128,214,.07);border:1px solid rgba(47,128,214,.2);border-radius:6px">
+          <div style="font-weight:600;color:var(--navy);font-size:.9rem;margin-bottom:.4rem">🎁 Free TRA for qualifying units</div>
+          <div style="font-size:.83rem;color:var(--text-muted);line-height:1.6">Manufacturing units in Punjab, Haryana, or Himachal Pradesh with 10–500 employees qualify for a complimentary 2-hour Technology Readiness Assessment at your facility.</div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form" id="contactForm">
+          <div style="font-weight:700;font-size:1.05rem;color:var(--navy);margin-bottom:1.5rem">Book Your Free Assessment</div>
+          <div class="form-row">
+            <div class="form-group"><label>Your Name *</label><input type="text" placeholder="Rajinder Singh" id="f_name"/></div>
+            <div class="form-group"><label>Company Name *</label><input type="text" placeholder="XYZ Industries" id="f_company"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="+91 98765 43210" id="f_phone"/></div>
+            <div class="form-group"><label>Email Address</label><input type="email" placeholder="name@company.com" id="f_email"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Industry Sector *</label>
+              <select id="f_sector">
+                <option value="">— Select your sector —</option>
+                <option>Bicycle / Auto Parts (Ludhiana / Rajpura)</option>
+                <option>Pharmaceuticals (Baddi / BBN belt)</option>
+                <option>Scientific / Surgical Instruments (Ambala)</option>
+                <option>Sports Goods (Jalandhar)</option>
+                <option>Hosiery / Textiles (Ludhiana)</option>
+                <option>Agro Processing / Food (Karnal / Kurukshetra)</option>
+                <option>Engineering / Auto Ancillaries (Mohali / Panchkula)</option>
+                <option>FMCG / Packaging (Baddi / Derabassi)</option>
+                <option>Other Manufacturing</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Number of Employees</label>
+              <select id="f_size">
+                <option value="">— Select —</option>
+                <option>10–25</option>
+                <option>26–50</option>
+                <option>51–100</option>
+                <option>101–300</option>
+                <option>300+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Your Biggest Operational Challenge</label>
+            <textarea placeholder="e.g. We lose time every day figuring out what machines produced and why deliveries were delayed..." id="f_challenge"></textarea>
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;padding:.9rem" onclick="submitForm()">
+            Book My Free Assessment →
+          </button>
+          <div style="font-size:.75rem;color:var(--slate);text-align:center;margin-top:.75rem">No sales call. No commitment. A Kinexus consultant will contact you within 1 business day to schedule.</div>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="#d1fae5"/><path d="M18 28l8 8 14-16" stroke="#059669" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3 style="color:var(--green);margin-bottom:.5rem">Request Received!</h3>
+          <p style="color:var(--text-muted);font-size:.9rem">A Kinexus consultant will reach out within 1 business day to schedule your complimentary Technology Readiness Assessment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYBOOK MODAL -->
+<div class="modal-overlay" id="playbookModal">
+  <div class="modal-box">
+    <div class="modal-visual">
+      <span class="badge">Free Download</span>
+      <h3>The Export Readiness Playbook</h3>
+      <p style="color:rgba(255,255,255,.7);font-size:.9rem">A practical, step-by-step guide for Punjab &amp; Haryana MSME manufacturers preparing to sell into international markets — documentation, quality systems, digital traceability and more.</p>
+      <ul>
+        <li>FTA-readiness self-check for your sector</li>
+        <li>Documentation &amp; compliance checklist</li>
+        <li>Digital traceability quick-start steps</li>
+        <li>Common export rejection reasons &amp; fixes</li>
+      </ul>
+    </div>
+    <div class="modal-form">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <h3>Get your free copy</h3>
+      <p>Enter your details and we'll send the playbook straight to your inbox — and start the download right away.</p>
+      <form id="playbookForm">
+        <div class="form-group">
+          <label for="pbName">Full Name</label>
+          <input type="text" id="pbName" required placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label for="pbEmail">Work Email</label>
+          <input type="email" id="pbEmail" required placeholder="you@company.com">
+        </div>
+        <div class="form-group">
+          <label for="pbCompany">Company Name</label>
+          <input type="text" id="pbCompany" placeholder="Company name">
+        </div>
+        <button type="submit" class="btn btn-primary">Send Me the Playbook</button>
+      </form>
+      <div class="modal-success">
+        <h3>You're all set!</h3>
+        <p>Your download has started. We've also emailed you a copy of the Export Readiness Playbook.</p>
+      </div>
+      <p class="modal-note">We respect your inbox. Occasional insights, no spam, unsubscribe anytime.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:.65rem;margin-bottom:.5rem">
+          <div class="logo-mark"><img src="assets/kinexus-mark.png" alt="Kinexus Systems logo"></div>
+          <span class="logo-text">Kinexus Systems</span>
+        </div>
+        <p>Agentic business workflow systems for manufacturing MSMEs in North India's industrial belt. Crawl. Walk. Run. Fly.</p>
+        <p style="margin-top:.6rem;font-size:.82rem;color:var(--silver)">In alliance with <strong>Cosmo International</strong> — wellness &amp; agro exports.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Framework</h4>
+        <ul>
+          <li><a href="#solutions">CRAWL Stage</a></li>
+          <li><a href="#solutions">WALK Stage</a></li>
+          <li><a href="#solutions">RUN Stage</a></li>
+          <li><a href="#solutions">FLY Stage</a></li>
+          <li><a href="#assessment">Self-Assessment</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="#catalogue">Machine Sensors</a></li>
+          <li><a href="#catalogue">WhatsApp Bots</a></li>
+          <li><a href="#catalogue">Inventory Alerts</a></li>
+          <li><a href="#solutions">AI Quality Control</a></li>
+          <li><a href="#solutions">Predictive Maintenance</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sectors</h4>
+        <ul>
+          <li><a href="industries/engineering-auto-ancillaries.html">Engineering &amp; Ancillaries</a></li>
+          <li><a href="industries/hosiery-textiles.html">Hosiery &amp; Textiles</a></li>
+          <li><a href="industries/pharmaceuticals.html">Pharmaceuticals</a></li>
+          <li><a href="industries/agro-processing-food.html">Agro Processing &amp; Food</a></li>
+          <li><a href="industries/wellness.html">Wellness</a></li>
+          <li><a href="#industries">View all →</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="blog/index.html">Insights &amp; Blog</a></li>
+          <li><a href="blog/crawl-walk-run-fly-framework.html">CWRF Framework Guide</a></li>
+          <li><a href="blog/signs-ready-for-agentic-ai.html">Agentic AI Readiness</a></li>
+          <li><a href="#" data-open-playbook>Export Readiness Playbook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Kinexus Systems. All rights reserved.</span>
+      <span>Chandigarh, India · kinexus.in</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── JAVASCRIPT ──────────────────────────────────────────────── -->
+<script src="assets/main.js"></script>
+<script>
+// ── Navbar scroll effect
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>40)
+})
+
+// ── Hero bar animation on load
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('.cwrf-fill').forEach(el=>{
+      el.style.width=el.dataset.width
+    })
+  },400)
+})
+
+// ── Scroll reveal
+const revealObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}
+  })
+},{threshold:0.12})
+document.querySelectorAll('.scroll-reveal').forEach(el=>revealObs.observe(el))
+
+// ── Stage cards toggle
+function toggleStage(el){
+  const wasActive=el.classList.contains('active')
+  document.querySelectorAll('.stage-card').forEach(c=>c.classList.remove('active'))
+  if(!wasActive)el.classList.add('active')
+}
+
+// ── Solutions tabs
+function switchTab(name){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===name))
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.toggle('active',p.id==='tab-'+name))
+}
+
+// ── Quiz
+const questions=[
+  {
+    q:"How do your supervisors report production output at the end of each shift?",
+    opts:["Verbally to me — nothing written","Paper register or WhatsApp message","Excel / Google Sheet updated by supervisor","Automatically from our ERP / MES system"],
+    scores:[0,1,2,3]
+  },
+  {
+    q:"When your most critical machine breaks down unexpectedly, how do you typically find out?",
+    opts:["Production stops and someone comes to tell me","Worker calls or WhatsApp message","Supervisor flags it in a daily report","An automated alert on my phone before it fails"],
+    scores:[0,1,2,3]
+  },
+  {
+    q:"How do you know your current raw material stock levels right now?",
+    opts:["I'd have to walk to the store and check","Ask the storekeeper — he maintains a register","Check a spreadsheet (might be 1-2 days old)","Live dashboard updated in real time"],
+    scores:[0,1,2,3]
+  },
+  {
+    q:"When a buyer payment is overdue, what happens?",
+    opts:["I personally call them when I remember","My accounts person manually follows up","We have a follow-up schedule tracked in Excel","Automated reminders sent based on invoice ageing"],
+    scores:[0,1,2,3]
+  },
+  {
+    q:"How does your team coordinate purchase requests, internal approvals, and vendor orders?",
+    opts:["I approve everything verbally or by phone","WhatsApp messages to me — I forward to vendors","Email or a basic system but nothing integrated","Fully digital workflow from request to PO to confirmation"],
+    scores:[0,1,2,3]
+  }
+]
+let qIdx=0,answers=[],quizDone=false
+
+function initQuiz(){
+  renderProgress()
+  renderQuestion()
+  renderNav()
+}
+
+function renderProgress(){
+  const p=document.getElementById('quizProgress')
+  p.innerHTML=questions.map((_,i)=>`<div class="quiz-dot${i<qIdx?' done':i===qIdx?' active':''}"></div>`).join('')
+}
+
+function renderQuestion(){
+  const q=questions[qIdx]
+  const sel=answers[qIdx]
+  document.getElementById('quizBody').innerHTML=`
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-options">
+      ${q.opts.map((o,i)=>`
+        <div class="quiz-opt${sel===i?' selected':''}" onclick="selectOpt(${i})">
+          <div class="quiz-opt-letter">${'ABCD'[i]}</div>
+          <div class="quiz-opt-text">${o}</div>
+        </div>
+      `).join('')}
+    </div>
+  `
+}
+
+function renderNav(){
+  const isLast=qIdx===questions.length-1
+  document.getElementById('quizCounter').textContent=`Question ${qIdx+1} of ${questions.length}`
+  const btn=document.getElementById('quizNext')
+  btn.textContent=isLast?'See My Result →':'Next Question →'
+  btn.disabled=answers[qIdx]===undefined
+  btn.style.opacity=answers[qIdx]===undefined?'.45':'1'
+}
+
+function selectOpt(i){
+  answers[qIdx]=i
+  renderQuestion()
+  renderNav()
+}
+
+function quizNext(){
+  if(answers[qIdx]===undefined)return
+  if(qIdx<questions.length-1){
+    qIdx++
+    renderProgress()
+    renderQuestion()
+    renderNav()
+  } else {
+    showResult()
+  }
+}
+
+function showResult(){
+  const total=answers.reduce((s,a,i)=>s+questions[i].scores[a],0)
+  let stage,cls,desc,cta
+  if(total<=4){
+    stage='CRAWL';cls='result-crawl'
+    desc="You're at the starting line — and that's exactly where many of the most successful transformations begin. Kinexus Sprint 1 will put live production data on your phone within 6 weeks, eliminating your daily information guesswork."
+    cta="Start with Sprint 1: Machine Sensors + Daily Report Bot"
+  } else if(total<=8){
+    stage='WALK';cls='result-walk'
+    desc="You have the basics in place but your systems aren't talking to each other yet. Sprint 1 will connect your 
