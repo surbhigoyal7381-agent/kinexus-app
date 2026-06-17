@@ -35,14 +35,24 @@ if (!$name || !$company || !$phone || !$sector) {
 require_once __DIR__ . '/db-config.php';
 
 try {
+    $dbHost = defined('DB_HOST') ? DB_HOST : 'localhost';
+    $dbPort = defined('DB_PORT') ? DB_PORT : '3306';
+    $dbCharset = defined('DB_CHARSET') ? DB_CHARSET : 'utf8mb4';
+    $dsn = 'mysql:host=' . $dbHost . ';port=' . $dbPort . ';dbname=' . DB_NAME . ';charset=' . $dbCharset;
+    $options = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ];
+
+    if (defined('DB_SSL') && DB_SSL && defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT')) {
+        $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+    }
+
     $pdo = new PDO(
-        'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4',
+        $dsn,
         DB_USER,
         DB_PASS,
-        [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]
+        $options
     );
 
     $pdo->exec("CREATE TABLE IF NOT EXISTS contact_submissions (

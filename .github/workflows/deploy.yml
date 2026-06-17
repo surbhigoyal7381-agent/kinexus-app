@@ -13,11 +13,39 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Generate db-config.php from secrets
+        env:
+          DB_HOST: ${{ secrets.DB_HOST || '103.212.121.63' }}
+          DB_PORT: ${{ secrets.DB_PORT || '3306' }}
+          DB_CHARSET: ${{ secrets.DB_CHARSET || 'utf8mb4' }}
+          DB_SSL: ${{ secrets.DB_SSL || 'true' }}
+          DB_NAME: ${{ secrets.DB_NAME || 'kinexus_1_website' }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASS: ${{ secrets.DB_PASS }}
         run: |
-          printf '<?php\ndefine("DB_HOST","localhost");\ndefine("DB_NAME","%s");\ndefine("DB_USER","%s");\ndefine("DB_PASS","%s");\n' \
-            '${{ secrets.DB_NAME }}' \
-            '${{ secrets.DB_USER }}' \
-            '${{ secrets.DB_PASS }}' > db-config.php
+          python3 <<'PY'
+          import os
+
+          def php_string(value):
+              return "'" + value.replace("\\", "\\\\").replace("'", "\\'") + "'"
+
+          def php_bool(value):
+              return "true" if value.strip().lower() in ("1", "true", "yes", "on") else "false"
+
+          config = {
+              "DB_HOST": os.environ["DB_HOST"],
+              "DB_PORT": os.environ["DB_PORT"],
+              "DB_NAME": os.environ["DB_NAME"],
+              "DB_USER": os.environ["DB_USER"],
+              "DB_PASS": os.environ["DB_PASS"],
+              "DB_CHARSET": os.environ["DB_CHARSET"],
+          }
+
+          with open("db-config.php", "w", encoding="utf-8") as file:
+              file.write("<?php\n")
+              for key, value in config.items():
+                  file.write(f"define('{key}', {php_string(value)});\n")
+              file.write(f"define('DB_SSL', {php_bool(os.environ['DB_SSL'])});\n")
+          PY
 
       - name: Deploy via FTP to MilesWeb
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
