@@ -1770,7 +1770,7 @@ function submitForm(){
   const btn=document.querySelector('#contactForm button')
   btn.disabled=true
   btn.textContent='Submitting…'
-  fetch('submit-contact.php',{
+  fetch('/submit-contact.php',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({source:'contact',name,company,phone,email,sector,size,challenge})

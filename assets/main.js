@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
           submitBtn.textContent = 'Sending...';
         }
 
-        return fetch('submit-contact.php', {
+        return fetch('/submit-contact.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var success = modal.querySelector('.modal-success');
             if (success) success.style.display = 'block';
 
-            var pdfPath = 'assets/export-readiness-playbook.pdf';
+            var pdfPath = '/assets/export-readiness-playbook.pdf';
             fetch(pdfPath, { method: 'HEAD' })
               .then(function (res) {
                 if (res.ok) {
@@ -138,12 +138,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             setTimeout(closeModal, 3500);
           })
-          .catch(function () {
+          .catch(function (error) {
             if (submitBtn) {
               submitBtn.disabled = false;
               submitBtn.textContent = 'Send Me the Playbook';
             }
-            alert('Sorry, we could not save your request. Please email hello@kinexus.in.');
+            alert((error && error.message) || 'Sorry, we could not save your request. Please email hello@kinexus.in.');
           });
 
       });

@@ -44,7 +44,78 @@ if ($source === 'playbook' && (!$name || !$email)) {
     exit;
 }
 
+$submission = [
+    'submitted_at' => gmdate('c'),
+    'source'       => $source,
+    'name'         => $name,
+    'company'      => $company,
+    'phone'        => $phone,
+    'email'        => $email,
+    'sector'       => $sector,
+    'employees'    => $size,
+    'challenge'    => $challenge,
+    'ip_address'   => $_SERVER['REMOTE_ADDR'] ?? '',
+    'user_agent'   => $_SERVER['HTTP_USER_AGENT'] ?? '',
+];
+
+function kxEnsureDataDirectory(): string
+{
+    $dir = __DIR__ . '/data';
+    if (!is_dir($dir) && !mkdir($dir, 0755, true)) {
+        throw new RuntimeException('Could not create submission data directory');
+    }
+
+    $htaccess = $dir . '/.htaccess';
+    if (!file_exists($htaccess)) {
+        file_put_contents($htaccess, "Require all denied\nDeny from all\n");
+    }
+
+    return $dir;
+}
+
+function kxAppendCsv(string $path, array $submission): void
+{
+    $isNew = !file_exists($path) || filesize($path) === 0;
+    $handle = fopen($path, 'ab');
+    if (!$handle) {
+        throw new RuntimeException('Could not open CSV submission file');
+    }
+
+    if (!flock($handle, LOCK_EX)) {
+        fclose($handle);
+        throw new RuntimeException('Could not lock CSV submission file');
+    }
+
+    if ($isNew) {
+        fputcsv($handle, array_keys($submission));
+    }
+    fputcsv($handle, array_values($submission));
+    fflush($handle);
+    flock($handle, LOCK_UN);
+    fclose($handle);
+}
+
+function kxAppendJsonl(string $path, array $submission): void
+{
+    $line = json_encode($submission, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . PHP_EOL;
+    if (file_put_contents($path, $line, FILE_APPEND | LOCK_EX) === false) {
+        throw new RuntimeException('Could not write JSONL submission file');
+    }
+}
+
+function kxStoreSubmissionFiles(array $submission): void
+{
+    $dir = kxEnsureDataDirectory();
+    kxAppendCsv($dir . '/leads.csv', $submission);
+    kxAppendJsonl($dir . '/leads.jsonl', $submission);
+}
+
+$fileStored = false;
+
 try {
+    kxStoreSubmissionFiles($submission);
+    $fileStored = true;
+
     if (!is_readable(__DIR__ . '/db-config.php')) {
         throw new RuntimeException('Database config file is missing');
     }
@@ -152,6 +223,15 @@ try {
 
 } catch (Throwable $e) {
     error_log('Kinexus contact form DB error: ' . $e->getMessage());
-    http_response_code(500);
-    echo json_encode(['ok' => false, 'error' => 'Server error. Please try again or email hello@kinexus.in']);
+    try {
+        if (!$fileStored) {
+            kxStoreSubmissionFiles($submission);
+            $fileStored = true;
+        }
+        echo json_encode(['ok' => true, 'stored' => 'file']);
+    } catch (Throwable $fileError) {
+        error_log('Kinexus contact form file fallback error: ' . $fileError->getMessage());
+        http_response_code(500);
+        echo json_encode(['ok' => false, 'error' => 'Server error. Please try again or email hello@kinexus.in']);
+    }
 }
