@@ -89,35 +89,63 @@ document.addEventListener('DOMContentLoaded', function () {
         var name = document.getElementById('pbName').value.trim();
         var email = document.getElementById('pbEmail').value.trim();
         var company = document.getElementById('pbCompany').value.trim();
+        var submitBtn = form.querySelector('button[type="submit"]');
         if (!name || !email) return;
 
-        if (typeof gtag === 'function') {
-          gtag('event', 'generate_lead', {
-            event_category: 'playbook_download',
-            event_label: company || 'unspecified'
-          });
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
         }
 
-        form.style.display = 'none';
-        var success = modal.querySelector('.modal-success');
-        if (success) success.style.display = 'block';
-
-        /* Trigger the playbook download — verify file exists first */
-        var pdfPath = 'assets/export-readiness-playbook.pdf';
-        fetch(pdfPath, { method: 'HEAD' })
-          .then(function (res) {
-            if (res.ok) {
-              var link = document.createElement('a');
-              link.href = pdfPath;
-              link.download = 'Kinexus-Export-Readiness-Playbook.pdf';
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-            }
+        return fetch('submit-contact.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            source: 'playbook',
+            name: name,
+            email: email,
+            company: company
           })
-          .catch(function () { /* file not available — email delivery only */ });
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (!data.ok) throw new Error(data.error || 'Submission failed');
 
-        setTimeout(closeModal, 3500);
+            if (typeof gtag === 'function') {
+              gtag('event', 'generate_lead', {
+                event_category: 'playbook_download',
+                event_label: company || 'unspecified'
+              });
+            }
+
+            form.style.display = 'none';
+            var success = modal.querySelector('.modal-success');
+            if (success) success.style.display = 'block';
+
+            var pdfPath = 'assets/export-readiness-playbook.pdf';
+            fetch(pdfPath, { method: 'HEAD' })
+              .then(function (res) {
+                if (res.ok) {
+                  var link = document.createElement('a');
+                  link.href = pdfPath;
+                  link.download = 'Kinexus-Export-Readiness-Playbook.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }
+              })
+              .catch(function () { /* file not available - email delivery only */ });
+
+            setTimeout(closeModal, 3500);
+          })
+          .catch(function () {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Send Me the Playbook';
+            }
+            alert('Sorry, we could not save your request. Please email hello@kinexus.in.');
+          });
+
       });
     }
   }

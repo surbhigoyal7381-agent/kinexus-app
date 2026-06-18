@@ -16,10 +16,10 @@ jobs:
         env:
           DB_HOST: ${{ secrets.DB_HOST || '103.212.121.63' }}
           DB_PORT: ${{ secrets.DB_PORT || '3306' }}
-          DB_CHARSET: ${{ secrets.DB_CHARSET || 'utf8mb4' }}
+          DB_CHARSET: ${{ secrets.DB_CHARSET || 'utf8mb4_unicode_ci' }}
           DB_SSL: ${{ secrets.DB_SSL || 'true' }}
           DB_NAME: ${{ secrets.DB_NAME || 'kinexus_1_website' }}
-          DB_USER: ${{ secrets.DB_USER }}
+          DB_USER: ${{ secrets.DB_USER || 'kinexus_1_admin' }}
           DB_PASS: ${{ secrets.DB_PASS }}
         run: |
           python3 <<'PY'

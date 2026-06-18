@@ -1773,7 +1773,7 @@ function submitForm(){
   fetch('submit-contact.php',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({name,company,phone,email,sector,size,challenge})
+    body:JSON.stringify({source:'contact',name,company,phone,email,sector,size,challenge})
   })
   .then(r=>r.json())
   .then(data=>{
