@@ -102,13 +102,20 @@ document.addEventListener('DOMContentLoaded', function () {
         var success = modal.querySelector('.modal-success');
         if (success) success.style.display = 'block';
 
-        /* Trigger the playbook download */
-        var link = document.createElement('a');
-        link.href = '/export-readiness-playbook.pdf';
-        link.download = 'Kinexus-Export-Readiness-Playbook.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        /* Trigger the playbook download — verify file exists first */
+        var pdfPath = 'assets/export-readiness-playbook.pdf';
+        fetch(pdfPath, { method: 'HEAD' })
+          .then(function (res) {
+            if (res.ok) {
+              var link = document.createElement('a');
+              link.href = pdfPath;
+              link.download = 'Kinexus-Export-Readiness-Playbook.pdf';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }
+          })
+          .catch(function () { /* file not available — email delivery only */ });
 
         setTimeout(closeModal, 3500);
       });
