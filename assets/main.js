@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
           openModal();
           sessionStorage.setItem('kx_playbook_seen', '1');
         }
-      }, 25000);
+      }, 6000);
     }
 
     /* Form submit */
