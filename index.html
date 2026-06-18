@@ -57,7 +57,12 @@ button{cursor:pointer;border:none;font-family:inherit}
 
 /* ── CSS VARIABLES ──────────────────────────────────────────────── */
 :root{
-  --navy:#0e1640;
+  /* fixed navbar height (reduced further by ~10%) */
+  --nav-height:80px;
+  /* nav background — match logo backdrop */
+  --nav-bg: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  
+  --navy:#182461;
   --navy-mid:#16275a;
   --steel:#2733a0;
   --steel-light:#3585d4;
@@ -115,31 +120,34 @@ h3{font-size:clamp(1.1rem,2vw,1.4rem)}
 .btn-sm{padding:.5rem 1.25rem;font-size:.85rem}
 
 /* ── NAVBAR ─────────────────────────────────────────────────────── */
-#navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08);transition:box-shadow .3s;overflow:hidden}
-#navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.3)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:.75rem;flex-wrap:nowrap}
+#navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:#ffffff;border-bottom:1px solid rgba(0,0,0,.08);transition:box-shadow .3s,background .3s;overflow:visible}
+#navbar.scrolled{background:#ffffff;box-shadow:0 2px 16px rgba(0,0,0,.1)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--nav-height);gap:.75rem;flex-wrap:nowrap}
 .nav-logo{display:flex;align-items:center;gap:.65rem;flex-shrink:0;text-decoration:none}
-.logo-mark{width:112px;height:48px;background:transparent;border-radius:0;padding:0;display:flex;align-items:center;justify-content:center;box-shadow:none;flex-shrink:0}.logo-mark img{width:100%;height:100%;object-fit:contain;display:block}
+.logo-mark{width:160px;height:96px;background:transparent;border-radius:0;padding:0;display:flex;align-items:center;justify-content:center;box-shadow:none;flex-shrink:0;position:relative}
+.logo-mark::before{content:'';position:absolute;inset:-6px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));pointer-events:none;z-index:0}
+.logo-mark img{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1}
 .logo-text{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);letter-spacing:.02em;line-height:1}
 .nav-logo .logo-text{display:none}
 .logo-sub{display:none!important}
 .nav-links{display:flex;align-items:center;gap:1rem;flex:1;justify-content:flex-end;flex-wrap:nowrap}
-.nav-links a{color:rgba(255,255,255,.7);font-size:.8rem;font-weight:500;letter-spacing:.01em;white-space:nowrap;transition:color .2s;position:relative;padding-bottom:2px}
+.nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.01em;white-space:nowrap;transition:color .2s;position:relative;padding-bottom:2px}
+.nav-links a:not(.btn){color:#2733a0}
 .nav-links a:not(.btn)::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:var(--steel-light);border-radius:1px;transform:scaleX(0);transition:transform .22s cubic-bezier(.2,.8,.2,1);transform-origin:left}
-.nav-links a:not(.btn):hover{color:var(--white)}
+.nav-links a:not(.btn):hover{color:#182461}
 .nav-links a:not(.btn):hover::after{transform:scaleX(1)}
-.nav-cta-wrap{display:flex;align-items:center;margin-left:.25rem;padding-left:1rem;border-left:1px solid rgba(255,255,255,.14);flex-shrink:0}
+.nav-cta-wrap{display:flex;align-items:center;margin-left:.25rem;padding-left:1rem;border-left:1px solid rgba(39,51,160,.18);flex-shrink:0}
 .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;background:transparent;padding:4px;flex-shrink:0}
-.nav-mobile-toggle span{display:block;width:22px;height:2px;background:var(--white);transition:all .3s;border-radius:2px}
+.nav-mobile-toggle span{display:block;width:22px;height:2px;background:#2733a0;transition:all .3s;border-radius:2px}
 @media(max-width:1080px){.nav-links a:not(.btn){display:none}.nav-cta-wrap{margin-left:0;padding-left:0;border-left:none}}
 @media(max-width:768px){.nav-links{display:none}.nav-mobile-toggle{display:flex}}
-.nav-links.open{display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:var(--navy);padding:1.5rem;border-top:1px solid rgba(255,255,255,.08);gap:1rem;z-index:99;max-height:calc(100vh - 64px);overflow-y:auto}
+.nav-links.open{display:flex;flex-direction:column;position:fixed;top:var(--nav-height);left:0;right:0;background:#ffffff;padding:1.5rem;border-top:1px solid rgba(0,0,0,.08);gap:1rem;z-index:99;max-height:calc(100vh - var(--nav-height));overflow-y:auto}
 .nav-links.open a:not(.btn){display:block}
 .nav-links.open .nav-cta-wrap{margin-left:0;padding-left:0;border-left:none}
-.nav-links.open a{color:rgba(255,255,255,.82);font-size:.95rem}
+.nav-links.open a:not(.btn){color:#2733a0;font-size:.95rem}
 
 /* ── HERO ───────────────────────────────────────────────────────── */
-#hero{background:linear-gradient(135deg,var(--navy) 0%,#0e2340 55%,#142d52 100%);padding:5rem 0 5rem;position:relative;overflow:hidden;margin-top:64px}
+#hero{background:linear-gradient(135deg,var(--navy) 0%,#0e2340 55%,#142d52 100%);padding:5rem 0 5rem;position:relative;overflow:hidden;margin-top:var(--nav-height)}
 #hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(47,128,214,.15);border:1px solid rgba(47,128,214,.3);color:var(--orange-light);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;border-radius:var(--radius);margin-bottom:1.5rem}
@@ -439,6 +447,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.65);padding:3rem 0 1.5rem}
 
 /* ── MOBILE RESPONSIVENESS ──────────────────────────────────────── */
 @media(max-width:768px){
+  :root{--nav-height:64px}
   /* Section spacing */
   .section{padding:2.75rem 0}
   .section-sm{padding:1.5rem 0}
@@ -528,7 +537,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.65);padding:3rem 0 1.5rem}
 <!-- ── NAVBAR ─────────────────────────────────────────────────── -->
 <nav id="navbar">
   <div class="container nav-inner">
-    <a href="#hero" class="nav-logo">
+    <a href="#" class="nav-logo">
       <div class="logo-mark"><img src="logo.png" alt="Kinexus Systems logo"></div>
       <div>
         <span class="logo-text">Kinexus Systems</span>
