@@ -131,7 +131,7 @@ h3{font-size:clamp(1.1rem,2vw,1.4rem)}
 .nav-logo .logo-text{display:none}
 .logo-sub{display:none!important}
 .nav-links{display:flex;align-items:center;gap:1rem;flex:1;justify-content:flex-end;flex-wrap:nowrap}
-.nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.01em;white-space:nowrap;transition:color .2s;position:relative;padding-bottom:2px}
+.nav-links a{font-size:.92rem;font-weight:500;letter-spacing:.01em;white-space:nowrap;transition:color .2s;position:relative;padding-bottom:2px}
 .nav-links a:not(.btn){color:#2733a0}
 .nav-links a:not(.btn)::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1.5px;background:var(--steel-light);border-radius:1px;transform:scaleX(0);transition:transform .22s cubic-bezier(.2,.8,.2,1);transform-origin:left}
 .nav-links a:not(.btn):hover{color:#182461}
@@ -447,7 +447,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.65);padding:3rem 0 1.5rem}
 
 /* ── MOBILE RESPONSIVENESS ──────────────────────────────────────── */
 @media(max-width:768px){
-  :root{--nav-height:64px}
+  :root{--nav-height:80px}
+  .logo-mark{width:128px;height:77px}
   /* Section spacing */
   .section{padding:2.75rem 0}
   .section-sm{padding:1.5rem 0}
