@@ -11,10 +11,6 @@
 
 header('Content-Type: application/json');
 
-// Temporary, token-gated diagnostics: append ?diag=kx-diag-2026 to surface the
-// DB error detail when a submission falls back to file storage.
-$kxDebug = (($_GET['diag'] ?? '') === 'kx-diag-2026');
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['ok' => false, 'error' => 'Method not allowed']);
@@ -201,11 +197,7 @@ try {
             $fileStored = true;
         }
         // Lead is safely on disk — report success so the visitor flow continues.
-        $resp = ['ok' => true, 'stored' => 'file'];
-        if ($kxDebug) {
-            $resp['debug'] = $e->getMessage();
-        }
-        echo json_encode($resp);
+        echo json_encode(['ok' => true, 'stored' => 'file']);
     } catch (Throwable $fileError) {
         error_log('Kinexus lead capture file fallback error: ' . $fileError->getMessage());
         http_response_code(500);
