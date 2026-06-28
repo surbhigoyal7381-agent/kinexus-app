@@ -11,6 +11,10 @@
 
 header('Content-Type: application/json');
 
+// Temporary, token-gated diagnostics: append ?diag=kx-diag-2026 to surface the
+// DB error detail when a submission falls back to file storage.
+$kxDebug = (($_GET['diag'] ?? '') === 'kx-diag-2026');
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['ok' => false, 'error' => 'Method not allowed']);
@@ -136,7 +140,10 @@ try {
     $dbHost    = defined('DB_HOST')    ? DB_HOST    : 'localhost';
     $dbPort    = defined('DB_PORT')    ? DB_PORT    : '3306';
     $dbCharset = defined('DB_CHARSET') ? DB_CHARSET : 'utf8mb4';
-    $dsn = 'mysql:host=' . $dbHost . ';port=' . $dbPort . ';dbname=' . DB_NAME . ';charset=' . $dbCharset;
+    // DB_CHARSET may carry a full collation (e.g. "utf8mb4_unicode_ci"); the PDO
+    // DSN charset parameter needs the charset name only, so take the leading token.
+    $dsnCharset = explode('_', $dbCharset)[0] ?: 'utf8mb4';
+    $dsn = 'mysql:host=' . $dbHost . ';port=' . $dbPort . ';dbname=' . DB_NAME . ';charset=' . $dsnCharset;
 
     $options = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -194,7 +201,11 @@ try {
             $fileStored = true;
         }
         // Lead is safely on disk — report success so the visitor flow continues.
-        echo json_encode(['ok' => true, 'stored' => 'file']);
+        $resp = ['ok' => true, 'stored' => 'file'];
+        if ($kxDebug) {
+            $resp['debug'] = $e->getMessage();
+        }
+        echo json_encode($resp);
     } catch (Throwable $fileError) {
         error_log('Kinexus lead capture file fallback error: ' . $fileError->getMessage());
         http_response_code(500);
