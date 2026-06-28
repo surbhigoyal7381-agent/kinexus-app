@@ -1104,8 +1104,8 @@ footer .ally2{font-size:13px;color:var(--cyan-soft);}footer .ally2 b{color:#fff;
         <div class="field"><label>Your name *</label><input type="text" id="f_name" placeholder="Full name"></div>
         <div class="field"><label>Company *</label><input type="text" id="f_co" placeholder="Company name"></div>
         <div class="field"><label>Phone *</label><input type="tel" id="f_ph" placeholder="+91"></div>
-        <div class="field"><label>Sector</label><select><option>Wellness / Ayurveda / Nutraceutical</option><option>Engineering / Auto Ancillaries</option><option>Pharmaceuticals</option><option>Hosiery / Textiles</option><option>Agro Processing / Food</option><option>Sports Goods</option><option>Other manufacturing</option></select></div>
-        <div class="field"><label>Biggest challenge right now</label><textarea rows="2" placeholder="Optional"></textarea></div>
+        <div class="field"><label>Sector</label><select id="f_sector"><option>Wellness / Ayurveda / Nutraceutical</option><option>Engineering / Auto Ancillaries</option><option>Pharmaceuticals</option><option>Hosiery / Textiles</option><option>Agro Processing / Food</option><option>Sports Goods</option><option>Other manufacturing</option></select></div>
+        <div class="field"><label>Biggest challenge right now</label><textarea id="f_challenge" rows="2" placeholder="Optional"></textarea></div>
         <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitForm()">Book my diagnostic →</button>
       </div>
       <div class="ok" id="formOk"><div class="okmk">✓</div><h3>Request received</h3><p class="fsub">A Kinexus consultant will reach out within one business day to schedule your assessment.</p></div>
@@ -1141,13 +1141,13 @@ footer .ally2{font-size:13px;color:var(--cyan-soft);}footer .ally2 b{color:#fff;
     <div class="m-right">
       <div id="modalForm">
         <h3 style="font-size:20px;margin-bottom:14px">Get your free copy</h3>
-        <div class="field"><label>Full name</label><input type="text" placeholder="Name"></div>
-        <div class="field"><label>Work email</label><input type="email" placeholder="you@company.com"></div>
-        <div class="field"><label>Company</label><input type="text" placeholder="Company"></div>
+        <div class="field"><label>Full name</label><input type="text" id="m_name" placeholder="Name"></div>
+        <div class="field"><label>Work email</label><input type="email" id="m_email" placeholder="you@company.com"></div>
+        <div class="field"><label>Company</label><input type="text" id="m_co" placeholder="Company"></div>
         <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitModal()">Send me the playbook →</button>
         <p style="font-size:11.5px;color:var(--m-dark);margin-top:12px;text-align:center">No spam. Unsubscribe anytime.</p>
       </div>
-      <div class="ok" id="modalOk" style="padding:30px 0"><div class="okmk">✓</div><h3 style="font-size:19px">You're all set!</h3><p class="fsub">Your copy is on its way to your inbox.</p></div>
+      <div class="ok" id="modalOk" style="padding:30px 0"><div class="okmk">✓</div><h3 style="font-size:19px">You're all set!</h3><p class="fsub">Your download should begin automatically. If it doesn't, <a id="playbookDl" href="Kinexus_Cosmo_Export_Readiness_Playbook.pdf" download style="color:var(--cyan-600);font-weight:600">click here to download the playbook</a>.</p></div>
     </div>
   </div>
 </div>
@@ -1168,10 +1168,30 @@ function renderQ(){var item=QZ[qi];document.getElementById('qstep').textContent=
 function showResult(){document.getElementById('quizBody').style.display='none';document.getElementById('qresult').classList.add('show');var best='crawl',max=-1;for(var k in score){if(score[k]>max){max=score[k];best=k;}}var map={crawl:["Crawl","You're running on memory and paper. The highest-value first move is making the invisible visible — a backbone that captures what's actually happening, with minimal disruption."],walk:["Walk","Your data exists but lives in silos no one fully trusts. The fastest win is unifying it into one source of truth — without replacing your Tally or ERP."],run:["Run","Your systems are connected, but people still do the analysis. You're ready for an intelligence layer that surfaces insights and starts taking pre-approved actions."],fly:["Fly","You operate at a level few in the region have reached. The frontier for you is agentic, export-grade automation — and capturing the FTA window before others catch up."]};document.getElementById('rstage').textContent=map[best][0];document.getElementById('rdesc').textContent=map[best][1];document.getElementById('qfill').style.width='100%';}
 function resetQuiz(){qi=0;score={crawl:0,walk:0,run:0,fly:0};document.getElementById('qresult').classList.remove('show');document.getElementById('quizBody').style.display='block';renderQ();}
 renderQ();
-function submitForm(){var n=document.getElementById('f_name').value,c=document.getElementById('f_co').value,p=document.getElementById('f_ph').value;if(!n||!c||!p){alert('Please fill in your name, company and phone.');return;}document.getElementById('formBody').style.display='none';document.getElementById('formOk').classList.add('show');}
+var PLAYBOOK_PDF='Kinexus_Cosmo_Export_Readiness_Playbook.pdf';
+function kxVal(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+function postLead(payload){
+  return fetch('submit-lead.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .then(function(r){return r.json().catch(function(){return {ok:r.ok};});})
+    .catch(function(){return {ok:false,network:true};});
+}
+function downloadPlaybook(){var a=document.createElement('a');a.href=PLAYBOOK_PDF;a.setAttribute('download','Kinexus-Cosmo-Export-Readiness-Playbook.pdf');document.body.appendChild(a);a.click();document.body.removeChild(a);}
+function submitForm(){
+  var n=kxVal('f_name'),c=kxVal('f_co'),p=kxVal('f_ph');
+  if(!n||!c||!p){alert('Please fill in your name, company and phone.');return;}
+  var btn=document.querySelector('#formBody button');if(btn){btn.disabled=true;btn.textContent='Sending…';}
+  postLead({source:'contact',name:n,company:c,phone:p,sector:kxVal('f_sector'),challenge:kxVal('f_challenge')})
+    .then(function(){document.getElementById('formBody').style.display='none';document.getElementById('formOk').classList.add('show');});
+}
 function openModal(){document.getElementById('modal').classList.add('show');}
 function closeModal(){document.getElementById('modal').classList.remove('show');}
-function submitModal(){document.getElementById('modalForm').style.display='none';document.getElementById('modalOk').classList.add('show');}
+function submitModal(){
+  var n=kxVal('m_name'),e=kxVal('m_email');
+  if(!n||!e){alert('Please enter your name and work email.');return;}
+  var btn=document.querySelector('#modalForm button');if(btn){btn.disabled=true;btn.textContent='Sending…';}
+  postLead({source:'playbook',name:n,email:e,company:kxVal('m_co')})
+    .then(function(){document.getElementById('modalForm').style.display='none';document.getElementById('modalOk').classList.add('show');downloadPlaybook();});
+}
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 </script>
 </body>
