@@ -11,6 +11,11 @@
 
 header('Content-Type: application/json');
 
+// Where new-lead notification emails are sent.
+const NOTIFY_EMAIL = 'surbhi.goyal@kinexus.co.in';
+// From address must be on the site domain so the host mail server accepts it.
+const NOTIFY_FROM  = 'noreply@kinexus.co.in';
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['ok' => false, 'error' => 'Method not allowed']);
@@ -114,12 +119,62 @@ function kxStoreSubmissionFiles(array $submission): void
     kxAppendJsonl($dir . '/leads.jsonl', $submission);
 }
 
+/**
+ * Email a new-lead notification. Never throws — a failed send must not break
+ * lead capture; failures are logged for follow-up.
+ */
+function kxNotify(array $submission): void
+{
+    try {
+        $kind = $submission['source'] === 'playbook' ? 'Playbook' : 'Contact';
+        $subject = 'New ' . $kind . ' lead: ' . $submission['name']
+            . ($submission['company'] !== '' ? ' (' . $submission['company'] . ')' : '');
+
+        $labels = [
+            'source'       => 'Source',
+            'name'         => 'Name',
+            'company'      => 'Company',
+            'phone'        => 'Phone',
+            'email'        => 'Email',
+            'sector'       => 'Sector',
+            'employees'    => 'Employees',
+            'challenge'    => 'Biggest challenge',
+            'submitted_at' => 'Submitted at (UTC)',
+            'ip_address'   => 'IP address',
+        ];
+        $lines = ['A new lead was captured on kinexus.co.in:', ''];
+        foreach ($labels as $key => $label) {
+            $value = trim((string)($submission[$key] ?? ''));
+            if ($value !== '') {
+                $lines[] = $label . ': ' . $value;
+            }
+        }
+        $body = implode("\n", $lines) . "\n";
+
+        $replyTo = $submission['email'] !== '' ? $submission['email'] : NOTIFY_FROM;
+        $headers = 'From: Kinexus Website <' . NOTIFY_FROM . ">\r\n"
+            . 'Reply-To: ' . $replyTo . "\r\n"
+            . "Content-Type: text/plain; charset=utf-8\r\n";
+
+        if (!@mail(NOTIFY_EMAIL, $subject, $body, $headers)) {
+            error_log('Kinexus lead notification mail() returned false for ' . $submission['email']);
+        }
+    } catch (Throwable $mailError) {
+        error_log('Kinexus lead notification error: ' . $mailError->getMessage());
+    }
+}
+
 $fileStored = false;
+$notified   = false;
 
 try {
     // Durable fallback first: capture the lead to disk before touching the DB.
     kxStoreSubmissionFiles($submission);
     $fileStored = true;
+
+    // Notify once the lead is safely captured, independent of the DB outcome.
+    kxNotify($submission);
+    $notified = true;
 
     if (!is_readable(__DIR__ . '/db-config.php')) {
         throw new RuntimeException('Database config file is missing');
@@ -195,6 +250,10 @@ try {
         if (!$fileStored) {
             kxStoreSubmissionFiles($submission);
             $fileStored = true;
+        }
+        if (!$notified) {
+            kxNotify($submission);
+            $notified = true;
         }
         // Lead is safely on disk — report success so the visitor flow continues.
         echo json_encode(['ok' => true, 'stored' => 'file']);
