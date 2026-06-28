@@ -181,7 +181,8 @@ section{padding:96px 0;position:relative;}
 .sector .s-link{margin-top:16px;font-family:"Space Grotesk";font-weight:600;font-size:14px;color:var(--cyan);display:inline-flex;gap:8px;}
 .also{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
 .also .al{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--m-light);}
-.chip{border:1px solid var(--line-soft);background:rgba(255,255,255,.04);border-radius:30px;padding:8px 16px;font-size:13.5px;font-weight:500;color:var(--t-light);}
+.chip{border:1px solid var(--line-soft);background:rgba(255,255,255,.04);border-radius:30px;padding:8px 16px;font-size:13.5px;font-weight:500;color:var(--t-light);transition:.2s;}
+a.chip:hover{border-color:var(--cyan);color:var(--cyan);}
 
 /* QUIZ */
 .quiz{background:linear-gradient(160deg,var(--navy),var(--ink));border:1px solid var(--line-soft);border-radius:12px;padding:44px;max-width:760px;margin:0 auto;}
@@ -827,7 +828,7 @@ footer .ally2{font-size:13px;color:var(--cyan-soft);}footer .ally2 b{color:#fff;
           <h3>Wellness &amp; Natural Products</h3>
           <div class="s-geo">Ayurveda · Nutraceuticals · Herbal personal care</div>
           <p>India's fastest-rising FTA export, and the widest gap between global demand and Indian penetration. We handle GMP/AYUSH documentation, traceability and the FDA/labelling maze — with Cosmo International opening GCC &amp; global channels.</p>
-          <span class="s-link">Explore the wellness journey →</span>
+          <a class="s-link" href="wellness.html">Explore the wellness journey →</a>
         </div>
       </div>
       <div class="sector rv">
@@ -886,13 +887,13 @@ footer .ally2{font-size:13px;color:var(--cyan-soft);}footer .ally2 b{color:#fff;
           <h3>Engineering &amp; Auto Ancillaries</h3>
           <div class="s-geo">Mohali · Derabassi · Ludhiana</div>
           <p>India's largest export category and our fastest path to a visible win. JIT scheduling, SPC quality and OEM delivery dashboards — built to clear UK/EU FTA buyer standards from the first shipment.</p>
-          <span class="s-link">Explore the engineering journey →</span>
+          <a class="s-link" href="engineering.html">Explore the engineering journey →</a>
         </div>
       </div>
     </div>
     <div class="also rv">
       <span class="al">Also serve, on the same engine:</span>
-      <span class="chip">Pharmaceuticals · Baddi</span><span class="chip">Hosiery &amp; Textiles · Ludhiana</span><span class="chip">Agro &amp; Food · Karnal</span><span class="chip">Sports Goods · Jalandhar</span><span class="chip">Scientific Instruments · Ambala</span>
+      <a class="chip" href="pharma.html">Pharmaceuticals · Baddi</a><a class="chip" href="textiles.html">Hosiery &amp; Textiles · Ludhiana</a><a class="chip" href="agro.html">Agro &amp; Food · Karnal</a><a class="chip" href="sports.html">Sports Goods · Jalandhar</a><a class="chip" href="instruments.html">Scientific Instruments · Ambala</a>
     </div>
   </div>
 </section>

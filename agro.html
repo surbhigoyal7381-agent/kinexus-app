@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agro &amp; Food — Export Journey | Kinexus × Cosmo</title>
+<meta name="description" content="Processed foods, basmati, spices and agro products from Karnal and the North India agri-belt — where the UK deal slashes tariffs of up to 70%, but where residue limits, phytosanitary rules and traceability decide whether your shipment clears or comes back.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+:root{
+ --ink:#081826;--navy:#0C2A47;--navy-2:#0F3158;--cyan:#27C9C9;--cyan-d:#0F9C9C;--cyan-soft:#7FE0DE;
+ --blue:#1E5FA8;--blue-soft:#3E84D6;--amber:#E8A23D;--rust:#D8654A;
+ --surface:#EEF3F8;--surface-2:#E3EBF4;--card:#FFFFFF;--line:#D7E0EC;--line-soft:rgba(255,255,255,.10);--line-dk:#234363;
+ --t:#0E2236;--m:#5A6E84;--t-light:#E9F1FB;--m-light:#A6BAD3;--primary-svg-color:#13A7A7;--maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Manrope',system-ui,sans-serif;color:var(--t);background:var(--card);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:600;line-height:1.12;color:var(--ink);letter-spacing:-.01em;}
+a{color:inherit;text-decoration:none;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+section{padding:74px 0;}
+.on-dark{background:var(--ink);color:var(--t-light);}
+.on-navy{background:linear-gradient(165deg,var(--navy),var(--ink));color:var(--t-light);}
+.on-dark h2,.on-dark h3,.on-dark h4,.on-navy h2,.on-navy h3,.on-navy h4{color:#fff;}
+.eyebrow{font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan-d);display:inline-flex;align-items:center;gap:9px;margin-bottom:14px;}
+.on-dark .eyebrow,.on-navy .eyebrow{color:var(--cyan-soft);}
+.eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.6;}
+.sec-head{max-width:760px;margin-bottom:34px;}
+.sec-head h2{font-size:33px;margin-bottom:12px;}
+.sec-head .sub{font-size:17px;color:var(--m);}
+.on-dark .sec-head .sub,.on-navy .sec-head .sub{color:var(--m-light);}
+/* announce */
+.announce{background:var(--ink);color:var(--cyan-soft);text-align:center;font-size:12.5px;letter-spacing:.02em;padding:9px 16px;border-bottom:1px solid var(--line-dk);}
+.announce b{color:#fff;}
+.announce .dot{color:var(--amber);margin:0 8px;}
+/* header */
+header{position:sticky;top:0;z-index:60;background:rgba(8,24,38,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-dk);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand .logo{height:30px;width:auto;display:block;}
+.brand .fallback{width:30px;height:33px;}
+.brand b{font-family:'Space Grotesk';font-weight:700;color:#fff;font-size:17px;letter-spacing:-.01em;}
+.navlinks{display:flex;align-items:center;gap:26px;}
+.navlinks a{color:var(--m-light);font-size:14px;font-weight:500;}
+.navlinks a:hover{color:#fff;}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk';font-weight:600;font-size:15px;padding:12px 22px;border-radius:7px;cursor:pointer;transition:.2s;border:1px solid transparent;}
+.btn-primary{background:var(--cyan);color:#06201f;}
+.btn-primary:hover{background:var(--cyan-soft);}
+.btn-ghost{background:transparent;border-color:var(--line-dk);color:#fff;}
+.btn-ghost:hover{border-color:var(--cyan);}
+.btn-sm{padding:9px 16px;font-size:13.5px;}
+.ar{transition:.2s;}.btn:hover .ar{transform:translateX(3px);}
+/* hero */
+.hero{padding:64px 0 70px;}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:46px;align-items:center;}
+.crumb{font-family:'IBM Plex Mono';font-size:12px;color:var(--m-light);margin-bottom:18px;}
+.crumb a{color:var(--cyan-soft);}
+.hero h1{font-size:46px;line-height:1.04;color:#fff;margin-bottom:18px;}
+.hero h1 .c{color:var(--cyan);}
+.hero p.sub{font-size:18px;color:#C4D6EC;max-width:560px;margin-bottom:26px;}
+.hero .cta-row{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:26px;}
+.hpills{display:flex;gap:14px;flex-wrap:wrap;}
+.hpill{background:rgba(255,255,255,.04);border:1px solid var(--line-dk);border-radius:9px;padding:12px 16px;}
+.hpill .v{font-family:'Space Grotesk';font-weight:700;font-size:22px;color:var(--cyan);}
+.hpill .l{font-size:11.5px;color:var(--m-light);line-height:1.3;display:block;margin-top:2px;}
+.uillo{background:#F4F7FB;border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:26px;box-shadow:0 50px 90px -50px rgba(0,0,0,.7);--primary-svg-color:#13A7A7;}
+.uillo svg{display:block;width:100%;height:auto;max-height:330px;}
+.badge{display:inline-block;font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:16px;}
+.badge.hero{background:rgba(39,201,201,.14);color:var(--cyan-soft);border:1px solid rgba(39,201,201,.4);}
+/* cards / grids */
+.grid{display:grid;gap:18px;}
+.g2{grid-template-columns:1fr 1fr;}.g3{grid-template-columns:1fr 1fr 1fr;}.g4{grid-template-columns:repeat(4,1fr);}
+.card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:22px;}
+.on-dark .card,.on-navy .card{background:rgba(255,255,255,.03);border-color:var(--line-soft);}
+.card .cn{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-d);}
+.on-dark .card .cn,.on-navy .card .cn{color:var(--cyan-soft);}
+.card h4{font-size:18px;margin:8px 0 7px;}
+.card p{font-size:14.5px;color:var(--m);}
+.on-dark .card p,.on-navy .card p{color:var(--m-light);}
+/* stat band */
+.statband{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-dk);border:1px solid var(--line-dk);border-radius:12px;overflow:hidden;}
+.statband .st{background:var(--ink);padding:26px 18px;text-align:center;}
+.statband .sv{font-family:'Space Grotesk';font-weight:700;font-size:30px;color:var(--cyan);}
+.statband .sl{font-size:12.5px;color:var(--m-light);margin-top:5px;line-height:1.35;}
+/* table */
+table.tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:6px;}
+table.tbl th{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:13.5px;text-align:left;padding:11px 14px;}
+table.tbl td{border:1px solid var(--line);padding:11px 14px;vertical-align:top;background:#fff;color:var(--t);}
+table.tbl tr:nth-child(even) td{background:var(--surface);}
+table.tbl td.k{font-family:'IBM Plex Mono';font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;}
+/* checklist */
+.check{display:flex;gap:13px;padding:12px 0;border-bottom:1px solid var(--line);}
+.check:last-child{border-bottom:0;}
+.check .ck{width:16px;height:16px;border:2px solid var(--cyan-d);border-radius:4px;flex-shrink:0;margin-top:3px;}
+.check .ct{font-size:15px;}
+.check .ct b{font-family:'Space Grotesk';color:var(--ink);}
+.check .ct span{color:var(--m);}
+/* journey */
+.journey{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.jstep{background:rgba(255,255,255,.03);border:1px solid var(--line-soft);border-top:3px solid var(--cyan);border-radius:10px;padding:20px 18px;}
+.jstep.s2{border-top-color:var(--blue-soft);}
+.jstep.s3{border-top-color:var(--amber);}
+.jstep.s4{border-top-color:var(--cyan-soft);}
+.jstep .jn{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan-soft);}
+.jstep h4{font-size:17px;margin:7px 0 8px;color:#fff;}
+.jstep p{font-size:13.5px;color:var(--m-light);}
+/* leaks */
+.leakc{background:#fff;border:1px solid var(--line);border-left:3px solid var(--rust);border-radius:0 9px 9px 0;padding:18px 20px;}
+.leakc h4{font-size:16.5px;margin-bottom:6px;}
+.leakc p{font-size:14px;color:var(--m);}
+/* callout */
+.callout{background:#fff;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:0 9px 9px 0;padding:18px 22px;margin-top:22px;}
+.on-dark .callout,.on-navy .callout{background:rgba(255,255,255,.03);border-color:var(--line-soft);border-left-color:var(--cyan);}
+.callout .ct{font-family:'Space Grotesk';font-weight:600;color:var(--ink);display:block;margin-bottom:5px;}
+.on-dark .callout .ct,.on-navy .callout .ct{color:#fff;}
+.callout.amber{border-left-color:var(--amber);}
+.callout p{font-size:15px;color:var(--m);}
+.on-dark .callout p,.on-navy .callout p{color:var(--m-light);}
+/* cta band */
+.ctaband{background:linear-gradient(150deg,var(--navy),var(--ink));border:1px solid var(--line-dk);border-radius:16px;padding:46px;text-align:center;}
+.ctaband h2{font-size:30px;color:#fff;margin-bottom:12px;}
+.ctaband p{color:#C4D6EC;max-width:560px;margin:0 auto 24px;}
+.ctaband .cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;}
+/* footer */
+footer{background:#050f1a;color:var(--m-light);padding:40px 0 30px;border-top:1px solid var(--line-dk);}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:13.5px;}
+.foot a{color:var(--cyan-soft);}
+.srcnote{font-family:'IBM Plex Mono';font-size:11px;color:var(--m);margin-top:10px;}
+.on-dark .srcnote,.on-navy .srcnote{color:var(--m-light);opacity:.8;}
+.other-ind{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px;}
+.other-ind a{font-family:'IBM Plex Mono';font-size:12px;color:var(--m-light);border:1px solid var(--line-dk);border-radius:20px;padding:6px 13px;}
+.other-ind a:hover{border-color:var(--cyan);color:#fff;}
+@media(max-width:880px){
+ .hero-grid{grid-template-columns:1fr;}.uillo{order:-1;}
+ .g2,.g3,.g4,.journey,.statband{grid-template-columns:1fr;}
+ .navlinks{display:none;}
+ .hero h1{font-size:34px;}.sec-head h2{font-size:26px;}
+}
+</style></head><body>
+<div class="announce mono">UK–India CETA enters into force 15 July 2026 <span class="dot">●</span> <b>zero duty on 99% of Indian exports.</b> The clock is running.</div>
+<header><div class="wrap nav">
+ <a class="brand" href="index.html">
+   <img class="logo" src="https://www.kinexus.co.in/logo.png" alt="Kinexus Systems" onerror="this.outerHTML='<svg class='fallback' viewBox='0 0 30 33'><path d='M15 1 L28 8.5 L28 24.5 L15 32 L2 24.5 L2 8.5 Z' fill='none' stroke='#27C9C9' stroke-width='2'/><path d='M15 9 L21.5 12.5 L21.5 20.5 L15 24 L8.5 20.5 L8.5 12.5 Z' fill='#27C9C9' opacity='0.25'/></svg>'">
+   <b>Kinexus</b>
+ </a>
+ <nav class="navlinks">
+   <a href="index.html">Home</a>
+   <a href="index.html#engine">The Engine</a>
+   <a href="index.html#focus">Sectors</a>
+   <a href="index.html#exportos">Export OS</a>
+   <a href="blog.html">Insights</a>
+ </nav>
+ <a class="btn btn-primary btn-sm" href="index.html#contact">Book a diagnostic <span class="ar">→</span></a>
+</div></header>
+
+<section class="on-navy hero"><div class="wrap"><div class="hero-grid">
+ <div>
+   <div class="crumb"><a href="index.html#focus">Sectors</a> / Agro &amp; Food</div>
+   <span class="badge hero">◆ On the same engine</span>
+   <h1>The <span class="c">agro &amp; food</span> export journey</h1>
+   <p class="sub">Processed foods, basmati, spices and agro products from Karnal and the North India agri-belt — where the UK deal slashes tariffs of up to 70%, but where residue limits, phytosanitary rules and traceability decide whether your shipment clears or comes back.</p>
+   <div class="cta-row">
+     <a class="btn btn-primary" href="index.html#contact">Book your readiness diagnostic <span class="ar">→</span></a>
+     <a class="btn btn-ghost" href="Kinexus_Cosmo_Export_Readiness_Playbook.pdf">Download the playbook</a>
+   </div>
+   <div class="hpills"><div class="hpill"><span class="v">70%</span><span class="l">UK duty on processed foods being removed under CETA</span></div><div class="hpill"><span class="v">21.5%</span><span class="l">UK duty on marine products removed</span></div></div>
+ </div>
+ <div class="uillo"><svg data-name="Layer 1" viewBox="0 0 907.34204 669" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <circle cx="72.5" cy="72.5" fill="#ff6584" r="72.5"/>
+ <ellipse cx="431" cy="637.5" fill="#3f3d56" rx="359" ry="31.5"/>
+ <path d="M697.829,731.5h-3c0-100.72754,18.1377-195.39648,51.07324-266.56543C779.00671,393.39746,823.19617,354,870.329,354v3C775.21179,357,697.829,525,697.829,731.5Z" fill="#3f3d56" transform="translate(-146.32898 -115.5)"/>
+ <path d="M935.329,266c0,23.4721-10.29745,53.5-23,53.5s-23-30.0279-23-53.5,10.29745-31.5,23-31.5S935.329,242.5279,935.329,266Z" fill="#e6e6e6" transform="translate(-146.32898 -115.5)"/>
+ <path d="M1025.59391,366.13083c-23.21656,3.45416-54.43291-2.31226-56.30222-14.87652s26.31629-27.1685,49.53284-30.62266,32.67243,5.54978,34.54174,18.114S1048.81046,362.67666,1025.59391,366.13083Z" fill="#e6e6e6" transform="translate(-146.32898 -115.5)"/>
+ <path d="M922.70676,455.42437c-8.30249-21.95469-9.29212-53.68374,2.58924-58.17685s32.13449,19.95117,40.437,41.90586,1.51034,33.106-10.371,37.5991S931.00924,477.37905,922.70676,455.42437Z" fill="#e6e6e6" transform="translate(-146.32898 -115.5)"/>
+ <circle cx="776" cy="240" fill="var(--primary-svg-color)" r="29"/>
+ <path d="M530.829,742.5h-3c0-206.5-77.3833-374.5-172.5-374.5v-3c47.1333,0,91.32227,39.39746,124.42725,110.93457C512.6908,547.10352,530.829,641.77246,530.829,742.5Z" fill="#3f3d56" transform="translate(-146.32898 -115.5)"/>
+ <path d="M290.329,277c0,23.4721,10.29745,53.5,23,53.5s23-30.0279,23-53.5-10.29745-31.5-23-31.5S290.329,253.5279,290.329,277Z" fill="#e6e6e6" transform="translate(-146.32898 -115.5)"/>
+ <path d="M200.06405,377.13083c23.21656,3.45416,54.43291-2.31226,56.30222-14.87652s-26.31629-27.1685-49.53284-30.62266-32.67243,5.54978-34.54174,18.114S176.8475,373.67666,200.06405,377.13083Z" fill="#e6e6e6" transform="translate(-146.32898 -115.5)"/>
+ <path d="M302.9512,466.42437c8.30249-21.95469,9.29212-53.68374-2.58924-58.17685s-32.13449,19.95117-40.437,41.90586-1.51034,33.106,10.371,37.5991S294.64872,488.37905,302.9512,466.42437Z" fill="#e6e6e6" transform="translate(-146.32898 -115.5)"/>
+ <circle cx="157" cy="251" fill="var(--primary-svg-color)" r="29"/>
+ <path d="M330.329,736.5v-58s23,21,0,63" fill="#3f3d56" transform="translate(-146.32898 -115.5)"/>
+ <path d="M331.088,734.99581l16.299-55.66276s16.17181,26.61715-17.70407,60.46128" fill="#3f3d56" transform="translate(-146.32898 -115.5)"/>
+ <path d="M734.329,723.5v-58s23,21,0,63" fill="#3f3d56" transform="translate(-146.32898 -115.5)"/>
+ <path d="M735.088,721.99581l16.299-55.66276s16.17181,26.61715-17.70407,60.46128" fill="#3f3d56" transform="translate(-146.32898 -115.5)"/>
+ <path d="M648.329,726.5v-58s-23,21,0,63" fill="#3f3d56" transform="translate(-146.32898 -115.5)"/>
+ <path d="M647.57,724.99581l-16.299-55.66276s-16.17181,26.61715,17.70407,60.46128" fill="#3f3d56" transform="translate(-146.32898 -115.5)"/>
+ <path d="M428.1666,73h.00009a42.93618,42.93618,0,0,1,42.93618,42.93618v42.051a0,0,0,0,1,0,0H385.23041a0,0,0,0,1,0,0v-42.051A42.93618,42.93618,0,0,1,428.1666,73Z" fill="#2f2e41"/>
+ <path d="M616.98921,278.35623c-15.74847,11.18756-36.72758,15.50239-59.314,17.70566,15.56151-12.62658,9.46341-26.57238,0-40.723l34.526-3.54113C593.19885,264.64369,603.16066,272.5626,616.98921,278.35623Z" fill="#ffb8b8" transform="translate(-146.32898 -115.5)"/>
+ <path d="M624.07147,412.034,522.26392,397.86943c8.25254-15.54733,13.79437-30.56735,11.84946-44.13131a62.57619,62.57619,0,0,1,.256-20.43131l.64784-3.45519a54.75385,54.75385,0,0,1,7.584-18.69708c4.08886-6.588,2.6781-16.48694.90948-26.60133l23.90264-3.54113c13.18922,6.6996,27.99632,2.23584,43.37886-6.197l28.32906,2.65585C637.2018,327.95358,632.9819,374.25609,624.07147,412.034Z" fill="#e6e6e6" transform="translate(-146.32898 -115.5)"/>
+ <path d="M709.05864,715.686l-19.47623,3.54113L563.87222,500.56226,514.29638,719.22717l-17.70566-.88528c-.38753-123.91953-5.95924-259.97722,24.00887-312.82111,11.24337-26.68147,28.4462-52.2303,22.02584-78.474,25.21717,7.34876,50.60022,6.82355,76.13434-.88528-1.19857,31.48979-.06289,60.99332,4.42642,87.643Z" fill="var(--primary-svg-color)" transform="translate(-146.32898 -115.5)"/>
+ <path d="M703.51209,775h0a19.3311,19.3311,0,0,1-18.66641-14.30552L683.119,754.281a12.695,12.695,0,0,1-.363-4.66485l3.2853-30.389c6.26463-7.76622,15.37369-9.63869,28.32906-3.54113l8.00587,35.75956A19.33109,19.33109,0,0,1,703.51209,775Z" fill="#2f2e41" transform="translate(-146.32898 -115.5)"/>
+ <path d="M507.86455,775h0a19.33109,19.33109,0,0,1-18.66641-14.30552l-1.7267-6.41344a12.695,12.695,0,0,1-.363-4.66485l3.2853-30.389c6.26463-7.76622,15.37369-9.63869,28.32906-3.54113l8.00587,35.75956A19.33109,19.33109,0,0,1,507.86455,775Z" fill="#2f2e41" transform="translate(-146.32898 -115.5)"/>
+ <circle cx="423.74023" cy="121.24792" fill="#ffb8b8" r="29.21434"/>
+ <circle cx="401.16551" cy="217.30113" fill="#e6e6e6" r="2.65585"/>
+ <circle cx="468.44702" cy="217.30113" fill="#e6e6e6" r="2.65585"/>
+ <polygon fill="#2f2e41" points="442.774 117.264 396.739 116.449 396.739 86.279 452.512 86.279 442.774 117.264"/>
+ <path d="M607.69373,272.60189H587.33222c7.52534-17.97994,6.86235-36.94579,0-56.65812h20.36151Z" fill="#2f2e41" transform="translate(-146.32898 -115.5)"/>
+ <path d="M632.9243,440.363l-12.06166,14.14125a15.01588,15.01588,0,0,1-24.33127-2.07025l0,0a15.01588,15.01588,0,0,1,6.99164-21.476l21.43376-9.18589L650.63,385.47547l-14.16453-62.85509,24.78793-7.96755,14.16452,79.67547Z" fill="#ffb8b8" transform="translate(-146.32898 -115.5)"/>
+ <path d="M539.96958,446.98578,552.03124,461.127a15.01588,15.01588,0,0,0,24.33127-2.07026l0,0a15.01589,15.01589,0,0,0-6.99164-21.476l-21.43376-9.18589-25.67321-36.29661,14.16453-62.85509-24.78792-7.96755L497.476,400.95106Z" fill="#ffb8b8" transform="translate(-146.32898 -115.5)"/>
+ <path d="M664.79449,318.194a40.62422,40.62422,0,0,0-30.01955,11.96818l-8.85283-53.117,10.70767-.12553a21.34513,21.34513,0,0,1,19.50343,14.71307Z" fill="#e6e6e6" transform="translate(-146.32898 -115.5)"/>
+ <path d="M508.09939,324.81672a40.62423,40.62423,0,0,1,30.01955,11.96819c10.24581-15.54044,11.731-33.68118,8.85283-53.117l-10.70767-.12553a21.34514,21.34514,0,0,0-19.50343,14.71307Z" fill="#e6e6e6" transform="translate(-146.32898 -115.5)"/>
+ <path d="M614.33336,330.58792h.97519l5.87883-54.585a1.07372,1.07372,0,0,0-1.0677-1.18787h-4.71257a1.07479,1.07479,0,0,0-1.07375,1.07376Z" fill="var(--primary-svg-color)" transform="translate(-146.32898 -115.5)"/>
+ <path d="M546.16656,333.24377h.983l5.87883-49.964a.84173.84173,0,0,0-.836-.93975h-5.18375a.84309.84309,0,0,0-.84206.84206Z" fill="var(--primary-svg-color)" transform="translate(-146.32898 -115.5)"/>
+</svg></div>
+</div></div></section>
+
+<section><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">The opportunity</span><h2>Huge tariff cuts — gated by food-safety rules</h2><p class="sub">Processed food and agro products see some of the deepest tariff cuts of any sector under the 2026 deals. The opportunity is real and large — but food is the most compliance-sensitive category, where one residue failure can reject a whole consignment.</p></div>
+ <div class="grid g3" style="margin-bottom:22px"><div class="card"><div class="cn">United Kingdom · CETA</div><h4 style="font-size:16px">Up to 70% duty → zero</h4><p>Processed-food tariffs of up to 70% and marine tariffs of up to 21.5% removed — a transformational cost advantage.</p></div><div class="card"><div class="cn">European Union · FTA</div><h4 style="font-size:16px">Large, SPS-strict market</h4><p>Major tariff access, paired with stringent sanitary &amp; phytosanitary (SPS) and residue rules.</p></div><div class="card"><div class="cn">UAE &amp;amp; Gulf</div><h4 style="font-size:16px">Food gateway</h4><p>Strong, fast-growing Gulf demand for Indian processed and agro foods.</p></div></div>
+ <div class="statband"><div class="st"><div class="sv">70%</div><div class="sl">UK processed-food tariff being removed</div></div><div class="st"><div class="sv">MRL</div><div class="sl">residue limits that reject non-compliant lots</div></div><div class="st"><div class="sv">APEDA</div><div class="sl">your key agri-export authority</div></div></div>
+</div></section>
+
+<section class="on-dark"><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">Where the margin lives</span><h2>Your HS codes &amp; the duty at stake</h2><p class="sub">Classification is the single highest-leverage decision you make — it sets your duty, your compliance burden, and whether the order is even profitable. Confirm it <em>before</em> you quote.</p></div>
+ <table class="tbl"><tr><th style="width:160px">Typical HS / ITC-HS</th><th>What it covers — and why it matters</th></tr><tr><td class="k">1006.30</td><td>Basmati &amp; milled rice — a flagship North India export.</td></tr><tr><td class="k">2008 / 2005</td><td>Prepared/preserved fruit, vegetables &amp; processed foods.</td></tr><tr><td class="k">0904–0910</td><td>Spices — pepper, chilli, turmeric, cumin and more.</td></tr><tr><td class="k">0409</td><td>Natural honey.</td></tr><tr><td class="k">1704 / 1905</td><td>Sugar confectionery &amp; bakery products.</td></tr></table>
+ <div class="callout amber"><span class="ct">Residue limits are the silent dealbreaker</span>Food shipments are rejected far more often for pesticide residues (MRL breaches), aflatoxins or missing phytosanitary certificates than for commercial reasons. Traceability from farm/lot to pack — with residue testing on record — is what keeps your consignments clearing the EU and UK borders.</div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">The compliance path</span><h2>What it takes to ship clean — and pass the buyer's audit</h2><p class="sub">Food is the most regulated export category. Destination authorities want proof of safety and traceability at every step — build it digitally and your lots clear predictably.</p></div>
+ <div style="max-width:840px"><div class="check"><span class="ck"></span><div class="ct"><b>IEC, AD code &amp; GST</b> <span>baseline registrations.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>FSSAI</b> <span>domestic food-safety licensing.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>APEDA registration</b> <span>agri &amp; processed-food export authority registration.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>Export Inspection Council</b> <span>inspection &amp; certification for notified products.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>Phytosanitary certificate</b> <span>plant-health certification for the destination.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>Residue / MRL &amp; aflatoxin testing</b> <span>lab proof your lot meets destination limits.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>Lot traceability</b> <span>farm/lot-to-pack traceability buyers and regulators require.</span></div></div></div>
+</div></section>
+
+<section class="on-navy"><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">Your journey</span><h2>From local manufacturer to export business — in four stages</h2><p class="sub">We move you through the Crawl · Walk · Run · Fly maturity model. Cosmo International sets the strategy and opens the markets; Kinexus builds the digital engine on your floor that makes each stage real.</p></div>
+ <div class="journey"><div class="jstep "><div class="jn">Stage 1 · Crawl</div><h4>Digitise lots &amp; testing</h4><p>Capture lot data, sourcing and residue/quality testing so every consignment is traceable and provable.</p></div><div class="jstep s2"><div class="jn">Stage 2 · Walk</div><h4>Become SPS audit-ready</h4><p>Build the traceability and testing records that satisfy EU/UK sanitary and phytosanitary scrutiny.</p></div><div class="jstep s3"><div class="jn">Stage 3 · Run</div><h4>Capture the tariff cut</h4><p>Cosmo selects markets and buyers; we make certificates, testing records and origin proof automatic so the duty saving reaches your margin.</p></div><div class="jstep s4"><div class="jn">Stage 4 · Fly</div><h4>Scale &amp; brand</h4><p>Move into branded, repeat programmes across markets, with systems handling the documentation load.</p></div></div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">Avoid these</span><h2>Where agro &amp; food exporters most often leak margin</h2><p class="sub">The specific traps that turn a promising agro &amp; food order into a delayed, rejected or loss-making one.</p></div>
+ <div class="grid g3"><div class="leakc"><h4>Residue / MRL rejections</h4><p>A pesticide or aflatoxin breach can reject an entire consignment at the EU/UK border — the most common and costly food-export failure.</p></div><div class="leakc"><h4>Missing phytosanitary / SPS docs</h4><p>Incomplete plant-health or sanitary certificates mean held or returned cargo.</p></div><div class="leakc"><h4>No lot traceability</h4><p>Without farm/lot-to-pack traceability, you can't prove safety or satisfy a buyer recall requirement.</p></div></div>
+</div></section>
+
+<section class="on-dark"><div class="wrap">
+ <div class="ctaband">
+   <span class="eyebrow" style="justify-content:center">Start here</span>
+   <h2>Map your agro &amp; food export journey</h2>
+   <p>Get a readiness baseline, an SPS-and-residue compliance plan, and a route to capture the deep tariff cuts on processed food and agro products.</p>
+   <div class="cta-row">
+     <a class="btn btn-primary" href="index.html#contact">Book your readiness diagnostic <span class="ar">→</span></a>
+     <a class="btn btn-ghost" href="Kinexus_Cosmo_Export_Readiness_Playbook.pdf">Get the Export Readiness Playbook</a>
+   </div>
+ </div>
+ <p class="srcnote" style="text-align:center;margin-top:20px">Sources: GTRI FTA Report Card 2026 · India–UK CETA &amp; India–EU FTA official summaries · industry export-compliance reporting, 2026. Figures are indicative; verify for your product and market.</p>
+</div></section>
+
+<footer><div class="wrap">
+ <div class="foot">
+   <div><b style="color:#fff;font-family:'Space Grotesk'">Kinexus Systems</b> &nbsp;·&nbsp; in alliance with Cosmo International<div class="srcnote">Digitisation · Export readiness · Agentic workforce — for North India manufacturers.</div></div>
+   <div style="text-align:right"><a href="index.html#contact">Book a readiness diagnostic →</a><br><span class="srcnote">kinexus.co.in · hello@kinexus.co.in</span></div>
+ </div>
+ <div style="margin-top:22px;border-top:1px solid var(--line-dk);padding-top:18px;">
+   <span class="srcnote" style="display:block;margin-bottom:4px;">Explore other industry journeys:</span>
+   <div class="other-ind"><a href="wellness.html">Wellness</a><a href="engineering.html">Engineering</a><a href="pharma.html">Pharma</a><a href="textiles.html">Textiles & Hosiery</a><a href="sports.html">Sports Goods</a><a href="instruments.html">Scientific Instruments</a></div>
+ </div>
+</div></footer>
+</body></html>

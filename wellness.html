@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wellness &amp; Natural Products — Export Journey | Kinexus × Cosmo</title>
+<meta name="description" content="Ayurveda, nutraceuticals, herbal personal care and essential oils — the export category where global demand most outruns Indian supply, and where authenticity is India&#x27;s unfair advantage. Here&#x27;s how to turn it into a compliant, repeatable export business.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+:root{
+ --ink:#081826;--navy:#0C2A47;--navy-2:#0F3158;--cyan:#27C9C9;--cyan-d:#0F9C9C;--cyan-soft:#7FE0DE;
+ --blue:#1E5FA8;--blue-soft:#3E84D6;--amber:#E8A23D;--rust:#D8654A;
+ --surface:#EEF3F8;--surface-2:#E3EBF4;--card:#FFFFFF;--line:#D7E0EC;--line-soft:rgba(255,255,255,.10);--line-dk:#234363;
+ --t:#0E2236;--m:#5A6E84;--t-light:#E9F1FB;--m-light:#A6BAD3;--primary-svg-color:#13A7A7;--maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Manrope',system-ui,sans-serif;color:var(--t);background:var(--card);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:600;line-height:1.12;color:var(--ink);letter-spacing:-.01em;}
+a{color:inherit;text-decoration:none;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+section{padding:74px 0;}
+.on-dark{background:var(--ink);color:var(--t-light);}
+.on-navy{background:linear-gradient(165deg,var(--navy),var(--ink));color:var(--t-light);}
+.on-dark h2,.on-dark h3,.on-dark h4,.on-navy h2,.on-navy h3,.on-navy h4{color:#fff;}
+.eyebrow{font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan-d);display:inline-flex;align-items:center;gap:9px;margin-bottom:14px;}
+.on-dark .eyebrow,.on-navy .eyebrow{color:var(--cyan-soft);}
+.eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.6;}
+.sec-head{max-width:760px;margin-bottom:34px;}
+.sec-head h2{font-size:33px;margin-bottom:12px;}
+.sec-head .sub{font-size:17px;color:var(--m);}
+.on-dark .sec-head .sub,.on-navy .sec-head .sub{color:var(--m-light);}
+/* announce */
+.announce{background:var(--ink);color:var(--cyan-soft);text-align:center;font-size:12.5px;letter-spacing:.02em;padding:9px 16px;border-bottom:1px solid var(--line-dk);}
+.announce b{color:#fff;}
+.announce .dot{color:var(--amber);margin:0 8px;}
+/* header */
+header{position:sticky;top:0;z-index:60;background:rgba(8,24,38,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-dk);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand .logo{height:30px;width:auto;display:block;}
+.brand .fallback{width:30px;height:33px;}
+.brand b{font-family:'Space Grotesk';font-weight:700;color:#fff;font-size:17px;letter-spacing:-.01em;}
+.navlinks{display:flex;align-items:center;gap:26px;}
+.navlinks a{color:var(--m-light);font-size:14px;font-weight:500;}
+.navlinks a:hover{color:#fff;}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Space Grotesk';font-weight:600;font-size:15px;padding:12px 22px;border-radius:7px;cursor:pointer;transition:.2s;border:1px solid transparent;}
+.btn-primary{background:var(--cyan);color:#06201f;}
+.btn-primary:hover{background:var(--cyan-soft);}
+.btn-ghost{background:transparent;border-color:var(--line-dk);color:#fff;}
+.btn-ghost:hover{border-color:var(--cyan);}
+.btn-sm{padding:9px 16px;font-size:13.5px;}
+.ar{transition:.2s;}.btn:hover .ar{transform:translateX(3px);}
+/* hero */
+.hero{padding:64px 0 70px;}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:46px;align-items:center;}
+.crumb{font-family:'IBM Plex Mono';font-size:12px;color:var(--m-light);margin-bottom:18px;}
+.crumb a{color:var(--cyan-soft);}
+.hero h1{font-size:46px;line-height:1.04;color:#fff;margin-bottom:18px;}
+.hero h1 .c{color:var(--cyan);}
+.hero p.sub{font-size:18px;color:#C4D6EC;max-width:560px;margin-bottom:26px;}
+.hero .cta-row{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:26px;}
+.hpills{display:flex;gap:14px;flex-wrap:wrap;}
+.hpill{background:rgba(255,255,255,.04);border:1px solid var(--line-dk);border-radius:9px;padding:12px 16px;}
+.hpill .v{font-family:'Space Grotesk';font-weight:700;font-size:22px;color:var(--cyan);}
+.hpill .l{font-size:11.5px;color:var(--m-light);line-height:1.3;display:block;margin-top:2px;}
+.uillo{background:#F4F7FB;border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:26px;box-shadow:0 50px 90px -50px rgba(0,0,0,.7);--primary-svg-color:#13A7A7;}
+.uillo svg{display:block;width:100%;height:auto;max-height:330px;}
+.badge{display:inline-block;font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:16px;}
+.badge.hero{background:rgba(39,201,201,.14);color:var(--cyan-soft);border:1px solid rgba(39,201,201,.4);}
+/* cards / grids */
+.grid{display:grid;gap:18px;}
+.g2{grid-template-columns:1fr 1fr;}.g3{grid-template-columns:1fr 1fr 1fr;}.g4{grid-template-columns:repeat(4,1fr);}
+.card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:22px;}
+.on-dark .card,.on-navy .card{background:rgba(255,255,255,.03);border-color:var(--line-soft);}
+.card .cn{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-d);}
+.on-dark .card .cn,.on-navy .card .cn{color:var(--cyan-soft);}
+.card h4{font-size:18px;margin:8px 0 7px;}
+.card p{font-size:14.5px;color:var(--m);}
+.on-dark .card p,.on-navy .card p{color:var(--m-light);}
+/* stat band */
+.statband{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-dk);border:1px solid var(--line-dk);border-radius:12px;overflow:hidden;}
+.statband .st{background:var(--ink);padding:26px 18px;text-align:center;}
+.statband .sv{font-family:'Space Grotesk';font-weight:700;font-size:30px;color:var(--cyan);}
+.statband .sl{font-size:12.5px;color:var(--m-light);margin-top:5px;line-height:1.35;}
+/* table */
+table.tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:6px;}
+table.tbl th{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:13.5px;text-align:left;padding:11px 14px;}
+table.tbl td{border:1px solid var(--line);padding:11px 14px;vertical-align:top;background:#fff;color:var(--t);}
+table.tbl tr:nth-child(even) td{background:var(--surface);}
+table.tbl td.k{font-family:'IBM Plex Mono';font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;}
+/* checklist */
+.check{display:flex;gap:13px;padding:12px 0;border-bottom:1px solid var(--line);}
+.check:last-child{border-bottom:0;}
+.check .ck{width:16px;height:16px;border:2px solid var(--cyan-d);border-radius:4px;flex-shrink:0;margin-top:3px;}
+.check .ct{font-size:15px;}
+.check .ct b{font-family:'Space Grotesk';color:var(--ink);}
+.check .ct span{color:var(--m);}
+/* journey */
+.journey{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.jstep{background:rgba(255,255,255,.03);border:1px solid var(--line-soft);border-top:3px solid var(--cyan);border-radius:10px;padding:20px 18px;}
+.jstep.s2{border-top-color:var(--blue-soft);}
+.jstep.s3{border-top-color:var(--amber);}
+.jstep.s4{border-top-color:var(--cyan-soft);}
+.jstep .jn{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan-soft);}
+.jstep h4{font-size:17px;margin:7px 0 8px;color:#fff;}
+.jstep p{font-size:13.5px;color:var(--m-light);}
+/* leaks */
+.leakc{background:#fff;border:1px solid var(--line);border-left:3px solid var(--rust);border-radius:0 9px 9px 0;padding:18px 20px;}
+.leakc h4{font-size:16.5px;margin-bottom:6px;}
+.leakc p{font-size:14px;color:var(--m);}
+/* callout */
+.callout{background:#fff;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:0 9px 9px 0;padding:18px 22px;margin-top:22px;}
+.on-dark .callout,.on-navy .callout{background:rgba(255,255,255,.03);border-color:var(--line-soft);border-left-color:var(--cyan);}
+.callout .ct{font-family:'Space Grotesk';font-weight:600;color:var(--ink);display:block;margin-bottom:5px;}
+.on-dark .callout .ct,.on-navy .callout .ct{color:#fff;}
+.callout.amber{border-left-color:var(--amber);}
+.callout p{font-size:15px;color:var(--m);}
+.on-dark .callout p,.on-navy .callout p{color:var(--m-light);}
+/* cta band */
+.ctaband{background:linear-gradient(150deg,var(--navy),var(--ink));border:1px solid var(--line-dk);border-radius:16px;padding:46px;text-align:center;}
+.ctaband h2{font-size:30px;color:#fff;margin-bottom:12px;}
+.ctaband p{color:#C4D6EC;max-width:560px;margin:0 auto 24px;}
+.ctaband .cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;}
+/* footer */
+footer{background:#050f1a;color:var(--m-light);padding:40px 0 30px;border-top:1px solid var(--line-dk);}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:13.5px;}
+.foot a{color:var(--cyan-soft);}
+.srcnote{font-family:'IBM Plex Mono';font-size:11px;color:var(--m);margin-top:10px;}
+.on-dark .srcnote,.on-navy .srcnote{color:var(--m-light);opacity:.8;}
+.other-ind{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px;}
+.other-ind a{font-family:'IBM Plex Mono';font-size:12px;color:var(--m-light);border:1px solid var(--line-dk);border-radius:20px;padding:6px 13px;}
+.other-ind a:hover{border-color:var(--cyan);color:#fff;}
+@media(max-width:880px){
+ .hero-grid{grid-template-columns:1fr;}.uillo{order:-1;}
+ .g2,.g3,.g4,.journey,.statband{grid-template-columns:1fr;}
+ .navlinks{display:none;}
+ .hero h1{font-size:34px;}.sec-head h2{font-size:26px;}
+}
+</style></head><body>
+<div class="announce mono">UK–India CETA enters into force 15 July 2026 <span class="dot">●</span> <b>zero duty on 99% of Indian exports.</b> The clock is running.</div>
+<header><div class="wrap nav">
+ <a class="brand" href="index.html">
+   <img class="logo" src="https://www.kinexus.co.in/logo.png" alt="Kinexus Systems" onerror="this.outerHTML='<svg class='fallback' viewBox='0 0 30 33'><path d='M15 1 L28 8.5 L28 24.5 L15 32 L2 24.5 L2 8.5 Z' fill='none' stroke='#27C9C9' stroke-width='2'/><path d='M15 9 L21.5 12.5 L21.5 20.5 L15 24 L8.5 20.5 L8.5 12.5 Z' fill='#27C9C9' opacity='0.25'/></svg>'">
+   <b>Kinexus</b>
+ </a>
+ <nav class="navlinks">
+   <a href="index.html">Home</a>
+   <a href="index.html#engine">The Engine</a>
+   <a href="index.html#focus">Sectors</a>
+   <a href="index.html#exportos">Export OS</a>
+   <a href="blog.html">Insights</a>
+ </nav>
+ <a class="btn btn-primary btn-sm" href="index.html#contact">Book a diagnostic <span class="ar">→</span></a>
+</div></header>
+
+<section class="on-navy hero"><div class="wrap"><div class="hero-grid">
+ <div>
+   <div class="crumb"><a href="index.html#focus">Sectors</a> / Wellness &amp; Natural Products</div>
+   <span class="badge hero">★ Beachhead sector</span>
+   <h1>The <span class="c">wellness</span> export journey</h1>
+   <p class="sub">Ayurveda, nutraceuticals, herbal personal care and essential oils — the export category where global demand most outruns Indian supply, and where authenticity is India's unfair advantage. Here's how to turn it into a compliant, repeatable export business.</p>
+   <div class="cta-row">
+     <a class="btn btn-primary" href="index.html#contact">Book your readiness diagnostic <span class="ar">→</span></a>
+     <a class="btn btn-ghost" href="Kinexus_Cosmo_Export_Readiness_Playbook.pdf">Download the playbook</a>
+   </div>
+   <div class="hpills"><div class="hpill"><span class="v">22%</span><span class="l">UK cosmetics tariff being eliminated under CETA</span></div><div class="hpill"><span class="v">1st</span><span class="l">global FTA with structured AYUSH commitments (Oman CEPA)</span></div></div>
+ </div>
+ <div class="uillo"><svg data-name="Layer 1" viewBox="0 0 692.60517 748.73305" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <circle cx="485.38885" cy="252.48956" fill="#ff6584" r="75.36532"/>
+ <path d="M945.81769,384.31483c.16641-.03026.29119-.14636.48489-.11681a6.42649,6.42649,0,0,0-.33042-.95413c-.23989.327-.48462.66057-.69891.9527Z" fill="#fff" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M440.33,506.49838a175.14542,175.14542,0,0,0,8.18151,48.41582c.114.36373.23344.722.35286,1.0858h30.53273c-.03257-.32576-.06518-.68949-.09775-1.0858-2.03588-23.40445-13.77337-165.85054.26061-190.21049C478.333,366.67987,437.96292,432.1319,440.33,506.49838Z" fill="#e6e6e6" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M442.621,554.9142c.25518.36373.5212.72747.79265,1.0858h22.90495c-.17373-.30946-.3746-.67319-.608-1.0858-3.784-6.82969-14.984-27.24816-25.38058-48.41582-11.17289-22.74753-21.42285-46.35825-20.55962-54.90349C419.50432,453.52218,411.77343,512.27481,442.621,554.9142Z" fill="#e6e6e6" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M680.6358,558.82949a152.69422,152.69422,0,0,1-7.13276,42.20965c-.09938.3171-.20352.62947-.30763.94661h-26.6189c.0284-.284.05683-.60111.08522-.94661,1.77491-20.40436,12.00784-144.591-.2272-165.82839C647.50421,436.9336,682.69942,493.99567,680.6358,558.82949Z" fill="#e6e6e6" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M678.63846,601.03914c-.22247.3171-.45439.63421-.69105.94661H657.97853c.15146-.26979.32658-.5869.5301-.94661,3.299-5.95423,13.0633-23.75536,22.12717-42.20965,9.7407-19.83164,18.67677-40.41582,17.92419-47.8657C698.79191,512.644,705.53182,563.86547,678.63846,601.03914Z" fill="#e6e6e6" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M376.281,136.80622l12.41349-9.92842c-9.64348-1.06393-13.60581,4.19542-15.22744,8.35824-7.53388-3.12835-15.73541.97151-15.73541.97151l24.83709,9.01674A18.79476,18.79476,0,0,0,376.281,136.80622Z" fill="#3f3d56" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M750.16515,85.70094l12.41349-9.92842c-9.64349-1.06394-13.60582,4.19541-15.22744,8.35823-7.53388-3.12835-15.73541.97151-15.73541.97151L756.45288,94.119A18.79472,18.79472,0,0,0,750.16515,85.70094Z" fill="#3f3d56" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M932.807,478.32294q0,12.33973-.8598,24.4778a344.11238,344.11238,0,0,1-63.9225,177.14036q-7.32429,10.22205-15.38088,19.87093a347.51435,347.51435,0,0,1-46.15335,45.84547L732.91905,702.487,688.93118,599.82028s65.63153-132.8871,243.75906-130.47752Q932.80171,473.81692,932.807,478.32294Z" fill="#3f3d56" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M931.94719,502.80074a346.07669,346.07669,0,0,1-129.28867,245.9669l-68.34893-40.10281-39.00951-91.05407S758.5114,489.6277,931.94719,502.80074Z" fill="var(--primary-svg-color)" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M868.02469,679.9411q-7.32429,10.22205-15.38088,19.87093a346.16927,346.16927,0,0,1-133.98047,98.5269q-15.79485,6.51225-32.33281,11.48526A378.83832,378.83832,0,0,1,446.085,794.57068,347.29161,347.29161,0,0,1,274.1141,626.82443q-7.165-15.0624-12.88642-30.88915c66.52315-48.73267,197.60579-118.51464,340.4708-50.70708Q660.977,573.36289,707.5602,596.51909C786.36478,635.58166,838.81265,663.74285,868.02469,679.9411Z" fill="#3f3d56" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M852.64381,699.812a346.27989,346.27989,0,0,1-578.52971-72.9876c55.558-43.93475,183.70032-122.88789,324.32562-56.15244q54.24711,25.74625,96.86036,46.93877C778.117,658.65837,829.13192,686.55412,852.64381,699.812Z" fill="var(--primary-svg-color)" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M754.584,781.02614a349.545,349.545,0,0,1-35.92062,17.31279A345.06471,345.06471,0,0,1,586.7634,824.36652,346.36523,346.36523,0,0,1,310.54422,686.79824C393.1913,678.0835,621.64373,666.33287,754.584,781.02614Z" fill="#3f3d56" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M718.66334,798.33893a346.4182,346.4182,0,0,1-383.95975-82.92308C364.76475,711.00011,600.775,680.67352,718.66334,798.33893Z" fill="var(--primary-svg-color)" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M874.76508,286.42794v.01062C627.673,103.74667,344.57538,232.33479,342.38872,233.322v-.01063a344.99584,344.99584,0,0,1,244.37468-101.032C706.89152,132.27935,812.72137,193.49508,874.76508,286.42794Z" fill="#e6e6e6" transform="translate(-253.69742 -75.63348)"/>
+ <ellipse cx="334.36385" cy="330.60218" fill="#3f3d56" rx="76.90583" ry="156.91896" transform="translate(-307.05272 -11.0592) rotate(-10.22048)"/>
+ <path d="M372.94937,584.6377c-2.47807-187.33656-65.15818-363.14039-65.79076-364.89287l-5.71631,2.0619c.62954,1.744,62.96568,176.62681,65.43083,362.91333Z" fill="var(--primary-svg-color)" transform="translate(-253.69742 -75.63348)"/>
+ <rect fill="var(--primary-svg-color)" height="78.86695" transform="translate(-355.86074 432.82347) rotate(-72.07888)" width="6.07788" x="295.28883" y="285.00119"/>
+ <rect fill="var(--primary-svg-color)" height="6.07788" transform="matrix(0.78393, -0.62085, 0.62085, 0.78393, -377.64511, 227.73815)" width="78.86966" x="334.43768" y="326.71939"/>
+ <ellipse cx="309.49949" cy="212.58899" fill="#3f3d56" rx="83.21923" ry="169.80086"/>
+ <path d="M555.512,566.15909c33.33018-199.97469.33556-399.22686-.00161-401.21457l-6.48332,1.09822c.33556,1.97807,33.14072,200.18341-.00161,399.0374Z" fill="var(--primary-svg-color)" transform="translate(-253.69742 -75.63348)"/>
+ <rect fill="var(--primary-svg-color)" height="85.34136" transform="translate(-218.04118 533.34596) rotate(-61.8584)" width="6.57683" x="522.71705" y="232.06484"/>
+ <rect fill="var(--primary-svg-color)" height="6.57683" transform="translate(-321.21346 244.97513) rotate(-28.15796)" width="85.34429" x="562.76044" y="291.62119"/>
+ <path d="M924.67605,403.40342a634.4074,634.4074,0,0,0-95.37432-43.60576c-182.1399-65.90746-362.75132-40.50617-433.44609,53.81723,55.0167-115.55307,251.32744-151.88763,449.432-80.20569a646.92582,646.92582,0,0,1,67.58469,28.87236A343.54164,343.54164,0,0,1,924.67605,403.40342Z" fill="#e6e6e6" transform="translate(-253.69742 -75.63348)"/>
+ <path d="M678.6841,217.456l12.41349-9.92842c-9.64349-1.06393-13.60582,4.19541-15.22744,8.35824-7.53389-3.12835-15.73541.9715-15.73541.9715l24.83709,9.01675A18.79478,18.79478,0,0,0,678.6841,217.456Z" fill="#3f3d56" transform="translate(-253.69742 -75.63348)"/>
+</svg></div>
+</div></div></section>
+
+<section><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">The opportunity</span><h2>The world wants what India already makes</h2><p class="sub">Branded wellness is among the fastest-rising FTA export opportunities — and the gap between global demand and Indian penetration is the widest of any sector. The 2026 agreements open premium, high-margin markets across the UK, EU and Gulf.</p></div>
+ <div class="grid g3" style="margin-bottom:22px"><div class="card"><div class="cn">United Kingdom · CETA</div><h4 style="font-size:16px">Cosmetics duties to zero</h4><p>Tariffs of up to 22% on cosmetics removed from 15 July 2026 — herbal and Ayurvedic personal care become instantly more competitive.</p></div><div class="card"><div class="cn">Oman · CEPA</div><h4 style="font-size:16px">The AYUSH lane</h4><p>A global first: structured commitments on traditional medicine (AYUSH) across all modes of supply — a purpose-built door for Ayurvedic exports.</p></div><div class="card"><div class="cn">EU &amp; UAE</div><h4 style="font-size:16px">Premium scale</h4><p>A 450M-consumer EU market and the UAE's fast Gulf-Africa gateway reward branded, certified, traceable wellness products.</p></div></div>
+ <div class="statband"><div class="st"><div class="sv">$100B+</div><div class="sl">global Ayurveda & herbal market, growing double-digits</div></div><div class="st"><div class="sv">3004.90</div><div class="sl">the HS code that can double your duty if misread</div></div><div class="st"><div class="sv">28%</div><div class="sl">of eligible exports that actually claim FTA benefit</div></div></div>
+</div></section>
+
+<section class="on-dark"><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">Where the margin lives</span><h2>Your HS codes &amp; the duty at stake</h2><p class="sub">Classification is the single highest-leverage decision you make — it sets your duty, your compliance burden, and whether the order is even profitable. Confirm it <em>before</em> you quote.</p></div>
+ <table class="tbl"><tr><th style="width:160px">Typical HS / ITC-HS</th><th>What it covers — and why it matters</th></tr><tr><td class="k">3004.90</td><td>Ayurvedic / herbal <b>medicaments</b>, retail packed — the premium classification, but it triggers drug-grade compliance.</td></tr><tr><td class="k">3003.90</td><td>Ayurvedic medicaments in <b>bulk</b> (not retail packed).</td></tr><tr><td class="k">2106.90.99</td><td>Nutraceuticals &amp; food supplements — classified as <b>food</b>, lighter regulation, different duty.</td></tr><tr><td class="k">3301</td><td>Essential oils — a high-value, fast-moving export line.</td></tr><tr><td class="k">3304 / 3305</td><td>Herbal cosmetics, skin &amp; hair preparations.</td></tr></table>
+ <div class="callout amber"><span class="ct">The medicine-vs-food fork</span>The same product can be a 'medicament' (3004) or a 'food supplement' (2106) depending on formulation, claims and packaging — and the choice changes your duty, your regulator, and your labelling. Getting this fork right before you quote is worth more than any single negotiation.</div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">The compliance path</span><h2>What it takes to ship clean — and pass the buyer's audit</h2><p class="sub">Wellness is a documentation-heavy sector: buyers and destination regulators want proof of safety, origin and consistency. Build these once, digitally, and every future shipment clears faster.</p></div>
+ <div style="max-width:840px"><div class="check"><span class="ck"></span><div class="ct"><b>IEC, AD code &amp; GST</b> <span>the baseline registrations for any exporter.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>AYUSH / GMP documentation</b> <span>manufacturing-practice evidence for Ayurvedic and herbal products.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>FSSAI</b> <span>mandatory where the product is a nutraceutical / food supplement.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>CDSCO</b> <span>applies if the product is classified as a drug.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>Lab testing</b> <span>heavy-metal, microbial and stability reports — non-negotiable for EU/US buyers.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>Destination rules</b> <span>US FDA &amp; DSHEA claim limits; EU Cosmetics Regulation (CPNP notification, EU Responsible Person); accurate labelling.</span></div></div><div class="check"><span class="ck"></span><div class="ct"><b>Certificate of Origin</b> <span>preferential CoO + provable rules of origin — this is what unlocks the duty saving.</span></div></div></div>
+</div></section>
+
+<section class="on-navy"><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">Your journey</span><h2>From local manufacturer to export business — in four stages</h2><p class="sub">We move you through the Crawl · Walk · Run · Fly maturity model. Cosmo International sets the strategy and opens the markets; Kinexus builds the digital engine on your floor that makes each stage real.</p></div>
+ <div class="journey"><div class="jstep "><div class="jn">Stage 1 · Crawl</div><h4>Get the basics &amp; the data right</h4><p>Confirm classification and registrations, and digitise batch records and quality testing so every product is traceable from raw herb to finished pack.</p></div><div class="jstep s2"><div class="jn">Stage 2 · Walk</div><h4>Become audit-ready</h4><p>Unify testing, GMP and batch traceability into one trusted record — so you can pass an EU or Gulf buyer's due diligence on demand.</p></div><div class="jstep s3"><div class="jn">Stage 3 · Run</div><h4>Pick markets &amp; capture duty</h4><p>Cosmo selects and validates the right market (GCC, EU, UK); we automate certificates of origin and compliance docs so you actually claim the FTA benefit.</p></div><div class="jstep s4"><div class="jn">Stage 4 · Fly</div><h4>Scale the brand abroad</h4><p>Repeat across SKUs and markets, layer in automation for documentation and reorders, and build a branded wellness export line, not one-off shipments.</p></div></div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">Avoid these</span><h2>Where wellness exporters most often leak margin</h2><p class="sub">The specific traps that turn a promising wellness order into a delayed, rejected or loss-making one.</p></div>
+ <div class="grid g3"><div class="leakc"><h4>Medicine-vs-food misclassification</h4><p>The wrong HS code swings duty and pulls you under the wrong regulator — costly to unwind after the cargo ships.</p></div><div class="leakc"><h4>Unsubstantiated health claims</h4><p>US/EU rules on what a supplement or cosmetic may claim are strict; non-compliant labels get shipments rejected at the border.</p></div><div class="leakc"><h4>No batch traceability or testing</h4><p>Without heavy-metal/microbial reports and batch traceability, you fail the buyer audit — the deal dies on due diligence, not price.</p></div></div>
+</div></section>
+
+<section class="on-dark"><div class="wrap">
+ <div class="ctaband">
+   <span class="eyebrow" style="justify-content:center">Start here</span>
+   <h2>Map your wellness export journey</h2>
+   <p>Get a measured readiness baseline, your correct classification strategy, and a market-and-compliance roadmap built for Ayurveda and natural products.</p>
+   <div class="cta-row">
+     <a class="btn btn-primary" href="index.html#contact">Book your readiness diagnostic <span class="ar">→</span></a>
+     <a class="btn btn-ghost" href="Kinexus_Cosmo_Export_Readiness_Playbook.pdf">Get the Export Readiness Playbook</a>
+   </div>
+ </div>
+ <p class="srcnote" style="text-align:center;margin-top:20px">Sources: GTRI FTA Report Card 2026 · India–UK CETA &amp; India–EU FTA official summaries · industry export-compliance reporting, 2026. Figures are indicative; verify for your product and market.</p>
+</div></section>
+
+<footer><div class="wrap">
+ <div class="foot">
+   <div><b style="color:#fff;font-family:'Space Grotesk'">Kinexus Systems</b> &nbsp;·&nbsp; in alliance with Cosmo International<div class="srcnote">Digitisation · Export readiness · Agentic workforce — for North India manufacturers.</div></div>
+   <div style="text-align:right"><a href="index.html#contact">Book a readiness diagnostic →</a><br><span class="srcnote">kinexus.co.in · hello@kinexus.co.in</span></div>
+ </div>
+ <div style="margin-top:22px;border-top:1px solid var(--line-dk);padding-top:18px;">
+   <span class="srcnote" style="display:block;margin-bottom:4px;">Explore other industry journeys:</span>
+   <div class="other-ind"><a href="engineering.html">Engineering</a><a href="pharma.html">Pharma</a><a href="textiles.html">Textiles & Hosiery</a><a href="agro.html">Agro & Food</a><a href="sports.html">Sports Goods</a><a href="instruments.html">Scientific Instruments</a></div>
+ </div>
+</div></footer>
+</body></html>
