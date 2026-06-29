@@ -98,7 +98,46 @@ header{position:sticky;top:0;z-index:40;background:rgba(238,243,248,.9);backdrop
 
 footer{background:var(--ink);color:var(--m-light);padding:44px 0;border-top:1px solid var(--line);text-align:center;font-size:13.5px;}
 footer a{color:var(--cyan-soft);}
-@media(max-width:880px){.feature-post,.grid{grid-template-columns:1fr;}.feature-post .fbody{padding:30px;}.nav .links{display:none;}.burger{display:flex;}.nav-cta .btn-dark{display:none;}}
+/* filter bar */
+.filters{padding:34px 0 0;}
+.filters.hide{display:none;}
+.filters .frow{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:14px;}
+.flabel{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--m-dark);margin-right:4px;min-width:84px;}
+.fchip{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.03em;color:var(--m-dark);background:var(--card);border:1px solid var(--line-lt);padding:6px 13px;border-radius:30px;cursor:pointer;transition:.2s;}
+.fchip:hover{border-color:var(--cyan);color:var(--cyan-600);}
+.fchip.active{background:var(--cyan);border-color:var(--cyan);color:#04181c;font-weight:600;}
+.fchip.cat-chip.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+.fchip .ct{opacity:.55;margin-left:5px;}
+.noresult{display:none;text-align:center;color:var(--m-dark);padding:34px;font-family:"IBM Plex Mono",monospace;font-size:14px;}
+.post.hide-f,.feature-post.hide-f{display:none!important;}
+
+/* article infographics */
+.fig{background:var(--card);border:1px solid var(--line-lt);border-radius:12px;padding:24px 26px;margin:30px 0;}
+.fig .fcap{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan-600);margin-bottom:5px;}
+.fig h4{font-size:17px;margin-bottom:20px;}
+.fig .fnote{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--m-dark);margin-top:16px;line-height:1.55;}
+.barrow{display:grid;grid-template-columns:152px 1fr;gap:12px;align-items:center;margin-bottom:13px;}
+.barrow .blab{font-size:12.5px;font-weight:600;font-family:"Space Grotesk",sans-serif;color:var(--t-dark);line-height:1.25;}
+.bartrack{position:relative;background:var(--surface-2);border-radius:6px;height:28px;overflow:hidden;}
+.barfill{position:absolute;left:0;top:0;height:100%;border-radius:6px;display:flex;align-items:center;padding-left:10px;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;}
+.barfill.india{background:var(--amber);color:#2a1a04;}
+.bartrack .gaplab{position:absolute;right:10px;top:0;height:100%;display:flex;align-items:center;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--m-dark);}
+.fig .leg{display:flex;gap:18px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--m-dark);margin-top:10px;flex-wrap:wrap;}
+.fig .leg span{display:inline-flex;align-items:center;gap:6px;}
+.fig .leg i{width:12px;height:12px;border-radius:3px;display:inline-block;}
+.figstat{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-lt);border:1px solid var(--line-lt);border-radius:10px;overflow:hidden;}
+.figstat .fs{background:var(--card);padding:18px 14px;text-align:center;}
+.figstat .fsv{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:25px;color:var(--blue);}
+.figstat .fsl{font-size:12px;color:var(--m-dark);margin-top:5px;line-height:1.35;}
+.article table.dtbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:22px 0;}
+.article table.dtbl th{background:var(--ink);color:#fff;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:13px;text-align:left;padding:10px 13px;}
+.article table.dtbl td{border:1px solid var(--line-lt);padding:10px 13px;color:#2c3e50;font-size:14px;}
+.article table.dtbl tr:nth-child(even) td{background:var(--surface);}
+.article table.dtbl td.k{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap;}
+.srcnote{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--m-dark);margin-top:26px;line-height:1.7;border-top:1px solid var(--line-lt);padding-top:16px;}
+.srcnote a{color:var(--cyan-600);text-decoration:underline;word-break:break-word;}
+.barfill.alt{background:var(--blue);color:#fff;}
+@media(max-width:880px){.feature-post,.grid{grid-template-columns:1fr;}.feature-post .fbody{padding:30px;}.nav .links{display:none;}.burger{display:flex;}.nav-cta .btn-dark{display:none;}.figstat{grid-template-columns:1fr;}.barrow{grid-template-columns:1fr;gap:5px;}}
 </style>
 </head>
 <body>
@@ -120,10 +159,18 @@ footer a{color:var(--cyan-soft);}
   </div>
 </div>
 
+<div class="filters" id="filters">
+  <div class="wrap">
+    <div class="frow"><span class="flabel">Category</span><span id="catbar" style="display:contents"></span></div>
+    <div class="frow"><span class="flabel">Tags</span><span id="tagbar" style="display:contents"></span></div>
+  </div>
+</div>
+
 <div class="list" id="list">
   <div class="wrap">
+    <div class="noresult" id="noresult">No insights match that filter yet — try another category or tag.</div>
     <!-- FEATURED -->
-    <div class="feature-post" onclick="openArticle('a1')">
+    <div class="feature-post" data-cat="Strategy &amp; Digital" data-tags="FTA|Strategy" onclick="openArticle('a1')">
       <div class="fimg">
         <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#0C2A47"/><circle cx="120" cy="150" r="50" fill="none" stroke="#27C9C9" stroke-width="2" opacity=".5"/><path d="M120 150 Q220 60 320 130" fill="none" stroke="#27C9C9" stroke-dasharray="4 4" stroke-width="2"/><circle cx="120" cy="150" r="6" fill="#27C9C9"/><circle cx="320" cy="130" r="6" fill="#E8A23D"/><text x="200" y="240" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="#7FE0DE">🇬🇧 ⇄ 🇮🇳  15 JUL 2026</text></svg>
       </div>
@@ -136,17 +183,29 @@ footer a{color:var(--cyan-soft);}
     </div>
     <!-- GRID -->
     <div class="grid">
-      <div class="post" onclick="openArticle('a2')">
+      <div class="post" data-cat="Strategy &amp; Digital" data-tags="Digitisation|Strategy" onclick="openArticle('a2')">
         <div class="pimg"><svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="150" fill="#103358"/><g stroke="#27C9C9" stroke-width="2" fill="none"><rect x="150" y="40" width="100" height="70" rx="6"/><line x1="170" y1="62" x2="230" y2="62"/><line x1="170" y1="78" x2="230" y2="78"/><line x1="170" y1="94" x2="210" y2="94"/></g><circle cx="300" cy="50" r="5" fill="#E8A23D"/></svg></div>
         <div class="pbody"><div class="tagrow"><span class="ttag">Digitisation</span></div><h3>"Not export-ready" really means "not digitised yet"</h3><p class="exc">Why the gaps that sink first-time exporters are, almost always, data problems in disguise.</p><span class="readmore">Read →</span></div>
       </div>
-      <div class="post" onclick="openArticle('a3')">
+      <div class="post" data-cat="Wellness" data-tags="Wellness|Compliance" onclick="openArticle('a3')">
         <div class="pimg"><svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="150" fill="#0E2B49"/><path d="M200 45 C 220 25 250 30 250 55 C250 78 220 82 200 100 C180 82 150 78 150 55 C150 30 180 25 200 45 Z" fill="#27C9C9" opacity=".15" stroke="#27C9C9"/></svg></div>
         <div class="pbody"><div class="tagrow"><span class="ttag">Wellness</span></div><h3>Ayurveda &amp; wellness exports: a first-timer's compliance map</h3><p class="exc">The FDA, labelling and health-claim rules that quietly cause the most rejected shipments — and how to clear them.</p><span class="readmore">Read →</span></div>
       </div>
-      <div class="post" onclick="openArticle('a4')">
+      <div class="post" data-cat="Strategy &amp; Digital" data-tags="Framework|Strategy" onclick="openArticle('a4')">
         <div class="pimg"><svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="150" fill="#103358"/><g font-family="Space Grotesk" font-weight="700" font-size="22" fill="#27C9C9"><text x="60" y="90">C</text><text x="130" y="90" fill="#3E84D6">W</text><text x="210" y="90" fill="#7FE0DE">R</text><text x="290" y="90" fill="#E8A23D">F</text></g><line x1="60" y1="100" x2="320" y2="100" stroke="#27496e"/></svg></div>
         <div class="pbody"><div class="tagrow"><span class="ttag">Framework</span></div><h3>Crawl, Walk, Run, Fly: a maturity model for export-ready manufacturing</h3><p class="exc">A simple way to know exactly where your factory stands — and the single fastest next move from there.</p><span class="readmore">Read →</span></div>
+      </div>
+      <div class="post" data-cat="Wellness" data-tags="Wellness|Demand Assessment|GCC &amp; UAE|Market Sizing" onclick="openArticle('a5')">
+        <div class="pimg"><svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="150" fill="#0C2A47"/><g font-family="IBM Plex Mono" font-size="34">🇦🇪</g><text x="40" y="60" font-size="30">🇦🇪</text><g stroke-width="0"><rect x="150" y="95" width="26" height="35" fill="#E8A23D"/><rect x="186" y="70" width="26" height="60" fill="#27C9C9"/><rect x="222" y="50" width="26" height="80" fill="#27C9C9"/><rect x="258" y="78" width="26" height="52" fill="#E8A23D"/><rect x="294" y="40" width="26" height="90" fill="#27C9C9"/></g><line x1="140" y1="130" x2="340" y2="130" stroke="#27496e"/></svg></div>
+        <div class="pbody"><div class="tagrow"><span class="ttag">Demand Assessment</span></div><h3>What the UAE is buying from India's wellness shelf — the 2026 demand map</h3><p class="exc">Which wellness products Gulf buyers are actively sourcing from India, how small India's share still is, and how wide the gap runs to 2029.</p><span class="readmore">Read →</span></div>
+      </div>
+      <div class="post" data-cat="Wellness" data-tags="Wellness|Demand Assessment|Nutraceuticals|GCC &amp; UAE" onclick="openArticle('a6')">
+        <div class="pimg"><svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="150" fill="#0E2B49"/><path d="M70 110 L130 90 L190 95 L250 60 L310 40 L340 30" fill="none" stroke="#27C9C9" stroke-width="2.5"/><path d="M70 110 L130 90 L190 95 L250 60 L310 40 L340 30 L340 130 L70 130 Z" fill="#27C9C9" opacity=".12"/><circle cx="310" cy="40" r="5" fill="#E8A23D"/><circle cx="340" cy="30" r="4" fill="#7FE0DE"/></svg></div>
+        <div class="pbody"><div class="tagrow"><span class="ttag">Nutraceuticals</span></div><h3>Ayurveda &amp; herbal supplements in the UAE: demand is racing ahead of supply</h3><p class="exc">The Gulf's nutraceutical appetite is compounding double-digits — and India is leaving most of it on the table. The numbers, and why.</p><span class="readmore">Read →</span></div>
+      </div>
+      <div class="post" data-cat="Wellness" data-tags="Wellness|Demand Assessment|Personal Care|Essential Oils|GCC &amp; UAE" onclick="openArticle('a7')">
+        <div class="pimg"><svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="150" fill="#103358"/><g fill="none" stroke="#27C9C9" stroke-width="2"><rect x="178" y="55" width="44" height="62" rx="8"/><rect x="190" y="40" width="20" height="18" rx="3"/></g><path d="M200 70 C212 84 212 100 200 104 C188 100 188 84 200 70 Z" fill="#7FE0DE" opacity=".5"/><circle cx="120" cy="60" r="4" fill="#E8A23D"/><circle cx="285" cy="80" r="4" fill="#E8A23D"/></svg></div>
+        <div class="pbody"><div class="tagrow"><span class="ttag">Personal Care</span></div><h3>Halal-certified herbal care &amp; essential oils: the UAE's fastest-rising ask</h3><p class="exc">Natural, halal-certified and traceable — the exact profile Gulf buyers want, and where India's authenticity is an unfair advantage.</p><span class="readmore">Read →</span></div>
       </div>
     </div>
   </div>
@@ -159,7 +218,7 @@ footer a{color:var(--cyan-soft);}
   <h1>The UK–India CETA lands on 15 July 2026. Here's what North India manufacturers must do now.</h1>
   <div class="ameta"><span>Kinexus Systems</span><span>June 2026</span><span>6 min read</span></div>
   <p class="lead">A duty advantage is not a strategy. It's an open door — and doors close. The manufacturers who convert the FTA into real orders will be the ones who get operationally export-ready while the advantage still exists.</p>
-  <p>From 15 July 2026, the India–UK Comprehensive Economic and Trade Agreement (CETA) eliminates UK duties on 99% of Indian tariff lines — cutting tariffs of up to 18% on engineering goods and auto components, 12% on textiles and clothing, and 8% on chemicals and pharmaceuticals. On paper, an Indian factory just became materially cheaper to buy from than many global competitors. The EU deal, signed in January 2026, opens an even larger market close behind.</p>
+  <p>From 15 July 2026, the India–UK Comprehensive Economic and Trade Agreement (CETA) eliminates UK duties on 99% of Indian tariff lines — cutting tariffs of up to 18% on engineering goods and auto components, 12% on textiles and clothing, and 8% on chemicals and pharmaceuticals. On paper, an Indian factory just became materially cheaper to buy from than many global competitors. The EU–India FTA, whose negotiations concluded in January 2026 (with entry into force expected around 2027), opens an even larger market close behind.</p>
   <p>But here is the uncomfortable truth every exporter learns: <strong>price gets you onto the shortlist; operations win the order.</strong> A serious overseas buyer doesn't just compare quotes. They audit. They ask for batch traceability, consistent quality records, documentation that survives their customs, and the confidence that you'll hit delivery dates shipment after shipment. That's where most first-time exporters stall.</p>
   <h2>The 12-month window, in three moves</h2>
   <p><strong>1. Make your operation visible (months 0–3).</strong> You cannot pass a buyer audit on memory and spreadsheets. The first move is a single source of truth: production, quality and inventory captured in one place, in real time. This isn't a giant ERP project — it's a focused backbone built on what you already use.</p>
@@ -230,6 +289,156 @@ footer a{color:var(--cyan-soft);}
   <div class="cta-box"><h3>Find your stage in 60 seconds</h3><p>Three questions, an instant read, and your fastest first move.</p><a href="index.html#assess" class="btn btn-primary">Take the self-assessment →</a></div>
 </div></div>
 
+<div class="article" id="a5"><div class="wrap amax">
+  <span class="back" onclick="closeArticle()">← All insights</span>
+  <span class="eyebrow">Wellness · Demand Assessment</span>
+  <h1>What the UAE is buying from India's wellness shelf — the 2026 demand map.</h1>
+  <div class="ameta"><span>Kinexus Systems</span><span>June 2026</span><span>7 min read</span></div>
+  <p class="lead">The UAE imports the large majority of the wellness products it consumes — and India, despite owning the heritage and the manufacturing base, sends most of its wellness exports West to the US and EU, not to the Gulf next door. That mismatch, sitting on top of a duty-free trade lane India already has, is the opportunity.</p>
+  <p>Start with the scale of the demand. The Global Wellness Institute puts the UAE's wellness economy at <strong>US$40.8 billion in 2024</strong> — the fastest-growing in the Middle East — including US$14.8 billion in personal care &amp; beauty and US$11.3 billion in wellness tourism (GWI, 2024). The narrower "health &amp; wellness" product market alone is put at <strong>US$19.8 billion in 2025, rising to US$28.2 billion by 2034</strong> (IMARC, 2025). And the UAE is two markets in one: a high-spending domestic market, and Dubai's re-export hub — re-exports are over 45% of total UAE trade — that feeds the wider GCC, Africa and South Asia (Dubai Customs data, 2025).</p>
+  <p>The products Gulf buyers want — Ayurvedic and herbal supplements, natural and halal personal care, essential oils, functional foods — are exactly what India makes at scale. The UAE imports its supplements primarily from China, India and the US (MarkNtel Advisors, 2025). So India is already in the room. The question is why it isn't winning more of it.</p>
+
+  <div class="fig">
+    <div class="fcap">Infographic · The UAE wellness economy, 2024</div>
+    <h4>A large, fast-growing market that buys, not makes</h4>
+    <div class="figstat">
+      <div class="fs"><div class="fsv">$40.8B</div><div class="fsl">UAE total wellness economy, 2024 — fastest-growing in the Middle East</div></div>
+      <div class="fs"><div class="fsv">$14.8B</div><div class="fsl">of it in personal care &amp; beauty</div></div>
+      <div class="fs"><div class="fsv">$11.3B</div><div class="fsl">in wellness tourism (grew 23.5% CAGR)</div></div>
+    </div>
+    <div class="fnote">Source: Global Wellness Institute, "UAE Wellness Economy" data, 2024. The UAE's health-&amp;-wellness <em>product</em> market alone is put at US$19.8B in 2025, reaching US$28.2B by 2034 (IMARC, 2025).</div>
+  </div>
+
+  <h2>Here's the real gap: India under-serves the Gulf</h2>
+  <p>India's AYUSH and herbal-product exports reached about <strong>US$689 million in FY 2024-25</strong> (India's Ministry of Commerce, reported Jan 2026). But look at where they go. On the most-cited official breakdown, the USA takes ~35% and the EU ~19% of India's AYUSH exports — while the <strong>UAE accounts for only about 5.5%</strong> (RIS/FITM AYUSH Export Report, 2021 data). Now set that against demand: the UAE and Saudi Arabia together make up <strong>58% of the entire Middle East &amp; Africa Ayurvedic-products demand</strong> (Global Growth Insights). India sells most of its Ayurveda to the West, and comparatively little to the Gulf region that wants it most.</p>
+
+  <div class="fig">
+    <div class="fcap">Infographic · Where India's AYUSH exports actually go</div>
+    <h4>India routes its wellness exports West — the Gulf is barely tapped</h4>
+    <div class="barrow"><span class="blab">United States</span><div class="bartrack"><div class="barfill alt" style="width:69.9%">~34.95%</div></div></div>
+    <div class="barrow"><span class="blab">European Union</span><div class="bartrack"><div class="barfill alt" style="width:37.32%">~18.66%</div></div></div>
+    <div class="barrow"><span class="blab">UAE</span><div class="bartrack"><div class="barfill india" style="width:11.04%">~5.52%</div><span class="gaplab">despite UAE+Saudi = 58% of MEA demand</span></div></div>
+    <div class="leg"><span><i style="background:var(--blue)"></i> Established Western markets</span><span><i style="background:var(--amber)"></i> The under-served Gulf</span></div>
+    <div class="fnote">Share of India's total AYUSH exports by destination. Source: RIS/FITM AYUSH Export Report (2021 data, the latest detailed official split); bar widths scaled ×2 for visibility. MEA demand split: Global Growth Insights, Ayurvedic Products Market.</div>
+  </div>
+
+  <h2>The tailwind India isn't fully using: the CEPA</h2>
+  <p>The under-exposure is especially striking because India already has a structural advantage in the UAE. Under the <strong>India–UAE CEPA</strong> (in force since 1 May 2022), the UAE eliminated tariffs on 97% of its tariff lines — covering about <strong>99% of India's exports to the UAE by value</strong>, with ~90% becoming duty-free immediately (India–UAE CEPA FAQs, Govt. of India). India's non-oil exports to the UAE rose to US$27.4 billion in FY 2023-24, growing ~25.6% a year since the CEPA, and total bilateral trade has since crossed US$100 billion (Govt. of India / trade data). The duty door is already open; most wellness exporters just haven't walked through it.</p>
+  <div class="callout">The gap isn't that the UAE won't buy Indian wellness products. It's that India sends most of its AYUSH exports West, under-serves the Gulf that wants them most, and under-uses a duty-free lane it already holds. That's a readiness-and-focus gap — not a demand or product one.</div>
+
+  <h2>Why the gap stays open (it isn't demand, and it isn't product)</h2>
+  <p>What India most often lacks at the factory level is the thing Gulf buyers screen for before they place an order: <strong>certified, traceable, audit-ready supply.</strong> A buyer in Dubai comparing two suppliers chooses the one who can show halal certification, heavy-metal and microbial test reports, batch traceability, and labelling that already meets GCC (and increasingly UK/EU) rules. That's a documentation and digitisation problem, not a manufacturing one — exactly the gap the Digital Export Engine is built to close.</p>
+
+  <h2>Who's actively buying — and what for</h2>
+  <p>The demand isn't abstract. It comes from a few concrete types of buyer, in the UAE and through it:</p>
+  <ul>
+    <li><strong>UAE retail &amp; pharmacy chains</strong> — branded, certified, shelf-ready supplements and natural personal care, with clean labels and consistent supply.</li>
+    <li><strong>Dubai re-export distributors</strong> — bulk and private-label volumes routed on to Saudi Arabia, Oman, Kuwait and East Africa; re-exports are over 45% of UAE trade (Dubai Customs, 2025).</li>
+    <li><strong>GCC neighbours buying through the UAE</strong> — Saudi Arabia, the largest GCC wellness market, plus Oman, whose 2025 CEPA with India added the first comprehensive traditional-medicine (AYUSH) commitment in any trade pact.</li>
+    <li><strong>HoReCa, spa &amp; wellness operators</strong> — the Gulf's vast hospitality sector, a heavy buyer of essential oils, aromatherapy and natural amenities (UAE spa market ~US$1.4B in 2024, 8.5% CAGR — GMI).</li>
+  </ul>
+  <p>Beyond the Gulf, the same Indian wellness SKUs are sought in the US (the world's largest supplement market, ~35% of India's AYUSH exports) and the EU (~19%) — and the 2025 India–UK CETA, in force 15 July 2026, removes UK duties on 99% of Indian goods. The UAE is simply the most accessible, duty-advantaged first market — which is why it's the right place to start.</p>
+
+  <p>In the next two pieces we go deeper into the two product clusters where the win is fastest: <strong>Ayurveda &amp; herbal supplements</strong>, and <strong>halal-certified herbal personal care &amp; essential oils</strong>.</p>
+
+  <p class="srcnote"><strong>Sources:</strong> Global Wellness Institute, UAE wellness economy 2024 (<a href="https://globalwellnessinstitute.org/press-room/press-releases/new-global-wellness-institute-report-shows-uae-wellness-economy-now-worth-40-8-billion/" target="_blank" rel="noopener">link</a>) · IMARC Group, UAE Health &amp; Wellness Market (<a href="https://www.imarcgroup.com/uae-health-wellness-market" target="_blank" rel="noopener">link</a>) · MarkNtel Advisors, UAE Nutraceuticals Market (<a href="https://www.marknteladvisors.com/research-library/uae-nutraceuticals-market.html" target="_blank" rel="noopener">link</a>) · India AYUSH &amp; herbal exports FY24-25, Ministry of Commerce, via The Hans India, Jan 2026 (<a href="https://www.thehansindia.com/news/national/ayush-exports-jump-611-pc-to-689-million-in-2024-25-govt-1036496" target="_blank" rel="noopener">link</a>) · RIS/FITM AYUSH Export Report, 2021 destination split (<a href="https://fitm.ris.org.in/sites/fitm.ris.org.in/files/Publication/AYUSH-Export-Report.pdf" target="_blank" rel="noopener">link</a>) · Global Growth Insights, Ayurvedic Products Market (<a href="https://www.globalgrowthinsights.com/market-reports/ayurvedic-products-market-106274" target="_blank" rel="noopener">link</a>) · India–UAE CEPA FAQs, Govt. of India (<a href="https://www.nsez.gov.in/Resources/Trade/FAQs%20on%20CEPA.pdf" target="_blank" rel="noopener">link</a>). Figures are from third-party market research and official trade data as published; the AYUSH destination split uses 2021 data (the latest detailed official breakdown). Verify for your own product and destination before commercial use.</p>
+  <div class="cta-box"><h3>Want the UAE demand map for your product?</h3><p>We size the demand, your real gap, and the readiness moves to capture it — with Cosmo International opening the Gulf channel.</p><a href="index.html#contact" class="btn btn-primary">Talk to us →</a></div>
+</div></div>
+
+<div class="article" id="a6"><div class="wrap amax">
+  <span class="back" onclick="closeArticle()">← All insights</span>
+  <span class="eyebrow">Wellness · Demand Assessment</span>
+  <h1>Ayurveda &amp; herbal supplements in the UAE: demand is racing ahead of supply.</h1>
+  <div class="ameta"><span>Kinexus Systems</span><span>June 2026</span><span>6 min read</span></div>
+  <p class="lead">Herbal and Ayurvedic supplements sit inside one of the Gulf's fastest-compounding markets — and India, the natural home of the category, captures only a thin slice of the UAE's demand despite holding a duty-free trade lane into it.</p>
+  <p>The Gulf's shift toward preventive, "natural-first" health is structural, not a fad. A young population, high disposable income, high awareness of lifestyle disease, and cultural openness to traditional medicine push demand toward herbal supplements, immunity and gut-health formulations, adaptogens and Ayurvedic classical products. The numbers bear it out: the <strong>GCC nutraceuticals market was US$7.5 billion in 2025 and is projected to reach US$16.1 billion by 2034, an 8.61% CAGR</strong> (IMARC, 2025). The UAE's own dietary-supplements market is put at <strong>US$512 million in 2025, rising to US$855 million by 2031, an 8.91% CAGR</strong> (TechSci Research, 2025). India is the natural home of these products — yet much of the UAE's shelf is filled by American, European and Chinese brands.</p>
+
+  <div class="fig">
+    <div class="fcap">Infographic · GCC nutraceuticals market, 2025 → 2034</div>
+    <h4>The demand compounds at ~8.6% a year — the door keeps widening</h4>
+    <svg viewBox="0 0 620 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="62" y1="20" x2="62" y2="235" stroke="#DCE5EF" stroke-width="1.5"/>
+      <line x1="62" y1="235" x2="600" y2="235" stroke="#DCE5EF" stroke-width="1.5"/>
+      <g font-family="IBM Plex Mono" font-size="11" fill="#586A7E"><text x="100" y="256" text-anchor="middle">2025</text><text x="153" y="256" text-anchor="middle">2026</text><text x="312" y="256" text-anchor="middle">2029</text><text x="560" y="256" text-anchor="middle">2034</text></g>
+      <path d="M100 175 C 250 158, 360 120, 560 55" fill="none" stroke="#27C9C9" stroke-width="3"/>
+      <path d="M100 175 C 250 158, 360 120, 560 55 L560 235 L100 235 Z" fill="#27C9C9" opacity=".12"/>
+      <g stroke="#DCE5EF" stroke-dasharray="3 3"><line x1="153" y1="170" x2="153" y2="235"/><line x1="312" y1="138" x2="312" y2="235"/></g>
+      <circle cx="100" cy="175" r="4.5" fill="#0F9C9C"/><circle cx="153" cy="170" r="4.5" fill="#0F9C9C"/><circle cx="312" cy="138" r="4.5" fill="#E8A23D"/><circle cx="560" cy="55" r="5.5" fill="#0F9C9C"/>
+      <g font-family="IBM Plex Mono" font-size="11.5" fill="#0C2238" font-weight="600"><text x="100" y="163" text-anchor="middle">$7.5B</text><text x="312" y="126" text-anchor="middle">~$10.4B</text><text x="560" y="43" text-anchor="middle">$16.1B</text></g>
+    </svg>
+    <div class="fnote">Source: IMARC Group, GCC Nutraceuticals Market — US$7.5B (2025) → US$16.1B (2034) at 8.61% CAGR. The ~US$10.4B mid-point at 2029 is derived from that published CAGR (≈$7.5B × 1.0861³); endpoints are as published. UAE dietary supplements specifically: US$512M (2025) → US$855M (2031), 8.91% CAGR (TechSci Research).</div>
+  </div>
+
+  <p>And India is already there: the UAE imports its dietary supplements primarily from China, India and the US (MarkNtel Advisors, 2025) — so this isn't about breaking in cold, it's about converting presence into share, in a market where the UAE and Saudi Arabia together account for 58% of all Middle East &amp; Africa Ayurvedic-product demand (Global Growth Insights).</p>
+
+  <h2>What buyers actually want to see</h2>
+  <p>Gulf importers and pharmacy buyers have a checklist, and it's remarkably consistent. Meet it and you're on the shortlist; miss any line and the order quietly goes to a competitor:</p>
+  <table class="dtbl">
+    <tr><th style="width:210px">What the buyer asks for</th><th>Why it decides the order</th></tr>
+    <tr><td class="k">Halal certification</td><td>Often non-negotiable for GCC retail and re-export; missing it removes you from consideration entirely.</td></tr>
+    <tr><td class="k">Heavy-metal &amp; microbial reports</td><td>Standard for any ingestible; the single most common reason herbal shipments are held or rejected.</td></tr>
+    <tr><td class="k">Batch traceability</td><td>Proof you can trace a finished pack back to raw herb — the core of a buyer's due-diligence audit.</td></tr>
+    <tr><td class="k">Correct classification &amp; claims</td><td>Food supplement vs medicament changes the registration path, permitted claims and duty. Get it wrong after shipping and it's costly to unwind.</td></tr>
+    <tr><td class="k">GCC-compliant labelling</td><td>Arabic labelling, ingredient disclosure and shelf-life format — destination-specific, and a frequent first-timer trip-up.</td></tr>
+  </table>
+  <div class="callout">Notice the pattern: almost none of this is about the <em>product</em>. It's about whether you can <em>prove</em> the product. That proof is generated from a digitised operation — or scrambled together by hand under deadline, which is why so many orders slip.</div>
+
+  <h2>The Oman lane, and why it matters for the UAE too</h2>
+  <p>The <strong>India–Oman CEPA</strong>, signed in December 2025, includes a dedicated annexe on traditional medicine — described by India's Commerce Ministry as the first comprehensive commitment on traditional medicine (AYUSH) by any country in a trade pact, extending across all modes of supply. For an Indian supplement maker, that's a proof-of-concept GCC lane — and the same readiness that unlocks Oman is exactly what UAE and Saudi buyers screen for. Build it once, sell it across the Gulf. (Note: as of mid-2026 the Oman CEPA is signed but not yet in force; the India–UAE CEPA has been in force since May 2022.)</p>
+  <p>The takeaway: the demand is here and compounding, and India already holds a duty-free lane into the UAE. The binding constraint is readiness. Solve certification, testing, traceability and classification — digitally, so it's repeatable — and the widening market becomes your runway, not someone else's.</p>
+
+  <p class="srcnote"><strong>Sources:</strong> IMARC Group, GCC Nutraceuticals Market — US$7.5B (2025) → US$16.1B (2034), 8.61% CAGR (<a href="https://www.imarcgroup.com/gcc-nutraceuticals-market" target="_blank" rel="noopener">link</a>) · TechSci Research, UAE Dietary Supplements Market — US$512M (2025) → US$855M (2031), 8.91% CAGR (<a href="https://www.techsciresearch.com/report/uae-dietary-supplements-market/3058.html" target="_blank" rel="noopener">link</a>) · MarkNtel Advisors, UAE Nutraceuticals Market, on import sourcing (<a href="https://www.marknteladvisors.com/research-library/uae-nutraceuticals-market.html" target="_blank" rel="noopener">link</a>) · Global Growth Insights, Ayurvedic Products Market, MEA demand split (<a href="https://www.globalgrowthinsights.com/market-reports/ayurvedic-products-market-106274" target="_blank" rel="noopener">link</a>) · India–Oman CEPA traditional-medicine annexe, Commerce Ministry via Deccan Herald, Dec 2025 (<a href="https://www.deccanherald.com/india/in-a-first-india-includes-traditional-medicines-in-trade-pact-with-oman-3835440" target="_blank" rel="noopener">link</a>). The 2029 mid-point is derived from IMARC's published CAGR; endpoints are as published. Verify for your product/destination before commercial use.</p>
+  <div class="cta-box"><h3>Exporting supplements to the Gulf?</h3><p>Get your classification, certification and traceability mapped to what UAE and Saudi buyers actually audit.</p><a href="index.html#contact" class="btn btn-primary">Talk to us →</a></div>
+</div></div>
+
+<div class="article" id="a7"><div class="wrap amax">
+  <span class="back" onclick="closeArticle()">← All insights</span>
+  <span class="eyebrow">Wellness · Demand Assessment</span>
+  <h1>Halal-certified herbal care &amp; essential oils: the UAE's fastest-rising import ask.</h1>
+  <div class="ameta"><span>Kinexus Systems</span><span>June 2026</span><span>6 min read</span></div>
+  <p class="lead">Natural, halal-certified, traceable, story-rich. That's the exact profile of personal-care and aromatherapy product Gulf buyers are chasing — and it happens to be the profile India is best placed in the world to supply.</p>
+  <p>Two adjacent categories are pulling Gulf demand hard. First, natural and herbal personal care — skin, hair and body products built on Ayurvedic and botanical formulations, increasingly expected to be halal-certified. Second, essential oils and aromatherapy, fed by the Gulf's enormous spa, hospitality and home-fragrance markets — the UAE spa market alone was about US$1.4 billion in 2024, growing at an 8.5% CAGR (Global Market Insights, 2025). The standout signal is halal: the <strong>GCC halal-cosmetics market was US$7.5 billion in 2025 and is projected to reach US$26.5 billion by 2034 — a 14.67% CAGR</strong> (IMARC, 2025), among the fastest-growing consumer categories in the region. India is a leading global producer of both the botanicals and the oils, yet its share of the UAE's import demand sits well below its production strength.</p>
+
+  <div class="fig">
+    <div class="fcap">Infographic · The categories, sized (latest available)</div>
+    <h4>Fast-growing, high-margin — and aligned with India's strengths</h4>
+    <div class="figstat">
+      <div class="fs"><div class="fsv">$7.5B→$26.5B</div><div class="fsl">GCC halal cosmetics, 2025→2034 (14.67% CAGR) — IMARC</div></div>
+      <div class="fs"><div class="fsv">$112M→$174M</div><div class="fsl">UAE organic personal care, 2024→2030 (7.61% CAGR) — TechSci</div></div>
+      <div class="fs"><div class="fsv">~$330M</div><div class="fsl">Middle East aromatherapy market — Ken Research</div></div>
+    </div>
+    <div class="fnote">Sources: IMARC Group (GCC halal cosmetics); TechSci Research (UAE organic personal care); Ken Research (Middle East aromatherapy, current size). For wider context, the UAE's personal care &amp; beauty spend was US$14.8B in 2024 (Global Wellness Institute).</div>
+  </div>
+
+  <h2>The tailwind that makes this urgent: the CEPA</h2>
+  <p>The real, present advantage for an Indian exporter is the <strong>India–UAE CEPA</strong>: in force since May 2022, it gives roughly 99% of India's exports to the UAE duty-free access by value — so a halal-certified Indian botanical line already lands in Dubai without the tariff drag a non-FTA competitor carries. The 2025 India–UK CETA adds a Western-market tailwind, eliminating UK duties on 99% of Indian goods from 15 July 2026 (GOV.UK). <em>One clarification worth making, because it's widely muddled: the much-quoted "22% cosmetics tariff" under CETA is India's duty on UK-made cosmetics — a win for British exporters into India, not a UK duty on Indian goods.</em> India's edge into both the Gulf and the UK is the CEPA duty-free lane plus the natural/halal positioning — not that 22% figure.</p>
+
+  <div class="fig">
+    <div class="fcap">Infographic · Why now</div>
+    <h4>A duty-free lane into a fast-growing, on-trend category</h4>
+    <div class="figstat">
+      <div class="fs"><div class="fsv">~99%</div><div class="fsl">of India's exports to the UAE are duty-free under CEPA (by value)</div></div>
+      <div class="fs"><div class="fsv">14.67%</div><div class="fsl">CAGR of GCC halal cosmetics to 2034 — IMARC</div></div>
+      <div class="fs"><div class="fsv">$3.2B+</div><div class="fsl">India's cosmetics, toiletries &amp; essential-oil exports, FY24 — Statista</div></div>
+    </div>
+    <div class="fnote">Sources: India–UAE CEPA FAQs, Govt. of India; IMARC Group; Statista (India cosmetics/toiletries/essential-oils export value, FY24 — broad basket). High-margin, brandable, and aligned with India's authentic strength — which is why this is a beachhead, not a side bet.</div>
+  </div>
+
+  <h2>What separates a winning supplier here</h2>
+  <ul>
+    <li><strong>Halal certification, upfront.</strong> For personal care headed into GCC retail and re-export, this is table stakes, not a nice-to-have.</li>
+    <li><strong>EU Cosmetics-grade compliance.</strong> CPNP notification, an EU Responsible Person, and a clean safety dossier — meeting the EU bar makes you trivially acceptable to Gulf buyers too.</li>
+    <li><strong>Defensible claims and labelling.</strong> "Natural" and "herbal" are scrutinised; unsubstantiated claims get a shipment held. Get claims reviewed before the label is printed.</li>
+    <li><strong>Batch traceability and stability data.</strong> Especially for essential oils, where purity and adulteration are buyer obsessions — provable purity is the sale.</li>
+  </ul>
+  <div class="callout">India's edge in this category is authenticity — genuinely botanical, genuinely traditional. The job is to make that authenticity <em>provable</em> to a Gulf buyer: certified, tested, traceable. That's the digitisation layer, and it's what turns a story into a shipment.</div>
+
+  <p>Across all three pieces, the conclusion is the same. The UAE wants India's wellness products; the demand is large and growing; and the gap is held open not by demand or product but by readiness. Close the readiness gap — classification, certification, testing, traceability, labelling, all generated from a digitised operation — and the share is there for the taking.</p>
+
+  <p class="srcnote"><strong>Sources:</strong> IMARC Group, GCC Halal Cosmetics Market — US$7.5B (2025) → US$26.5B (2034), 14.67% CAGR (<a href="https://www.imarcgroup.com/gcc-halal-cosmetics-market" target="_blank" rel="noopener">link</a>) · TechSci Research, UAE Organic Personal Care Market — US$112M (2024) → US$174M (2030), 7.61% CAGR (<a href="https://www.globenewswire.com/news-release/2025/10/30/3177657/0/en/uae-174-05-mn-organic-personal-care-market-trends-regional-insights-competition-forecast-opportunities-2030f.html" target="_blank" rel="noopener">link</a>) · Ken Research, Middle East Aromatherapy Market (<a href="https://www.kenresearch.com/middle-east-aromatherapy-market" target="_blank" rel="noopener">link</a>) · Global Market Insights, KSA &amp; UAE Spa Market (<a href="https://www.gminsights.com/industry-analysis/ksa-and-uae-spa-market" target="_blank" rel="noopener">link</a>) · Global Wellness Institute, UAE wellness economy 2024 (<a href="https://globalwellnessinstitute.org/press-room/press-releases/new-global-wellness-institute-report-shows-uae-wellness-economy-now-worth-40-8-billion/" target="_blank" rel="noopener">link</a>) · India–UAE CEPA FAQs, Govt. of India (<a href="https://www.nsez.gov.in/Resources/Trade/FAQs%20on%20CEPA.pdf" target="_blank" rel="noopener">link</a>) · India–UK CETA conclusion summary, GOV.UK — incl. the cosmetics-tariff direction (<a href="https://www.gov.uk/government/publications/uk-india-trade-deal-conclusion-summary/uk-india-trade-deal-conclusion-summary" target="_blank" rel="noopener">link</a>) · India cosmetics/toiletries/essential-oils export value FY24, Statista (broad basket; <a href="https://www.statista.com/statistics/652439/export-value-of-cosmetics-and-toiletries-india/" target="_blank" rel="noopener">link</a>). Figures are as published by the cited third parties; verify for your product/destination before commercial use.</p>
+  <div class="cta-box"><h3>Building a halal-certified export line?</h3><p>We map the certification, compliance and traceability that UAE and EU buyers require — and the digital backbone that makes it repeatable.</p><a href="index.html#contact" class="btn btn-primary">Talk to us →</a></div>
+</div></div>
+
 <footer>
   <div class="wrap">
     <p style="margin-bottom:8px">© 2026 Kinexus Systems · The Digital Export Engine for North India's manufacturers</p>
@@ -241,6 +450,7 @@ footer a{color:var(--cyan-soft);}
 function openArticle(id){
   document.getElementById('list').classList.add('hide');
   document.getElementById('bhero').classList.add('hide');
+  var f=document.getElementById('filters');if(f)f.classList.add('hide');
   document.querySelectorAll('.article').forEach(function(a){a.classList.remove('show');});
   document.getElementById(id).classList.add('show');
   window.scrollTo({top:0,behavior:'instant'in window?'instant':'auto'});
@@ -249,8 +459,51 @@ function closeArticle(){
   document.querySelectorAll('.article').forEach(function(a){a.classList.remove('show');});
   document.getElementById('list').classList.remove('hide');
   document.getElementById('bhero').classList.remove('hide');
+  var f=document.getElementById('filters');if(f)f.classList.remove('hide');
   window.scrollTo({top:0});
 }
+</script>
+<script>
+/* dynamic category + tag filtering, driven by data-cat / data-tags on each post */
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('#list [data-cat]'));
+  var catbar=document.getElementById('catbar'),tagbar=document.getElementById('tagbar');
+  if(!cards.length||!catbar||!tagbar)return;
+  var state={Category:'All',Tags:'All'},cats={},tags={};
+  cards.forEach(function(c){
+    var cat=c.getAttribute('data-cat');cats[cat]=(cats[cat]||0)+1;
+    (c.getAttribute('data-tags')||'').split('|').forEach(function(t){t=t.trim();if(t)tags[t]=(tags[t]||0)+1;});
+  });
+  function chip(label,count,type,active){
+    var b=document.createElement('button');
+    b.className='fchip'+(type==='Category'?' cat-chip':'')+(active?' active':'');
+    b.innerHTML=label+(count!=null?' <span class="ct">'+count+'</span>':'');
+    b.setAttribute('data-val',label);b.setAttribute('data-type',type);
+    return b;
+  }
+  catbar.appendChild(chip('All',cards.length,'Category',true));
+  Object.keys(cats).sort().forEach(function(k){catbar.appendChild(chip(k,cats[k],'Category',false));});
+  tagbar.appendChild(chip('All',null,'Tags',true));
+  Object.keys(tags).sort().forEach(function(k){tagbar.appendChild(chip(k,tags[k],'Tags',false));});
+  function apply(){
+    var shown=0;
+    cards.forEach(function(c){
+      var okc=state.Category==='All'||c.getAttribute('data-cat')===state.Category;
+      var ts=(c.getAttribute('data-tags')||'').split('|').map(function(x){return x.trim();});
+      var okt=state.Tags==='All'||ts.indexOf(state.Tags)>-1;
+      if(okc&&okt){c.classList.remove('hide-f');shown++;}else{c.classList.add('hide-f');}
+    });
+    document.getElementById('noresult').style.display=shown?'none':'block';
+  }
+  function onClick(e){
+    var b=e.target.closest?e.target.closest('.fchip'):null;if(!b)return;
+    var type=b.getAttribute('data-type');state[type]=b.getAttribute('data-val');
+    (type==='Category'?catbar:tagbar).querySelectorAll('.fchip').forEach(function(x){x.classList.toggle('active',x===b);});
+    apply();
+  }
+  catbar.addEventListener('click',onClick);
+  tagbar.addEventListener('click',onClick);
+})();
 </script>
 <script>(function(){var b=document.getElementById('burger'),m=document.getElementById('mnav'),h=document.querySelector('header');if(b&&m){b.addEventListener('click',function(){m.classList.toggle('show');});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('show');});});}if(h){window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>10);});}})();</script>
 </body>
