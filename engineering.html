@@ -144,6 +144,29 @@ footer{background:#050f1a;color:var(--m-light);padding:40px 0 30px;border-top:1p
  .navlinks{display:none;}.burger{display:flex;}.nav-cta .btn-dark{display:none;}
  .hero h1{font-size:34px;}.sec-head h2{font-size:26px;}
 }
+
+/* playbook modal */
+.pbmodal{position:fixed;inset:0;z-index:90;background:rgba(8,24,38,.72);backdrop-filter:blur(4px);display:none;place-items:center;padding:24px;}
+.pbmodal.show{display:grid;}
+.pbbox{background:var(--surface);border-radius:12px;max-width:760px;width:100%;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;position:relative;}
+.pbleft{background:var(--ink);color:#fff;padding:36px;}
+.pbleft .pbeyebrow{font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan-soft);}
+.pbleft h3{color:#fff;font-size:24px;margin:14px 0;}
+.pbleft p{color:#C4D6EC;font-size:14px;}
+.pbleft ul{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:11px;font-size:14px;color:#C4D6EC;}
+.pbleft li{display:flex;gap:10px;}
+.pbleft .ck{color:var(--cyan);}
+.pbright{padding:36px;color:var(--t);}
+.pbright h3{color:var(--t);font-size:20px;margin-bottom:14px;}
+.pbclose{position:absolute;top:14px;right:16px;background:none;border:0;font-size:26px;color:#fff;cursor:pointer;z-index:3;line-height:1;}
+.pbfield{margin-bottom:15px;}
+.pbfield label{display:block;font-size:12.5px;font-weight:600;font-family:'IBM Plex Mono';letter-spacing:.04em;text-transform:uppercase;color:var(--m);margin-bottom:6px;}
+.pbfield input{width:100%;border:1px solid var(--line);background:#fff;border-radius:6px;padding:12px 14px;font-family:'Manrope';font-size:15px;color:var(--t);}
+.pbfield input:focus{outline:2px solid var(--cyan);border-color:transparent;}
+.pbok{display:none;text-align:center;padding:30px 0;}
+.pbok.show{display:block;}
+.pbok .okmk{width:54px;height:54px;border-radius:50%;background:var(--cyan);color:#04181c;display:grid;place-items:center;font-size:28px;margin:0 auto 14px;}
+@media(max-width:880px){.pbbox{grid-template-columns:1fr;}.pbleft{display:none;}}
 </style></head><body>
 <div class="announce mono">🇬🇧🇮🇳 <b>UK–India CETA enters into force 15 July 2026</b> — zero duty on 99% of Indian exports <span class="dot">●</span> The clock is running. Most manufacturers aren’t ready.</div>
 <header><div class="wrap nav">
@@ -171,7 +194,7 @@ footer{background:#050f1a;color:var(--m-light);padding:40px 0 30px;border-top:1p
    <p class="sub">Auto components, machinery parts, fasteners, hand tools and precision engineering — India's largest export category, and your fastest path to a visible win as the UK opens duty-free from day one and global buyers diversify away from China.</p>
    <div class="cta-row">
      <a class="btn btn-primary" href="index.html#contact">Book your readiness diagnostic <span class="ar">→</span></a>
-     <a class="btn btn-ghost" href="Kinexus_Cosmo_Export_Readiness_Playbook.pdf">Download the playbook</a>
+     <button type="button" class="btn btn-ghost" onclick="openPlaybook()">Download the playbook</button>
    </div>
    <div class="hpills"><div class="hpill"><span class="v">18%</span><span class="l">UK duty on engineering goods &amp; auto components removed under CETA</span></div><div class="hpill"><span class="v">China+1</span><span class="l">global buyers actively diversifying to India</span></div></div>
  </div>
@@ -259,7 +282,7 @@ footer{background:#050f1a;color:var(--m-light);padding:40px 0 30px;border-top:1p
    <p>Get a readiness baseline against OEM expectations, a rules-of-origin plan to capture FTA duty, and a route to audited, repeat export supply.</p>
    <div class="cta-row">
      <a class="btn btn-primary" href="index.html#contact">Book your readiness diagnostic <span class="ar">→</span></a>
-     <a class="btn btn-ghost" href="Kinexus_Cosmo_Export_Readiness_Playbook.pdf">Get the Export Readiness Playbook</a>
+     <button type="button" class="btn btn-ghost" onclick="openPlaybook()">Get the Export Readiness Playbook</button>
    </div>
  </div>
  <p class="srcnote" style="text-align:center;margin-top:20px">Sources: GTRI FTA Report Card 2026 · India–UK CETA &amp; India–EU FTA official summaries · industry export-compliance reporting, 2026. Figures are indicative; verify for your product and market.</p>
@@ -276,4 +299,40 @@ footer{background:#050f1a;color:var(--m-light);padding:40px 0 30px;border-top:1p
  </div>
 </div></footer>
 <script>(function(){var b=document.getElementById('burger'),m=document.getElementById('mnav'),h=document.querySelector('header');if(b&&m){b.addEventListener('click',function(){m.classList.toggle('show');});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('show');});});}if(h){window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>10);});}})();</script>
+<div class="pbmodal" id="pbModal">
+  <div class="pbbox">
+    <button class="pbclose" onclick="closePlaybook()" aria-label="Close">&times;</button>
+    <div class="pbleft">
+      <span class="pbeyebrow">Free download</span>
+      <h3>The Export Readiness Playbook</h3>
+      <p>A step-by-step guide for North India manufacturers preparing to sell internationally.</p>
+      <ul>
+        <li><span class="ck">&#10003;</span> FTA-readiness self-check for your sector</li>
+        <li><span class="ck">&#10003;</span> Documentation &amp; compliance checklist</li>
+        <li><span class="ck">&#10003;</span> Digital traceability quick-start</li>
+        <li><span class="ck">&#10003;</span> Common export-rejection reasons &amp; fixes</li>
+      </ul>
+    </div>
+    <div class="pbright">
+      <div id="pbForm">
+        <h3>Get your free copy</h3>
+        <div class="pbfield"><label>Full name</label><input type="text" id="pb_name" placeholder="Name"></div>
+        <div class="pbfield"><label>Work email</label><input type="email" id="pb_email" placeholder="you@company.com"></div>
+        <div class="pbfield"><label>Company</label><input type="text" id="pb_co" placeholder="Company"></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitPlaybook()">Send me the playbook &rarr;</button>
+        <p style="font-size:11.5px;color:var(--m);margin-top:12px;text-align:center">No spam. Unsubscribe anytime.</p>
+      </div>
+      <div class="pbok" id="pbOk"><div class="okmk">&#10003;</div><h3>You're all set!</h3><p style="font-size:14px;color:var(--m)">Your download should begin automatically. If it doesn't, <a id="pbDl" href="Kinexus_Cosmo_Export_Readiness_Playbook.pdf" download style="color:var(--cyan-d);font-weight:600">click here to download</a>.</p></div>
+    </div>
+  </div>
+</div>
+<script>
+var PB_PDF='Kinexus_Cosmo_Export_Readiness_Playbook.pdf';
+function pbVal(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+function openPlaybook(){document.getElementById('pbModal').classList.add('show');}
+function closePlaybook(){document.getElementById('pbModal').classList.remove('show');}
+function pbDownload(){var a=document.createElement('a');a.href=PB_PDF;a.setAttribute('download','Kinexus-Cosmo-Export-Readiness-Playbook.pdf');document.body.appendChild(a);a.click();document.body.removeChild(a);}
+function submitPlaybook(){var n=pbVal('pb_name'),e=pbVal('pb_email');if(!n||!e){alert('Please enter your name and work email.');return;}var btn=document.querySelector('#pbForm button');if(btn){btn.disabled=true;btn.textContent='Sending…';}fetch('submit-lead.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:'playbook',name:n,email:e,company:pbVal('pb_co')})}).then(function(r){return r.json().catch(function(){return{ok:r.ok};});}).catch(function(){return{ok:false};}).then(function(){document.getElementById('pbForm').style.display='none';document.getElementById('pbOk').classList.add('show');pbDownload();});}
+(function(){var m=document.getElementById('pbModal');if(m){m.addEventListener('click',function(ev){if(ev.target===m)closePlaybook();});}})();
+</script>
 </body></html>
