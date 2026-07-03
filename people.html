@@ -12,8 +12,8 @@
     </script>
     <meta name="theme-color" content="#2E3192">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Digital operations, quality systems, and export readiness for engineering and auto ancillary MSMEs.">
-    <title>Engineering & Auto Ancillaries — Kinexus</title>
+    <meta name="description" content="End-to-end digital HR and performance management for manufacturing MSMEs, being built by Kinexus with AllAboutHR — from attendance and payroll inputs to performance and retention.">
+    <title>People & Performance — The Kinexus × AllAboutHR People Engine</title>
     <style>
         * {
             margin: 0;
@@ -1095,39 +1095,6 @@
         .nav-logo { display: flex; align-items: center; gap: 0.6rem; }
         .nav-logo img { height: 32px; width: auto; display: block; }
 
-        /* ============ ECOSYSTEM SECTION ============ */
-
-        .flowline { animation: flowDash 1.6s linear infinite; }
-        @keyframes flowDash { to { stroke-dashoffset: -14; } }
-        .orbit { animation: blinkLight 3.2s ease-in-out infinite; }
-
-        .eco-card { text-decoration: none; color: inherit; display: block; }
-        .eco-step {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--azure);
-            margin-bottom: 0.6rem;
-        }
-        .eco-link { margin-top: 1rem; font-weight: 700; color: var(--royal); font-size: 0.95rem; }
-
-        .uvp-strip {
-            margin-top: 3rem;
-            padding: 2rem;
-            background: var(--sky);
-            border-radius: 12px;
-            border-left: 4px solid var(--navy);
-        }
-        .uvp-title { font-weight: 800; color: var(--navy); font-size: 1.15rem; margin-bottom: 1.2rem; }
-        .uvp-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
-        .uvp-point { font-size: 0.95rem; color: #4A5468; line-height: 1.7; }
-        .uvp-point strong { color: var(--navy); }
-
-        @media (prefers-reduced-motion: reduce) {
-            .flowline, .orbit { animation: none !important; }
-        }
-
         /* ============ HERO SCENE EXTRAS ============ */
         .hero-scene { position: relative; }
         .hero-scene::before {
@@ -1149,92 +1116,6 @@
         @media (prefers-reduced-motion: reduce) {
             .hero-scene::before, .flowline, .orbit, .barge, .crane-load, .spark, .agv { animation: none !important; }
         }
-
-        /* Index scene: sparks + AGV tour */
-        .spark { animation: sparkFloat 5s ease-in-out infinite; }
-        .s2 { animation-delay: 0.7s; } .s3 { animation-delay: 1.4s; } .s4 { animation-delay: 2.1s; }
-        .s5 { animation-delay: 2.8s; } .s6 { animation-delay: 3.5s; } .s7 { animation-delay: 4.2s; }
-        @keyframes sparkFloat {
-            0%, 100% { transform: translateY(0); opacity: 0.25; }
-            50%      { transform: translateY(-10px); opacity: 0.95; }
-        }
-        .agv { animation: agvTour 14s linear infinite; }
-        @keyframes agvTour {
-            0%   { transform: translate(0, 0); }
-            25%  { transform: translate(221px, 110.5px); }
-            50%  { transform: translate(0, 221px); }
-            75%  { transform: translate(-221px, 110.5px); }
-            100% { transform: translate(0, 0); }
-        }
-        .factory-svg { filter: drop-shadow(0 30px 44px rgba(16, 18, 58, 0.5)); }
-
-        /* ============ HOW WE WORK ============ */
-        .complement-box {
-            background: linear-gradient(135deg, var(--navy) 0%, #10123A 100%);
-            color: white;
-            padding: 2.2rem;
-            border-radius: 12px;
-            margin-bottom: 2.5rem;
-        }
-        .complement-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--azure-bright);
-            margin-bottom: 0.8rem;
-        }
-        .complement-text { color: #C9D4EA; line-height: 1.9; font-size: 1rem; }
-        .catalyst-intro {
-            text-align: center;
-            font-weight: 700;
-            color: var(--navy);
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
-        }
-        .catalyst-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.2rem;
-        }
-        .catalyst-card {
-            background: var(--sky);
-            border-radius: 12px;
-            padding: 1.5rem 1.2rem;
-            border-top: 4px solid var(--azure);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .catalyst-card:hover {
-            transform: translateY(-8px) rotateX(3deg);
-            box-shadow: 0 20px 32px rgba(16, 18, 58, 0.14);
-        }
-        .catalyst-word {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-        }
-        .catalyst-line { font-size: 0.9rem; color: #4A5468; line-height: 1.7; }
-        @media (prefers-reduced-motion: reduce) { .catalyst-card { transition: none; } }
-
-        /* How We Work: text + visual grid */
-        .hww-grid {
-            display: grid;
-            grid-template-columns: 1.05fr 0.95fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 2.5rem;
-        }
-        .hww-grid .section-header { margin-bottom: 0; }
-        .hww-visual svg {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: drop-shadow(0 18px 28px rgba(16, 18, 58, 0.16));
-        }
-        .bridge { animation: bobFloat 5s ease-in-out infinite; }
-        @media (max-width: 900px) {
-            .hww-grid { grid-template-columns: 1fr; gap: 2rem; }
-        }
-        @media (prefers-reduced-motion: reduce) { .bridge { animation: none !important; } }
 
         /* ============ NAV TOGGLE + WHATSAPP ============ */
         nav { position: sticky; }
@@ -1272,36 +1153,6 @@
         .cs-note { font-size: 0.85rem; color: #999; text-align: center; margin-top: 2rem; }
         .blog-meta a { color: var(--azure); text-decoration: none; font-weight: 600; }
 
-        /* Founder card */
-        .founder-card { border-top: 4px solid var(--azure); }
-        .founder-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-        .founder-avatar { width: 76px; height: 76px; flex-shrink: 0; }
-        .founder-avatar svg, .founder-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
-        .founder-name { font-weight: 800; color: var(--navy); font-size: 1.15rem; }
-        .founder-role { font-size: 0.85rem; color: #4A5468; }
-        .founder-link { display: inline-block; margin-top: 0.8rem; font-weight: 700; color: var(--azure); text-decoration: none; font-size: 0.95rem; }
-        .founder-link:hover { text-decoration: underline; }
-
-        /* Founder feature: standalone intro row */
-        .founder-feature {
-            display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 2.2rem;
-            align-items: center;
-            background: white;
-            padding: 2.2rem;
-            border-radius: 12px;
-            border-top: 4px solid var(--azure);
-            box-shadow: 0 14px 28px rgba(16, 18, 58, 0.08);
-            margin-bottom: 2.5rem;
-        }
-        .founder-avatar-lg { width: 150px; height: 150px; }
-        .founder-avatar-lg img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; box-shadow: 0 8px 20px rgba(16, 18, 58, 0.18); }
-        @media (max-width: 700px) {
-            .founder-feature { grid-template-columns: 1fr; text-align: center; }
-            .founder-avatar-lg { margin: 0 auto; }
-        }
-
         /* Clickable logo + back-to-top */
         a.nav-logo { text-decoration: none; }
         .to-top {
@@ -1317,7 +1168,9 @@
         .to-top:hover { background: var(--azure); }
     </style>
 </head>
-<body><a class="wa-float" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20I%27d%20like%20to%20discuss%20my%20factory%27s%20bottlenecks." target="_blank" rel="noopener" aria-label="Chat with Kinexus on WhatsApp" title="WhatsApp पर बात करें"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span></a>
+<body>
+    <a class="wa-float" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20I%27d%20like%20to%20discuss%20my%20factory%27s%20bottlenecks." target="_blank" rel="noopener" aria-label="Chat with Kinexus on WhatsApp" title="WhatsApp पर बात करें"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span></a>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
@@ -1337,52 +1190,228 @@
     </nav>
 
 
+    <!-- People Hero -->
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-eyebrow">Engineering & Auto Ancillaries</div>
-            <h1>Precision on the machines. <span class="highlight">Chaos in the coordination.</span></h1>
-            <p class="hero-subtitle" style="max-width:760px;margin-left:auto;margin-right:auto;">Your CNC work is world-class; it's everything around it—scheduling by memory, quality registers, OEM paperwork—that leaks margin. We digitize the coordination so your precision finally shows up in your numbers.</p>
-            <div class="hero-cta-group" style="justify-content:center;">
-                <a href="index.html#contact" class="btn-primary">Book a diagnostic →</a>
-                <a href="export.html" class="btn-secondary">The export route</a>
+        <div class="hero-container hero-grid">
+          <div class="hero-copy">
+            <div class="hero-eyebrow">The Kinexus × AllAboutHR People Engine</div>
+            <h1>Your machines are getting smarter.<br><span class="highlight">Your people systems are still on paper.</span></h1>
+            <p class="hero-subtitle">
+                Attendance in a register. Overtime on WhatsApp. Incentives worked out in the owner's head on the 28th of every month. Performance reviews that happen only when someone threatens to quit. Every factory we walk into runs on this—and every owner knows it's costing them their best people. So we're building the fix, end to end, with AllAboutHR.
+            </p>
+            <div class="hero-value-prop">
+                <span class="highlight-text">Honest status:</span> This solution is in active development, being shaped with a small set of North India partner factories. We'd rather tell you that plainly than pretend it's a finished product. What you see below is what we're building—and where your plant's problems can shape it.
+            </div>
+            <div class="hero-cta-group">
+                <a href="index.html#contact" class="btn-primary">Become an early partner factory →</a>
+                <a href="#modules" class="btn-secondary">See what we're building</a>
+            </div>
+          </div>
+          <div class="hero-scene">
+            <div class="scene-tilt" id="sceneTilt"><svg class="factory-svg" viewBox="-228 -70 508 324" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Isometric illustration of a team on a digital platform with rising performance bars and a connected network"><polygon points="-182.0,91.0 52.0,208.0 52.0,220.0 -182.0,103.0" fill="#070826"/><polygon points="234.0,117.0 52.0,208.0 52.0,220.0 234.0,129.0" fill="#0B0D33"/><polygon points="0.0,0.0 234.0,117.0 52.0,208.0 -182.0,91.0" fill="#14174D"/><g stroke="#5CA5E6" stroke-opacity="0.12" stroke-width="1"><line x1="0.0" y1="0.0" x2="-182.0" y2="91.0"/><line x1="26.0" y1="13.0" x2="-156.0" y2="104.0"/><line x1="52.0" y1="26.0" x2="-130.0" y2="117.0"/><line x1="78.0" y1="39.0" x2="-104.0" y2="130.0"/><line x1="104.0" y1="52.0" x2="-78.0" y2="143.0"/><line x1="130.0" y1="65.0" x2="-52.0" y2="156.0"/><line x1="156.0" y1="78.0" x2="-26.0" y2="169.0"/><line x1="182.0" y1="91.0" x2="0.0" y2="182.0"/><line x1="208.0" y1="104.0" x2="26.0" y2="195.0"/><line x1="234.0" y1="117.0" x2="52.0" y2="208.0"/><line x1="0.0" y1="0.0" x2="234.0" y2="117.0"/><line x1="-26.0" y1="13.0" x2="208.0" y2="130.0"/><line x1="-52.0" y1="26.0" x2="182.0" y2="143.0"/><line x1="-78.0" y1="39.0" x2="156.0" y2="156.0"/><line x1="-104.0" y1="52.0" x2="130.0" y2="169.0"/><line x1="-130.0" y1="65.0" x2="104.0" y2="182.0"/><line x1="-156.0" y1="78.0" x2="78.0" y2="195.0"/><line x1="-182.0" y1="91.0" x2="52.0" y2="208.0"/></g><g><polygon points="114.4,80.0 135.2,90.4 135.2,114.4 114.4,104.0" fill="#1D4066"/><polygon points="156.0,80.0 135.2,90.4 135.2,114.4 156.0,104.0" fill="#2A5C94"/><polygon points="135.2,69.6 156.0,80.0 135.2,90.4 114.4,80.0" fill="#3F86C9"/></g><g class="pillar" style="transform-origin:135px 80px"><rect x="133.2" y="64.0" width="4" height="16" fill="#8CC0EF" opacity="0.85" rx="2"/></g><g><polygon points="79.3,87.6 100.1,98.0 100.1,132.0 79.3,121.6" fill="#1D4066"/><polygon points="120.9,87.5 100.1,98.0 100.1,132.0 120.9,121.5" fill="#2A5C94"/><polygon points="100.1,77.2 120.9,87.5 100.1,98.0 79.3,87.6" fill="#3F86C9"/></g><g class="pillar" style="transform-origin:100px 88px"><rect x="98.1" y="71.6" width="4" height="16" fill="#8CC0EF" opacity="0.85" rx="2"/></g><g><polygon points="44.2,94.1 65.0,104.5 65.0,149.5 44.2,139.1" fill="#1D4066"/><polygon points="85.8,94.1 65.0,104.5 65.0,149.5 85.8,139.1" fill="#2A5C94"/><polygon points="65.0,83.7 85.8,94.1 65.0,104.5 44.2,94.1" fill="#3F86C9"/></g><g class="pillar" style="transform-origin:65px 94px"><rect x="63.0" y="78.1" width="4" height="16" fill="#8CC0EF" opacity="0.85" rx="2"/></g><g><polygon points="9.1,98.7 29.9,109.1 29.9,167.1 9.1,156.7" fill="#1D4066"/><polygon points="50.7,98.7 29.9,109.1 29.9,167.1 50.7,156.7" fill="#2A5C94"/><polygon points="29.9,88.2 50.7,98.7 29.9,109.1 9.1,98.7" fill="#3F86C9"/></g><g class="pillar" style="transform-origin:30px 99px"><rect x="27.9" y="82.7" width="4" height="16" fill="#8CC0EF" opacity="0.85" rx="2"/></g><g><polygon points="-31.2,38.0 -15.6,45.8 -15.6,59.8 -31.2,52.0" fill="#154569"/><polygon points="0.0,38.0 -15.6,45.8 -15.6,59.8 0.0,52.0" fill="#1F609A"/><polygon points="-15.6,30.2 0.0,38.0 -15.6,45.8 -31.2,38.0" fill="#2E86D0"/></g><circle cx="-15.6" cy="32.0" r="5.5" fill="#6FB0E8"/><g><polygon points="-15.6,72.4 0.0,80.2 0.0,96.2 -15.6,88.4" fill="#22256F"/><polygon points="15.6,72.4 0.0,80.2 0.0,96.2 15.6,88.4" fill="#33389A"/><polygon points="0.0,64.6 15.6,72.4 0.0,80.2 -15.6,72.4" fill="#4B50B8"/></g><circle cx="0.0" cy="66.4" r="5.5" fill="#8B8FE0"/><g><polygon points="-93.6,75.4 -78.0,83.2 -78.0,96.2 -93.6,88.4" fill="#1B3A69"/><polygon points="-62.4,75.4 -78.0,83.2 -78.0,96.2 -62.4,88.4" fill="#27529B"/><polygon points="-78.0,67.6 -62.4,75.4 -78.0,83.2 -93.6,75.4" fill="#3871C1"/></g><circle cx="-78.0" cy="69.4" r="5.5" fill="#7FB2E8"/><g><polygon points="-57.2,107.2 -41.6,115.0 -41.6,130.0 -57.2,122.2" fill="#2A5590"/><polygon points="-26.0,107.2 -41.6,115.0 -41.6,130.0 -26.0,122.2" fill="#3F76BE"/><polygon points="-41.6,99.4 -26.0,107.2 -41.6,115.0 -57.2,107.2" fill="#6FA9E4"/></g><circle cx="-41.6" cy="101.2" r="5.5" fill="#A9CDF2"/><polyline class="flowline" points="-15.6,32.0 0.0,66.4 -78.0,69.4 -41.6,101.2" fill="none" stroke="#5CA5E6" stroke-width="2" stroke-dasharray="6 7" stroke-linecap="round" opacity="0.8"/><g><polygon points="-11.7,133.4 32.5,155.5 32.5,173.5 -11.7,151.4" fill="#121544"/><polygon points="39.0,152.3 32.5,155.5 32.5,173.5 39.0,170.3" fill="#1B1F5E"/><polygon points="-5.2,130.2 39.0,152.3 32.5,155.5 -11.7,133.4" fill="#272C80"/></g><circle cx="13.7" cy="141.9" r="3" fill="#5CA5E6" class="status-light"/></svg></div>
+          </div>
+        </div>
+    </section>
+
+    <!-- The Problem -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">The Reality</div>
+                <h2>People problems are operations problems in disguise</h2>
+                <p class="section-description">
+                    Ask any plant owner what keeps them up at night and machines rarely come first. It's the skilled operator who left for a competitor. The supervisor whose exit took twenty years of process knowledge with it. The incentive dispute that soured a whole shift. None of this shows up on a production dashboard—but all of it shows up in your output.
+                </p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-title">📒 Attendance and shifts run on registers</div>
+                    <p class="problem-text">
+                        Biometric machines that don't talk to payroll. Registers that get "adjusted." Shift swaps agreed verbally. By month-end, reconciling who actually worked what becomes a two-day argument nobody wins.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">🧮 Incentives are opaque—and everyone knows it</div>
+                    <p class="problem-text">
+                        When workers can't see how their incentive was calculated, they assume the worst. Opacity breeds disputes, disputes breed distrust, and distrust walks out the gate to the factory next door offering the same wage.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">📉 Performance lives in the owner's memory</div>
+                    <p class="problem-text">
+                        Who's your best machinist, objectively? Who's improving, who's coasting? Without records, promotions feel arbitrary, good people feel invisible, and the loudest voice—not the best worker—gets the raise.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">🎓 Skills exist, but no one can see them</div>
+                    <p class="problem-text">
+                        Which operators are certified on which machines? What happens when your only die-setter is on leave? A skills matrix in someone's head is a production risk waiting for a bad day.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">🚪 Attrition is discovered, never predicted</div>
+                    <p class="problem-text">
+                        The resignation always "comes out of nowhere." Except it never does—the signals were there in attendance patterns, disputes, sidelined performance. Nobody was looking, because nothing was recorded.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">📋 Compliance paperwork eats real time</div>
+                    <p class="problem-text">
+                        PF, ESI, contractor records, audit trails—assembled by hand, every time, from scattered sources. It gets done, but it costs your office team days that should go to running the business.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
-    <section class="section">
+
+    <!-- What we're building -->
+    <section class="section" id="modules" style="background: var(--sky);">
         <div class="container">
-            <div class="section-header"><div class="section-eyebrow">The Reality</div><h2>What we see on floors like yours</h2></div>
-            <div class="problems-grid"><div class="problem-card"><div class="problem-title">📅 Scheduling lives in someone's head</div><p class="problem-text">Rush orders derail plans, changeovers get ignored, and utilization sits in the 60s while everyone works flat out.</p></div><div class="problem-card"><div class="problem-title">📋 OEM audits mean panic weeks</div><p class="problem-text">Tier-1 buyers want documentation, traceability, and rejection trends—assembled by hand, every single time.</p></div><div class="problem-card"><div class="problem-title">🔍 Quality data can't answer questions</div><p class="problem-text">You know rejections happen; you can't say which machine, which shift, which batch—so the same defect returns monthly.</p></div><div class="problem-card"><div class="problem-title">💰 Working capital hides in WIP</div><p class="problem-text">Between raw material and dispatch, cash sits invisible on the floor because nobody can see true job-wise status.</p></div></div>
+            <div class="section-header">
+                <div class="section-eyebrow">In Development</div>
+                <h2>End to end means hire to retire</h2>
+                <p class="section-description">
+                    One connected system for the whole employee journey—built for factory floors, not corporate offices. Designed around how developing-market plants actually work: shifts, contractors, incentive-linked pay—and vernacular-first interfaces, starting with Hindi and Punjabi.
+                </p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-title">1 · Hire & onboard</div>
+                    <p class="problem-text">
+                        Structured hiring for operator, supervisor, and staff roles—clear job definitions, candidate records, and an onboarding checklist so new joiners are productive in days, not months. AllAboutHR's recruitment expertise built into the workflow.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">2 · Attendance, shifts & leave</div>
+                    <p class="problem-text">
+                        One source of truth connecting biometric data, shift rosters, overtime, and leave—feeding payroll inputs automatically. Month-end reconciliation becomes a report you read, not a fight you referee.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">3 · Performance & incentives</div>
+                    <p class="problem-text">
+                        The heart of the system. Role-wise KPIs tied to real production data, transparent incentive calculations every worker can see and verify, and structured reviews that make promotions defensible and recognition visible.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">4 · Skills matrix & training</div>
+                    <p class="problem-text">
+                        Who is certified on what, at a glance. Training records, certification expiries, and coverage gaps flagged before they become production stoppages—so one person on leave never halts a line.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">5 · Retention signals</div>
+                    <p class="problem-text">
+                        Patterns surfaced from the data you're already capturing—attendance dips, dispute frequency, stalled growth—so the conversation with a valued worker happens before the resignation letter, not after.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">6 · Compliance-ready records</div>
+                    <p class="problem-text">
+                        Employee records structured so PF, ESI, contractor, and audit documentation assembles from the system instead of from memory. When the inspector visits, you print—you don't scramble.
+                    </p>
+                </div>
+            </div>
+            <p style="font-size: 0.85rem; color: #999; margin-top: 2rem; text-align: center;">
+                Module scope reflects what is currently in development and may evolve as early partner factories shape the build. AI-assisted capabilities are on the roadmap and will be introduced in phases, only after the underlying data foundation is proven at each plant.
+            </p>
         </div>
     </section>
-    <section class="section" style="background: var(--sky);">
+
+    <!-- The Alliance -->
+    <section class="section" id="alliance" style="background: linear-gradient(135deg, var(--navy) 0%, #10123A 100%); color: white;">
         <div class="container">
-            <div class="section-header"><div class="section-eyebrow">What We Build</div><h2>Solutions architected for your sector</h2>
-                <p class="section-description">Pick the bottleneck; we architect the fix—filling gaps without breaking your rhythm, first measurable impact in as little as 6 weeks.</p></div>
-            <div class="problems-grid"><div class="problem-card"><div class="problem-title">📊 Production visibility & scheduling</div><p class="problem-text">Live job status, capacity-aware scheduling, changeover discipline—more output from the machines you already own.</p></div><div class="problem-card"><div class="problem-title">✅ Quality systems buyers can audit</div><p class="problem-text">Batch-wise inspection records, trend dashboards, traceability from raw material to dispatch—audit packs that assemble themselves.</p></div><div class="problem-card"><div class="problem-title">🧮 True job costing</div><p class="problem-text">Know your real cost per part, per job, per customer—so every quote, domestic or export, protects margin.</p></div><div class="problem-card"><div class="problem-title">🌏 Export readiness</div><p class="problem-text">OEM-grade operations are export-grade operations. With Cosmo International, the route to international buyers opens when your floor is ready.</p></div></div>
+            <div class="section-header">
+                <div class="section-eyebrow" style="color: var(--azure-bright);">The Alliance</div>
+                <h2 style="color: white;">Software alone doesn't fix people problems. Neither does advice alone.</h2>
+                <p class="section-description" style="color: #C9D4EA;">
+                    HR software vendors sell you a login and disappear. HR consultants write you a policy and disappear. We think the answer is both disciplines working the same engagement—the system and the practice, built together, embedded in your plant.
+                </p>
+            </div>
+            <div class="problems-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+                <div class="problem-card" style="background: rgba(255,255,255,0.06); border-left: 4px solid var(--azure-bright);">
+                    <div class="problem-title" style="color: white;">🖥️ Kinexus — the digital system</div>
+                    <p class="problem-text" style="color: #C9D4EA;">
+                        The data backbone and workflows: attendance and shift integration, performance dashboards tied to production data, transparent incentive engines, skills matrices, and records that generate compliance paperwork. Built on the same embedded model as everything we do—we stay until your team runs it.
+                    </p>
+                </div>
+                <div class="problem-card" style="background: rgba(255,255,255,0.06); border-left: 4px solid var(--azure-bright);">
+                    <div class="problem-title" style="color: white;">🤝 AllAboutHR — the people practice</div>
+                    <p class="problem-text" style="color: #C9D4EA;">
+                        The HR expertise the system encodes: role definitions and KPI design, incentive structures that motivate rather than antagonize, review processes supervisors will actually follow, hiring support, and the policy foundations that keep it all compliant and fair.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
-    <section class="section" style="background: linear-gradient(135deg, var(--navy) 0%, #10123A 100%); color: white;">
+
+    <!-- The Path -->
+    <section class="section timeline">
         <div class="container">
-            <div class="section-header"><div class="section-eyebrow" style="color: var(--azure-bright);">The Window</div>
-                <h2 style="color: white;">UK duties on Indian auto components: heading to zero</h2>
-                <p class="section-description" style="color: #C9D4EA;">Under the India–UK CETA, in force from 15 July 2026, UK import duties of up to 18% on engineering goods and auto components drop to zero. Global buyers pursuing China+1 sourcing increasingly ask for digital proof—quality trends, traceability, delivery records—before they ask for price. The window favours the operationally ready.</p></div>
-            <p style="font-size:0.85rem;color:rgba(255,255,255,0.55);text-align:center;">Tariff figures per the India–UK CETA as notified; verify current schedules for your HS codes. US tariff arrangements remain in flux as of July 2026—check current rates before quoting.</p>
+            <div class="section-header">
+                <div class="section-eyebrow">The Path</div>
+                <h2>Built in phases, proven at each step</h2>
+                <p class="section-description">
+                    Same philosophy as our factory work: digitize first, automate second, intelligence last. Nothing gets layered on until the foundation under it is solid—because a smart system on top of bad data is just faster confusion.
+                </p>
+            </div>
+            <div class="maturity-stages">
+                <div class="stage">
+                    <div class="stage-number">1</div>
+                    <div class="stage-name">Digitize</div>
+                    <div class="stage-title">One People Record</div>
+                    <div class="stage-description">
+                        Every employee, shift, leave, and skill in one system instead of five registers. The arguments about "who worked when" end here.
+                    </div>
+                    <div class="stage-metric">Foundation — where every plant starts</div>
+                </div>
+                <div class="stage">
+                    <div class="stage-number">2</div>
+                    <div class="stage-name">Connect</div>
+                    <div class="stage-title">Link to Production</div>
+                    <div class="stage-description">
+                        People data meets production data. Output per shift, quality by team, overtime versus throughput—performance stops being an opinion.
+                    </div>
+                    <div class="stage-metric">Where incentives become transparent</div>
+                </div>
+                <div class="stage">
+                    <div class="stage-number">3</div>
+                    <div class="stage-name">Manage</div>
+                    <div class="stage-title">Performance System</div>
+                    <div class="stage-description">
+                        Structured KPIs, reviews, and incentive calculations running live—with AllAboutHR's practice guidance embedded so supervisors actually use it.
+                    </div>
+                    <div class="stage-metric">The end-to-end loop closes here</div>
+                </div>
+                <div class="stage">
+                    <div class="stage-number">4</div>
+                    <div class="stage-name">Anticipate</div>
+                    <div class="stage-title">Intelligence (Roadmap)</div>
+                    <div class="stage-description">
+                        Retention signals, coverage forecasting, AI-assisted insights—phased in only once your data foundation has proven itself. On the roadmap, and we say so honestly.
+                    </div>
+                    <div class="stage-metric">Coming in phases, not promises</div>
+                </div>
+            </div>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
-            <div class="section-header"><div class="section-eyebrow">In Practice</div><h2>A Dera Bassi precision unit, systematized</h2>
-                <p class="section-description">Jobs were scheduled by memory and utilization sat at 68%. With production scheduling systematized, the same 3 CNC machines delivered 25% more output—no capex—and on-time delivery rose from 78% to 94%, unlocking 12 new OEM orders within 9 months.</p></div>
-            <p style="font-size:0.85rem;color:#999;">Representative composite scenario with details anonymized. · From the blog: <a href="blog.html#ceta-auto-window" style="color:var(--azure);font-weight:700;text-decoration:none;">The UK tariff window →</a> · <a href="blog.html#tariff-volatility" style="color:var(--azure);font-weight:700;text-decoration:none;">Quoting amid tariff chaos →</a></p>
-        </div>
-    </section>
+
+    <!-- CTA -->
     <section class="section contact">
         <div class="container">
-            <h2>Find out where your floor stands.</h2>
-            <p class="contact-description">Two weeks on-site. A scored baseline, your top three bottlenecks, and a clear next step—whether you work with us or not.</p>
-            <div style="text-align:center;"><a href="index.html#contact" class="btn-primary" style="display:inline-block;">Book your diagnostic →</a></div>
+            <h2>Help us build it around your plant's reality.</h2>
+            <p class="contact-description">
+                We're working with a small set of North India factories as early partners—their problems shape the build, and they get the system moulded to how they actually work. If your people processes look like the ones described above—whether your plant is in Punjab or anywhere in the developing world—let's talk.
+            </p>
+            <div style="text-align: center;">
+                <a href="index.html#contact" class="btn-primary" style="display: inline-block;">Register your interest →</a>
+            </div>
+            <p style="margin-top: 2rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
+                📞 +91 98767 01788 · hello@kinexus.co.in · Mon–Sat, 9 AM–6 PM IST
+            </p>
         </div>
     </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1450,20 +1479,6 @@
             }, { passive: true });
             tt.addEventListener('click', function () {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-
-        // Contact form -> WhatsApp (no backend required)
-        var cf = document.querySelector('.contact-form');
-        if (cf) {
-            cf.addEventListener('submit', function (e) {
-                e.preventDefault();
-                var v = function (id) { var el = document.getElementById(id); return el ? el.value : ''; };
-                var msg = 'Hi Kinexus, I would like to book a diagnostic.\n'
-                    + 'Name: ' + v('name') + '\nCompany: ' + v('company')
-                    + '\nPhone: ' + v('phone') + '\nSector: ' + v('sector')
-                    + '\nBiggest challenge: ' + v('message');
-                window.open('https://wa.me/919876701788?text=' + encodeURIComponent(msg), '_blank');
             });
         }
 

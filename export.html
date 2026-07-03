@@ -12,8 +12,8 @@
     </script>
     <meta name="theme-color" content="#2E3192">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Digital operations, quality systems, and export readiness for engineering and auto ancillary MSMEs.">
-    <title>Engineering & Auto Ancillaries — Kinexus</title>
+    <meta name="description" content="Export readiness for manufacturing MSMEs in India and developing markets: Kinexus builds the digital backbone inside your factory; Cosmo International opens the route to buyers outside it.">
+    <title>Export Readiness — The Kinexus × Cosmo Export Engine</title>
     <style>
         * {
             margin: 0;
@@ -1095,39 +1095,6 @@
         .nav-logo { display: flex; align-items: center; gap: 0.6rem; }
         .nav-logo img { height: 32px; width: auto; display: block; }
 
-        /* ============ ECOSYSTEM SECTION ============ */
-
-        .flowline { animation: flowDash 1.6s linear infinite; }
-        @keyframes flowDash { to { stroke-dashoffset: -14; } }
-        .orbit { animation: blinkLight 3.2s ease-in-out infinite; }
-
-        .eco-card { text-decoration: none; color: inherit; display: block; }
-        .eco-step {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--azure);
-            margin-bottom: 0.6rem;
-        }
-        .eco-link { margin-top: 1rem; font-weight: 700; color: var(--royal); font-size: 0.95rem; }
-
-        .uvp-strip {
-            margin-top: 3rem;
-            padding: 2rem;
-            background: var(--sky);
-            border-radius: 12px;
-            border-left: 4px solid var(--navy);
-        }
-        .uvp-title { font-weight: 800; color: var(--navy); font-size: 1.15rem; margin-bottom: 1.2rem; }
-        .uvp-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
-        .uvp-point { font-size: 0.95rem; color: #4A5468; line-height: 1.7; }
-        .uvp-point strong { color: var(--navy); }
-
-        @media (prefers-reduced-motion: reduce) {
-            .flowline, .orbit { animation: none !important; }
-        }
-
         /* ============ HERO SCENE EXTRAS ============ */
         .hero-scene { position: relative; }
         .hero-scene::before {
@@ -1149,92 +1116,6 @@
         @media (prefers-reduced-motion: reduce) {
             .hero-scene::before, .flowline, .orbit, .barge, .crane-load, .spark, .agv { animation: none !important; }
         }
-
-        /* Index scene: sparks + AGV tour */
-        .spark { animation: sparkFloat 5s ease-in-out infinite; }
-        .s2 { animation-delay: 0.7s; } .s3 { animation-delay: 1.4s; } .s4 { animation-delay: 2.1s; }
-        .s5 { animation-delay: 2.8s; } .s6 { animation-delay: 3.5s; } .s7 { animation-delay: 4.2s; }
-        @keyframes sparkFloat {
-            0%, 100% { transform: translateY(0); opacity: 0.25; }
-            50%      { transform: translateY(-10px); opacity: 0.95; }
-        }
-        .agv { animation: agvTour 14s linear infinite; }
-        @keyframes agvTour {
-            0%   { transform: translate(0, 0); }
-            25%  { transform: translate(221px, 110.5px); }
-            50%  { transform: translate(0, 221px); }
-            75%  { transform: translate(-221px, 110.5px); }
-            100% { transform: translate(0, 0); }
-        }
-        .factory-svg { filter: drop-shadow(0 30px 44px rgba(16, 18, 58, 0.5)); }
-
-        /* ============ HOW WE WORK ============ */
-        .complement-box {
-            background: linear-gradient(135deg, var(--navy) 0%, #10123A 100%);
-            color: white;
-            padding: 2.2rem;
-            border-radius: 12px;
-            margin-bottom: 2.5rem;
-        }
-        .complement-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--azure-bright);
-            margin-bottom: 0.8rem;
-        }
-        .complement-text { color: #C9D4EA; line-height: 1.9; font-size: 1rem; }
-        .catalyst-intro {
-            text-align: center;
-            font-weight: 700;
-            color: var(--navy);
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
-        }
-        .catalyst-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.2rem;
-        }
-        .catalyst-card {
-            background: var(--sky);
-            border-radius: 12px;
-            padding: 1.5rem 1.2rem;
-            border-top: 4px solid var(--azure);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .catalyst-card:hover {
-            transform: translateY(-8px) rotateX(3deg);
-            box-shadow: 0 20px 32px rgba(16, 18, 58, 0.14);
-        }
-        .catalyst-word {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-        }
-        .catalyst-line { font-size: 0.9rem; color: #4A5468; line-height: 1.7; }
-        @media (prefers-reduced-motion: reduce) { .catalyst-card { transition: none; } }
-
-        /* How We Work: text + visual grid */
-        .hww-grid {
-            display: grid;
-            grid-template-columns: 1.05fr 0.95fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 2.5rem;
-        }
-        .hww-grid .section-header { margin-bottom: 0; }
-        .hww-visual svg {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: drop-shadow(0 18px 28px rgba(16, 18, 58, 0.16));
-        }
-        .bridge { animation: bobFloat 5s ease-in-out infinite; }
-        @media (max-width: 900px) {
-            .hww-grid { grid-template-columns: 1fr; gap: 2rem; }
-        }
-        @media (prefers-reduced-motion: reduce) { .bridge { animation: none !important; } }
 
         /* ============ NAV TOGGLE + WHATSAPP ============ */
         nav { position: sticky; }
@@ -1272,36 +1153,6 @@
         .cs-note { font-size: 0.85rem; color: #999; text-align: center; margin-top: 2rem; }
         .blog-meta a { color: var(--azure); text-decoration: none; font-weight: 600; }
 
-        /* Founder card */
-        .founder-card { border-top: 4px solid var(--azure); }
-        .founder-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-        .founder-avatar { width: 76px; height: 76px; flex-shrink: 0; }
-        .founder-avatar svg, .founder-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
-        .founder-name { font-weight: 800; color: var(--navy); font-size: 1.15rem; }
-        .founder-role { font-size: 0.85rem; color: #4A5468; }
-        .founder-link { display: inline-block; margin-top: 0.8rem; font-weight: 700; color: var(--azure); text-decoration: none; font-size: 0.95rem; }
-        .founder-link:hover { text-decoration: underline; }
-
-        /* Founder feature: standalone intro row */
-        .founder-feature {
-            display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 2.2rem;
-            align-items: center;
-            background: white;
-            padding: 2.2rem;
-            border-radius: 12px;
-            border-top: 4px solid var(--azure);
-            box-shadow: 0 14px 28px rgba(16, 18, 58, 0.08);
-            margin-bottom: 2.5rem;
-        }
-        .founder-avatar-lg { width: 150px; height: 150px; }
-        .founder-avatar-lg img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; box-shadow: 0 8px 20px rgba(16, 18, 58, 0.18); }
-        @media (max-width: 700px) {
-            .founder-feature { grid-template-columns: 1fr; text-align: center; }
-            .founder-avatar-lg { margin: 0 auto; }
-        }
-
         /* Clickable logo + back-to-top */
         a.nav-logo { text-decoration: none; }
         .to-top {
@@ -1317,7 +1168,9 @@
         .to-top:hover { background: var(--azure); }
     </style>
 </head>
-<body><a class="wa-float" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20I%27d%20like%20to%20discuss%20my%20factory%27s%20bottlenecks." target="_blank" rel="noopener" aria-label="Chat with Kinexus on WhatsApp" title="WhatsApp पर बात करें"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span></a>
+<body>
+    <a class="wa-float" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20I%27d%20like%20to%20discuss%20my%20factory%27s%20bottlenecks." target="_blank" rel="noopener" aria-label="Chat with Kinexus on WhatsApp" title="WhatsApp पर बात करें"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span></a>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
@@ -1337,52 +1190,270 @@
     </nav>
 
 
+    <!-- Export Hero -->
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-eyebrow">Engineering & Auto Ancillaries</div>
-            <h1>Precision on the machines. <span class="highlight">Chaos in the coordination.</span></h1>
-            <p class="hero-subtitle" style="max-width:760px;margin-left:auto;margin-right:auto;">Your CNC work is world-class; it's everything around it—scheduling by memory, quality registers, OEM paperwork—that leaks margin. We digitize the coordination so your precision finally shows up in your numbers.</p>
-            <div class="hero-cta-group" style="justify-content:center;">
-                <a href="index.html#contact" class="btn-primary">Book a diagnostic →</a>
-                <a href="export.html" class="btn-secondary">The export route</a>
+        <div class="hero-container hero-grid">
+          <div class="hero-copy">
+            <div class="hero-eyebrow">The Kinexus × Cosmo Export Engine</div>
+            <h1>The buyer will come.<br><span class="highlight">Will your factory be ready?</span></h1>
+            <p class="hero-subtitle">
+                Every few years, a trade window opens for developing-market manufacturers. For India, one is opening right now: the India–UK agreement takes effect on 15 July 2026, and duties on engineering goods, textiles, and pharma drop to zero. The factories that win won't be the ones with the best brochure. They'll be the ones whose operations can survive a buyer's audit.
+            </p>
+            <div class="hero-cta-group">
+                <a href="index.html#contact" class="btn-primary">Get your export readiness score →</a>
+                <a href="#alliance" class="btn-secondary">How the alliance works</a>
+                <a href="#agents" class="btn-secondary">The agent roadmap</a>
+            </div>
+          </div>
+          <div class="hero-scene">
+            <div class="scene-tilt" id="sceneTilt"><svg class="factory-svg" viewBox="-358 -116 702 444" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Isometric illustration of an export dock: containers, a loading crane, a barge, and a glowing route to global markets"><polygon points="-156.0,86.0 104.0,216.0 -52.0,294.0 -312.0,164.0" fill="#0B0F3B"/><line x1="-163.8" y1="121.1" x2="26.0" y2="216.0" stroke="#3871C1" stroke-width="1.5" stroke-dasharray="10 14" opacity="0.35"/><line x1="-208.0" y1="143.2" x2="-18.2" y2="238.1" stroke="#3871C1" stroke-width="1.5" stroke-dasharray="10 14" opacity="0.35"/><line x1="-249.6" y1="164.0" x2="-59.8" y2="258.9" stroke="#3871C1" stroke-width="1.5" stroke-dasharray="10 14" opacity="0.35"/><polygon points="-156.0,78.0 104.0,208.0 104.0,220.0 -156.0,90.0" fill="#070826"/><polygon points="260.0,130.0 104.0,208.0 104.0,220.0 260.0,142.0" fill="#0B0D33"/><polygon points="0.0,0.0 260.0,130.0 104.0,208.0 -156.0,78.0" fill="#14174D"/><g stroke="#5CA5E6" stroke-opacity="0.12" stroke-width="1"><line x1="0.0" y1="0.0" x2="-156.0" y2="78.0"/><line x1="26.0" y1="13.0" x2="-130.0" y2="91.0"/><line x1="52.0" y1="26.0" x2="-104.0" y2="104.0"/><line x1="78.0" y1="39.0" x2="-78.0" y2="117.0"/><line x1="104.0" y1="52.0" x2="-52.0" y2="130.0"/><line x1="130.0" y1="65.0" x2="-26.0" y2="143.0"/><line x1="156.0" y1="78.0" x2="0.0" y2="156.0"/><line x1="182.0" y1="91.0" x2="26.0" y2="169.0"/><line x1="208.0" y1="104.0" x2="52.0" y2="182.0"/><line x1="234.0" y1="117.0" x2="78.0" y2="195.0"/><line x1="260.0" y1="130.0" x2="104.0" y2="208.0"/><line x1="0.0" y1="0.0" x2="260.0" y2="130.0"/><line x1="-26.0" y1="13.0" x2="234.0" y2="143.0"/><line x1="-52.0" y1="26.0" x2="208.0" y2="156.0"/><line x1="-78.0" y1="39.0" x2="182.0" y2="169.0"/><line x1="-104.0" y1="52.0" x2="156.0" y2="182.0"/><line x1="-130.0" y1="65.0" x2="130.0" y2="195.0"/><line x1="-156.0" y1="78.0" x2="104.0" y2="208.0"/></g><g><polygon points="-23.4,25.7 18.2,46.5 18.2,58.5 -23.4,37.7" fill="#1D3C66"/><polygon points="41.6,34.8 18.2,46.5 18.2,58.5 41.6,46.8" fill="#2A5590"/><polygon points="0.0,14.0 41.6,34.8 18.2,46.5 -23.4,25.7" fill="#3F76BE"/></g><g><polygon points="-23.4,13.7 18.2,34.5 18.2,46.5 -23.4,25.7" fill="#22256F"/><polygon points="41.6,22.8 18.2,34.5 18.2,46.5 41.6,34.8" fill="#33389A"/><polygon points="0.0,2.0 41.6,22.8 18.2,34.5 -23.4,13.7" fill="#4B50B8"/></g><g><polygon points="33.8,54.3 75.4,75.1 75.4,87.1 33.8,66.3" fill="#154569"/><polygon points="98.8,63.4 75.4,75.1 75.4,87.1 98.8,75.4" fill="#1F609A"/><polygon points="57.2,42.6 98.8,63.4 75.4,75.1 33.8,54.3" fill="#2E86D0"/></g><g><polygon points="-65.0,46.5 -23.4,67.3 -23.4,79.3 -65.0,58.5" fill="#2A5590"/><polygon points="0.0,55.6 -23.4,67.3 -23.4,79.3 0.0,67.6" fill="#3F76BE"/><polygon points="-41.6,34.8 0.0,55.6 -23.4,67.3 -65.0,46.5" fill="#6FA9E4"/></g><g><polygon points="104.0,96.0 130.0,109.0 130.0,117.0 104.0,104.0" fill="#121544"/><polygon points="156.0,96.0 130.0,109.0 130.0,117.0 156.0,104.0" fill="#1B1F5E"/><polygon points="130.0,83.0 156.0,96.0 130.0,109.0 104.0,96.0" fill="#272C80"/></g><g><polygon points="119.6,38.0 130.0,43.2 130.0,101.2 119.6,96.0" fill="#161849"/><polygon points="140.4,38.0 130.0,43.2 130.0,101.2 140.4,96.0" fill="#20236B"/><polygon points="130.0,32.8 140.4,38.0 130.0,43.2 119.6,38.0" fill="#2E3192"/></g><g><polygon points="36.4,81.9 44.2,85.8 44.2,90.8 36.4,86.9" fill="#1B3A69"/><polygon points="137.8,39.0 44.2,85.8 44.2,90.8 137.8,44.0" fill="#27529B"/><polygon points="130.0,35.1 137.8,39.0 44.2,85.8 36.4,81.9" fill="#3871C1"/></g><g class="crane-load"><line x1="46.8" y1="85.6" x2="46.8" y2="111.6" stroke="#8CC0EF" stroke-width="1.5" opacity="0.7"/><g><polygon points="26.0,110.3 49.4,122.0 49.4,131.0 26.0,119.3" fill="#3F76BE"/><polygon points="67.6,112.9 49.4,122.0 49.4,131.0 67.6,121.9" fill="#5C9BD6"/><polygon points="44.2,101.2 67.6,112.9 49.4,122.0 26.0,110.3" fill="#8CC0EF"/></g></g><g class="barge"><g><polygon points="-189.8,153.1 -101.4,197.3 -101.4,204.3 -189.8,160.1" fill="#0C0E2E"/><polygon points="-67.6,180.4 -101.4,197.3 -101.4,204.3 -67.6,187.4" fill="#13153F"/><polygon points="-156.0,136.2 -67.6,180.4 -101.4,197.3 -189.8,153.1" fill="#1B2058"/></g><g><polygon points="-172.9,145.0 -139.1,162.0 -139.1,172.0 -172.9,155.0" fill="#154569"/><polygon points="-118.3,151.5 -139.1,162.0 -139.1,172.0 -118.3,161.5" fill="#1F609A"/><polygon points="-152.1,134.6 -118.3,151.5 -139.1,162.0 -172.9,145.0" fill="#2E86D0"/></g><g><polygon points="-131.3,165.8 -97.5,182.8 -97.5,192.8 -131.3,175.8" fill="#22256F"/><polygon points="-76.7,172.3 -97.5,182.8 -97.5,192.8 -76.7,182.3" fill="#33389A"/><polygon points="-110.5,155.4 -76.7,172.3 -97.5,182.8 -131.3,165.8" fill="#4B50B8"/></g></g><polygon class="status-light" points="9.1,11.7 20.5,17.5 9.1,23.2 -2.3,17.5" fill="#5CA5E6"/><polygon class="status-light" points="66.3,52.3 77.7,58.0 66.3,63.8 54.9,58.0" fill="#5CA5E6"/><polygon class="status-light" points="130.0,31.9 141.4,37.6 130.0,43.3 118.6,37.6" fill="#5CA5E6"/><path class="flowline" d="M -125 162 Q 107 78 278 -26" fill="none" stroke="#5CA5E6" stroke-width="2.5" stroke-dasharray="7 7" stroke-linecap="round" opacity="0.9"/><circle cx="278" cy="-26" r="6" fill="#8CC0EF" class="status-light"/><circle cx="278" cy="-26" r="12" fill="none" stroke="#8CC0EF" stroke-width="1.5" opacity="0.5" class="orbit"/></svg></div>
+          </div>
+        </div>
+    </section>
+
+    <!-- The Window -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">The Window</div>
+                <h2>Tariff walls are falling on exactly what you make</h2>
+                <p class="section-description">
+                    Under the India–UK CETA, in force from 15 July 2026, UK duties drop to zero across the sectors India's clusters are built on; the India–UAE agreement has been open since 2022. Manufacturing elsewhere? Your routes differ, but buyer-audit readiness is universal—mapping your geography's window is part of the diagnostic.
+                </p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-title">⚙️ Engineering & auto components</div>
+                    <p class="problem-text">
+                        UK duties that ran up to 18% fall to zero. For Dera Bassi and Ludhiana's precision and ancillary units, the price disadvantage against established suppliers simply disappears—if your quality documentation holds up. <a href="engineering.html" style="color:var(--azure);font-weight:700;text-decoration:none;">Engineering & auto page →</a>
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">🧵 Textiles & hosiery</div>
+                    <p class="problem-text">
+                        Duties of up to 12% on textiles and clothing go to zero. Ludhiana's hosiery ecosystem gains ground against competitors whose home countries already had UK trade deals. The playing field just levelled. <a href="textiles.html" style="color:var(--azure);font-weight:700;text-decoration:none;">Textiles page →</a>
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">💊 Pharma, nutraceuticals & wellness</div>
+                    <p class="problem-text">
+                        Duties of up to 8% on chemicals and pharmaceutical products are eliminated. For Baddi's pharma belt and Punjab's ayurveda and wellness brands, UK market entry just got structurally cheaper. <a href="wellness.html" style="color:var(--azure);font-weight:700;text-decoration:none;">Pharma & wellness page →</a>
+                    </p>
+                </div>
+            </div>
+            <p style="font-size: 0.85rem; color: #999; margin-top: 2rem; text-align: center;">
+                Tariff figures per the India–UK CETA as notified for entry into force on 15 July 2026. Rates vary by product; verify the current schedule for your specific HS codes before committing to pricing.
+            </p>
+        </div>
+    </section>
+
+    <!-- Why factories miss it -->
+    <section class="section" style="background: var(--sky);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">The Hard Truth</div>
+                <h2>Why most factories miss the window</h2>
+                <p class="section-description">
+                    We've sat across the table from enough owners to know the pattern. It's almost never the product that fails—it's the proof. An international buyer asks five questions, and the answers live in your systems, not your head.
+                </p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-title">"Show me your rejection rate—by batch"</div>
+                    <p class="problem-text">If quality data lives in a register or a supervisor's memory, this conversation ends politely and goes nowhere. Buyers want trends they can audit, not assurances.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">"What's your on-time delivery record?"</div>
+                    <p class="problem-text">Not "we're usually on time." A number, over twelve months, with the misses explained. Export orders run on shipping schedules that don't wait.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">"Can you trace this lot to its raw material?"</div>
+                    <p class="problem-text">Traceability is table stakes for UK and EU buyers. If a recall happens, they need the chain in hours—and so does your compliance paperwork.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">"Send the compliance pack by Friday"</div>
+                    <p class="problem-text">Certificates of origin, test reports, HS classifications. Hand-compiled, this takes days and invites errors. One wrong document holds a container at port.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">"What's your landed cost at this volume?"</div>
+                    <p class="problem-text">Quoting exports without knowing your true cost per unit—at volumes you've never run—is how factories win orders that lose money.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-title">"Who do I talk to next week?"</div>
+                    <p class="problem-text">Export relationships need a responsive counterpart with data at their fingertips. If every answer requires three phone calls, trust erodes fast.</p>
+                </div>
             </div>
         </div>
     </section>
-    <section class="section">
+
+    <!-- The Alliance -->
+    <section class="section" id="alliance" style="background: linear-gradient(135deg, var(--navy) 0%, #10123A 100%); color: white;">
         <div class="container">
-            <div class="section-header"><div class="section-eyebrow">The Reality</div><h2>What we see on floors like yours</h2></div>
-            <div class="problems-grid"><div class="problem-card"><div class="problem-title">📅 Scheduling lives in someone's head</div><p class="problem-text">Rush orders derail plans, changeovers get ignored, and utilization sits in the 60s while everyone works flat out.</p></div><div class="problem-card"><div class="problem-title">📋 OEM audits mean panic weeks</div><p class="problem-text">Tier-1 buyers want documentation, traceability, and rejection trends—assembled by hand, every single time.</p></div><div class="problem-card"><div class="problem-title">🔍 Quality data can't answer questions</div><p class="problem-text">You know rejections happen; you can't say which machine, which shift, which batch—so the same defect returns monthly.</p></div><div class="problem-card"><div class="problem-title">💰 Working capital hides in WIP</div><p class="problem-text">Between raw material and dispatch, cash sits invisible on the floor because nobody can see true job-wise status.</p></div></div>
+            <div class="section-header">
+                <div class="section-eyebrow" style="color: var(--azure-bright);">The Alliance</div>
+                <h2 style="color: white;">Two specialists. One journey. No handoff gap.</h2>
+                <p class="section-description" style="color: #C9D4EA;">
+                    Most MSMEs stitching together an export attempt end up managing three vendors who don't talk to each other. We built the alliance so you don't have to: one team makes you ready, the other takes you to market, and the baton never touches the ground.
+                </p>
+            </div>
+            <div class="problems-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+                <div class="problem-card" style="background: rgba(255,255,255,0.06); border-left: 4px solid var(--azure-bright);">
+                    <div class="problem-title" style="color: white;">🏭 Kinexus — inside the factory</div>
+                    <p class="problem-text" style="color: #C9D4EA;">
+                        Digital backbone and data visibility · quality systems that survive a buyer's audit · delivery reliability you can prove with numbers · compliance documentation that drafts itself · true landed-cost clarity · and a phased roadmap of export agents layered on top as you mature. We stay embedded until your team runs it.
+                    </p>
+                </div>
+                <div class="problem-card" style="background: rgba(255,255,255,0.06); border-left: 4px solid var(--azure-bright);">
+                    <div class="problem-title" style="color: white;">🌏 Cosmo International — outside it</div>
+                    <p class="problem-text" style="color: #C9D4EA;">
+                        Target market selection and buyer identification · EXIM compliance and trade documentation expertise · negotiation and pricing guidance for international orders · logistics and shipping know-how. Decades of trade experience, pointed at your product.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
-    <section class="section" style="background: var(--sky);">
+
+    <!-- The Journey -->
+    <section class="section timeline">
         <div class="container">
-            <div class="section-header"><div class="section-eyebrow">What We Build</div><h2>Solutions architected for your sector</h2>
-                <p class="section-description">Pick the bottleneck; we architect the fix—filling gaps without breaking your rhythm, first measurable impact in as little as 6 weeks.</p></div>
-            <div class="problems-grid"><div class="problem-card"><div class="problem-title">📊 Production visibility & scheduling</div><p class="problem-text">Live job status, capacity-aware scheduling, changeover discipline—more output from the machines you already own.</p></div><div class="problem-card"><div class="problem-title">✅ Quality systems buyers can audit</div><p class="problem-text">Batch-wise inspection records, trend dashboards, traceability from raw material to dispatch—audit packs that assemble themselves.</p></div><div class="problem-card"><div class="problem-title">🧮 True job costing</div><p class="problem-text">Know your real cost per part, per job, per customer—so every quote, domestic or export, protects margin.</p></div><div class="problem-card"><div class="problem-title">🌏 Export readiness</div><p class="problem-text">OEM-grade operations are export-grade operations. With Cosmo International, the route to international buyers opens when your floor is ready.</p></div></div>
+            <div class="section-header">
+                <div class="section-eyebrow">The Journey</div>
+                <h2>From factory floor to first shipment</h2>
+                <p class="section-description">
+                    A staged path where every step creates standalone value—so even if you stop midway, your domestic operation is stronger for it. Export is the destination, not a prerequisite.
+                </p>
+            </div>
+            <div class="maturity-stages">
+                <div class="stage">
+                    <div class="stage-number">1</div>
+                    <div class="stage-name">Assess</div>
+                    <div class="stage-title">Readiness Score</div>
+                    <div class="stage-description">
+                        Two weeks on-site. We score you across five dimensions—data & traceability, quality systems, delivery reliability, compliance & documentation, costing & capacity—and show you exactly where the gaps are.
+                    </div>
+                    <div class="stage-metric">Scored 0–100, against buyer expectations</div>
+                </div>
+                <div class="stage">
+                    <div class="stage-number">2</div>
+                    <div class="stage-name">Build</div>
+                    <div class="stage-title">Digital Backbone</div>
+                    <div class="stage-description">
+                        Kinexus embeds with your team to close the gaps: live data, quality tracking, documentation workflows. Your domestic operation improves immediately—and this backbone becomes the foundation every export agent later runs on.
+                    </div>
+                    <div class="stage-metric">One Ludhiana mill moved 56 → 78 in a single engagement</div>
+                </div>
+                <div class="stage">
+                    <div class="stage-number">3</div>
+                    <div class="stage-name">Connect</div>
+                    <div class="stage-title">Market & Buyers</div>
+                    <div class="stage-description">
+                        Once your score clears the bar, Cosmo International's trade expertise takes over the outside game: which market, which buyers, what pricing, what terms. You walk in prepared, not hopeful.
+                    </div>
+                    <div class="stage-metric">Readiness first, introductions second</div>
+                </div>
+                <div class="stage">
+                    <div class="stage-number">4</div>
+                    <div class="stage-name">Ship</div>
+                    <div class="stage-title">First Order & Beyond</div>
+                    <div class="stage-description">
+                        Documentation drafts itself from your live systems—and as the agent roadmap phases in, more of the chain runs the same way, with your team approving rather than typing. The second shipment is easier than the first; the tenth is routine.
+                    </div>
+                    <div class="stage-metric">The system compounds; the effort doesn't</div>
+                </div>
+            </div>
         </div>
     </section>
-    <section class="section" style="background: linear-gradient(135deg, var(--navy) 0%, #10123A 100%); color: white;">
+
+    <!-- Agentic Roadmap -->
+    <section class="section" id="agents" style="background: var(--sky);">
         <div class="container">
-            <div class="section-header"><div class="section-eyebrow" style="color: var(--azure-bright);">The Window</div>
-                <h2 style="color: white;">UK duties on Indian auto components: heading to zero</h2>
-                <p class="section-description" style="color: #C9D4EA;">Under the India–UK CETA, in force from 15 July 2026, UK import duties of up to 18% on engineering goods and auto components drop to zero. Global buyers pursuing China+1 sourcing increasingly ask for digital proof—quality trends, traceability, delivery records—before they ask for price. The window favours the operationally ready.</p></div>
-            <p style="font-size:0.85rem;color:rgba(255,255,255,0.55);text-align:center;">Tariff figures per the India–UK CETA as notified; verify current schedules for your HS codes. US tariff arrangements remain in flux as of July 2026—check current rates before quoting.</p>
+            <div class="section-header">
+                <div class="section-eyebrow">The Agentic Roadmap</div>
+                <h2>AI agents for the export value chain—built in phases, not promised overnight</h2>
+                <p class="section-description">
+                    Once your digital backbone is live and proven, we layer in agents along the export chain—each one deployed only when the data under it is solid. And a rule we won't bend: agents draft, humans approve. Anything compliance-critical goes through your team or your CHA before it leaves the building.
+                </p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--azure);margin-bottom:0.6rem;">Quote</div>
+                    <div class="problem-title">🔎 HS Code & FTA Eligibility Agent</div>
+                    <p class="problem-text">
+                        Suggests HS classifications from your product specs, checks preferential duty eligibility under agreements like the India–UK CETA and India–UAE CEPA, and flags the rules-of-origin conditions you'd need to meet—before you commit to a price.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--azure);margin-bottom:0.6rem;">Quote</div>
+                    <div class="problem-title">🧮 Landed Cost & Quotation Agent</div>
+                    <p class="problem-text">
+                        Builds market-wise landed cost—freight, post-FTA duty, insurance—on top of your true production cost from the backbone, and drafts FOB/CIF quotations. No more winning orders that quietly lose money.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--azure);margin-bottom:0.6rem;">Quote</div>
+                    <div class="problem-title">📨 RFQ Response Agent</div>
+                    <p class="problem-text">
+                        When a buyer inquiry lands, the agent assembles spec sheets, certifications, and your actual quality history into a professional response—so you reply in hours while competitors take weeks.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--azure);margin-bottom:0.6rem;">Comply</div>
+                    <div class="problem-title">🧾 Origin Evidence Agent</div>
+                    <p class="problem-text">
+                        Compiles rules-of-origin evidence from your bill of materials and production records to support origin declarations under FTAs—organized, traceable, and ready for your CHA's review rather than rebuilt from scratch each shipment.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--azure);margin-bottom:0.6rem;">Comply</div>
+                    <div class="problem-title">📡 Regulatory Watch Agent</div>
+                    <p class="problem-text">
+                        Target markets change labeling rules, testing standards, and import requirements without sending you a memo. This agent watches the requirements attached to your HS codes and alerts you before a change strands a container.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--azure);margin-bottom:0.6rem;">Ship</div>
+                    <div class="problem-title">📄 Document Pack Agent</div>
+                    <p class="problem-text">
+                        Commercial invoice, packing list, origin declaration—drafted automatically from live production data instead of hand-compiled over days. Your team and CHA review and sign; the agent just kills the drudgery and the transcription errors.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--azure);margin-bottom:0.6rem;">Ship</div>
+                    <div class="problem-title">🚢 Shipment & Buyer Comms Agent</div>
+                    <p class="problem-text">
+                        Tracks container milestones, flags delays the moment they appear, and keeps your buyer informed proactively across time zones. Silence is how export relationships die; this agent makes sure there never is any.
+                    </p>
+                </div>
+                <div class="problem-card">
+                    <div style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--azure);margin-bottom:0.6rem;">Get Paid</div>
+                    <div class="problem-title">💰 Export Receivables & LC Agent</div>
+                    <p class="problem-text">
+                        Watches letter-of-credit document deadlines, chases export invoices systematically, and assembles the data for incentive claims like RoDTEP and duty drawback—organized for your consultant to file, so nothing gets left unclaimed.
+                    </p>
+                </div>
+            </div>
+            <p style="font-size: 0.85rem; color: #999; margin-top: 2rem; text-align: center; max-width: 720px; margin-left: auto; margin-right: auto;">
+                These agents are on our phased development roadmap and are deployed engagement by engagement, only after your data backbone has proven itself. Compliance-critical outputs—classifications, declarations, filings—are always drafts for human review, never auto-submitted.
+            </p>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
-            <div class="section-header"><div class="section-eyebrow">In Practice</div><h2>A Dera Bassi precision unit, systematized</h2>
-                <p class="section-description">Jobs were scheduled by memory and utilization sat at 68%. With production scheduling systematized, the same 3 CNC machines delivered 25% more output—no capex—and on-time delivery rose from 78% to 94%, unlocking 12 new OEM orders within 9 months.</p></div>
-            <p style="font-size:0.85rem;color:#999;">Representative composite scenario with details anonymized. · From the blog: <a href="blog.html#ceta-auto-window" style="color:var(--azure);font-weight:700;text-decoration:none;">The UK tariff window →</a> · <a href="blog.html#tariff-volatility" style="color:var(--azure);font-weight:700;text-decoration:none;">Quoting amid tariff chaos →</a></p>
-        </div>
-    </section>
+
+    <!-- CTA -->
     <section class="section contact">
         <div class="container">
-            <h2>Find out where your floor stands.</h2>
-            <p class="contact-description">Two weeks on-site. A scored baseline, your top three bottlenecks, and a clear next step—whether you work with us or not.</p>
-            <div style="text-align:center;"><a href="index.html#contact" class="btn-primary" style="display:inline-block;">Book your diagnostic →</a></div>
+            <h2>Find out where you stand—before the window narrows.</h2>
+            <p class="contact-description">
+                The diagnostic gives you a scored export-readiness baseline across all five dimensions, your top three gaps, and a prioritized path. Whether you work with us or not, you'll know exactly what a buyer would see.
+            </p>
+            <div style="text-align: center;">
+                <a href="index.html#contact" class="btn-primary" style="display: inline-block;">Book your diagnostic →</a>
+            </div>
+            <p style="margin-top: 2rem; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
+                📞 +91 98767 01788 · hello@kinexus.co.in · Mon–Sat, 9 AM–6 PM IST
+            </p>
         </div>
     </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1450,20 +1521,6 @@
             }, { passive: true });
             tt.addEventListener('click', function () {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-
-        // Contact form -> WhatsApp (no backend required)
-        var cf = document.querySelector('.contact-form');
-        if (cf) {
-            cf.addEventListener('submit', function (e) {
-                e.preventDefault();
-                var v = function (id) { var el = document.getElementById(id); return el ? el.value : ''; };
-                var msg = 'Hi Kinexus, I would like to book a diagnostic.\n'
-                    + 'Name: ' + v('name') + '\nCompany: ' + v('company')
-                    + '\nPhone: ' + v('phone') + '\nSector: ' + v('sector')
-                    + '\nBiggest challenge: ' + v('message');
-                window.open('https://wa.me/919876701788?text=' + encodeURIComponent(msg), '_blank');
             });
         }
 

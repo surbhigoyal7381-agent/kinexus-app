@@ -60,5 +60,6 @@ jobs:
             **/node_modules/**
             .github/**
             .vscode/**
+            archive/**
             assets/Archive/**
             README.md
