@@ -521,28 +521,65 @@
         .case-study-metrics {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 1rem;
             margin-bottom: 2rem;
         }
 
         .metric {
             text-align: center;
-            padding: 1.5rem;
+            padding: 1.25rem 0.75rem;
             background: #F8F9FA;
-            border-radius: 8px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 132px;
         }
 
         .metric-value {
-            font-size: 1.8rem;
+            font-size: 1.85rem;
             font-weight: 800;
             color: var(--azure);
-            margin-bottom: 0.25rem;
+            line-height: 1.1;
+            margin-bottom: 0.4rem;
+            white-space: nowrap;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        /* Small unit word (e.g. "days") kept subordinate to the number */
+        .metric-value .unit {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        /* Before → after change: muted "from", bold "to", always on one line */
+        .metric-value.is-delta .from {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--slate);
+        }
+
+        .metric-value.is-delta .arr {
+            font-size: 0.95rem;
+            color: var(--slate);
+            font-weight: 700;
+        }
+
+        .metric-value.is-delta .to {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--azure);
         }
 
         .metric-label {
             font-size: 0.85rem;
             color: #666;
             font-weight: 500;
+            line-height: 1.35;
         }
 
         .case-study-description {
@@ -1936,7 +1973,7 @@
                                 <div class="metric-label">Rejections cut</div>
                             </div>
                             <div class="metric">
-                                <div class="metric-value">12% → 7%</div>
+                                <div class="metric-value is-delta"><span class="from">12%</span><span class="arr">→</span><span class="to">7%</span></div>
                                 <div class="metric-label">Rejection rate</div>
                             </div>
                         </div>
@@ -1963,7 +2000,7 @@
                                 <div class="metric-label">Utilization gain</div>
                             </div>
                             <div class="metric">
-                                <div class="metric-value">78% → 94%</div>
+                                <div class="metric-value is-delta"><span class="from">78%</span><span class="arr">→</span><span class="to">94%</span></div>
                                 <div class="metric-label">On-time delivery</div>
                             </div>
                         </div>
@@ -1990,7 +2027,7 @@
                                 <div class="metric-label">Cash cycle cut</div>
                             </div>
                             <div class="metric">
-                                <div class="metric-value">18 days</div>
+                                <div class="metric-value">18<span class="unit">days</span></div>
                                 <div class="metric-label">DSO improved</div>
                             </div>
                         </div>
