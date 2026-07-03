@@ -62,4 +62,6 @@ jobs:
             .vscode/**
             archive/**
             assets/Archive/**
+            blog/_template.html
+            blog/HOW-TO-ADD-A-POST.md
             README.md
