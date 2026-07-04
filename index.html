@@ -240,7 +240,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 0.8rem;
         }
 
         /* Section Styling */
@@ -1382,6 +1382,10 @@
         .embedded-points > * { flex: 1 1 200px; }
         .blog-grid > *       { flex: 1 1 300px; }
         .faq-grid > *        { flex: 1 1 300px; }
+
+        /* Ecosystem: always two cards per row (one per row on mobile). */
+        .eco-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 768px) { .eco-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -1459,7 +1463,7 @@
                 </p>
             </div>
             
-            <div class="problems-grid" style="grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));">
+            <div class="problems-grid eco-grid">
                 <a href="#automation" class="problem-card eco-card">
                     <div class="eco-step">Operations</div>
                     <div class="problem-title">⚙️ Self-Sustaining Operations</div>
@@ -1836,9 +1840,7 @@
                 <p style="font-size: 1.1rem; color: var(--navy); font-weight: 700; margin-bottom: 1rem;">
                     Add it up, and Year 1 typically returns several multiples of what you invest—most clients land between 4–6x.
                 </p>
-                <p style="font-size: 0.95rem; color: #999; margin-bottom: 1.5rem;">
-                    And export isn't a Year-2 afterthought—it's one of the four doors you can choose to walk through from day one. If global markets are your bottleneck, we start there, with Cosmo International working alongside.
-                </p>
+               
             </div>
         </div>
     </section>
@@ -2451,6 +2453,10 @@
             if (raf) cancelAnimationFrame(raf);
             raf = requestAnimationFrame(function () {
                 var r = el.getBoundingClientRect();
+                // Skip the tilt on cards that have stretched to fill a row (e.g. a lone
+                // orphan card): rotateY on a very wide element visibly shifts its left edge,
+                // breaking alignment with the narrower cards beside it.
+                if (r.width > 640) { if (el.style.transform) el.style.transform = ''; return; }
                 var px = (ev.clientX - r.left) / r.width - 0.5;
                 var py = (ev.clientY - r.top) / r.height - 0.5;
                 el.style.transform = 'perspective(900px) rotateX(' + (-py * MAX) + 'deg) rotateY(' + (px * MAX) + 'deg) translateZ(6px)';
