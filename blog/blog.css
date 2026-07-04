@@ -91,7 +91,9 @@ nav.site {
 .filter-btn.active { background: var(--navy); border-color: var(--navy); color: #fff; }
 
 /* ---- Post grid + cards ---- */
-.post-grid { max-width: var(--maxw); margin: 2.5rem auto 4rem; padding: 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.8rem; }
+.post-grid { max-width: var(--maxw); margin: 2.5rem auto 4rem; padding: 0 1.5rem; display: flex; flex-wrap: wrap; gap: 1.8rem; }
+/* Trailing cards on a partial last row grow to fill the width */
+.post-grid > * { flex: 1 1 320px; }
 .post-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; }
 .post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); text-decoration: none; }
 .post-card:focus-within { outline: 2px solid var(--azure); outline-offset: 2px; }
@@ -157,14 +159,14 @@ nav.site {
 
 .related { max-width: var(--readw); margin: 0 auto; padding: 1rem 1.5rem 3rem; }
 .related h2 { font-size: 1.3rem; color: var(--navy); font-weight: 800; margin-bottom: 1.2rem; }
-.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 1.2rem; }
 
 .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0; }
 .tag { background: var(--light); border: 1px solid var(--border); color: var(--navy); padding: 0.3rem 0.85rem; border-radius: 16px; font-size: 0.78rem; font-weight: 600; }
 
 /* ---- Footer ---- */
 footer.site { background: var(--ink); color: #C7CEE3; padding: 3rem 1.5rem 2rem; }
-footer.site .footer-content { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; }
+footer.site .footer-content { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)); gap: 2rem; }
 footer.site h4 { color: #fff; font-size: 0.95rem; margin-bottom: 1rem; }
 footer.site ul { list-style: none; }
 footer.site li { margin-bottom: 0.55rem; }

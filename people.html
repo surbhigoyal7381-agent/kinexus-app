@@ -212,7 +212,7 @@
 
         .hero-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
             gap: 2rem;
             margin-top: 3rem;
             padding-top: 2rem;
@@ -281,7 +281,7 @@
         /* Problem Section */
         .problems-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -313,7 +313,7 @@
 
         .workflow-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
             gap: 2.5rem;
             margin-top: 3rem;
         }
@@ -425,7 +425,7 @@
         /* ROI Section */
         .roi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -470,7 +470,7 @@
 
         .case-study-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
             gap: 2.5rem;
             margin-top: 3rem;
         }
@@ -576,7 +576,7 @@
 
         .maturity-stages {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -653,7 +653,7 @@
 
         .embedded-points {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
             gap: 1.5rem;
         }
 
@@ -683,7 +683,7 @@
 
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -756,7 +756,7 @@
 
         .faq-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -881,7 +881,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
             text-align: left;
@@ -1166,6 +1166,36 @@
         }
         .to-top.show { opacity: 1; visibility: visible; transform: none; }
         .to-top:hover { background: var(--azure); }
+            /* KINEXUS-MOBILE-NAV */
+        /* ===== Mobile nav layout: logo left, CTA + hamburger right ===== */
+        @media (max-width: 768px) {
+            nav { padding: 0.85rem 1rem; }
+            .nav-container { gap: 0.5rem; }
+            .nav-logo { order: 1; flex-shrink: 0; font-size: 1.15rem; }
+            .nav-logo img { height: 28px; }
+            .nav-cta { order: 2; margin-left: auto; flex-shrink: 0; white-space: nowrap; padding: 0.5rem 0.95rem; font-size: 0.83rem; }
+            .nav-toggle { order: 3; flex-shrink: 0; margin-left: 0.6rem; }
+        }
+        @media (max-width: 400px) {
+            .nav-logo span { display: none; }
+        }
+
+    
+        /* KINEXUS-FLEX-FILL */
+        /* Card grids: when cards wrap to a new row, let the trailing cards
+           grow to fill the full width instead of leaving the row half-empty. */
+        .problems-grid, .workflow-grid, .roi-grid, .case-study-grid,
+        .maturity-stages, .embedded-points, .blog-grid, .faq-grid {
+            display: flex; flex-wrap: wrap;
+        }
+        .problems-grid > *   { flex: 1 1 300px; }
+        .workflow-grid > *   { flex: 1 1 320px; }
+        .roi-grid > *        { flex: 1 1 250px; }
+        .case-study-grid > * { flex: 1 1 350px; }
+        .maturity-stages > * { flex: 1 1 250px; }
+        .embedded-points > * { flex: 1 1 200px; }
+        .blog-grid > *       { flex: 1 1 300px; }
+        .faq-grid > *        { flex: 1 1 300px; }
     </style>
 </head>
 <body>
@@ -1328,7 +1358,7 @@
                     HR software vendors sell you a login and disappear. HR consultants write you a policy and disappear. We think the answer is both disciplines working the same engagement—the system and the practice, built together, embedded in your plant.
                 </p>
             </div>
-            <div class="problems-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+            <div class="problems-grid" style="grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));">
                 <div class="problem-card" style="background: rgba(255,255,255,0.06); border-left: 4px solid var(--azure-bright);">
                     <div class="problem-title" style="color: white;">🖥️ Kinexus — the digital system</div>
                     <p class="problem-text" style="color: #C9D4EA;">
