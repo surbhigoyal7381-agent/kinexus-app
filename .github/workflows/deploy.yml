@@ -47,6 +47,25 @@ jobs:
               file.write(f"define('DB_SSL', {php_bool(os.environ['DB_SSL'])});\n")
           PY
 
+      # The FTP-Deploy-Action silently fails to create new remote directories on
+      # this LiteSpeed/FTP host (it logs "creating folder" but the MKD never lands,
+      # so files uploaded into a fresh folder vanish while the run still reports
+      # success). Pre-create required subdirectories with lftp, which surfaces real
+      # MKD errors, so the upload step below lands blog/ files into an existing dir.
+      - name: Ensure remote subdirectories exist
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" kinexus.co.in <<'EOF'
+          set ssl:verify-certificate no
+          set ftp:ssl-allow true
+          mkdir -p /public_html/blog
+          cls -l /public_html/blog
+          bye
+          EOF
+
       - name: Deploy via FTP to MilesWeb
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -54,7 +73,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /public_html/
-          state-name: .ftp-deploy-sync-state-v2.json
+          state-name: .ftp-deploy-sync-state-v3.json
           exclude: |
             **/.git*
             **/.git*/**
