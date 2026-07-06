@@ -52,27 +52,24 @@ jobs:
       # so files uploaded into a fresh folder vanish while the run still reports
       # success). Pre-create required subdirectories with lftp, which surfaces real
       # MKD errors, so the upload step below lands blog/ files into an existing dir.
-      - name: Ensure remote subdirectories exist
+      # The FTP-Deploy-Action (Node basic-ftp) uploads files fine but silently
+      # fails to create the new remote blog/ directory, so every /blog/* URL 404s.
+      # Create it out-of-band with curl, matching the action's transport (explicit
+      # FTPS on port 21). MKD runs as a pre-command; the "*" prefix ignores the
+      # "directory already exists" error so the step is idempotent. Hard timeouts
+      # guarantee it can never hang the job.
+      - name: Ensure remote blog directory exists
         timeout-minutes: 4
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-          # This host requires FTPS. Do ONLY mkdir over the control channel — no
-          # ls/cls, which would open a passive data connection and stall under TLS.
-          # Hard timeouts guarantee the step can never hang the job.
-          timeout 90 lftp -u "$FTP_USERNAME","$FTP_PASSWORD" -e "
-            set ssl:verify-certificate no;
-            set ftp:ssl-allow true;
-            set ftp:ssl-force true;
-            set ftp:ssl-protect-data no;
-            set net:timeout 15;
-            set net:max-retries 2;
-            set net:reconnect-interval-base 5;
-            set cmd:fail-exit yes;
-            mkdir -p /public_html/blog;
-            bye" kinexus.co.in
+          curl --ssl-reqd -k -sS \
+               --connect-timeout 20 --max-time 90 \
+               -u "$FTP_USERNAME:$FTP_PASSWORD" \
+               -Q "*MKD /public_html/blog" \
+               "ftp://kinexus.co.in/public_html/" -o /dev/null
+          echo "blog directory ensured"
 
       - name: Deploy via FTP to MilesWeb
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
