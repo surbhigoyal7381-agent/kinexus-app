@@ -59,17 +59,20 @@ jobs:
       # "directory already exists" error so the step is idempotent. Hard timeouts
       # guarantee it can never hang the job.
       - name: Ensure remote blog directory exists
+        continue-on-error: true
         timeout-minutes: 4
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          curl --ssl-reqd -k -sS \
-               --connect-timeout 20 --max-time 90 \
-               -u "$FTP_USERNAME:$FTP_PASSWORD" \
-               -Q "*MKD /public_html/blog" \
-               "ftp://kinexus.co.in/public_html/" -o /dev/null
-          echo "blog directory ensured"
+          C="curl --ssl-reqd -k --connect-timeout 20 --max-time 60 -u $FTP_USERNAME:$FTP_PASSWORD"
+          echo "=== DIAG: login-root listing (is public_html here?) ==="
+          $C -s "ftp://kinexus.co.in/" || echo "(root list rc=$?)"
+          echo "=== DIAG: /public_html/ listing (does blog exist? perms?) ==="
+          $C -s "ftp://kinexus.co.in/public_html/" || echo "(public_html list rc=$?)"
+          echo "=== DIAG: MKD /public_html/blog (server responses) ==="
+          $C -v -Q "MKD /public_html/blog" "ftp://kinexus.co.in/public_html/" -o /dev/null 2>&1 \
+            | grep -E '^(< |\* )' || true
 
       - name: Deploy via FTP to MilesWeb
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
