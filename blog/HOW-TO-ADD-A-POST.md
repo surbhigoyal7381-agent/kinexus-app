@@ -20,8 +20,8 @@ is driven by one manifest file. Adding a post takes about five minutes.
 ### 1. Create the post page
 Copy `_template.html` to `blog/<your-slug>.html`.
 
-- **slug** = the URL, lowercase with hyphens, e.g. `gst-changes-for-exporters`.
-  The file becomes `https://www.kinexus.co.in/blog/gst-changes-for-exporters.html`.
+- **slug** = the URL, lowercase with hyphens, e.g. `gst-changes-for-manufacturers`.
+  The file becomes `https://www.kinexus.co.in/blog/gst-changes-for-manufacturers.html`.
 - Open the new file and replace every `{{PLACEHOLDER}}` (search for `{{`).
 - Write the article inside `<div class="post-body"> … </div>`. Use `<p>` for
   paragraphs, `<h2>` for section headings, and the `.callout` box for a
@@ -32,14 +32,14 @@ Put it at the **top** of the `KINEXUS_POSTS` array (newest first):
 
 ```js
 {
-  slug: "gst-changes-for-exporters",
-  title: "What the new GST slabs mean for exporters",
+  slug: "gst-changes-for-manufacturers",
+  title: "What the new GST slabs mean for manufacturers",
   excerpt: "One or two sentences shown on the listing card.",
   category: "Engineering & Auto",   // must match a value in KINEXUS_CATEGORIES
   date: "2026-08-12",               // YYYY-MM-DD, drives ordering
   readMins: 4,
   emoji: "🧾",
-  tags: ["GST", "exports", "compliance"]
+  tags: ["GST", "costing", "compliance"]
 },
 ```
 

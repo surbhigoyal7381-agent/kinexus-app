@@ -25,49 +25,9 @@ window.KINEXUS_CATEGORIES = [
 
 window.KINEXUS_POSTS = [
   {
-    slug: "uk-ceta-zero-duty-auto-components",
-    title: "The UK just dropped its tariff wall on your components",
-    excerpt: "On 15 July 2026 the India–UK CETA takes UK duties on engineering and auto components to zero. The saving goes to whoever can prove their operations — fast.",
-    category: "Engineering & Auto",
-    date: "2026-07-03",
-    readMins: 4,
-    emoji: "⚙️",
-    tags: ["CETA", "UK", "tariffs", "auto ancillaries", "rules of origin", "export"]
-  },
-  {
-    slug: "ludhiana-uk-zero-duty-window",
-    title: "Zero duty into the UK: Ludhiana's once-in-a-generation window",
-    excerpt: "From 15 July 2026, UK duties of up to 12% on Indian knitwear vanish. The differentiator shifts from price to documented, auditable reliability.",
-    category: "Hosiery & Textiles",
-    date: "2026-07-02",
-    readMins: 4,
-    emoji: "🧵",
-    tags: ["CETA", "UK", "textiles", "knitwear", "Ludhiana", "buyer audit"]
-  },
-  {
-    slug: "pharma-us-tariff-rollercoaster-baddi",
-    title: "Pharma's US tariff rollercoaster — what Baddi should actually do",
-    excerpt: "US duty on Indian pharma has swung from 50% to 10% in a year. Stop building strategy on a quarterly number and build the operations every market rewards.",
-    category: "Pharma & Wellness",
-    date: "2026-07-01",
-    readMins: 4,
-    emoji: "💊",
-    tags: ["pharma", "tariffs", "US", "Baddi", "CETA", "compliance", "export"]
-  },
-  {
-    slug: "quoting-exports-amid-tariff-volatility",
-    title: "How do you quote exports when tariffs change every quarter?",
-    excerpt: "You can't control trade policy. You can control how fast you re-price accurately when it moves — and that's an operations skill, not a trade one.",
-    category: "Engineering & Auto",
-    date: "2026-06-28",
-    readMins: 4,
-    emoji: "📈",
-    tags: ["tariffs", "costing", "pricing", "export", "landed cost"]
-  },
-  {
     slug: "buyers-first-question-is-proof-not-price",
     title: "The buyer's first question isn't price anymore. It's proof.",
-    excerpt: "Global apparel buyers now open with compliance and traceability, then move to price. Proof compounds — price gets you compared, proof gets you kept.",
+    excerpt: "Serious apparel buyers now open with compliance and traceability, then move to price. Proof compounds — price gets you compared, proof gets you kept.",
     category: "Hosiery & Textiles",
     date: "2026-06-26",
     readMins: 3,

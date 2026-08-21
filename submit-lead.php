@@ -2,8 +2,7 @@
 /**
  * Kinexus lead capture endpoint.
  *
- * Accepts JSON POSTs from the contact form (source=contact) and the
- * Export Readiness Playbook dialog (source=playbook). Every submission is
+ * Accepts JSON POSTs from the contact form (source=contact). Every submission is
  * written to data/leads.csv + data/leads.jsonl FIRST (so a lead is never lost
  * even when the database is unreachable) and then inserted into the `leads`
  * table. If the DB step fails, the file copy is the durable fallback.
@@ -30,7 +29,6 @@ if (!is_array($data)) {
     exit;
 }
 
-$source    = trim($data['source']    ?? 'contact');
 $name      = trim($data['name']      ?? '');
 $company   = trim($data['company']   ?? '');
 $phone     = trim($data['phone']     ?? '');
@@ -39,19 +37,11 @@ $sector    = trim($data['sector']    ?? '');
 $size      = trim($data['employees'] ?? ($data['size'] ?? ''));
 $challenge = trim($data['challenge'] ?? '');
 
-if (!in_array($source, ['contact', 'playbook'], true)) {
-    $source = 'contact';
-}
+$source = 'contact';
 
-if ($source === 'contact' && (!$name || !$company || !$phone)) {
+if (!$name || !$company || !$phone) {
     http_response_code(422);
     echo json_encode(['ok' => false, 'error' => 'Name, company and phone are required']);
-    exit;
-}
-
-if ($source === 'playbook' && (!$name || !$email)) {
-    http_response_code(422);
-    echo json_encode(['ok' => false, 'error' => 'Name and email are required']);
     exit;
 }
 
@@ -126,8 +116,7 @@ function kxStoreSubmissionFiles(array $submission): void
 function kxNotify(array $submission): void
 {
     try {
-        $kind = $submission['source'] === 'playbook' ? 'Playbook' : 'Contact';
-        $subject = 'New ' . $kind . ' lead: ' . $submission['name']
+        $subject = 'New Contact lead: ' . $submission['name']
             . ($submission['company'] !== '' ? ' (' . $submission['company'] . ')' : '');
 
         $labels = [
