@@ -11,6 +11,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.kinexus.co.in/alvora-hire.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.kinexus.co.in/engineering.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
