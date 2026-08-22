@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /archive/
 Disallow: /data/
+Disallow: /public_html/
 
 Sitemap: https://www.kinexus.co.in/sitemap.xml
