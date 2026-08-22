@@ -47,20 +47,21 @@ jobs:
               file.write(f"define('DB_SSL', {php_bool(os.environ['DB_SSL'])});\n")
           PY
 
-      # DOCROOT: this changed on 2026-08-22. The FTP account's home used to BE the
-      # docroot, so server-dir was "/". After public_html was deleted and recreated,
-      # the account's home reset to the PARENT of the docroot: a deploy to "/" then
-      # succeeded (35 files, folders created) while every URL still 404'd, because
-      # the files landed one level above what LiteSpeed serves. Hence /public_html/.
-      # If URLs ever 404 right after a green deploy, check this pairing first.
+      # DOCROOT: on this host the web docroot IS the FTP login root ("/"), NOT
+      # "/public_html/" — confirmed 2026-08-22 by fetching a file uploaded to "/"
+      # over HTTP. Uploading to /public_html/ lands files in an unserved subfolder.
+      # (During the 22 Aug outage this briefly looked reversed; that was the docroot
+      # being missing entirely, not the path being wrong. Restoring it settled it.)
+      # A fresh state-name forces a full re-upload, since the state file on the
+      # server came back with a restore and no longer matches what is deployed.
       - name: Deploy via FTP to MilesWeb
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: kinexus.co.in
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/
-          state-name: .ftp-deploy-sync-state-docroot.json
+          server-dir: /
+          state-name: .ftp-deploy-sync-state-20260822.json
           exclude: |
             **/.git*
             **/.git*/**
