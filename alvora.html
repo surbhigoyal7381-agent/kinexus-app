@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#FBF9FC">
     <title>Alvora — The platform line</title>
-    <meta name="description" content="Alvora HR, Alvora Hire, Alvora Gig and Alvora Learning. Evidence-first, closed-loop people software where every rating traces back to the document that produced it. An AllAboutHR platform.">
+    <meta name="description" content="Alvora HRMS, Alvora Hire, Alvora Gig and Alvora Learning. Evidence-first, closed-loop people software where every rating traces back to the document that produced it. An AllAboutHR platform.">
     <link rel="canonical" href="https://www.kinexus.co.in/alvora.html">
 
     <meta property="og:type" content="website">
@@ -110,20 +110,6 @@
             text-transform: uppercase; color: var(--faint);
         }
 
-        /* ---------- pricing ---------- */
-        .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.75rem; }
-        .tier { text-align: left; }
-        .tier .nm {
-            font-family: "IBM Plex Mono", monospace; font-size: .74rem; letter-spacing: .1em;
-            text-transform: uppercase; color: var(--faint); margin-bottom: .55rem;
-        }
-        .tier .amt {
-            font-family: Poppins, sans-serif; font-weight: 300; font-size: 2rem; color: var(--plum-d);
-            letter-spacing: -0.02em; line-height: 1;
-        }
-        .tier .per { font-size: .86rem; color: var(--slate); margin-top: .35rem; }
-        .tier p { font-size: .92rem; color: var(--slate); margin-top: .85rem; }
-
         /* ---------- house strip ---------- */
         .house { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2.75rem; }
         .hcard { display: flex; flex-direction: column; text-decoration: none; }
@@ -138,7 +124,6 @@
         }
         @media (max-width: 820px) {
             .hero { padding: calc(var(--nav-h) + 3rem) 0 3rem; }
-            .tiers { grid-template-columns: 1fr; }
             .plat { padding: 1.9rem 1.5rem; }
             .hero-lock img { height: 92px; }
         }
@@ -234,7 +219,7 @@
             <div class="card plat rv">
                 <div class="lock">
                     <img src="assets/alvora-mark.png" alt="">
-                    <span class="wm"><span class="master">Alvora</span><span class="prod">HR</span></span>
+                    <span class="wm"><span class="master">Alvora</span><span class="prod">HRMS</span></span>
                 </div>
                 <div class="role">Full HCM · the core record</div>
                 <p>
@@ -272,10 +257,10 @@
                     <li>Client-ready candidate briefings in a click</li>
                     <li>Every source in one pipeline, duplicates collapsed automatically</li>
                     <li>Shortlists that carry the evidence behind them</li>
-                    <li>Priced per firm, not per seat</li>
+                    <li>Consent management and data-retention rules built in</li>
                 </ul>
                 <div class="foot">
-                    <span class="from">From <b>₹5,000 / month</b> for the whole firm</span>
+                    <span class="from">Priced <b>per firm</b>, not per seat</span>
                     <a class="go" href="alvora-hire.html">See what it does →</a>
                 </div>
             </div>
@@ -351,44 +336,6 @@
     </div>
 </section>
 
-<!-- ============================ ALVORA HIRE PRICING ============================ -->
-<section class="sec" id="pricing">
-    <div class="wrap">
-        <div class="narrow">
-            <div class="kicker rv">Alvora Hire · pricing</div>
-            <h2 class="rv">Priced per firm, not per seat.</h2>
-            <p class="lead-p rv" style="margin-top:1.15rem;">
-                Small recruitment firms were being asked to pay enterprise per-seat prices for tools
-                built for enterprise problems. We priced it the other way round — one monthly price
-                for the team, and 10% off if you commit annually.
-            </p>
-        </div>
-        <div class="tiers">
-            <div class="card tier rv">
-                <div class="nm">Starter</div>
-                <div class="amt">₹5,000</div>
-                <div class="per">per month · micro firms, 1–5 consultants</div>
-                <p>For the firm still running its pipeline on spreadsheets and WhatsApp. One price for the whole team.</p>
-            </div>
-            <div class="card tier rv">
-                <div class="nm">Professional</div>
-                <div class="amt">₹10,000</div>
-                <div class="per">per month · small firms, 6–15 consultants</div>
-                <p>More recruiters, more clients, and briefings that have to go out the same day. TalentFit matching included.</p>
-            </div>
-            <div class="card tier rv">
-                <div class="nm">Enterprise</div>
-                <div class="amt">₹20,000</div>
-                <div class="per">per month, per 5 consultants · 16+ consultants</div>
-                <p>Multiple desks and mandates, job board integration, SSO and the audit trail an enterprise client expects.</p>
-            </div>
-        </div>
-        <p class="rv" style="margin-top:2rem;">
-            <a href="alvora-hire.html" class="btn btn-2">See the full product page <span class="arw">→</span></a>
-        </p>
-    </div>
-</section>
-
 <!-- ============================ THE HOUSE ============================ -->
 <section class="sec mist" id="house">
     <div class="wrap">
@@ -443,7 +390,7 @@
                 <label for="sector">Which platform?</label>
                 <select id="sector" name="sector" required>
                     <option value="">Choose one</option>
-                    <option value="alvora-hr">Alvora HR — full HCM</option>
+                    <option value="alvora-hrms">Alvora HRMS — full HCM</option>
                     <option value="alvora-hire">Alvora Hire — applicant tracking</option>
                     <option value="alvora-gig">Alvora Gig — contractor workforce</option>
                     <option value="alvora-learning">Alvora Learning</option>
@@ -484,11 +431,11 @@
         <div>
             <h4>Platforms</h4>
             <ul>
-                <li><a href="#platforms">Alvora HR</a></li>
+                <li><a href="#platforms">Alvora HRMS</a></li>
                 <li><a href="alvora-hire.html">Alvora Hire</a></li>
                 <li><a href="#platforms">Alvora Gig</a></li>
                 <li><a href="#platforms">Alvora Learning</a></li>
-                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="alvora-hire.html#pricing">Alvora Hire plans</a></li>
             </ul>
         </div>
         <div>

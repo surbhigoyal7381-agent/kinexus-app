@@ -37,8 +37,9 @@ Reversed panels use plum-dark `#6E2564` (white on it is 9.94:1); white on plum
 - `index.html` — Kinexus homepage: the two services (custom digital solutions,
   agentic AI workflows), proof, and the house
 - `allabouthr.html` — the AllAboutHR Growth Loop: five stages, seventeen
-  programmes, six packages
-- `alvora.html` — the Alvora platform line: Alvora HR, Hire, Gig, Learning
+  programmes, six service packages (no fees published — those are quoted
+  against scope)
+- `alvora.html` — the Alvora platform line: Alvora HRMS, Hire, Gig, Learning
 - `alvora-hire.html` — the Alvora Hire product page
 - `portfolio.html`, `blog.html`, `blog/` — portfolio and Insights
 - `engineering.html`, `textiles.html`, `wellness.html`, `people.html` — earlier
@@ -59,9 +60,11 @@ Reversed panels use plum-dark `#6E2564` (white on it is 9.94:1); white on plum
 ## Logos
 
 The marks in `assets/` are extracted from the approved brand board artwork,
-which is raster. **Production print work needs the vector originals** — getting
-those files is the first item on the brand board's action list. The Alvora Hire
-lockup is composed from the Alvora mark plus the product word set in Poppins.
+which is raster — good for web at the sizes used here. Vector originals are in
+progress and should replace these for print, signage and embroidery. The Alvora
+Hire lockup is composed from the Alvora mark plus the product word set in
+Poppins; `assets/alvora-hrms-logo.png` is the stacked Alvora HRMS lockup as
+supplied.
 
 ## Deploy
 
