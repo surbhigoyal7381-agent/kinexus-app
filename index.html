@@ -111,19 +111,6 @@
         @keyframes bob1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
         @keyframes bob2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
-        /* ---------- statement list ---------- */
-        .says { margin-top: 2.75rem; }
-        .say {
-            padding: 1.85rem 0; border-top: 1px solid var(--rule);
-            font-family: Poppins, sans-serif; font-weight: 500;
-            font-size: clamp(1.18rem, 2.1vw, 1.6rem); letter-spacing: -0.02em; line-height: 1.38;
-            color: var(--ink); display: flex; gap: 1.25rem; align-items: flex-start;
-        }
-        .say:last-child { border-bottom: 1px solid var(--rule); }
-        .say .no {
-            font-family: "IBM Plex Mono", monospace; font-size: .8rem; font-weight: 500;
-            color: var(--lead); padding-top: .5rem; flex-shrink: 0;
-        }
 
         /* ---------- beliefs ---------- */
         .beliefs { margin-top: 2.75rem; }
@@ -381,17 +368,47 @@
     <div class="wrap narrow">
         <div class="kicker rv">Sound familiar?</div>
         <h2 class="rv">You didn't start a business to become its bottleneck.</h2>
-        <div class="says">
-            <div class="say rv"><span class="no">01</span><span>Every decision routes through you. On the days you're away, things quietly stop.</span></div>
-            <div class="say rv"><span class="no">02</span><span>The real numbers live in four places — Excel, Tally, WhatsApp, and someone's head.</span></div>
-            <div class="say rv"><span class="no">03</span><span>Your best people spend their week doing work a system should have done.</span></div>
-            <div class="say rv"><span class="no">04</span><span>You've been sold software before. It's still open in a tab nobody uses.</span></div>
+        <div class="pains">
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20Every%20decision%20routes%20through%20me.%20On%20the%20days%20I%27m%20away%2C%20things%20quietly%20stop." target="_blank" rel="noopener">
+                <span class="no">01</span>
+                <span class="said">Every decision routes through me. On the days I'm away, things quietly stop.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20The%20real%20numbers%20live%20in%20four%20places%20%E2%80%94%20Excel%2C%20Tally%2C%20WhatsApp%2C%20and%20someone%27s%20head." target="_blank" rel="noopener">
+                <span class="no">02</span>
+                <span class="said">The real numbers live in four places — Excel, Tally, WhatsApp, and someone's head.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20My%20best%20people%20spend%20their%20week%20doing%20work%20a%20system%20should%20have%20done." target="_blank" rel="noopener">
+                <span class="no">03</span>
+                <span class="said">My best people spend their week doing work a system should have done.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20We%27ve%20been%20sold%20software%20before.%20It%27s%20still%20open%20in%20a%20tab%20nobody%20uses." target="_blank" rel="noopener">
+                <span class="no">04</span>
+                <span class="said">We've been sold software before. It's still open in a tab nobody uses.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20Nobody%20can%20tell%20me%20what%20a%20job%20actually%20cost%20until%20long%20after%20we%27ve%20invoiced%20it." target="_blank" rel="noopener">
+                <span class="no">05</span>
+                <span class="said">Nobody can tell me what a job actually cost until long after we've invoiced it.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20The%20follow-ups%20only%20happen%20when%20somebody%20remembers%20to%20do%20them." target="_blank" rel="noopener">
+                <span class="no">06</span>
+                <span class="said">The follow-ups only happen when somebody remembers to do them.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
         </div>
         <p class="lead-p rv" style="margin-top:2.5rem;">
-            Here's what we've learned the expensive way:
+            Pick the one that sounds most like your week and send it to us — it arrives already
+            written, so there's nothing to fill in. Here's what we've learned the expensive way:
             <strong>most businesses don't have a software problem. They have a workflow problem.</strong>
             Orders living in WhatsApp groups. Planning living in a supervisor's head. Costing living
             in one fragile Excel sheet. You can buy software for years and never touch any of that.
+        </p>
+        <p class="rv" style="margin-top:2rem;">
+            <a class="btn btn-wa" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20none%20of%20the%20ones%20on%20your%20site%20quite%20fit.%20Here%20is%20what%20is%20actually%20going%20wrong%20for%20us%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>None of these — but something is broken <span class="arw">→</span></a>
         </p>
     </div>
 </section>
@@ -700,7 +717,7 @@
                 An applicant tracking system built for India's small recruitment and HR consulting
                 firms — the ones priced out of enterprise tools. Ask for candidates in plain English,
                 get client-ready briefings in a click, and stop running your pipeline on spreadsheets.
-                Priced per firm, not per seat.
+                Built for the firms the big tools ignore.
             </p>
             <a href="alvora-hire.html" class="btn btn-light">See what it does <span class="arw">→</span></a>
         </div>

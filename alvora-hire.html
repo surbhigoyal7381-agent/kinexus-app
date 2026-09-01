@@ -13,7 +13,7 @@
     <meta name="theme-color" content="#FBF9FC">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://www.kinexus.co.in/alvora-hire.html">
-    <meta name="description" content="Alvora Hire is an applicant tracking system built for India's small HR consulting firms. Ask for candidates in plain English, send client-ready briefings in one click, and stop running your pipeline on spreadsheets. From ₹5,000 a month for the whole firm.">
+    <meta name="description" content="Alvora Hire is an applicant tracking system built for India's small HR consulting firms. Ask for candidates in plain English, send client-ready briefings in one click, and stop running your pipeline on spreadsheets. Built for the firms the big tools ignore.">
     <title>Alvora Hire — An ATS built for India's small recruitment firms</title>
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" href="assets/favicon.png" type="image/png">
@@ -125,6 +125,8 @@
         .says { margin-top: 2.5rem; }
         .say { padding: 1.9rem 0; border-top: 1px solid var(--line); font-size: clamp(1.2rem, 2.1vw, 1.6rem); font-weight: 700; color: var(--ink); letter-spacing: -0.025em; line-height: 1.35; display: flex; gap: 1.2rem; }
         .say:last-child { border-bottom: 1px solid var(--line); }
+        a.say { text-decoration: none; transition: color .2s, padding-left .2s; }
+        a.say:hover { color: var(--navy); padding-left: .35rem; }
         .say .no { font-size: .78rem; font-weight: 800; color: var(--azure); padding-top: .5rem; flex-shrink: 0; }
 
         /* feature rows */
@@ -152,19 +154,18 @@
         .card h3 { font-size: 1.05rem; margin-bottom: .4rem; }
         .card p { font-size: .92rem; }
 
-        /* pricing */
-        .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
-        .tier { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 2rem; box-shadow: var(--sh-1); display: flex; flex-direction: column; }
-        .tier.mid { border-color: var(--azure); box-shadow: 0 0 0 3px rgba(40,130,206,.1), var(--sh-2); }
-        .tier .nm { font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--azure); margin-bottom: .8rem; }
-        .tier .pr { font-size: 2rem; font-weight: 800; color: var(--ink); letter-spacing: -0.04em; line-height: 1.1; }
-        .tier .pu { font-size: .82rem; color: var(--faint); }
-        .tier .ann { font-size: .8rem; color: var(--green); font-weight: 700; margin-top: .35rem; }
-        .tier .seg { font-size: .84rem; color: var(--soft); margin: .9rem 0 1.2rem; padding-bottom: .9rem; border-bottom: 1px solid var(--line); }
-        .tier .sup { margin-top: 1.2rem; padding-top: .9rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--faint); }
-        .tier ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
-        .tier li { font-size: .9rem; padding-left: 1.3rem; position: relative; color: var(--text); }
-        .tier li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+        /* pain statements — each card is a WhatsApp link carrying its own sentence */
+        .pains { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 3rem; }
+        .pain { display: flex; flex-direction: column; position: relative; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.6rem 1.7rem; text-decoration: none; color: var(--ink); box-shadow: var(--sh-1); transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s; }
+        .pain::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--azure); }
+        .pain:hover { transform: translateY(-3px); box-shadow: var(--sh-2); border-color: var(--line-2); }
+        .pain .no { font-family: "IBM Plex Mono", monospace; font-size: .74rem; font-weight: 500; letter-spacing: .08em; color: var(--navy); margin-bottom: .6rem; }
+        .pain .said { font-family: Poppins, sans-serif; font-weight: 500; font-size: 1.08rem; line-height: 1.42; letter-spacing: -0.015em; color: var(--ink); }
+        .pain .act { margin-top: auto; padding-top: 1.15rem; display: inline-flex; align-items: center; gap: .45rem; font-weight: 600; font-size: .9rem; color: var(--navy); }
+        .pain .act svg { width: 15px; height: 15px; fill: #25D366; flex-shrink: 0; }
+        .btn-wa { background: #25D366; color: #0B2E17; box-shadow: 0 8px 24px rgba(37,211,102,.32); }
+        .btn-wa:hover { transform: translateY(-2px); background: #1EBE5B; }
+        .btn-wa svg { width: 18px; height: 18px; fill: #0B2E17; }
 
         /* dpdp band */
         .band { background: var(--ink); border-radius: 26px; padding: 3.5rem; color: #fff; position: relative; overflow: hidden; }
@@ -197,7 +198,7 @@
         .js .rv.in { opacity: 1; transform: none; }
 
         @media (max-width: 1024px) {
-            .cards, .tiers, .nums { grid-template-columns: 1fr 1fr; }
+            .cards, .pains, .nums { grid-template-columns: 1fr 1fr; }
             .foot { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
@@ -209,7 +210,7 @@
             .hero { padding: 7.5rem 0 3.5rem; }
             .row { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; }
             .row.flip .col-a { order: 0; }
-            .cards, .tiers, .nums { grid-template-columns: 1fr; }
+            .cards, .pains, .nums { grid-template-columns: 1fr; }
             .band { padding: 2.25rem 1.5rem; border-radius: 20px; }
             .foot { grid-template-columns: 1fr; }
             .dim .k { width: 7rem; font-size: .84rem; }
@@ -236,7 +237,7 @@
                 <li><a href="#why">Why it exists</a></li>
                 <li><a href="#search">Ask in English</a></li>
                 <li><a href="#fit">TalentFit</a></li>
-                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#pains">Where it hurts</a></li>
                 <li><a href="alvora.html">Alvora</a></li>
                 <li><a href="allabouthr.html">AllAboutHR</a></li>
                 <li><a href="index.html">Kinexus</a></li>
@@ -253,13 +254,13 @@
                 <div class="kicker">Alvora Hire</div>
                 <h1>Recruitment software was built for enterprises. <span class="accent">You're not one.</span></h1>
                 <p class="lead">
-                    So you make do. A spreadsheet for the pipeline, a folder of CVs, a WhatsApp thread per client, and a memory for everything else. Alvora Hire is an applicant tracking system built for the firms the big tools ignore — India's small and micro HR consultancies. From <strong>₹5,000 a month</strong> for the whole firm — not per seat.
+                    So you make do. A spreadsheet for the pipeline, a folder of CVs, a WhatsApp thread per client, and a memory for everything else. Alvora Hire is an applicant tracking system built for the firms the big tools ignore — India's small and micro HR consultancies. Priced for a firm of three, not a firm of three hundred.
                 </p>
                 <div class="hero-cta">
                     <a href="#talk" class="btn btn-1">Get early access <span>→</span></a>
                     <a href="#why" class="btn btn-2">See what it does</a>
                 </div>
-                <p class="hero-note">No per-API-call billing. No surprise invoice at the end of a busy month.</p>
+                <p class="hero-note">No per-seat maths. No surprise invoice at the end of a busy month.</p>
             </div>
 
             <!-- Live-ish demo of the one thing that sells this product -->
@@ -289,10 +290,10 @@
             <div class="kicker rv">Why it exists</div>
             <h2 class="rv">You're doing enterprise work on a spreadsheet budget.</h2>
             <div class="says">
-                <div class="say rv"><span class="no">01</span><span>The same candidate gets sourced twice, by two of your own consultants, in the same week.</span></div>
-                <div class="say rv"><span class="no">02</span><span>Nobody can say what's actually in the pipeline without opening four files and asking two people.</span></div>
-                <div class="say rv"><span class="no">03</span><span>Half your day is retyping what's already written on a CV.</span></div>
-                <div class="say rv"><span class="no">04</span><span>Your client briefing looks like it came from a small firm. So the client treats you like one.</span></div>
+                <a class="say rv" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20this%20is%20us%20%E2%80%94%20The%20same%20candidate%20gets%20sourced%20twice%2C%20by%20two%20of%20our%20own%20consultants%2C%20in%20the%20same%20week." target="_blank" rel="noopener"><span class="no">01</span><span>The same candidate gets sourced twice, by two of our own consultants, in the same week.</span></a>
+                <a class="say rv" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20this%20is%20us%20%E2%80%94%20Nobody%20can%20say%20what%27s%20actually%20in%20the%20pipeline%20without%20opening%20four%20files%20and%20asking%20two%20people." target="_blank" rel="noopener"><span class="no">02</span><span>Nobody can say what's actually in the pipeline without opening four files and asking two people.</span></a>
+                <a class="say rv" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20this%20is%20us%20%E2%80%94%20Half%20my%20day%20is%20retyping%20what%27s%20already%20written%20on%20a%20CV." target="_blank" rel="noopener"><span class="no">03</span><span>Half my day is retyping what's already written on a CV.</span></a>
+                <a class="say rv" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20this%20is%20us%20%E2%80%94%20Our%20client%20briefing%20looks%20like%20it%20came%20from%20a%20small%20firm.%20So%20the%20client%20treats%20us%20like%20one." target="_blank" rel="noopener"><span class="no">04</span><span>Our client briefing looks like it came from a small firm. So the client treats us like one.</span></a>
             </div>
             <p class="lead rv" style="margin-top:2.5rem;">
                 The global tools solve this — at a price that only works if you have a hundred recruiters and a procurement team. Alvora Hire solves it at a price that works if you have three.
@@ -340,7 +341,7 @@
                     <div class="kicker">One-click briefings</div>
                     <h3>Look like the firm they think they're hiring.</h3>
                     <p>
-                        Turn a candidate profile into a polished client deliverable in one click. Your logo, your format, your name on it — white-label client portals included on the higher tiers. Clients judge you on what lands in their inbox. This is what lands.
+                        Turn a candidate profile into a polished client deliverable in one click. Your logo, your format, your name on it — white-label client portals included. Clients judge you on what lands in their inbox. This is what lands.
                     </p>
                 </div>
             </div>
@@ -388,73 +389,52 @@
         </div>
     </section>
 
-    <!-- ============ PRICING ============ -->
-    <section class="sec paper3" id="pricing">
+    <!-- ============ WHERE IT HURTS ============ -->
+    <section class="sec paper3" id="pains">
         <div class="wrap">
             <div class="narrow">
-                <div class="kicker rv">Pricing</div>
-                <h2 class="rv">Priced per firm. Not per seat, not per API call.</h2>
+                <div class="kicker rv">Where it hurts</div>
+                <h2 class="rv">Send us the one that sounds like your week.</h2>
                 <p class="lead rv" style="margin-top:1.2rem;">
-                    One monthly price covers your whole team on the tier that fits it — so your bill doesn't climb every time you add a consultant, and it doesn't spike because you had a busy month. Commit annually and take 10% off.
+                    Each of these opens WhatsApp with the sentence already written, so there is nothing
+                    to fill in. Tell us how your desk actually runs and we'll show you the same thing
+                    inside Alvora Hire — on your roles, not a demo set.
                 </p>
             </div>
-            <div class="tiers">
-                <div class="tier rv">
-                    <div class="nm">Starter</div>
-                    <div class="pr">₹5,000</div>
-                    <div class="pu">per month</div>
-                    <div class="ann">₹4,500/mo billed annually</div>
-                    <div class="seg">Micro firms · 1–5 consultants</div>
-                    <ul>
-                        <li>3 team members</li>
-                        <li>5 active requisitions</li>
-                        <li>100 searches, 20 briefings a month</li>
-                        <li>30 interviews, 10 offers a month</li>
-                        <li>Candidate database &amp; CV parsing</li>
-                        <li>Plain-English search + CQS scoring</li>
-                        <li>3M AI tokens a month</li>
-                    </ul>
-                    <div class="sup">Email support</div>
-                </div>
-                <div class="tier mid rv">
-                    <div class="nm">Professional</div>
-                    <div class="pr">₹10,000</div>
-                    <div class="pu">per month</div>
-                    <div class="ann">₹9,000/mo billed annually</div>
-                    <div class="seg">Small firms · 6–15 consultants</div>
-                    <ul>
-                        <li>Everything in Starter</li>
-                        <li>10 team members</li>
-                        <li>Unlimited requisitions</li>
-                        <li>500 searches, 100 briefings a month</li>
-                        <li>TalentFit matching &amp; behavioural fit</li>
-                        <li>Structured hiring + interview copilot</li>
-                        <li>Client portal &amp; mobile app</li>
-                        <li>10M AI tokens a month</li>
-                    </ul>
-                    <div class="sup">Email + chat support, 12h response</div>
-                </div>
-                <div class="tier rv">
-                    <div class="nm">Enterprise</div>
-                    <div class="pr">₹20,000</div>
-                    <div class="pu">per month, per 5 consultants</div>
-                    <div class="ann">₹18,000/mo billed annually</div>
-                    <div class="seg">Mid-market · 16+ consultants</div>
-                    <ul>
-                        <li>Everything in Professional</li>
-                        <li>Unlimited team members &amp; usage</li>
-                        <li>Job board integration — LinkedIn, Naukri</li>
-                        <li>Advanced analytics</li>
-                        <li>Salesforce sync &amp; Slack bot</li>
-                        <li>Video interviews &amp; transcription</li>
-                        <li>SSO, white-label, audit log export</li>
-                        <li>50M AI tokens a month</li>
-                    </ul>
-                    <div class="sup">Phone + email, 4h SLA · dedicated support</div>
-                </div>
+            <div class="pains">
+                <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20this%20is%20us%20%E2%80%94%20The%20same%20candidate%20gets%20sourced%20twice%2C%20by%20two%20of%20our%20own%20consultants%2C%20in%20the%20same%20week." target="_blank" rel="noopener">
+                    <span class="no">01</span>
+                    <span class="said">The same candidate gets sourced twice, by two of our own consultants, in the same week.</span>
+                    <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+                </a>
+                <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20this%20is%20us%20%E2%80%94%20Nobody%20can%20say%20what%27s%20actually%20in%20the%20pipeline%20without%20opening%20four%20files%20and%20asking%20two%20people." target="_blank" rel="noopener">
+                    <span class="no">02</span>
+                    <span class="said">Nobody can say what's actually in the pipeline without opening four files and asking two people.</span>
+                    <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+                </a>
+                <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20this%20is%20us%20%E2%80%94%20Half%20my%20day%20is%20retyping%20what%27s%20already%20written%20on%20a%20CV." target="_blank" rel="noopener">
+                    <span class="no">03</span>
+                    <span class="said">Half my day is retyping what's already written on a CV.</span>
+                    <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+                </a>
+                <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20this%20is%20us%20%E2%80%94%20Our%20client%20briefing%20looks%20like%20it%20came%20from%20a%20small%20firm.%20So%20the%20client%20treats%20us%20like%20one." target="_blank" rel="noopener">
+                    <span class="no">04</span>
+                    <span class="said">Our client briefing looks like it came from a small firm. So the client treats us like one.</span>
+                    <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+                </a>
+                <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20this%20is%20us%20%E2%80%94%20We%20lose%20mandates%20because%20someone%20else%20got%20a%20shortlist%20out%20first." target="_blank" rel="noopener">
+                    <span class="no">05</span>
+                    <span class="said">We lose mandates because someone else got a shortlist out first.</span>
+                    <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+                </a>
+                <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20this%20is%20us%20%E2%80%94%20Every%20tool%20we%27ve%20looked%20at%20is%20priced%20for%20a%20firm%20ten%20times%20our%20size." target="_blank" rel="noopener">
+                    <span class="no">06</span>
+                    <span class="said">Every tool we've looked at is priced for a firm ten times our size.</span>
+                    <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+                </a>
             </div>
-            <p class="rv" style="margin-top:1.5rem;font-size:.85rem;color:var(--faint);text-align:center;">
-                Add-ons available on request: white-label portal, job board integration, assessment validator and interview summaries. Running a firm that doesn't fit these shapes? <a href="#talk" style="color:var(--azure);font-weight:700;">Talk to us</a> and we'll price it properly.
+            <p class="rv" style="margin-top:1.75rem;text-align:center;">
+                <a class="btn btn-wa" href="https://wa.me/919876701788?text=Hi%20Alvora%20Hire%2C%20none%20of%20the%20ones%20on%20your%20site%20quite%20fit.%20Here%20is%20what%20is%20actually%20going%20wrong%20on%20our%20desk%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>None of these — here's ours <span>→</span></a>
             </p>
         </div>
     </section>
@@ -469,7 +449,7 @@
             <div class="nums">
                 <div class="num rv"><div class="v">25%</div><div class="l">Faster to close a placement</div></div>
                 <div class="num rv"><div class="v">3×</div><div class="l">More candidates, same team</div></div>
-                <div class="num rv"><div class="v">₹0</div><div class="l">To find out if it works for you</div></div>
+                <div class="num rv"><div class="v">1</div><div class="l">WhatsApp message to find out if it fits</div></div>
             </div>
             <p class="rv" style="margin-top:1.5rem;font-size:.85rem;color:var(--faint);text-align:center;">Figures from Alvora Hire product benchmarks.</p>
         </div>
@@ -517,7 +497,7 @@
                     <li><a href="#why">Why it exists</a></li>
                     <li><a href="#search">Ask in English</a></li>
                     <li><a href="#fit">TalentFit score</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#pains">Where it hurts</a></li>
                 </ul>
             </div>
             <div>

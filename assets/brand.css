@@ -275,6 +275,44 @@ body[data-stream="allabouthr"] .stream-rule { background: var(--grad); }
     width: 8px; height: 8px; border-radius: 50%; background: var(--lead); opacity: .55;
 }
 
+/* ---------- pain statements ----------
+   Each card is the reader's own sentence, and each is a link that opens
+   WhatsApp with that sentence already written. The problem statement is the
+   call to action; there is nothing to fill in first. */
+.pains { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2.75rem; }
+.pain {
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 18px;
+    padding: 1.6rem 1.7rem; text-decoration: none; color: var(--ink);
+    transition: transform .3s var(--ease), box-shadow .3s, border-color .3s;
+}
+.pain::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--lead); }
+.pain:hover { transform: translateY(-3px); box-shadow: var(--sh-2); border-color: var(--rule-s); }
+.pain .no {
+    font-family: "IBM Plex Mono", monospace; font-size: .74rem; font-weight: 500;
+    letter-spacing: .08em; color: var(--lead-d); margin-bottom: .6rem;
+}
+.pain .said {
+    font-family: Poppins, sans-serif; font-weight: 500; font-size: 1.08rem;
+    line-height: 1.42; letter-spacing: -0.015em; color: var(--ink);
+}
+.pain .act {
+    margin-top: auto; padding-top: 1.15rem;
+    display: inline-flex; align-items: center; gap: .45rem;
+    font-family: "Source Sans 3", sans-serif; font-weight: 600; font-size: .9rem; color: var(--lead-d);
+}
+.pain .act svg { width: 15px; height: 15px; fill: #25D366; flex-shrink: 0; }
+.pain .act .arw { transition: transform .22s var(--ease); }
+.pain:hover .act .arw { transform: translateX(3px); }
+.pains-note { margin-top: 1.6rem; font-size: .9rem; color: var(--faint); }
+
+/* the big green one, for the end of a page */
+.btn-wa { background: #25D366; color: #0B2E17; box-shadow: 0 8px 24px rgba(37,211,102,.32); }
+.btn-wa:hover { transform: translateY(-2px); background: #1EBE5B; box-shadow: 0 14px 34px rgba(37,211,102,.36); }
+.btn-wa svg { width: 18px; height: 18px; fill: #0B2E17; }
+
+@media (max-width: 820px) { .pains { grid-template-columns: 1fr; } }
+
 /* ---------- pills ---------- */
 .pill {
     display: inline-flex; align-items: center; gap: .4rem;

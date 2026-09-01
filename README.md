@@ -37,8 +37,7 @@ Reversed panels use plum-dark `#6E2564` (white on it is 9.94:1); white on plum
 - `index.html` — Kinexus homepage: the two services (custom digital solutions,
   agentic AI workflows), proof, and the house
 - `allabouthr.html` — the AllAboutHR Growth Loop: five stages, seventeen
-  programmes, six service packages (no fees published — those are quoted
-  against scope)
+  programmes, and the pain statements that open each of them
 - `alvora.html` — the Alvora platform line: Alvora HRMS, Hire, Gig, Learning
 - `alvora-hire.html` — the Alvora Hire product page
 - `portfolio.html`, `blog.html`, `blog/` — portfolio and Insights
@@ -56,6 +55,20 @@ Reversed panels use plum-dark `#6E2564` (white on it is 9.94:1); white on plum
 - `archive/`, `assets/Archive/` — previous market-positioning sites (kept for
   reference, not deployed)
 - `sitemap.xml`, `robots.txt`, `CNAME` — SEO and domain config
+
+## Pain statements and the WhatsApp call to action
+
+No fees, plans or packages are published anywhere on the site. In their place
+every page carries the audience's own sentences as `.pain` cards (see
+`assets/brand.css`). Each card is a link to `wa.me/919876701788` with that
+sentence already URL-encoded into the message, so a visitor who recognises
+their week arrives in the chat with the problem statement written for them and
+nothing to fill in. Each section closes with a green "none of these — here's
+ours" button that opens an empty-ended message.
+
+To add one, copy an existing `.pain` anchor and encode the new sentence into
+the `text=` parameter — the visible text and the message must stay identical,
+or the person appears to say something they never read.
 
 ## Logos
 

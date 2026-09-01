@@ -122,28 +122,6 @@
         /* ---------- entry points ---------- */
         .entries { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
 
-        /* ---------- packages ---------- */
-        .packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
-        .pack { display: flex; flex-direction: column; position: relative; overflow: hidden; }
-        .pack::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--plum); }
-        .pack .range {
-            font-family: "IBM Plex Mono", monospace; font-size: .74rem; letter-spacing: .06em;
-            color: var(--faint); text-transform: uppercase;
-        }
-        .pack h3 { font-size: 1.4rem; margin: .5rem 0 .95rem; }
-        .pack .who { font-size: .93rem; color: var(--slate); margin-bottom: .9rem; }
-        .pack .out {
-            font-family: Poppins, sans-serif; font-weight: 500; font-size: .97rem;
-            color: var(--ink); line-height: 1.42; margin-bottom: 1rem;
-        }
-        .pack ul.tick li { font-size: .91rem; }
-        .pack ul.tick li::before { background: var(--plum); }
-        .pack .next {
-            margin-top: auto; padding-top: 1.15rem; border-top: 1px dashed var(--rule-s);
-            font-size: .86rem; color: var(--slate);
-        }
-        .pack .next b { color: var(--plum-d); font-weight: 600; }
-        .pack-note { margin-top: 1.75rem; font-size: .88rem; color: var(--faint); }
 
         /* ---------- platform strip ---------- */
         .plats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.75rem; }
@@ -155,11 +133,11 @@
 
         @media (max-width: 1024px) {
             .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .stages, .entries, .packs, .plats { grid-template-columns: 1fr 1fr; }
+            .stages, .entries, .plats { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 820px) {
             .hero { padding: calc(var(--nav-h) + 3rem) 0 3rem; }
-            .stages, .entries, .packs, .plats { grid-template-columns: 1fr; }
+            .stages, .entries, .plats { grid-template-columns: 1fr; }
             .loop-viz { padding: 1.5rem; }
         }
     </style>
@@ -185,7 +163,7 @@
         <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">☰</button>
         <ul class="nav-links" id="navlinks">
             <li><a href="#loop">The Growth Loop</a></li>
-            <li><a href="#packs">Packages</a></li>
+            <li><a href="#pains">Where it hurts</a></li>
             <li><a href="alvora.html">Alvora</a></li>
             <li><a href="index.html">Kinexus</a></li>
             <li><a href="blog.html">Insights</a></li>
@@ -210,13 +188,13 @@
             </p>
             <div class="hero-cta">
                 <a href="#talk" class="btn btn-1">Start with a diagnostic <span class="arw">→</span></a>
-                <a href="#packs" class="btn btn-2">See the packages</a>
+                <a href="#pains" class="btn btn-2">Where it hurts</a>
             </div>
             <div class="facts">
                 <div class="fact"><div class="n">5</div><div class="l">stages</div></div>
                 <div class="fact"><div class="n">17</div><div class="l">programmes</div></div>
                 <div class="fact"><div class="n">3</div><div class="l">platforms</div></div>
-                <div class="fact"><div class="n">6</div><div class="l">packages, 10 to 2,500+ people</div></div>
+                <div class="fact"><div class="n">10&nbsp;–&nbsp;2,500+</div><div class="l">people, micro to enterprise</div></div>
             </div>
         </div>
 
@@ -311,7 +289,7 @@
                 <div class="prog">
                     <div class="prog-item">
                         <div class="pn">Alvora Hire <span class="plat">Platform</span></div>
-                        <p>Every source, zero duplicates, evidence not memory. Priced per firm, not per seat.</p>
+                        <p>Every source, zero duplicates, evidence not memory. Built for the firms the big tools ignore.</p>
                     </div>
                     <div class="prog-item">
                         <div class="pn">AllAboutHR Search</div>
@@ -447,122 +425,56 @@
     </div>
 </section>
 
-<!-- ============================ PACKAGES ============================ -->
-<section class="sec mist" id="packs">
+<!-- ============================ WHERE IT HURTS ============================ -->
+<section class="sec mist" id="pains">
     <div class="wrap">
         <div class="narrow">
-            <div class="kicker rv">Packages</div>
-            <h2 class="rv">Six packs across the micro-to-enterprise journey.</h2>
+            <div class="kicker rv">Where it hurts</div>
+            <h2 class="rv">Start with the sentence you'd actually say out loud.</h2>
             <p class="lead-p rv" style="margin-top:1.15rem;">
-                For each one: who it's for, the services it includes, and the signal that the next pack
-                has become the right one. Nothing changes as you grow except the depth — that is what a
-                client is buying when they stay in a pack and simply get bigger.
+                Every one of these opens the loop at a different stage. Pick the one that sounds like
+                your business and send it — it arrives on WhatsApp already written, and we'll tell you
+                which stage you're actually in and what we'd measure first.
             </p>
         </div>
-
-        <div class="packs">
-            <div class="card pack rv">
-                <div class="range">Up to 10 employees</div>
-                <h3>Comply Essentials</h3>
-                <p class="who">An owner with a handful of people, no HR, and a growing worry about what they are legally supposed to be doing.</p>
-                <p class="out">Legally sound, fully documented, and off your desk. Nothing more — because nothing more is needed yet.</p>
-                <ul class="tick">
-                    <li>Statutory compliance calendar with filing reminders</li>
-                    <li>POSH policy and Internal Committee guidance</li>
-                    <li>Registration guidance — EPF, ESIC, S&amp;E, PT</li>
-                    <li>Contract and letter templates, core policy pack</li>
-                    <li>Payroll and statutory deduction check</li>
-                    <li>Alvora HRMS Essentials + one quarterly review call</li>
-                </ul>
-                <p class="next"><b>When to move on:</b> at 11 people this pack closes. Move to Comply — the policy set becomes yours rather than a template.</p>
-            </div>
-
-            <div class="card pack rv">
-                <div class="range">11 – 500 employees</div>
-                <h3>Comply</h3>
-                <p class="who">A business that has crossed the statutory thresholds and needs someone accountable for keeping it clean.</p>
-                <p class="out">Every statutory obligation met, evidenced and provable — with a named person answerable for it.</p>
-                <ul class="tick">
-                    <li>HR policy audit and drafting, written for your business</li>
-                    <li>Labour law guidance across EPF, ESIC, Gratuity, Bonus, Maternity</li>
-                    <li>POSH — policy, IC, annual return, awareness session</li>
-                    <li>Compliance calendar plus an evidence log you can show an inspector</li>
-                    <li>Full contract and letter set, onboarding and exit SOPs</li>
-                    <li>Payroll processing support, statutory filings, named consultant</li>
-                </ul>
-                <p class="next"><b>When to move on:</b> when policy compliance is solved but the process still lives in the owner's head.</p>
-            </div>
-
-            <div class="card pack rv">
-                <div class="range">11 – 500 employees</div>
-                <h3>Operate</h3>
-                <p class="who">An owner who has stopped knowing everyone's name, and is now the bottleneck in every people decision.</p>
-                <p class="out">HR runs on a system instead of on you. Leave, attendance, payroll and hiring happen without your involvement.</p>
-                <ul class="tick">
-                    <li>Everything in Comply</li>
-                    <li>Alvora HRMS core — employee master, leave, attendance, shifts, payroll, documents</li>
-                    <li>Employee self-service on web and mobile</li>
-                    <li>Org structure, grade framework and role definitions</li>
-                    <li>Workforce plan, headcount forecast, department KPI framework</li>
-                    <li>Recruitment and background verification at member rates</li>
-                </ul>
-                <p class="next"><b>When to move on:</b> when the system runs but you still cannot tell who is performing.</p>
-            </div>
-
-            <div class="card pack rv">
-                <div class="range">21 – 500 employees</div>
-                <h3>Perform</h3>
-                <p class="who">A business where the managers are inconsistent, ratings mean nothing, and good people have started leaving.</p>
-                <p class="out">You can see who is performing and prove why. Reviews are evidence-linked, calibrated and defensible.</p>
-                <ul class="tick">
-                    <li>Everything in Operate</li>
-                    <li>Alvora HRMS Goals &amp; Performance — cascaded KPIs, evidence-linked reviews</li>
-                    <li>Competency framework with behavioural rating anchors</li>
-                    <li>Review cycle and calibration facilitation, with documented rationale</li>
-                    <li>Engagement pulse, eNPS and action tracking</li>
-                    <li>Attrition analysis, exit intelligence and stay interviews</li>
-                </ul>
-                <p class="next"><b>When to move on:</b> when performance is visible but pay does not follow it.</p>
-            </div>
-
-            <div class="card pack rv">
-                <div class="range">41 – 500 employees</div>
-                <h3>Partner</h3>
-                <p class="who">A business where pay decisions are becoming grievances and the owner needs the whole loop closed.</p>
-                <p class="out">Every people decision is defensible, and the improvement is provable against a locked baseline.</p>
-                <ul class="tick">
-                    <li>Everything in Perform</li>
-                    <li>Alvora HRMS Compensation — merit cycles, budgets, policy checks, letters</li>
-                    <li>Alvora Hire — every source, zero duplicates, evidence-based shortlists</li>
-                    <li>Salary banding, compa-ratio, merit guideline matrix</li>
-                    <li>Pay equity analysis and remediation plan</li>
-                    <li>People analytics, annual re-measurement, quarterly business review</li>
-                </ul>
-                <p class="next"><b>When to move on:</b> when the client builds their own HR team, move them to Counsel rather than losing them.</p>
-            </div>
-
-            <div class="card pack rv">
-                <div class="range">251+ employees</div>
-                <h3>Counsel</h3>
-                <p class="who">An organisation with its own HR function that is running, but is not yet telling leadership anything it can act on.</p>
-                <p class="out">Your HR team, made sharper. We advise, benchmark and prove — we do not run it for you.</p>
-                <ul class="tick">
-                    <li>Retained senior advisor — strategy, org design, escalations</li>
-                    <li>Alvora HRMS at scale, licensed to your team with admin enablement</li>
-                    <li>Annual Lens diagnostic and annual Proof re-measurement</li>
-                    <li>Organisation design and operating-model advisory</li>
-                    <li>Executive search at preferential rates, leadership development</li>
-                    <li>Benchmarking against your own history, not borrowed industry figures</li>
-                </ul>
-                <p class="next"><b>The end of the ladder.</b> From here the relationship deepens rather than escalates.</p>
-            </div>
+        <div class="pains">
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20AllAboutHR%2C%20this%20is%20us%20%E2%80%94%20I%20have%20a%20handful%20of%20people%2C%20no%20HR%2C%20and%20a%20growing%20worry%20about%20what%20I%27m%20legally%20supposed%20to%20be%20doing." target="_blank" rel="noopener">
+                <span class="no">01</span>
+                <span class="said">I have a handful of people, no HR, and a growing worry about what I'm legally supposed to be doing.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20AllAboutHR%2C%20this%20is%20us%20%E2%80%94%20We%27ve%20crossed%20the%20statutory%20thresholds%20and%20nobody%20is%20actually%20accountable%20for%20keeping%20us%20clean." target="_blank" rel="noopener">
+                <span class="no">02</span>
+                <span class="said">We've crossed the statutory thresholds and nobody is actually accountable for keeping us clean.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20AllAboutHR%2C%20this%20is%20us%20%E2%80%94%20I%27ve%20stopped%20knowing%20everyone%27s%20name%2C%20and%20I%27m%20now%20the%20bottleneck%20in%20every%20people%20decision." target="_blank" rel="noopener">
+                <span class="no">03</span>
+                <span class="said">I've stopped knowing everyone's name, and I'm now the bottleneck in every people decision.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20AllAboutHR%2C%20this%20is%20us%20%E2%80%94%20My%20managers%20are%20inconsistent%2C%20ratings%20mean%20nothing%2C%20and%20good%20people%20have%20started%20leaving." target="_blank" rel="noopener">
+                <span class="no">04</span>
+                <span class="said">My managers are inconsistent, ratings mean nothing, and good people have started leaving.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20AllAboutHR%2C%20this%20is%20us%20%E2%80%94%20Pay%20decisions%20are%20turning%20into%20grievances%20and%20I%20can%27t%20prove%20any%20of%20them%20were%20fair." target="_blank" rel="noopener">
+                <span class="no">05</span>
+                <span class="said">Pay decisions are turning into grievances and I can't prove any of them were fair.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20AllAboutHR%2C%20this%20is%20us%20%E2%80%94%20We%20have%20an%20HR%20team%20and%20it%20runs%20%E2%80%94%20but%20it%20isn%27t%20telling%20leadership%20anything%20we%20can%20act%20on." target="_blank" rel="noopener">
+                <span class="no">06</span>
+                <span class="said">We have an HR team and it runs — but it isn't telling leadership anything we can act on.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
         </div>
-
-        <p class="pack-note rv">
-            Every service above traces to one of the 17 Growth Loop programmes or the three Alvora
-            platforms. Each pack is scoped to your headcount, and the delivery quantities behind it —
-            sessions per month, on-site days, review cycles — are confirmed in writing before
-            contracting. Fees are quoted against that scope.
+        <p class="pains-note rv">
+            Scope, depth and cadence are set against your headcount and what the diagnostic finds —
+            not off a menu. We'll put that in writing before anything is agreed.
+        </p>
+        <p class="rv" style="margin-top:1.75rem;">
+            <a class="btn btn-wa" href="https://wa.me/919876701788?text=Hi%20AllAboutHR%2C%20none%20of%20the%20ones%20on%20your%20site%20quite%20fit.%20Here%20is%20what%20is%20actually%20going%20wrong%20for%20us%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>None of these — here's ours <span class="arw">→</span></a>
         </p>
     </div>
 </section>
@@ -673,7 +585,7 @@
                 <li><a href="#loop">See · Shape · Source</a></li>
                 <li><a href="#loop">Strengthen · Sustain</a></li>
                 <li><a href="#entry">Entry points</a></li>
-                <li><a href="#packs">Packages</a></li>
+                <li><a href="#pains">Where it hurts</a></li>
             </ul>
         </div>
         <div>
