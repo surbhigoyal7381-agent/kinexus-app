@@ -82,6 +82,15 @@ Hire lockup is composed from the Alvora mark plus the product word set in
 Poppins; `assets/alvora-hrms-logo.png` is the stacked Alvora HRMS lockup as
 supplied.
 
+## Outstanding asset
+
+`assets/mahavir-singh.jpg` is referenced by the two-principal section on
+`index.html` but is not in the repo. Until it is added, the avatar renders an
+"MS" monogram in the AllAboutHR plum rather than a broken image (the `<img>`
+removes itself on error), so the page is safe to deploy without it. Drop a
+square portrait in at that path and it takes over; the crop is set to
+`object-position: 50% 20%` to favour the upper third of a portrait shot.
+
 ## Deploy
 
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which publishes the
