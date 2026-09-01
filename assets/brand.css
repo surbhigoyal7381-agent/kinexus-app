@@ -202,6 +202,12 @@ body[data-stream="allabouthr"] .stream-rule { background: var(--grad); }
     font-family: Poppins, sans-serif; font-weight: 300; font-size: 1.16rem;
     letter-spacing: .14em; color: var(--teal-d); text-transform: uppercase;
 }
+/* The tagline, set as it appears in the mark itself. */
+.wm-tagline {
+    font-family: Poppins, sans-serif; font-weight: 400; font-size: .56rem;
+    letter-spacing: .17em; text-transform: uppercase; color: var(--teal-d);
+    margin-top: .34rem;
+}
 /* Alvora: master word plum ExtraBold, product word teal one weight lighter.
    ALVORA dominates, the product recedes. */
 .wm-alvora {
@@ -338,6 +344,7 @@ body[data-stream="allabouthr"] .stream-rule { background: var(--grad); }
 .foot .brand .wm-alvora .prod { color: #7CC8E2; }
 .foot .brand .wm-aahr    { color: #fff; }
 .foot .brand .endorse    { color: #A99FB0; }
+.foot .brand .wm-tagline { color: #7CC8E2; }
 .foot-bottom {
     margin-top: 3.25rem; padding-top: 1.75rem; border-top: 1px solid rgba(255,255,255,.11);
     font-size: .86rem; color: #A99FB0;
