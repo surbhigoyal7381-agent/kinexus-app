@@ -2,6 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FBF9FC">
+    <title>Kinexus Systems — Custom digital solutions and agentic AI workflows</title>
+    <meta name="description" content="Most owners aren't short of effort. They're short of systems. Kinexus builds the system where you don't have one, and puts AI agents to work on the systems you already have. An AllAboutHR company.">
+    <link rel="canonical" href="https://www.kinexus.co.in/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kinexus Systems — Custom digital solutions and agentic AI workflows">
+    <meta property="og:description" content="We build the system where you don't have one, and put AI agents to work on the systems you already have.">
+    <meta property="og:url" content="https://www.kinexus.co.in/">
+    <meta property="og:image" content="https://www.kinexus.co.in/assets/kinexus-logo-full.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+
     <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G4J9X47QDT"></script>
     <script>
@@ -10,692 +27,808 @@
       gtag('js', new Date());
       gtag('config', 'G-G4J9X47QDT');
     </script>
-    <meta name="theme-color" content="#FFFFFF">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Most owners aren't short of effort. They're short of systems. Kinexus builds the systems your operations and your people run on — so the business keeps working when you're not in the room. AI only where it earns its place.">
-    <title>Kinexus — Systems for the two engines your business runs on</title>
-    <link rel="icon" href="favicon.ico">
+
+    <link rel="preload" href="assets/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/fonts.css">
+    <link rel="stylesheet" href="assets/brand.css">
     <script>document.documentElement.className += ' js';</script>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --ink: #12132E;
-            --navy: #2E3192;
-            --royal: #3871C1;
-            --azure: #2882CE;
-            --azure-soft: #7FB6EC;
-            --wash: #EDF4FC;
-
-            --paper: #FFFFFF;
-            --paper-2: #F7FAFE;
-            --paper-3: #F1F6FC;
-            --line: #E4EDF8;
-            --line-2: #CFDFF2;
-
-            --text: #2B3242;
-            --soft: #5D6779;
-            --faint: #8B94A6;
-
-            --amber: #C2410C;
-            --green: #0F8A62;
-
-            --grad: linear-gradient(135deg, #2882CE, #2E3192);
-
-            --sh-1: 0 1px 2px rgba(18,19,46,.04), 0 2px 10px rgba(18,19,46,.04);
-            --sh-2: 0 2px 6px rgba(18,19,46,.04), 0 18px 40px rgba(18,19,46,.08);
-            --sh-3: 0 4px 10px rgba(18,19,46,.05), 0 30px 70px rgba(18,19,46,.12);
-        }
-
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--text); background: var(--paper);
-            line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
-        }
-
-        h1, h2, h3 { color: var(--ink); letter-spacing: -0.035em; font-weight: 800; line-height: 1.08; }
-        h1 { font-size: clamp(2.6rem, 6.4vw, 5rem); }
-        h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); }
-        h3 { font-size: 1.35rem; letter-spacing: -0.02em; line-height: 1.25; }
-
-        .wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
-        .narrow { max-width: 780px; }
-        .sec { padding: 7.5rem 0; }
-        .sec.tight { padding: 5rem 0; }
-        .sec.paper2 { background: var(--paper-2); }
-        .sec.paper3 { background: var(--paper-3); }
-
-        .lead { font-size: clamp(1.15rem, 1.7vw, 1.4rem); color: var(--soft); line-height: 1.55; }
-        .kicker {
-            font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
-            color: var(--azure); margin-bottom: 1.4rem;
-        }
-        .accent { color: var(--azure); }
-        .anchor-alias { display: block; position: relative; top: -84px; visibility: hidden; }
-
-        /* ---------- nav ---------- */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(255,255,255,.8); backdrop-filter: saturate(180%) blur(16px);
-            -webkit-backdrop-filter: saturate(180%) blur(16px);
-            border-bottom: 1px solid transparent; transition: border-color .3s, box-shadow .3s;
-        }
-        nav.scrolled { border-bottom-color: var(--line); box-shadow: var(--sh-1); }
-        .nav-in { max-width: 1120px; margin: 0 auto; padding: .8rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-        .brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; }
-        .brand img { height: 28px; }
-        .brand span { font-weight: 800; font-size: 1.1rem; color: var(--ink); letter-spacing: -0.04em; }
-        .nav-links { display: flex; gap: .2rem; list-style: none; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--soft); font-weight: 600; font-size: .9rem; padding: .5rem .75rem; border-radius: 8px; transition: color .2s, background .2s; }
-        .nav-links a:hover { color: var(--navy); background: var(--wash); }
-        .nav-cta { background: var(--ink); color: #fff !important; border-radius: 999px !important; padding: .55rem 1.1rem !important; }
-        .nav-cta:hover { background: var(--navy) !important; }
-        .burger { display: none; background: none; border: 1px solid var(--line-2); border-radius: 8px; font-size: 1.1rem; padding: .3rem .55rem; cursor: pointer; color: var(--ink); }
-
-        /* ---------- buttons ---------- */
-        .btn { display: inline-flex; align-items: center; gap: .45rem; padding: .95rem 1.7rem; border-radius: 999px; font-weight: 700; font-size: 1rem; text-decoration: none; border: 1px solid transparent; transition: transform .2s, box-shadow .2s, background .2s, border-color .2s; cursor: pointer; font-family: inherit; }
-        .btn-1 { background: var(--ink); color: #fff; box-shadow: 0 8px 24px rgba(18,19,46,.22); }
-        .btn-1:hover { transform: translateY(-2px); background: var(--navy); box-shadow: 0 14px 34px rgba(46,49,146,.3); }
-        .btn-2 { background: #fff; color: var(--ink); border-color: var(--line-2); }
-        .btn-2:hover { transform: translateY(-2px); border-color: var(--ink); }
-
         /* ---------- hero ---------- */
-        .hero { position: relative; padding: 10rem 0 6rem; overflow: hidden; background: radial-gradient(900px 520px at 85% 0%, #EAF3FD 0%, rgba(234,243,253,0) 60%), radial-gradient(760px 460px at 5% 100%, #F2EDFC 0%, rgba(242,237,252,0) 58%), #fff; }
-        .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: center; }
-        .hero h1 { margin-bottom: 1.6rem; }
-        .hero .lead { max-width: 34rem; margin-bottom: 2.2rem; }
+        .hero {
+            position: relative; padding: calc(var(--nav-h) + 5.5rem) 0 5.5rem; overflow: hidden;
+            background:
+                radial-gradient(820px 480px at 88% -8%, rgba(1,116,160,.13) 0%, rgba(1,116,160,0) 62%),
+                radial-gradient(680px 440px at -4% 106%, rgba(147,54,134,.11) 0%, rgba(147,54,134,0) 60%),
+                var(--canvas);
+        }
+        .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 3.5rem; align-items: center; }
+        .hero h1 { margin-bottom: 1.5rem; }
+        .hero .lead-p { max-width: 33rem; margin-bottom: 2.1rem; }
         .hero-cta { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
-        .hero-note { margin-top: 1.4rem; font-size: .92rem; color: var(--faint); }
+        .hero-note { margin-top: 1.35rem; font-size: .93rem; color: var(--faint); }
 
-        /* 3D scene — deliberately quiet: it supports the words, it doesn't compete */
-        .scene { perspective: 1200px; }
-        .scene-3d { position: relative; width: 100%; max-width: 400px; aspect-ratio: 1/1; margin-left: auto; transform-style: preserve-3d; transform: rotateX(8deg) rotateY(-12deg); transition: transform .6s cubic-bezier(.22,1,.36,1); animation: float 10s ease-in-out infinite; }
-        @keyframes float { 0%,100% { transform: rotateX(8deg) rotateY(-12deg) translateY(0); } 50% { transform: rotateX(5deg) rotateY(-7deg) translateY(-14px); } }
-        .lyr { position: absolute; inset: 0; transform-style: preserve-3d; }
-        .lyr-glow { transform: translateZ(-80px); background: radial-gradient(circle, rgba(40,130,206,.22) 0%, rgba(40,130,206,0) 62%); filter: blur(12px); }
-        .lyr-plate { transform: translateZ(-30px); display: grid; place-items: center; }
-        .lyr-plate svg { width: 100%; }
-        .panel {
-            position: absolute; background: rgba(255,255,255,.9); backdrop-filter: blur(10px);
-            border: 1px solid #fff; box-shadow: var(--sh-3); border-radius: 14px; padding: .85rem 1rem; min-width: 150px;
+        .endorse-chip {
+            display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 1.6rem;
+            padding: .38rem .5rem .38rem .38rem; border-radius: 999px;
+            background: var(--card); border: 1px solid var(--rule); box-shadow: var(--sh-1);
+            font-size: .82rem; color: var(--slate); text-decoration: none;
         }
-        .panel .h { font-size: .58rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
-        .panel .b { font-size: .95rem; font-weight: 800; color: var(--ink); margin-top: .15rem; letter-spacing: -0.02em; }
-        .panel .m { height: 5px; border-radius: 5px; background: var(--wash); margin-top: .55rem; overflow: hidden; }
-        .panel .m i { display: block; height: 100%; border-radius: 5px; background: var(--grad); }
-        .p-ops { top: 4%; left: -6%; transform: translateZ(70px); animation: b1 8s ease-in-out infinite; }
-        .p-ppl { bottom: 8%; right: -6%; transform: translateZ(86px); animation: b2 9s ease-in-out infinite; }
-        @keyframes b1 { 0%,100% { transform: translateZ(70px) translateY(0); } 50% { transform: translateZ(70px) translateY(-10px); } }
-        @keyframes b2 { 0%,100% { transform: translateZ(86px) translateY(0); } 50% { transform: translateZ(86px) translateY(-13px); } }
-        .owner {
-            position: absolute; top: 44%; left: 50%; transform: translate(-50%,-50%) translateZ(40px);
-            width: 96px; height: 96px; border-radius: 50%;
-            background: radial-gradient(circle at 34% 30%, #fff 0%, #A8CFF4 36%, var(--azure) 68%, var(--navy) 100%);
-            box-shadow: 0 0 0 10px rgba(40,130,206,.09), 0 20px 44px rgba(18,19,46,.26);
-            display: grid; place-items: center; animation: pl 5s ease-in-out infinite;
-        }
-        .owner span { color: #fff; font-size: .55rem; font-weight: 800; letter-spacing: .1em; }
-        @keyframes pl { 0%,100% { box-shadow: 0 0 0 10px rgba(40,130,206,.09), 0 20px 44px rgba(18,19,46,.26); } 50% { box-shadow: 0 0 0 18px rgba(40,130,206,.05), 0 20px 44px rgba(18,19,46,.26); } }
+        .endorse-chip img { height: 20px; width: auto; display: block; }
+        .endorse-chip b { color: var(--ink); font-weight: 600; }
+        .endorse-chip:hover { border-color: var(--rule-s); }
 
-        /* ---------- big statement list ---------- */
-        .says { display: flex; flex-direction: column; gap: 0; margin-top: 3rem; }
-        .say { padding: 2rem 0; border-top: 1px solid var(--line); font-size: clamp(1.25rem, 2.3vw, 1.75rem); font-weight: 700; color: var(--ink); letter-spacing: -0.025em; line-height: 1.35; display: flex; gap: 1.25rem; align-items: flex-start; }
-        .say:last-child { border-bottom: 1px solid var(--line); }
-        .say .no { font-size: .8rem; font-weight: 800; color: var(--azure); padding-top: .55rem; flex-shrink: 0; letter-spacing: .08em; }
+        /* console — a quiet product visual; it supports the words, it doesn't compete */
+        .console { position: relative; padding: 4.2rem 0 4.4rem; }
+        .console-glow {
+            position: absolute; inset: 0 -8%; border-radius: 50%;
+            background: radial-gradient(circle at 60% 40%, rgba(1,116,160,.20), rgba(147,54,134,.14) 45%, transparent 70%);
+            filter: blur(38px); pointer-events: none;
+        }
+        .console-card {
+            position: relative; background: var(--card); border: 1px solid var(--rule);
+            border-radius: 20px; box-shadow: var(--sh-3); overflow: hidden;
+        }
+        .console-card .stream-rule { border-radius: 20px 20px 0 0; }
+        .console-head {
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+            padding: 1rem 1.25rem; border-bottom: 1px solid var(--rule);
+        }
+        .console-head .t { font-family: Poppins, sans-serif; font-weight: 600; font-size: .92rem; }
+        .console-head .live {
+            display: inline-flex; align-items: center; gap: .4rem;
+            font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--green); font-weight: 600;
+        }
+        .console-head .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: blip 2.4s ease-in-out infinite; }
+        @keyframes blip { 0%,100% { opacity: 1; } 50% { opacity: .28; } }
+
+        .rowset { padding: .35rem 0; }
+        .row {
+            display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center;
+            padding: .78rem 1.25rem; border-bottom: 1px solid var(--mist);
+        }
+        .row:last-child { border-bottom: 0; }
+        .row .lbl { font-size: .88rem; color: var(--slate); }
+        .row .val { font-family: "IBM Plex Mono", monospace; font-size: .86rem; font-weight: 500; color: var(--ink); }
+        .row .bar { grid-column: 1 / -1; height: 5px; border-radius: 5px; background: var(--mist); overflow: hidden; }
+        .row .bar i { display: block; height: 100%; border-radius: 5px; background: var(--teal); width: 0; animation: fill 1.6s var(--ease) forwards; }
+        .row .bar i.p { background: var(--plum); }
+        @keyframes fill { to { width: var(--w); } }
+
+        .chip {
+            position: absolute; background: var(--card); border: 1px solid var(--rule);
+            box-shadow: var(--sh-2); border-radius: 13px; padding: .6rem .85rem; max-width: 15rem;
+        }
+        .chip .h {
+            font-family: Poppins, sans-serif; font-size: .6rem; font-weight: 600;
+            letter-spacing: .12em; text-transform: uppercase; color: var(--faint);
+        }
+        .chip .b { font-size: .85rem; font-weight: 600; color: var(--ink); margin-top: .1rem; line-height: 1.35; }
+        .chip-a { top: 0; left: -1.5rem; animation: bob1 8s ease-in-out infinite; }
+        .chip-b { bottom: 0; right: -1.5rem; animation: bob2 9.5s ease-in-out infinite; }
+        .chip .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: .35rem; }
+        @keyframes bob1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+        @keyframes bob2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
 
         /* ---------- beliefs ---------- */
-        .belief { padding: 2.4rem 0; border-top: 1px solid var(--line); }
-        .belief:last-child { border-bottom: 1px solid var(--line); }
-        .belief h3 { margin-bottom: .6rem; }
-        .belief p { font-size: 1.05rem; color: var(--soft); max-width: 46rem; }
+        .beliefs { margin-top: 2.75rem; }
+        .belief { padding: 2.1rem 0; border-top: 1px solid var(--rule); }
+        .belief:last-child { border-bottom: 1px solid var(--rule); }
+        .belief h3 { font-size: 1.34rem; margin-bottom: .55rem; }
+        .belief p { color: var(--slate); max-width: 44rem; }
+
+        /* ---------- the two services ---------- */
+        .svc { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3.25rem; }
+        .svc-card { padding: 2.4rem; border-radius: 22px; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; }
+        .svc-card::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; }
+        .svc-1::before { background: var(--teal); }
+        .svc-2::before { background: var(--plum); }
+        .svc-card .num {
+            font-family: "IBM Plex Mono", monospace; font-size: .76rem; letter-spacing: .1em;
+            text-transform: uppercase; margin-bottom: .9rem;
+        }
+        .svc-1 .num { color: var(--teal-d); }
+        .svc-2 .num { color: var(--plum-d); }
+        .svc-card h3 { font-size: 1.72rem; margin-bottom: .85rem; }
+        .svc-card > p { color: var(--slate); font-size: 1.02rem; }
+        .svc-card .tick { margin-bottom: 1.7rem; }
+        .svc-2 .tick li::before { background: var(--plum); }
+        .svc-foot {
+            margin-top: auto; padding-top: 1.2rem; border-top: 1px dashed var(--rule-s);
+            font-size: .92rem; color: var(--slate);
+        }
+
+        /* ---------- bento ---------- */
+        .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; }
+        .bt {
+            background: var(--card); border: 1px solid var(--rule); border-radius: 16px; padding: 1.5rem;
+            transition: transform .3s var(--ease), border-color .3s, box-shadow .3s;
+        }
+        .bt:hover { transform: translateY(-3px); border-color: var(--rule-s); box-shadow: var(--sh-1); }
+        .bt h4 { font-size: 1.02rem; font-weight: 600; margin-bottom: .35rem; }
+        .bt p { font-size: .91rem; color: var(--slate); line-height: 1.5; }
+        .bt .ic {
+            width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+            background: var(--lead-tint); margin-bottom: .95rem;
+        }
+        .bt .ic svg { width: 17px; height: 17px; stroke: var(--teal-d); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+        .bt.wide { grid-column: span 2; }
 
         /* ---------- steps ---------- */
-        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 3.5rem; }
-        .step .n { font-size: 3.2rem; font-weight: 800; color: var(--line-2); letter-spacing: -0.05em; line-height: 1; margin-bottom: .8rem; }
-        .step h3 { margin-bottom: .6rem; }
-        .step p { font-size: 1rem; }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 3.25rem; }
+        .step .n {
+            font-family: Poppins, sans-serif; font-weight: 300; font-size: 3.1rem; letter-spacing: .02em;
+            color: var(--rule-s); line-height: 1; margin-bottom: .7rem;
+        }
+        .step h3 { font-size: 1.3rem; margin-bottom: .55rem; }
+        .step p { color: var(--slate); font-size: .99rem; }
 
-        /* ---------- engines ---------- */
-        .engines { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3.5rem; }
-        .engine { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 2.25rem; box-shadow: var(--sh-1); transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s; }
-        .engine:hover { transform: translateY(-5px); box-shadow: var(--sh-2); }
-        .engine .tag { font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--azure); margin-bottom: .8rem; }
-        .engine h3 { font-size: 1.6rem; margin-bottom: .7rem; }
-        .engine > p { margin-bottom: 1.4rem; }
-        .engine ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
-        .engine li { font-size: .97rem; color: var(--text); padding-left: 1.4rem; position: relative; }
-        .engine li::before { content: '→'; position: absolute; left: 0; color: var(--azure-soft); font-weight: 700; }
+        /* ---------- proof ---------- */
+        .proofs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3.25rem; }
+        .proof .big {
+            font-family: Poppins, sans-serif; font-weight: 300; font-size: 2.7rem; letter-spacing: -0.02em;
+            color: var(--teal-d); line-height: 1; margin-bottom: .45rem;
+        }
+        .proof .cap {
+            font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+            color: var(--faint); margin-bottom: 1.05rem;
+        }
+        .proof p { font-size: .97rem; color: var(--slate); }
+
+        /* ---------- the house ---------- */
+        .house { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
+        .hcard {
+            display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--rule);
+            border-radius: 20px; padding: 2rem; text-decoration: none; position: relative; overflow: hidden;
+            transition: transform .32s var(--ease), box-shadow .32s, border-color .32s;
+        }
+        .hcard::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; }
+        .hcard.h-aahr::before { background: var(--grad); }
+        .hcard.h-alv::before  { background: var(--plum); }
+        .hcard.h-kin::before  { background: var(--teal); }
+        .hcard:hover { transform: translateY(-4px); box-shadow: var(--sh-2); border-color: var(--rule-s); }
+        .hcard img { height: 36px; width: auto; align-self: flex-start; margin-bottom: 1.15rem; }
+        .hcard .role {
+            font-family: "IBM Plex Mono", monospace; font-size: .72rem; letter-spacing: .08em;
+            text-transform: uppercase; color: var(--faint); margin-bottom: .5rem;
+        }
+        .hcard h3 { font-size: 1.2rem; margin-bottom: .5rem; }
+        .hcard p { font-size: .93rem; color: var(--slate); flex: 1; }
+        .hcard .go { margin-top: 1.2rem; font-weight: 600; font-size: .92rem; color: var(--lead-d); }
+        .hcard.h-alv .go { color: var(--plum-d); }
+        .hcard.h-aahr .go { color: var(--plum-d); }
+        .hcard.current { background: var(--mist); }
+        .hcard.current .go { color: var(--faint); }
 
         /* ---------- founder ---------- */
         .solo {
-            margin-top: 3.5rem; background: #fff; border: 1px solid var(--line); border-radius: 24px;
-            padding: 2.75rem; box-shadow: var(--sh-2);
-            display: grid; grid-template-columns: 240px 1fr; gap: 3rem; align-items: start;
+            margin-top: 3.25rem; background: var(--card); border: 1px solid var(--rule); border-radius: 24px;
+            padding: 2.6rem; box-shadow: var(--sh-1);
+            display: grid; grid-template-columns: 230px 1fr; gap: 3rem; align-items: start;
         }
         .solo-side { text-align: center; }
         .avatar {
-            width: 116px; height: 116px; border-radius: 50%; margin: 0 auto 1.1rem;
-            display: block; object-fit: cover; background: var(--wash);
-            border: 3px solid #fff; box-shadow: 0 12px 30px rgba(18,19,46,.22);
+            width: 112px; height: 112px; border-radius: 50%; margin: 0 auto 1rem; display: block;
+            object-fit: cover; background: var(--mist); border: 3px solid #fff; box-shadow: var(--sh-2);
         }
-        .solo .nm { font-weight: 800; color: var(--ink); font-size: 1.3rem; letter-spacing: -0.03em; }
-        .solo .rl { font-size: .9rem; color: var(--faint); margin-top: .1rem; }
-        .solo .ln { display: inline-block; margin-top: 1rem; font-size: .9rem; font-weight: 700; color: var(--azure); text-decoration: none; }
+        .solo .nm { font-family: Poppins, sans-serif; font-weight: 600; font-size: 1.22rem; letter-spacing: -0.02em; }
+        .solo .rl { font-size: .88rem; color: var(--faint); margin-top: .1rem; }
+        .solo .ln { display: inline-block; margin-top: .9rem; font-size: .9rem; font-weight: 600; color: var(--lead-d); text-decoration: none; }
         .solo .ln:hover { text-decoration: underline; }
-        .solo-body p { font-size: 1.06rem; }
-        .solo-body p + p { margin-top: 1rem; }
+        .solo-body p { color: var(--slate); }
+        .solo-body p + p { margin-top: .9rem; }
         .pull {
-            margin-top: 1.5rem; padding-left: 1.2rem; border-left: 3px solid var(--azure);
-            font-size: 1.15rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.4;
+            margin-top: 1.4rem; padding-left: 1.15rem; border-left: 3px solid var(--lead);
+            font-family: Poppins, sans-serif; font-weight: 500; font-size: 1.1rem;
+            color: var(--ink); letter-spacing: -0.02em; line-height: 1.42;
         }
 
-        /* ---------- proof ---------- */
-        .proofs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3.5rem; }
-        .proof { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 2rem; box-shadow: var(--sh-1); }
-        .proof .big { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.05em; color: var(--ink); line-height: 1; margin-bottom: .3rem; }
-        .proof .cap { font-size: .8rem; font-weight: 700; color: var(--azure); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 1.1rem; }
-        .proof p { font-size: .97rem; }
-
-        /* ---------- product callout ---------- */
-        .callout { background: var(--ink); border-radius: 26px; padding: 3.5rem; color: #fff; position: relative; overflow: hidden; }
-        .callout::after { content: ''; position: absolute; inset: 0; background: radial-gradient(600px 320px at 88% 10%, rgba(127,182,236,.22), transparent 62%); pointer-events: none; }
+        /* ---------- callout ---------- */
+        .callout {
+            background: var(--ink); border-radius: 24px; padding: 3.25rem; color: #fff;
+            position: relative; overflow: hidden;
+        }
+        .callout::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(620px 340px at 90% 8%, rgba(147,54,134,.34), transparent 62%);
+        }
         .callout > * { position: relative; }
-        .callout .kicker { color: var(--azure-soft); }
-        .callout h2 { color: #fff; margin-bottom: 1rem; }
-        .callout p { color: #C3CFE6; font-size: 1.08rem; max-width: 44rem; margin-bottom: 1.8rem; }
-        .callout .btn-1 { background: #fff; color: var(--ink); }
-        .callout .btn-1:hover { background: var(--wash); }
+        .callout .kicker { color: #D9A9D0; }
+        .callout .kicker::before { background: #D9A9D0; }
+        .callout h2 { color: #fff; margin-bottom: .9rem; }
+        .callout p { color: #C8BFCE; font-size: 1.05rem; max-width: 44rem; margin-bottom: 1.7rem; }
+        .callout .alv-lock { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
+        .callout .alv-lock img { height: 60px; width: auto; }
 
-        /* ---------- contact ---------- */
-        .form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; text-align: left; }
-        .fg { display: flex; flex-direction: column; }
-        .fg.full { grid-column: 1 / -1; }
-        .fg label { font-size: .8rem; font-weight: 700; color: var(--soft); margin-bottom: .4rem; }
-        .fg input, .fg select {
-            padding: .9rem 1rem; border-radius: 10px; border: 1px solid var(--line-2); background: #fff;
-            font-family: inherit; font-size: .95rem; color: var(--ink); transition: border-color .2s, box-shadow .2s;
-        }
-        .fg input:focus, .fg select:focus { outline: none; border-color: var(--azure); box-shadow: 0 0 0 3px rgba(40,130,206,.12); }
-        .submit { grid-column: 1 / -1; }
-        .form-note { grid-column: 1 / -1; font-size: .88rem; color: var(--faint); text-align: center; }
-
-        /* ---------- footer ---------- */
-        footer { border-top: 1px solid var(--line); padding: 4rem 0 2rem; background: var(--paper-2); }
-        .foot { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
-        .foot h4 { font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); margin-bottom: 1rem; }
-        .foot ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
-        .foot a { color: var(--soft); text-decoration: none; font-size: .9rem; }
-        .foot a:hover { color: var(--azure); }
-        .foot-blurb { font-size: .92rem; color: var(--soft); max-width: 22rem; }
-        .foot-bottom { margin-top: 3rem; padding-top: 1.75rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--faint); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-
-        .wa { position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 90; display: inline-flex; align-items: center; gap: .5rem; background: #25D366; color: #fff; text-decoration: none; font-weight: 700; font-size: .88rem; padding: .7rem 1.1rem; border-radius: 999px; box-shadow: 0 10px 26px rgba(37,211,102,.4); }
-        .wa svg { width: 18px; height: 18px; }
-
-        /* ---------- reveal ---------- */
-        .js .rv { opacity: 0; transform: translateY(20px); }
-        .rv { transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
-        .js .rv.in { opacity: 1; transform: none; }
+        /* ---------- talk ---------- */
+        .talk-head { text-align: center; }
 
         @media (max-width: 1024px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 3.5rem; }
-            .scene-3d { margin: 0 auto; max-width: 340px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 4rem; }
+            .console { max-width: 460px; margin: 0 auto; }
+            .bento { grid-template-columns: repeat(2, 1fr); }
+            .house { grid-template-columns: 1fr; }
             .steps { grid-template-columns: 1fr; gap: 2rem; }
-            .foot { grid-template-columns: 1fr 1fr; }
         }
-        @media (max-width: 768px) {
-            .burger { display: block; }
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; padding: .75rem; box-shadow: var(--sh-2); }
-            .nav-links.open { display: flex; }
-            .nav-cta { text-align: center; margin-top: .3rem; }
-            .sec { padding: 4.5rem 0; }
-            .hero { padding: 7.5rem 0 4rem; }
-            .engines, .proofs, .form { grid-template-columns: 1fr; }
+        @media (max-width: 820px) {
+            .hero { padding: calc(var(--nav-h) + 3rem) 0 3.5rem; }
+            .svc, .proofs, .bento { grid-template-columns: 1fr; }
+            .bt.wide { grid-column: span 1; }
+            .svc-card { padding: 1.9rem 1.5rem; }
+            .callout { padding: 2.25rem 1.5rem; border-radius: 20px; }
+            .chip-a { left: 0; }
+            .chip-b { right: 0; }
             .solo { grid-template-columns: 1fr; gap: 1.75rem; padding: 2rem 1.5rem; }
-            /* Avatar beside a stacked name/role/link block — never let these wrap into
-               each other, which reads as a broken two-up. */
             .solo-side { text-align: left; display: flex; align-items: center; gap: 1rem; }
             .solo-id { display: flex; flex-direction: column; align-items: flex-start; }
-            .avatar { width: 68px; height: 68px; margin: 0; flex-shrink: 0; border-width: 2px; }
-            .solo .ln { margin-top: .5rem; }
-            .callout { padding: 2.25rem 1.5rem; border-radius: 20px; }
-            .foot { grid-template-columns: 1fr; }
-            .wa span { display: none; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            *, *::before, *::after { animation: none !important; transition: none !important; }
-            .js .rv, .rv { opacity: 1 !important; transform: none !important; }
+            .avatar { width: 66px; height: 66px; margin: 0; flex-shrink: 0; border-width: 2px; }
+            .solo .ln { margin-top: .45rem; }
         }
     </style>
 </head>
-<body>
-    <a class="wa" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20I%27d%20like%20to%20talk%20about%20my%20business." target="_blank" rel="noopener" aria-label="Chat with Kinexus on WhatsApp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span>
-    </a>
 
-    <nav id="nav">
-        <div class="nav-in">
-            <a class="brand" href="index.html"><img src="logo.png" alt="Kinexus"><span>Kinexus</span></a>
-            <button class="burger" aria-label="Open menu" aria-expanded="false">☰</button>
-            <ul class="nav-links">
-                <li><a href="#problem">The problem</a></li>
-                <li><a href="#beliefs">What we believe</a></li>
-                <li><a href="#how">How we work</a></li>
-                <li><a href="#us">Who we are</a></li>
+<body data-stream="kinexus">
+<a class="skip" href="#main">Skip to content</a>
+
+<a class="wa" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20I%27d%20like%20to%20talk%20about%20my%20business." target="_blank" rel="noopener" aria-label="Chat with Kinexus on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span>
+</a>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav">
+    <div class="nav-in">
+        <a class="brand" href="index.html" aria-label="Kinexus Systems — home">
+            <img src="assets/kinexus-mark.png" alt="" width="34" height="19">
+            <span class="wm">
+                <span class="wm-kinexus">Kinexus</span>
+                <span class="endorse">an AllAboutHR company</span>
+            </span>
+        </a>
+        <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">☰</button>
+        <ul class="nav-links" id="navlinks">
+            <li><a href="#what">What we do</a></li>
+            <li><a href="#how">How we work</a></li>
+            <li><a href="#proof">Proof</a></li>
+            <li><a href="allabouthr.html">AllAboutHR</a></li>
+            <li><a href="alvora.html">Alvora</a></li>
+            <li><a href="blog.html">Insights</a></li>
+            <li><a href="#talk" class="nav-cta">Talk to us</a></li>
+        </ul>
+    </div>
+    <div class="stream-rule" aria-hidden="true"></div>
+</nav>
+
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+    <div class="wrap hero-grid">
+        <div>
+            <a class="endorse-chip" href="allabouthr.html">
+                <img src="assets/allabouthr-mark.png" alt="" width="20" height="9">
+                <span>Kinexus Systems — <b>an AllAboutHR company</b></span>
+            </a>
+            <h1>Your business still needs you in the room.</h1>
+            <p class="lead-p">
+                Most owners aren't short of effort. They're short of systems. We build the
+                system where you don't have one — and put AI agents to work on the systems
+                you already have.
+            </p>
+            <div class="hero-cta">
+                <a href="#talk" class="btn btn-1">Start with a conversation <span class="arw">→</span></a>
+                <a href="#what" class="btn btn-2">See what we build</a>
+            </div>
+            <p class="hero-note">No pitch deck. We ask questions first — and we'll tell you if you don't need us.</p>
+        </div>
+
+        <div class="console" aria-hidden="true">
+            <div class="console-glow"></div>
+            <div class="console-card">
+                <div class="stream-rule"></div>
+                <div class="console-head">
+                    <span class="t">Plant &amp; order status</span>
+                    <span class="live"><i></i>Live</span>
+                </div>
+                <div class="rowset">
+                    <div class="row">
+                        <span class="lbl">Open job cards</span><span class="val">38</span>
+                        <span class="bar"><i style="--w:72%; animation-delay:.15s"></i></span>
+                    </div>
+                    <div class="row">
+                        <span class="lbl">On-time dispatch</span><span class="val">94.2%</span>
+                        <span class="bar"><i style="--w:94%; animation-delay:.3s"></i></span>
+                    </div>
+                    <div class="row">
+                        <span class="lbl">PO acknowledgements chased</span><span class="val">17 / 17</span>
+                        <span class="bar"><i class="p" style="--w:100%; animation-delay:.45s"></i></span>
+                    </div>
+                    <div class="row">
+                        <span class="lbl">Invoices auto-matched</span><span class="val">126</span>
+                        <span class="bar"><i class="p" style="--w:88%; animation-delay:.6s"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="chip chip-a">
+                <div class="h">Agent · procurement</div>
+                <div class="b"><span class="dot" style="background:#933686"></span>Chased 4 vendors. 3 replied.</div>
+            </div>
+            <div class="chip chip-b">
+                <div class="h">Exception</div>
+                <div class="b"><span class="dot" style="background:#B4530C"></span>Batch 2214 held — QC pending</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ============================ PROBLEM ============================ -->
+<section class="sec" id="problem">
+    <div class="wrap narrow">
+        <div class="kicker rv">Sound familiar?</div>
+        <h2 class="rv">You didn't start a business to become its bottleneck.</h2>
+        <div class="pains">
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20Every%20decision%20routes%20through%20me.%20On%20the%20days%20I%27m%20away%2C%20things%20quietly%20stop." target="_blank" rel="noopener">
+                <span class="no">01</span>
+                <span class="said">Every decision routes through me. On the days I'm away, things quietly stop.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20The%20real%20numbers%20live%20in%20four%20places%20%E2%80%94%20Excel%2C%20Tally%2C%20WhatsApp%2C%20and%20someone%27s%20head." target="_blank" rel="noopener">
+                <span class="no">02</span>
+                <span class="said">The real numbers live in four places — Excel, Tally, WhatsApp, and someone's head.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20My%20best%20people%20spend%20their%20week%20doing%20work%20a%20system%20should%20have%20done." target="_blank" rel="noopener">
+                <span class="no">03</span>
+                <span class="said">My best people spend their week doing work a system should have done.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20We%27ve%20been%20sold%20software%20before.%20It%27s%20still%20open%20in%20a%20tab%20nobody%20uses." target="_blank" rel="noopener">
+                <span class="no">04</span>
+                <span class="said">We've been sold software before. It's still open in a tab nobody uses.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20Nobody%20can%20tell%20me%20what%20a%20job%20actually%20cost%20until%20long%20after%20we%27ve%20invoiced%20it." target="_blank" rel="noopener">
+                <span class="no">05</span>
+                <span class="said">Nobody can tell me what a job actually cost until long after we've invoiced it.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+            <a class="pain rv" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20this%20is%20us%20%E2%80%94%20The%20follow-ups%20only%20happen%20when%20somebody%20remembers%20to%20do%20them." target="_blank" rel="noopener">
+                <span class="no">06</span>
+                <span class="said">The follow-ups only happen when somebody remembers to do them.</span>
+                <span class="act"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>Tell us this on WhatsApp <span class="arw">→</span></span>
+            </a>
+        </div>
+        <p class="lead-p rv" style="margin-top:2.5rem;">
+            Pick the one that sounds most like your week and send it to us — it arrives already
+            written, so there's nothing to fill in. Here's what we've learned the expensive way:
+            <strong>most businesses don't have a software problem. They have a workflow problem.</strong>
+            Orders living in WhatsApp groups. Planning living in a supervisor's head. Costing living
+            in one fragile Excel sheet. You can buy software for years and never touch any of that.
+        </p>
+        <p class="rv" style="margin-top:2rem;">
+            <a class="btn btn-wa" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20none%20of%20the%20ones%20on%20your%20site%20quite%20fit.%20Here%20is%20what%20is%20actually%20going%20wrong%20for%20us%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>None of these — but something is broken <span class="arw">→</span></a>
+        </p>
+    </div>
+</section>
+
+<!-- ============================ WHAT WE DO ============================ -->
+<section class="sec paper" id="what">
+    <span class="anchor-alias" id="services"></span>
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">What we do</div>
+            <h2 class="rv">Two pieces of work. Most businesses need both.</h2>
+            <p class="lead-p rv" style="margin-top:1.15rem;">
+                One builds the system you never had. The other makes the systems you already paid
+                for do the work by themselves. Start with whichever is costing you more.
+            </p>
+        </div>
+
+        <div class="svc">
+            <div class="card svc-card svc-1 rv">
+                <div class="num">Service 01</div>
+                <h3>Build the system that isn't there</h3>
+                <p>
+                    Custom digital solutions for the parts of your business still running on
+                    spreadsheets, paper and memory. We implement a proven enterprise platform and
+                    shape it around how your business actually works — your process, your terms,
+                    your approvals — instead of forcing your team into someone else's template.
+                </p>
+                <ul class="tick">
+                    <li>Production planning, job cards and shop-floor tracking</li>
+                    <li>Inventory, batches, stores and material movement</li>
+                    <li>Purchase, vendors and approvals with a real audit trail</li>
+                    <li>Sales orders through to dispatch and invoicing</li>
+                    <li>Quality checks recorded where the work happens</li>
+                    <li>Job costing you can actually trust</li>
+                    <li>Maintenance, compliance and document control</li>
+                    <li>Role-based dashboards — the owner's view, the supervisor's view</li>
+                </ul>
+                <p class="svc-foot">
+                    First working module live in weeks, not quarters. Built with your team, then
+                    handed over to them.
+                </p>
+            </div>
+
+            <div class="card svc-card svc-2 rv">
+                <div class="num">Service 02</div>
+                <h3>Agentic AI workflows on what you already run</h3>
+                <p>
+                    You've already paid for an ERP, Tally, a CRM, shared drives and a dozen WhatsApp
+                    groups. We build AI agents that work across them — reading, chasing, reconciling,
+                    drafting and escalating — so the routine work happens without a person driving it,
+                    and a human steps in only where judgement is needed.
+                </p>
+                <ul class="tick">
+                    <li>Enquiries and orders read straight out of email, PDF and WhatsApp</li>
+                    <li>Purchase orders and invoices matched, flagged and queued</li>
+                    <li>Follow-ups and chasers that run themselves</li>
+                    <li>Documents extracted, checked and filed against the right record</li>
+                    <li>Exceptions escalated with the evidence already attached</li>
+                    <li>Reports and MIS drafted before the meeting, not after it</li>
+                    <li>Approvals routed to the person who can actually decide</li>
+                    <li>Every agent action logged, reversible and reviewable</li>
+                </ul>
+                <p class="svc-foot">
+                    No rip-and-replace. The agents sit on top of your existing systems, which stay
+                    exactly where they are.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ WHERE IT LANDS ============================ -->
+<section class="sec" id="areas">
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">Where it lands</div>
+            <h2 class="rv">The parts of the business that usually have no system.</h2>
+            <p class="lead-p rv" style="margin-top:1.15rem;">
+                You don't have to buy the whole idea on day one. We start at the point where the
+                pain is loudest and the payback is quickest, then work outward.
+            </p>
+        </div>
+        <div class="bento">
+            <div class="bt rv">
+                <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M6 20V9m4 11V4m4 16v-8m4 8V7"/></svg></div>
+                <h4>Production &amp; planning</h4>
+                <p>What's running, what's queued, what's late — visible without a phone call.</p>
+            </div>
+            <div class="bt rv">
+                <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Zm0 0v18M4 7.5l8 4.5 8-4.5"/></svg></div>
+                <h4>Inventory &amp; stores</h4>
+                <p>Stock that matches the shelf, batch traceability, and issue-return that closes.</p>
+            </div>
+            <div class="bt rv">
+                <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10M18 17l2 2 3-4"/></svg></div>
+                <h4>Purchase &amp; vendors</h4>
+                <p>Indent to PO to GRN, with approvals that leave a trail an auditor accepts.</p>
+            </div>
+            <div class="bt rv">
+                <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h13v9H3zM16 10h3.5L22 13v3h-6M6.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></svg></div>
+                <h4>Sales to dispatch</h4>
+                <p>One thread from enquiry to delivery, so nobody re-keys the same order twice.</p>
+            </div>
+            <div class="bt rv">
+                <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+                <h4>Quality &amp; compliance</h4>
+                <p>Checks recorded at the point of work — and provable the day someone asks.</p>
+            </div>
+            <div class="bt rv">
+                <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                <h4>Costing &amp; margins</h4>
+                <p>What a job actually cost, while you can still do something about it.</p>
+            </div>
+            <div class="bt rv">
+                <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 1 5 5L10 21H4v-6l10.7-8.7ZM3 3l4 4"/></svg></div>
+                <h4>Maintenance</h4>
+                <p>Preventive schedules that fire on their own, and breakdown history worth reading.</p>
+            </div>
+            <div class="bt rv wide">
+                <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div>
+                <h4>People and the floor, joined up</h4>
+                <p>
+                    Attendance, shifts, output and incentives that reconcile to the same numbers —
+                    and where you need a full HR practice next to the software,
+                    <a href="allabouthr.html">AllAboutHR</a> and the
+                    <a href="alvora.html">Alvora platforms</a> pick it up from there.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ HOW WE WORK ============================ -->
+<section class="sec mist" id="how">
+    <span class="anchor-alias" id="automation"></span>
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">How we work</div>
+            <h2 class="rv">Three steps. No surprises.</h2>
+        </div>
+        <div class="steps">
+            <div class="step rv">
+                <div class="n">1</div>
+                <h3>We talk</h3>
+                <p>An open conversation, not a pitch. We ask about your business until we understand where it actually hurts — which is often not where you expected. You'll get our honest read either way, including "this doesn't need software."</p>
+            </div>
+            <div class="step rv">
+                <div class="n">2</div>
+                <h3>We show you something working</h3>
+                <p>Our proposal comes with a working piece of the system wherever we can build one — running on your reality, not a demo dataset. You see it before you spend anything serious.</p>
+            </div>
+            <div class="step rv">
+                <div class="n">3</div>
+                <h3>We build it, then hand it over</h3>
+                <p>Alongside your team, in small pieces, each one proven before the next. First real impact in weeks, not quarters. Then your team runs it and we step back.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ BELIEFS ============================ -->
+<section class="sec" id="beliefs">
+    <div class="wrap narrow">
+        <div class="kicker rv">What we believe</div>
+        <h2 class="rv">Software should make your business simpler.<br><span class="accent">Most of it doesn't.</span></h2>
+        <div class="beliefs">
+            <div class="belief rv">
+                <h3>AI is an accelerator, not a strategy.</h3>
+                <p>We put it in only where it earns its place — AI does the chasing, your people do the thinking. Everywhere else a simple system beats a clever one: cheaper to run, easier to trust, and your team will actually use it. If AI won't help you, we'll say so, and we'll say it before you've paid us.</p>
+            </div>
+            <div class="belief rv">
+                <h3>A proposal should show, not tell.</h3>
+                <p>Wherever it's possible we build a working piece of the thing before you commit to anything. Not a mockup. Not a slide. Something you can click, on your own data. You shouldn't have to take our word for it.</p>
+            </div>
+            <div class="belief rv">
+                <h3>Operations and people are one problem.</h3>
+                <p>Fix the floor and ignore the team and the gains leak straight back out. Fix the team and ignore the systems and good people burn out doing manual work. That is exactly why Kinexus sits inside a house that does both.</p>
+            </div>
+            <div class="belief rv">
+                <h3>If you still need us in year three, we've failed.</h3>
+                <p>We build it with your team, hand it over, and get out of the way. We'd rather be the people you recommend than the people you're locked into.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ PROOF ============================ -->
+<section class="sec paper" id="proof">
+    <span class="anchor-alias" id="case-studies"></span>
+    <span class="anchor-alias" id="roi"></span>
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">What it looks like</div>
+            <h2 class="rv">Numbers from real operations.</h2>
+            <p class="lead-p rv" style="margin-top:1.15rem;">
+                We learned this work where the margins are thin, the data is messy, and nobody has
+                patience for software theatre. Every figure below is measured against where that
+                business started — not an industry average, not a vendor benchmark.
+            </p>
+        </div>
+        <div class="proofs">
+            <div class="card proof rv">
+                <div class="big">12% → 7%</div>
+                <div class="cap">Delivery exceptions · logistics operator</div>
+                <p>Consignments went out on trust and came back as complaints — roughly one in seven arriving late, short, or at the wrong door. Nobody could tell you which, until the customer did. We replaced ad-hoc spot-checks with one systematic check-and-log step at dispatch. Twelve weeks later exceptions had almost halved, and the claims and re-delivery bill fell with them. No AI required.</p>
+            </div>
+            <div class="card proof rv">
+                <div class="big">+30%</div>
+                <div class="cap">Operational efficiency · steel manufacturer</div>
+                <p>Performance was a conversation that happened once a year, and the numbers behind it lived in a supervisor's head. We put in continuous performance management the whole floor could see — output, quality and downtime by shift, visible to the person doing the work, not just the person reviewing it. Transparency did the rest: when people trust how they're measured, they fix things before anyone asks. That's where the 30% came from.</p>
+            </div>
+        </div>
+        <p class="rv" style="margin-top:2rem;font-size:.86rem;color:var(--faint);">Representative composite scenarios, details anonymised.</p>
+        <p class="rv" style="margin-top:1.5rem;"><a href="portfolio.html" class="btn btn-2">See the portfolio <span class="arw">→</span></a></p>
+    </div>
+</section>
+
+<!-- ============================ THE HOUSE ============================ -->
+<section class="sec" id="house">
+    <span class="anchor-alias" id="ecosystem"></span>
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">One house, three streams</div>
+            <h2 class="rv">Kinexus doesn't work alone.</h2>
+            <p class="lead-p rv" style="margin-top:1.15rem;">
+                AllAboutHR fixes the people system. Kinexus builds the operating system. Alvora is
+                the software both of them run on. Most engagements start in one stream and end up
+                touching two.
+            </p>
+        </div>
+        <div class="house">
+            <a class="hcard h-aahr rv" href="allabouthr.html">
+                <img src="assets/allabouthr-mark.png" alt="AllAboutHR">
+                <div class="role">The house · the trust</div>
+                <h3>AllAboutHR</h3>
+                <p>Strategic HR consulting — diagnostics, operating models, hiring, performance, reward and retention, run as one closing loop across five stages.</p>
+                <span class="go">See the Growth Loop →</span>
+            </a>
+            <a class="hcard h-alv rv" href="alvora.html">
+                <img src="assets/alvora-mark.png" alt="Alvora">
+                <div class="role">HR technology · the platforms</div>
+                <h3>Alvora</h3>
+                <p>The platform line — Alvora HRMS, Alvora Hire, Alvora Gig and Alvora Learning. Evidence-first people software, priced for firms that were locked out of enterprise tools.</p>
+                <span class="go">See the platforms →</span>
+            </a>
+            <div class="hcard h-kin current rv">
+                <img src="assets/kinexus-mark.png" alt="Kinexus Systems">
+                <div class="role">Operations excellence</div>
+                <h3>Kinexus Systems</h3>
+                <p>Custom digital solutions where no system exists, and agentic AI workflows on the systems that do. This page.</p>
+                <span class="go">You are here</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ FOUNDER ============================ -->
+<section class="sec mist" id="us">
+    <span class="anchor-alias" id="about"></span>
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">Who you'd be working with</div>
+            <h2 class="rv">You'll be working with me.</h2>
+            <p class="lead-p rv" style="margin-top:1.15rem;">
+                Not an account manager. Not a bench of consultants you'll meet once at the pitch and
+                never again. I'm in the room when it's going well and when it isn't — and where the
+                work needs an HR practice next to the software, AllAboutHR works alongside me.
+            </p>
+        </div>
+        <div class="solo rv">
+            <div class="solo-side">
+                <img class="avatar" src="assets/surbhi.jpg" alt="Surbhi Goyal, founder of Kinexus Systems" width="112" height="112" loading="lazy" decoding="async">
+                <div class="solo-id">
+                    <div class="nm">Surbhi Goyal</div>
+                    <div class="rl">Founder, Kinexus Systems</div>
+                    <a class="ln" href="https://www.linkedin.com/in/surbhigoyal-aiproductleader/" target="_blank" rel="noopener">On LinkedIn →</a>
+                </div>
+            </div>
+            <div class="solo-body">
+                <p>
+                    Twenty-two years building software products. Fifteen of them at <strong>CatalystOne</strong>,
+                    a European HR platform, where I ran product and development for India and grew the team from
+                    one person to 150+ — with attrition under 2%. Most recently VP of Products at Applify,
+                    building AI systems for enterprises. ISO&nbsp;27001 lead auditor, which is a boring
+                    credential right up until your data is involved.
+                </p>
+                <p>
+                    I started out writing code for government offices in Haryana, where the software either
+                    worked for the clerk at the counter or it didn't work at all. That lesson never left.
+                </p>
+                <div class="pull">I've spent a career watching good software get installed and never used. Adoption is the deliverable, not installation.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ ALVORA HIRE CALLOUT ============================ -->
+<section class="sec tight">
+    <div class="wrap">
+        <div class="callout rv">
+            <div class="kicker">From the platform line</div>
+            <div class="alv-lock">
+                <img src="assets/alvora-hire-logo-white.png" alt="Alvora Hire">
+            </div>
+            <p>
+                An applicant tracking system built for India's small recruitment and HR consulting
+                firms — the ones priced out of enterprise tools. Ask for candidates in plain English,
+                get client-ready briefings in a click, and stop running your pipeline on spreadsheets.
+                Built for the firms the big tools ignore.
+            </p>
+            <a href="alvora-hire.html" class="btn btn-light">See what it does <span class="arw">→</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ TALK ============================ -->
+<section class="sec paper" id="talk">
+    <span class="anchor-alias" id="contact"></span>
+    <div class="wrap narrow talk-head">
+        <div class="kicker rv">Start here</div>
+        <h2 class="rv">Let's just talk first.</h2>
+        <p class="lead-p rv" style="margin:1.15rem auto 0;">
+            Tell us what's not working. We'll tell you honestly whether we can help, what we'd do
+            first, and what we'd leave alone. If that's all you ever get from us, it was still worth
+            the call.
+        </p>
+        <form class="form rv" data-lead data-source="contact" data-brand="Kinexus" data-wa="919876701788">
+            <div class="fg">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="fg">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" autocomplete="organization" required>
+            </div>
+            <div class="fg">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+            </div>
+            <div class="fg">
+                <label for="sector">What kind of business?</label>
+                <select id="sector" name="sector" required>
+                    <option value="">Choose one</option>
+                    <option value="manufacturing">Manufacturing &amp; industrial</option>
+                    <option value="services">Professional services</option>
+                    <option value="technology">Technology</option>
+                    <option value="healthcare">Healthcare &amp; pharma</option>
+                    <option value="retail">Retail &amp; distribution</option>
+                    <option value="logistics">Logistics &amp; supply chain</option>
+                    <option value="recruitment">Recruitment / HR consulting</option>
+                    <option value="other">Something else</option>
+                </select>
+            </div>
+            <div class="fg full">
+                <label for="message">What's not working right now?</label>
+                <input type="text" id="message" name="message" placeholder="Say it however you'd say it out loud" required>
+            </div>
+            <button type="submit" class="btn btn-1 submit">Send via WhatsApp <span class="arw">→</span></button>
+            <p class="form-note">
+                Opens WhatsApp with your details filled in. Prefer email?
+                <a href="mailto:hello@kinexus.co.in?subject=Let%27s%20talk">hello@kinexus.co.in</a> · +91 98767 01788
+            </p>
+        </form>
+    </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="foot-wrap">
+    <div class="stream-rule" aria-hidden="true"></div>
+    <div class="wrap foot">
+        <div>
+            <a class="brand" href="index.html">
+                <img src="assets/kinexus-mark-white.png" alt="" width="34" height="19">
+                <span class="wm">
+                    <span class="wm-kinexus">Kinexus</span>
+                    <span class="endorse">an AllAboutHR company</span>
+                </span>
+            </a>
+            <p class="foot-blurb">
+                We build the system where you don't have one, and put AI agents to work on the
+                systems you already have. AI only where it earns its place.
+            </p>
+        </div>
+        <div>
+            <h4>What we do</h4>
+            <ul>
+                <li><a href="#what">Custom digital solutions</a></li>
+                <li><a href="#what">Agentic AI workflows</a></li>
+                <li><a href="#areas">Where it lands</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="alvora-hire.html">Alvora Hire</a></li>
-                <li><a href="blog.html">Insights</a></li>
-                <li><a href="#talk" class="nav-cta">Talk to us</a></li>
+                <li><a href="#proof">Proof</a></li>
             </ul>
         </div>
-    </nav>
-
-    <!-- ============ HERO: the reader's problem, not our name ============ -->
-    <header class="hero">
-        <div class="wrap hero-grid">
-            <div>
-                <h1>Your business still needs you in the room.</h1>
-                <p class="lead">
-                    That's the problem worth fixing. Most owners we meet aren't short of effort — they're short of systems. We build the ones your operations and your people run on, so the work keeps moving on the days you don't.
-                </p>
-                <div class="hero-cta">
-                    <a href="#talk" class="btn btn-1">Start with a conversation <span>→</span></a>
-                    <a href="#how" class="btn btn-2">See how we work</a>
-                </div>
-                <p class="hero-note">No pitch deck. We ask questions first — and we'll tell you if you don't need us.</p>
-            </div>
-
-            <div class="scene" aria-hidden="true">
-                <div class="scene-3d" id="scene">
-                    <div class="lyr lyr-glow"></div>
-                    <div class="lyr lyr-plate">
-                        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="pf" x1="0" y1="0" x2="1" y2="1">
-                                    <stop offset="0%" stop-color="#2882CE" stop-opacity=".10"/>
-                                    <stop offset="100%" stop-color="#7C6BD8" stop-opacity=".04"/>
-                                </linearGradient>
-                            </defs>
-                            <path d="M200 96 L336 200 L200 304 L64 200 Z" fill="url(#pf)"/>
-                            <g fill="none" stroke="#5CA5E6">
-                                <path d="M200 96 L336 200 L200 304 L64 200 Z" stroke-width="1.4" opacity=".8"/>
-                                <path d="M200 130 L296 200 L200 270 L104 200 Z" stroke-width="1.2" opacity=".45"/>
-                            </g>
-                            <g stroke="#3871C1" stroke-width="1" stroke-dasharray="4 6" opacity=".4">
-                                <line x1="200" y1="96" x2="200" y2="304"/>
-                                <line x1="64" y1="200" x2="336" y2="200"/>
-                            </g>
-                            <g fill="#2882CE">
-                                <circle cx="200" cy="96" r="3.5"/><circle cx="336" cy="200" r="3.5"/>
-                                <circle cx="200" cy="304" r="3.5"/><circle cx="64" cy="200" r="3.5"/>
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="owner"><span>YOU</span></div>
-                    <div class="lyr">
-                        <div class="panel p-ops">
-                            <div class="h">Operations</div>
-                            <div class="b">Running itself</div>
-                            <div class="m"><i style="width:78%"></i></div>
-                        </div>
-                        <div class="panel p-ppl">
-                            <div class="h">People</div>
-                            <div class="b">Doing real work</div>
-                            <div class="m"><i style="width:84%"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div>
+            <h4>The house</h4>
+            <ul>
+                <li><a href="allabouthr.html">AllAboutHR</a></li>
+                <li><a href="alvora.html">Alvora platforms</a></li>
+                <li><a href="alvora-hire.html">Alvora Hire</a></li>
+                <li><a href="#us">Who we are</a></li>
+                <li><a href="blog.html">Insights</a></li>
+            </ul>
         </div>
-    </header>
-
-    <!-- ============ PROBLEM: empathy before authority ============ -->
-    <section class="sec" id="problem">
-        <div class="wrap narrow">
-            <div class="kicker rv">Sound familiar?</div>
-            <h2 class="rv">You didn't start a business to become its bottleneck.</h2>
-            <div class="says">
-                <div class="say rv"><span class="no">01</span><span>Every decision routes through you. On the days you're away, things quietly stop.</span></div>
-                <div class="say rv"><span class="no">02</span><span>The real numbers live in four places — Excel, Tally, WhatsApp, and someone's head.</span></div>
-                <div class="say rv"><span class="no">03</span><span>Your best people spend their week doing work a system should have done.</span></div>
-                <div class="say rv"><span class="no">04</span><span>You've been sold software before. It's still open in a tab nobody uses.</span></div>
-            </div>
-            <p class="lead rv" style="margin-top:2.5rem;">
-                Here's the thing we've learned the expensive way: <strong style="color:var(--ink);">most businesses don't have a software problem. They have a workflow problem.</strong> Orders living in WhatsApp groups. Planning living in a supervisor's head. Costing living in one fragile Excel sheet. You can buy software for years and never touch any of that.
-            </p>
+        <div>
+            <h4>Talk</h4>
+            <ul>
+                <li><a href="#talk">Start a conversation</a></li>
+                <li><a href="mailto:hello@kinexus.co.in">hello@kinexus.co.in</a></li>
+                <li><a href="https://wa.me/919876701788" target="_blank" rel="noopener">WhatsApp</a></li>
+            </ul>
         </div>
-    </section>
+    </div>
+    <div class="wrap foot-bottom">
+        <span>© 2026 Kinexus Systems · Mohali, Punjab, India</span>
+        <span>Kinexus Systems — an <a href="allabouthr.html">AllAboutHR</a> company</span>
+    </div>
+</footer>
 
-    <!-- ============ BELIEFS: the stance that earns trust ============ -->
-    <section class="sec paper2" id="beliefs">
-        <div class="wrap narrow">
-            <div class="kicker rv">What we believe</div>
-            <h2 class="rv">Software should make your business simpler.<br><span class="accent">Most of it doesn't.</span></h2>
-            <div style="margin-top:3rem;">
-                <div class="belief rv">
-                    <h3>AI is an accelerator, not a strategy.</h3>
-                    <p>We put it in only where it earns its place — AI does the chasing, your people do the thinking. Everywhere else, a simple system beats a clever one: cheaper to run, easier to trust, and your team will actually use it. If AI won't help you, we'll say so, and we'll say it before you've paid us.</p>
-                </div>
-                <div class="belief rv">
-                    <h3>A proposal should show, not tell.</h3>
-                    <p>Wherever it's possible, we build a working piece of the thing before you commit to anything. Not a mockup. Not a slide. Something you can click, on your own data. You shouldn't have to take our word for it.</p>
-                </div>
-                <div class="belief rv">
-                    <h3>Operations and people are one problem.</h3>
-                    <p>Fix the floor and ignore the team, and the gains leak straight back out. Fix the team and ignore the systems, and good people burn out doing manual work. We're passionate about fuelling both engines, because only one of them running is how businesses stall.</p>
-                </div>
-                <div class="belief rv">
-                    <h3>If you still need us in year three, we've failed.</h3>
-                    <p>We build it with your team, hand it over, and get out of the way. We'd rather be the people you recommend than the people you're locked into.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ THE PLAN ============ -->
-    <section class="sec" id="how">
-        <span class="anchor-alias" id="automation"></span>
-        <div class="wrap">
-            <div class="narrow">
-                <div class="kicker rv">How we work</div>
-                <h2 class="rv">Three steps. No surprises.</h2>
-            </div>
-            <div class="steps">
-                <div class="step rv">
-                    <div class="n">1</div>
-                    <h3>We talk</h3>
-                    <p>An open conversation, not a pitch. We ask about your business until we understand where it actually hurts — which is often not where you expected. You'll get our honest read either way, including "this doesn't need software."</p>
-                </div>
-                <div class="step rv">
-                    <div class="n">2</div>
-                    <h3>We show you something working</h3>
-                    <p>Our proposal comes with a working piece of the system wherever we can build one — running on your reality, not a demo dataset. You see it before you spend anything serious.</p>
-                </div>
-                <div class="step rv">
-                    <div class="n">3</div>
-                    <h3>We build it, then hand it over</h3>
-                    <p>Alongside your team, in small pieces, each one proven before the next. First real impact in weeks, not quarters. Then your team runs it and we step back.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ WHAT WE FIX ============ -->
-    <section class="sec paper3" id="engines">
-        <span class="anchor-alias" id="ecosystem"></span>
-        <div class="wrap">
-            <div class="narrow">
-                <div class="kicker rv">What we fix</div>
-                <h2 class="rv">Two engines. Every business runs on both.</h2>
-                <p class="lead rv" style="margin-top:1.2rem;">Start with whichever one is costing you most. You don't have to buy the whole idea on day one.</p>
-            </div>
-            <div class="engines">
-                <div class="engine rv">
-                    <div class="tag">Engine 01 — Operations</div>
-                    <h3>Where the work happens</h3>
-                    <p>One version of the numbers, live status you can see without asking anyone, and the manual work taken off your team's plate.</p>
-                    <ul>
-                        <li>Your data in one place, not four</li>
-                        <li>Live status — jobs, stock, cash, dispatch</li>
-                        <li>Paperwork that generates itself</li>
-                        <li>Costing you can actually trust</li>
-                        <li>AI agents for routine work, where they earn their place</li>
-                    </ul>
-                </div>
-                <div class="engine rv">
-                    <div class="tag">Engine 02 — People</div>
-                    <h3>Who does the work</h3>
-                    <p>Hiring that isn't a scramble, and the systems that keep good people once you've got them. We didn't wander into this: our founder spent 15 years building HR software, and grew a team from 1 to 150+ with attrition under 2%.</p>
-                    <ul>
-                        <li>Recruitment run as a system, not a panic</li>
-                        <li>Attendance, shifts and leave without registers</li>
-                        <li>Performance and incentives people believe</li>
-                        <li>Early warning before someone resigns</li>
-                        <li>Compliance records that are simply there</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ THE GUIDE: who you'd actually work with ============ -->
-    <section class="sec" id="us">
-        <span class="anchor-alias" id="about"></span>
-        <div class="wrap">
-            <div class="narrow">
-                <div class="kicker rv">Who you'd be working with</div>
-                <h2 class="rv">You'll be working with me.</h2>
-                <p class="lead rv" style="margin-top:1.2rem;">
-                    Not an account manager. Not a bench of consultants you'll meet once at the pitch and never again. I'm in the room when it's going well and when it isn't — and where the work needs an HR practice next to the software, AllAboutHR works alongside me.
-                </p>
-            </div>
-            <div class="solo rv">
-                <div class="solo-side">
-                    <img class="avatar" src="assets/surbhi.jpg" alt="Surbhi Goyal, founder of Kinexus" width="116" height="116" loading="lazy" decoding="async">
-                    <div class="solo-id">
-                        <div class="nm">Surbhi Goyal</div>
-                        <div class="rl">Founder, Kinexus</div>
-                        <a class="ln" href="https://www.linkedin.com/in/surbhigoyal-aiproductleader/" target="_blank" rel="noopener">On LinkedIn →</a>
-                    </div>
-                </div>
-                <div class="solo-body">
-                    <p>
-                        Twenty-two years building software products. Fifteen of them at <strong>CatalystOne</strong>, a European HR platform, where I ran product and development for India and grew the team from one person to 150+ — with attrition under 2%. Most recently VP of Products at Applify, building AI systems for enterprises. ISO&nbsp;27001 lead auditor, which is a boring credential right up until your data is involved.
-                    </p>
-                    <p>
-                        I started out writing code for government offices in Haryana, where the software either worked for the clerk at the counter or it didn't work at all. That lesson never left.
-                    </p>
-                    <div class="pull">I've spent a career watching good software get installed and never used. Adoption is the deliverable, not installation.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ PROOF ============ -->
-    <section class="sec paper2" id="proof">
-        <span class="anchor-alias" id="case-studies"></span>
-        <span class="anchor-alias" id="roi"></span>
-        <div class="wrap">
-            <div class="narrow">
-                <div class="kicker rv">What it looks like</div>
-                <h2 class="rv">Numbers from real operations.</h2>
-                <p class="lead rv" style="margin-top:1.2rem;">
-                    We learned this work where the margins are thin, the data is messy, and nobody has patience for software theatre. Every figure below is measured against where that business started — not an industry average, not a vendor benchmark.
-                </p>
-            </div>
-            <div class="proofs">
-                <div class="proof rv">
-                    <div class="big">12% → 7%</div>
-                    <div class="cap">Delivery exceptions · logistics operator</div>
-                    <p>Consignments went out on trust and came back as complaints — roughly one in seven arriving late, short, or at the wrong door. Nobody could tell you which, until the customer did. We replaced ad-hoc spot-checks with one systematic check-and-log step at dispatch. Twelve weeks later exceptions had almost halved, and the claims and re-delivery bill fell with them. No AI required.</p>
-                </div>
-                <div class="proof rv">
-                    <div class="big">+30%</div>
-                    <div class="cap">Operational efficiency · steel manufacturer</div>
-                    <p>Performance was a conversation that happened once a year, and the numbers behind it lived in a supervisor's head. We put in continuous performance management the whole floor could see — output, quality and downtime by shift, visible to the person doing the work, not just the person reviewing it. Transparency did the rest: when people trust how they're measured, they fix things before anyone asks. That's where the 30% came from.</p>
-                </div>
-            </div>
-            <p class="rv" style="margin-top:2rem;font-size:.85rem;color:var(--faint);">Representative composite scenarios, details anonymized.</p>
-        </div>
-    </section>
-
-    <!-- ============ TALENTCORE ============ -->
-    <section class="sec tight">
-        <div class="wrap">
-            <div class="callout rv">
-                <div class="kicker">We build our own products too</div>
-                <h2>Alvora Hire</h2>
-                <p>
-                    An applicant tracking system built for India's small HR consulting firms — the ones priced out of enterprise tools. Ask for candidates in plain English, get client-ready briefings in a click, and stop running your pipeline on spreadsheets. From ₹5,000 a month for the whole firm — priced per firm, not per seat.
-                </p>
-                <a href="alvora-hire.html" class="btn btn-1">See what it does <span>→</span></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ TALK ============ -->
-    <section class="sec paper3" id="talk">
-        <span class="anchor-alias" id="contact"></span>
-        <div class="wrap narrow" style="text-align:center;">
-            <div class="kicker rv" style="justify-content:center;">Start here</div>
-            <h2 class="rv">Let's just talk first.</h2>
-            <p class="lead rv" style="margin:1.2rem auto 0;">
-                Tell us what's not working. We'll tell you honestly whether we can help, what we'd do first, and what we'd leave alone. If that's all you ever get from us, it was still worth the call.
-            </p>
-            <form class="form rv">
-                <div class="fg">
-                    <label for="name">Your name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="fg">
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="company" required>
-                </div>
-                <div class="fg">
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="fg">
-                    <label for="sector">What kind of business?</label>
-                    <select id="sector" name="sector" required>
-                        <option value="">Choose one</option>
-                        <option value="manufacturing">Manufacturing &amp; industrial</option>
-                        <option value="services">Professional services</option>
-                        <option value="technology">Technology</option>
-                        <option value="healthcare">Healthcare &amp; pharma</option>
-                        <option value="retail">Retail &amp; distribution</option>
-                        <option value="logistics">Logistics &amp; supply chain</option>
-                        <option value="recruitment">Recruitment / HR consulting</option>
-                        <option value="other">Something else</option>
-                    </select>
-                </div>
-                <div class="fg full">
-                    <label for="message">What's not working right now?</label>
-                    <input type="text" id="message" name="message" placeholder="Say it however you'd say it out loud" required>
-                </div>
-                <button type="submit" class="btn btn-1 submit">Send via WhatsApp →</button>
-                <p class="form-note">Opens WhatsApp with your details filled in. Prefer email? <a href="mailto:hello@kinexus.co.in?subject=Let%27s%20talk">hello@kinexus.co.in</a> · +91 98767 01788</p>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <div class="wrap foot">
-            <div>
-                <a class="brand" href="index.html" style="margin-bottom:1rem;"><img src="logo.png" alt="Kinexus"><span>Kinexus</span></a>
-                <p class="foot-blurb">We build the systems your operations and your people run on. AI only where it earns its place.</p>
-            </div>
-            <div>
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#us">Who we are</a></li>
-                    <li><a href="#beliefs">What we believe</a></li>
-                    <li><a href="#how">How we work</a></li>
-                    <li><a href="blog.html">Insights</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>What we do</h4>
-                <ul>
-                    <li><a href="#engines">Operations engine</a></li>
-                    <li><a href="#engines">People engine</a></li>
-                    <li><a href="alvora-hire.html">Alvora Hire</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="#proof">Proof</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Talk</h4>
-                <ul>
-                    <li><a href="#talk">Start a conversation</a></li>
-                    <li><a href="mailto:hello@kinexus.co.in">hello@kinexus.co.in</a></li>
-                    <li><a href="https://wa.me/919876701788" target="_blank" rel="noopener">WhatsApp</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="wrap foot-bottom">
-            <span>© 2026 Kinexus Systems · Mohali, Punjab, India</span>
-            <span>Built by people who've done the work.</span>
-        </div>
-    </footer>
-
-    <script>
-    (function () {
-        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        var nav = document.getElementById('nav');
-        window.addEventListener('scroll', function () {
-            if (nav) nav.classList.toggle('scrolled', window.scrollY > 8);
-        }, { passive: true });
-
-        var burger = document.querySelector('.burger');
-        var links = document.querySelector('.nav-links');
-        if (burger && links) {
-            burger.addEventListener('click', function () {
-                var open = links.classList.toggle('open');
-                burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-            });
-            links.addEventListener('click', function (e) {
-                if (e.target.tagName === 'A') { links.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
-            });
-        }
-
-        var rv = document.querySelectorAll('.rv');
-        if ('IntersectionObserver' in window && !reduced) {
-            var io = new IntersectionObserver(function (es) {
-                es.forEach(function (e) {
-                    if (e.isIntersecting) {
-                        var sibs = Array.prototype.slice.call(e.target.parentElement.children);
-                        setTimeout(function () { e.target.classList.add('in'); }, Math.min(sibs.indexOf(e.target), 5) * 65);
-                        io.unobserve(e.target);
-                    }
-                });
-            }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
-            rv.forEach(function (el) { io.observe(el); });
-        } else {
-            rv.forEach(function (el) { el.classList.add('in'); });
-        }
-
-        if (!reduced) {
-            var scene = document.getElementById('scene');
-            var hero = document.querySelector('.hero');
-            if (scene && hero) {
-                hero.addEventListener('pointermove', function (ev) {
-                    var r = hero.getBoundingClientRect();
-                    var px = (ev.clientX - r.left) / r.width - .5;
-                    var py = (ev.clientY - r.top) / r.height - .5;
-                    scene.style.animation = 'none';
-                    scene.style.transform = 'rotateX(' + (8 - py * 10) + 'deg) rotateY(' + (-12 + px * 16) + 'deg)';
-                });
-                hero.addEventListener('pointerleave', function () { scene.style.transform = ''; scene.style.animation = ''; });
-            }
-        }
-
-        // Lead capture (submit-lead.php) + WhatsApp with details pre-filled.
-        var cf = document.querySelector('.form');
-        if (cf) {
-            cf.addEventListener('submit', function (e) {
-                e.preventDefault();
-                var v = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
-                var name = v('name'), company = v('company'), phone = v('phone'),
-                    sector = v('sector'), challenge = v('message');
-                try {
-                    fetch('submit-lead.php', {
-                        method: 'POST', headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ source: 'contact', name: name, company: company, phone: phone, sector: sector, challenge: challenge })
-                    }).catch(function () {});
-                } catch (err) { /* WhatsApp is the backup channel */ }
-                var msg = 'Hi Kinexus, I would like to talk.\nName: ' + name + '\nCompany: ' + company
-                        + '\nPhone: ' + phone + '\nBusiness: ' + sector + '\nNot working: ' + challenge;
-                window.open('https://wa.me/919876701788?text=' + encodeURIComponent(msg), '_blank');
-                var note = cf.querySelector('.form-note');
-                if (note) { note.innerHTML = '✓ Thanks' + (name ? ', ' + name : '') + '. WhatsApp is opening — we’ll come back to you shortly.'; note.style.color = '#0F8A62'; }
-                cf.reset();
-            });
-        }
-    })();
-    </script>
+<script src="assets/site.js"></script>
 </body>
 </html>

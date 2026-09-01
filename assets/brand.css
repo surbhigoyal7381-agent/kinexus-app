@@ -1,0 +1,410 @@
+/* ==========================================================================
+   The House design system — AllAboutHR · Alvora · Kinexus Systems
+   Brand Guidelines v1.0, 24 August 2026.
+
+   Every value here is taken from the brand board. Two rules do most of the
+   work and neither is negotiable:
+     1. Body copy is Ink. Plum and teal pass AA but fail AAA, so they are for
+        headings, links and accents — never paragraphs.
+     2. Plum on teal is 1.29:1. It is effectively invisible. Never set one on
+        the other, in either direction, and never put text on the gradient.
+
+   Streams are switched with a data-stream attribute on <body>:
+     data-stream="kinexus"   → lead teal
+     data-stream="alvora"    → lead plum
+     data-stream="allabouthr"→ lead gradient
+   ========================================================================== */
+
+/* ---------- tokens ---------- */
+:root {
+    /* brand — sampled from the logo artwork */
+    --plum:      #933686;
+    --plum-d:    #6E2564;
+    --plum-l:    #B0417F;
+    --teal:      #0174A0;
+    --teal-d:    #01536F;
+    --teal-l:    #3A93B5;
+
+    /* neutrals */
+    --ink:       #2B2130;
+    --ink-d:     #1B1420;
+    --slate:     #6B6474;
+    --faint:     #948C9C;
+    --mist:      #F1EDF3;
+    --canvas:    #FBF9FC;
+    --card:      #FFFFFF;
+    --rule:      #E2DBE6;
+    --rule-s:    #C9BFCF;
+
+    /* signals */
+    --green:     #0F7A5A;
+    --amber:     #B4530C;
+
+    /* the house gradient — decoration and rules only, never behind text */
+    --grad:      linear-gradient(120deg, var(--plum) 0%, var(--teal) 100%);
+
+    /* stream lead — overridden per page */
+    --lead:      var(--teal);
+    --lead-d:    var(--teal-d);
+    --lead-l:    var(--teal-l);
+    --lead-tint: rgba(1, 116, 160, .09);
+    --lead-rule: var(--teal);
+
+    /* elevation */
+    --sh-1: 0 1px 2px rgba(43,33,48,.05), 0 2px 10px rgba(43,33,48,.04);
+    --sh-2: 0 2px 6px rgba(43,33,48,.05), 0 18px 40px rgba(43,33,48,.07);
+    --sh-3: 0 4px 10px rgba(43,33,48,.06), 0 30px 70px rgba(43,33,48,.11);
+
+    /* motion */
+    --ease: cubic-bezier(.22, 1, .36, 1);
+
+    --nav-h: 68px;
+}
+
+body[data-stream="kinexus"] {
+    --lead: var(--teal); --lead-d: var(--teal-d); --lead-l: var(--teal-l);
+    --lead-tint: rgba(1,116,160,.09);
+    --lead-rule: var(--teal);
+}
+body[data-stream="alvora"] {
+    --lead: var(--plum); --lead-d: var(--plum-d); --lead-l: var(--plum-l);
+    --lead-tint: rgba(147,54,134,.09);
+    --lead-rule: var(--plum);
+}
+body[data-stream="allabouthr"] {
+    --lead: var(--plum); --lead-d: var(--plum-d); --lead-l: var(--plum-l);
+    --lead-tint: rgba(147,54,134,.09);
+    --lead-rule: transparent;      /* the gradient carries the rule instead */
+}
+
+/* ---------- reset + base ---------- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 24px); }
+
+body {
+    font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.62;
+    color: var(--ink);                 /* body copy is Ink. Always. */
+    background: var(--canvas);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    font-variant-numeric: tabular-nums lining-nums;
+}
+
+h1, h2, h3, h4, .disp {
+    font-family: Poppins, "Century Gothic", "Trebuchet MS", system-ui, sans-serif;
+    color: var(--ink);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    text-wrap: balance;
+}
+/* Major third, ratio 1.250, from a 16px base: 12 · 14 · 16 · 20 · 25 · 31 · 39 · 49 */
+h1 { font-size: clamp(2.45rem, 5.6vw, 4.05rem); }
+h2 { font-size: clamp(1.95rem, 4vw, 3rem); }
+h3 { font-size: 1.45rem; letter-spacing: -0.02em; line-height: 1.24; }
+h4 { font-size: 1.15rem; letter-spacing: -0.015em; }
+
+p { text-wrap: pretty; }
+strong { font-weight: 600; color: var(--ink); }
+a { color: var(--lead-d); }
+
+code, .mono {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .92em;
+    font-variant-numeric: tabular-nums;
+}
+
+img { max-width: 100%; }
+
+::selection { background: var(--lead-tint); color: var(--ink); }
+
+:focus-visible {
+    outline: 2px solid var(--lead-d);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.skip {
+    position: absolute; left: -9999px; top: 0; z-index: 200;
+    background: var(--ink); color: #fff; padding: .7rem 1.1rem; border-radius: 0 0 10px 0;
+    font-weight: 600; text-decoration: none;
+}
+.skip:focus { left: 0; }
+
+/* ---------- layout ---------- */
+.wrap   { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+.narrow { max-width: 760px; }                       /* ≈65 characters of running text */
+.sec    { padding: 7rem 0; }
+.sec.tight  { padding: 4.5rem 0; }
+.sec.mist   { background: var(--mist); }
+.sec.paper  { background: var(--card); }
+.sec.ink    { background: var(--ink); color: #EFE9F1; }
+.sec.ink h1, .sec.ink h2, .sec.ink h3, .sec.ink h4 { color: #fff; }
+.sec.ink p  { color: #C8BFCE; }
+
+.lead-p {
+    font-size: clamp(1.1rem, 1.6vw, 1.32rem);
+    line-height: 1.55;
+    color: var(--slate);
+}
+
+/* Uppercase labels take ~0.12em of tracking; caps set tight look cramped. */
+.kicker {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-family: Poppins, sans-serif;
+    font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--lead-d);
+    margin-bottom: 1.25rem;
+}
+.kicker::before {
+    content: ''; width: 22px; height: 2px; border-radius: 2px; background: var(--lead);
+}
+.sec.ink .kicker { color: #D9A9D0; }
+.sec.ink .kicker::before { background: #D9A9D0; }
+
+.accent { color: var(--lead-d); }
+.anchor-alias { display: block; position: relative; top: calc(-1 * var(--nav-h) - 16px); visibility: hidden; }
+
+/* ---------- the stream signal ----------
+   A 3px rule under every header in the stream's lead colour. Small device,
+   and it does most of the work of telling the three brands apart. */
+.stream-rule { height: 3px; background: var(--lead-rule); }
+body[data-stream="allabouthr"] .stream-rule { background: var(--grad); }
+
+/* ---------- nav ---------- */
+.nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    background: rgba(251, 249, 252, .82);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s, box-shadow .3s, background .3s;
+}
+.nav.scrolled { border-bottom-color: var(--rule); box-shadow: 0 1px 20px rgba(43,33,48,.06); }
+.nav-in {
+    max-width: 1140px; margin: 0 auto; padding: .7rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    min-height: var(--nav-h);
+}
+
+/* Logo lockups. Clear space is respected by the padding around the mark —
+   nothing enters that zone. */
+.brand { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; }
+.brand img { display: block; height: 34px; width: auto; }
+.brand .wm { display: flex; flex-direction: column; line-height: 1; }
+
+/* Kinexus type voice: light, wide-tracked caps. */
+.wm-kinexus {
+    font-family: Poppins, sans-serif; font-weight: 300; font-size: 1.16rem;
+    letter-spacing: .14em; color: var(--teal-d); text-transform: uppercase;
+}
+/* Alvora: master word plum ExtraBold, product word teal one weight lighter.
+   ALVORA dominates, the product recedes. */
+.wm-alvora {
+    font-family: Poppins, sans-serif; font-weight: 800; font-size: 1.16rem;
+    letter-spacing: -0.01em; color: var(--plum); text-transform: uppercase;
+}
+.wm-alvora .prod { font-weight: 600; color: var(--teal); margin-left: .3em; }
+/* AllAboutHR: heavy caps. */
+.wm-aahr {
+    font-family: Poppins, sans-serif; font-weight: 800; font-size: 1.1rem;
+    letter-spacing: -0.02em; color: var(--plum-d);
+}
+.brand .endorse {
+    font-family: "Source Sans 3", sans-serif; font-size: .62rem; font-weight: 400;
+    letter-spacing: .04em; color: var(--faint); text-transform: none; margin-top: .28rem;
+}
+
+.nav-links { display: flex; gap: .1rem; list-style: none; align-items: center; }
+.nav-links a {
+    display: block; text-decoration: none; color: var(--slate);
+    font-weight: 600; font-size: .92rem; padding: .5rem .7rem; border-radius: 9px;
+    transition: color .2s, background .2s;
+}
+.nav-links a:hover { color: var(--lead-d); background: var(--lead-tint); }
+.nav-links a[aria-current="page"] { color: var(--lead-d); }
+.nav-cta {
+    background: var(--ink); color: #fff !important; border-radius: 999px !important;
+    padding: .55rem 1.15rem !important; margin-left: .35rem;
+}
+.nav-cta:hover { background: var(--lead-d); }
+
+.burger {
+    display: none; background: none; border: 1px solid var(--rule-s); border-radius: 9px;
+    padding: .38rem .6rem; cursor: pointer; color: var(--ink); font-size: 1.05rem; line-height: 1;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .92rem 1.65rem; border-radius: 999px;
+    font-family: "Source Sans 3", sans-serif; font-weight: 600; font-size: 1rem;
+    text-decoration: none; border: 1px solid transparent; cursor: pointer;
+    transition: transform .22s var(--ease), box-shadow .22s, background .22s, border-color .22s;
+}
+.btn-1 { background: var(--ink); color: #fff; box-shadow: 0 8px 24px rgba(43,33,48,.20); }
+.btn-1:hover { transform: translateY(-2px); background: var(--lead-d); box-shadow: 0 14px 34px rgba(43,33,48,.24); }
+.btn-2 { background: var(--card); color: var(--ink); border-color: var(--rule-s); }
+.btn-2:hover { transform: translateY(-2px); border-color: var(--ink); }
+/* Reversed: white on plum-dark is 9.94:1. White on plum is 3.1:1 and fails. */
+.btn-light { background: #fff; color: var(--ink); }
+.btn-light:hover { transform: translateY(-2px); background: var(--mist); }
+.btn .arw { transition: transform .22s var(--ease); }
+.btn:hover .arw { transform: translateX(3px); }
+
+/* ---------- cards ---------- */
+.card {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 20px;
+    padding: 2rem; box-shadow: var(--sh-1);
+    transition: transform .35s var(--ease), box-shadow .35s, border-color .35s;
+}
+.card.hoverable:hover { transform: translateY(-4px); box-shadow: var(--sh-2); border-color: var(--rule-s); }
+.card .tag {
+    font-family: Poppins, sans-serif; font-size: .7rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--lead-d); margin-bottom: .75rem;
+}
+
+.tick { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-top: 1.1rem; }
+.tick li { font-size: .98rem; padding-left: 1.5rem; position: relative; color: var(--ink); }
+.tick li::before {
+    content: ''; position: absolute; left: 0; top: .58em;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--lead); opacity: .55;
+}
+
+/* ---------- pain statements ----------
+   Each card is the reader's own sentence, and each is a link that opens
+   WhatsApp with that sentence already written. The problem statement is the
+   call to action; there is nothing to fill in first. */
+.pains { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2.75rem; }
+.pain {
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 18px;
+    padding: 1.6rem 1.7rem; text-decoration: none; color: var(--ink);
+    transition: transform .3s var(--ease), box-shadow .3s, border-color .3s;
+}
+.pain::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--lead); }
+.pain:hover { transform: translateY(-3px); box-shadow: var(--sh-2); border-color: var(--rule-s); }
+.pain .no {
+    font-family: "IBM Plex Mono", monospace; font-size: .74rem; font-weight: 500;
+    letter-spacing: .08em; color: var(--lead-d); margin-bottom: .6rem;
+}
+.pain .said {
+    font-family: Poppins, sans-serif; font-weight: 500; font-size: 1.08rem;
+    line-height: 1.42; letter-spacing: -0.015em; color: var(--ink);
+}
+.pain .act {
+    margin-top: auto; padding-top: 1.15rem;
+    display: inline-flex; align-items: center; gap: .45rem;
+    font-family: "Source Sans 3", sans-serif; font-weight: 600; font-size: .9rem; color: var(--lead-d);
+}
+.pain .act svg { width: 15px; height: 15px; fill: #25D366; flex-shrink: 0; }
+.pain .act .arw { transition: transform .22s var(--ease); }
+.pain:hover .act .arw { transform: translateX(3px); }
+.pains-note { margin-top: 1.6rem; font-size: .9rem; color: var(--faint); }
+
+/* the big green one, for the end of a page */
+.btn-wa { background: #25D366; color: #0B2E17; box-shadow: 0 8px 24px rgba(37,211,102,.32); }
+.btn-wa:hover { transform: translateY(-2px); background: #1EBE5B; box-shadow: 0 14px 34px rgba(37,211,102,.36); }
+.btn-wa svg { width: 18px; height: 18px; fill: #0B2E17; }
+
+@media (max-width: 820px) { .pains { grid-template-columns: 1fr; } }
+
+/* ---------- pills ---------- */
+.pill {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-family: Poppins, sans-serif; font-size: .72rem; font-weight: 500; letter-spacing: .08em;
+    text-transform: uppercase; padding: .34rem .8rem; border-radius: 999px;
+    background: var(--lead-tint); color: var(--lead-d);
+}
+
+/* ---------- footer ---------- */
+.foot-wrap { background: var(--ink); color: #C8BFCE; padding: 4.5rem 0 2rem; }
+.foot-wrap .stream-rule { margin-bottom: 4.5rem; }
+.foot { display: grid; grid-template-columns: 2.1fr 1fr 1fr 1fr; gap: 2.5rem; }
+.foot h4 {
+    font-size: .74rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    color: #fff; margin-bottom: 1.1rem;
+}
+.foot ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.foot a { color: #C8BFCE; text-decoration: none; font-size: .93rem; transition: color .2s; }
+.foot a:hover { color: #fff; }
+.foot-blurb { font-size: .95rem; color: #A99FB0; max-width: 23rem; margin-top: 1rem; }
+.foot .brand .wm-kinexus { color: #fff; }
+.foot .brand .wm-alvora  { color: #fff; }
+.foot .brand .wm-alvora .prod { color: #7CC8E2; }
+.foot .brand .wm-aahr    { color: #fff; }
+.foot .brand .endorse    { color: #A99FB0; }
+.foot-bottom {
+    margin-top: 3.25rem; padding-top: 1.75rem; border-top: 1px solid rgba(255,255,255,.11);
+    font-size: .86rem; color: #A99FB0;
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.house-line { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
+.house-line a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- floating WhatsApp ---------- */
+.wa {
+    position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 90;
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: #25D366; color: #fff; text-decoration: none;
+    font-weight: 600; font-size: .88rem; padding: .68rem 1.05rem; border-radius: 999px;
+    box-shadow: 0 10px 26px rgba(37,211,102,.38);
+}
+.wa svg { width: 18px; height: 18px; }
+
+/* ---------- forms ---------- */
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; text-align: left; }
+.fg { display: flex; flex-direction: column; }
+.fg.full { grid-column: 1 / -1; }
+.fg label { font-size: .82rem; font-weight: 600; color: var(--slate); margin-bottom: .4rem; }
+.fg input, .fg select, .fg textarea {
+    padding: .88rem 1rem; border-radius: 11px; border: 1px solid var(--rule-s);
+    background: var(--card); font-family: inherit; font-size: .97rem; color: var(--ink);
+    transition: border-color .2s, box-shadow .2s;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+    outline: none; border-color: var(--lead); box-shadow: 0 0 0 3px var(--lead-tint);
+}
+.submit { grid-column: 1 / -1; justify-content: center; }
+.form-note { grid-column: 1 / -1; font-size: .89rem; color: var(--faint); text-align: center; }
+.form-note a { color: var(--lead-d); }
+
+/* ---------- scroll reveal ---------- */
+.js .rv { opacity: 0; transform: translateY(18px); }
+.rv { transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js .rv.in { opacity: 1; transform: none; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 980px) {
+    .foot { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 820px) {
+    .burger { display: block; }
+    .nav-links {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--card); border-bottom: 1px solid var(--rule);
+        flex-direction: column; align-items: stretch; padding: .7rem; gap: .1rem;
+        box-shadow: var(--sh-2);
+    }
+    .nav-links.open { display: flex; }
+    .nav-cta { text-align: center; margin: .3rem 0 0; }
+    .sec { padding: 4.5rem 0; }
+    .form { grid-template-columns: 1fr; }
+    .foot { grid-template-columns: 1fr; gap: 2rem; }
+    .wa span { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js .rv, .rv { opacity: 1 !important; transform: none !important; }
+}
+
+@media print {
+    .nav, .wa, .burger { display: none !important; }
+    body { background: #fff; }
+}
