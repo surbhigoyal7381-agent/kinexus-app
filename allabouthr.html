@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FBF9FC">
+    <title>AllAboutHR — The Growth Loop</title>
+    <meta name="description" content="Strategic HR consulting run as a loop that closes: five stages, seventeen programmes and three platforms. Lens finds it, Blueprint and Calibrate fix it, the Alvora platforms instrument it, Proof measures the delta twelve months on.">
+    <link rel="canonical" href="https://www.kinexus.co.in/allabouthr.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AllAboutHR — The Growth Loop">
+    <meta property="og:description" content="Five stages, seventeen programmes, three platforms — and a loop that closes, so the last stage sells the first again.">
+    <meta property="og:url" content="https://www.kinexus.co.in/allabouthr.html">
+    <meta property="og:image" content="https://www.kinexus.co.in/assets/allabouthr-logo-full.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G4J9X47QDT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-G4J9X47QDT');
+    </script>
+
+    <link rel="preload" href="assets/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/fonts.css">
+    <link rel="stylesheet" href="assets/brand.css">
+    <script>document.documentElement.className += ' js';</script>
+
+    <style>
+        /* ---------- hero ---------- */
+        .hero {
+            position: relative; padding: calc(var(--nav-h) + 5rem) 0 4.5rem; overflow: hidden;
+            background:
+                radial-gradient(760px 460px at 84% -10%, rgba(147,54,134,.14) 0%, rgba(147,54,134,0) 62%),
+                radial-gradient(640px 420px at -4% 104%, rgba(1,116,160,.10) 0%, rgba(1,116,160,0) 60%),
+                var(--canvas);
+        }
+        .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 3.5rem; align-items: center; }
+        .hero h1 { margin-bottom: 1.4rem; }
+        .hero .lead-p { max-width: 34rem; margin-bottom: 2rem; }
+        .hero-cta { display: flex; gap: .75rem; flex-wrap: wrap; }
+        .facts { display: flex; gap: 2.25rem; margin-top: 2.5rem; flex-wrap: wrap; }
+        .fact .n {
+            font-family: Poppins, sans-serif; font-weight: 300; font-size: 2.25rem;
+            color: var(--plum-d); line-height: 1; letter-spacing: -0.02em;
+        }
+        .fact .l { font-size: .82rem; color: var(--slate); margin-top: .3rem; }
+
+        /* loop diagram */
+        .loop-viz {
+            position: relative; background: var(--card); border: 1px solid var(--rule);
+            border-radius: 24px; padding: 2.25rem; box-shadow: var(--sh-3);
+        }
+        .loop-viz .stream-rule { position: absolute; inset: 0 0 auto 0; border-radius: 24px 24px 0 0; }
+        .loop-ring { display: grid; gap: .6rem; }
+        .lr {
+            display: grid; grid-template-columns: 30px 1fr; gap: .9rem; align-items: center;
+            padding: .72rem .9rem; border-radius: 13px; background: var(--canvas); border: 1px solid var(--rule);
+        }
+        .lr .i {
+            width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+            font-family: "IBM Plex Mono", monospace; font-size: .78rem; font-weight: 500;
+            background: var(--plum); color: #fff;
+        }
+        .lr:nth-child(2) .i { background: #A0407F; }
+        .lr:nth-child(3) .i { background: #7C528F; }
+        .lr:nth-child(4) .i { background: #45639B; }
+        .lr:nth-child(5) .i { background: var(--teal); }
+        .lr .t { font-family: Poppins, sans-serif; font-weight: 600; font-size: .95rem; }
+        .lr .s { font-size: .84rem; color: var(--slate); }
+        .loop-close {
+            margin-top: .9rem; display: flex; align-items: center; gap: .6rem;
+            font-size: .84rem; color: var(--slate); justify-content: center;
+        }
+        .loop-close b { color: var(--plum-d); font-weight: 600; }
+
+        /* ---------- stages ---------- */
+        .stages { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 3rem; }
+        .stage { display: flex; flex-direction: column; }
+        .stage-head { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .45rem; }
+        .stage-head .n {
+            font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--plum-d); font-weight: 500;
+        }
+        .stage-head h3 {
+            font-family: Poppins, sans-serif; font-weight: 300; font-size: 1.5rem;
+            letter-spacing: .1em; text-transform: uppercase;
+        }
+        .stage > p { color: var(--slate); font-size: .97rem; margin-bottom: 1.2rem; }
+        .prog { display: flex; flex-direction: column; gap: .85rem; }
+        .prog-item { padding-left: 1rem; border-left: 2px solid var(--rule); }
+        .prog-item .pn { font-family: Poppins, sans-serif; font-weight: 600; font-size: .98rem; }
+        .prog-item .pn .plat {
+            font-family: "IBM Plex Mono", monospace; font-size: .62rem; letter-spacing: .1em;
+            text-transform: uppercase; color: var(--teal-d); background: rgba(1,116,160,.10);
+            padding: .15rem .45rem; border-radius: 5px; margin-left: .45rem; vertical-align: .1em;
+        }
+        .prog-item p { font-size: .9rem; color: var(--slate); margin-top: .15rem; }
+        .stage-foot {
+            margin-top: auto; padding-top: 1.3rem; font-size: .88rem; color: var(--slate);
+            border-top: 1px dashed var(--rule-s);
+        }
+        .stage-foot b { color: var(--ink); font-weight: 600; }
+
+        /* ---------- compounds ---------- */
+        .chain { display: flex; align-items: stretch; gap: .6rem; margin-top: 2.5rem; flex-wrap: wrap; }
+        .chain .link {
+            flex: 1 1 170px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+            border-radius: 14px; padding: 1.1rem 1.15rem;
+        }
+        .chain .link .k {
+            font-family: Poppins, sans-serif; font-weight: 600; font-size: .95rem; color: #fff; margin-bottom: .2rem;
+        }
+        .chain .link .v { font-size: .86rem; color: #C8BFCE; }
+
+        /* ---------- entry points ---------- */
+        .entries { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
+
+        /* ---------- packages ---------- */
+        .packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
+        .pack { display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .pack::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--plum); }
+        .pack .range {
+            font-family: "IBM Plex Mono", monospace; font-size: .74rem; letter-spacing: .06em;
+            color: var(--faint); text-transform: uppercase;
+        }
+        .pack h3 { font-size: 1.4rem; margin: .5rem 0 .3rem; }
+        .pack .price {
+            font-family: Poppins, sans-serif; font-weight: 300; font-size: 1.25rem;
+            color: var(--plum-d); letter-spacing: -0.01em; margin-bottom: .95rem;
+        }
+        .pack .who { font-size: .93rem; color: var(--slate); margin-bottom: .9rem; }
+        .pack .out {
+            font-family: Poppins, sans-serif; font-weight: 500; font-size: .97rem;
+            color: var(--ink); line-height: 1.42; margin-bottom: 1rem;
+        }
+        .pack ul.tick li { font-size: .91rem; }
+        .pack ul.tick li::before { background: var(--plum); }
+        .pack .next {
+            margin-top: auto; padding-top: 1.15rem; border-top: 1px dashed var(--rule-s);
+            font-size: .86rem; color: var(--slate);
+        }
+        .pack .next b { color: var(--plum-d); font-weight: 600; }
+        .pack-note { margin-top: 1.75rem; font-size: .88rem; color: var(--faint); }
+
+        /* ---------- platform strip ---------- */
+        .plats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.75rem; }
+        .plat-card { display: flex; flex-direction: column; text-decoration: none; }
+        .plat-card img { height: 34px; width: auto; align-self: flex-start; margin-bottom: 1rem; }
+        .plat-card h3 { font-size: 1.15rem; margin-bottom: .4rem; }
+        .plat-card p { font-size: .92rem; color: var(--slate); flex: 1; }
+        .plat-card .go { margin-top: 1rem; font-weight: 600; font-size: .9rem; color: var(--plum-d); }
+
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .stages, .entries, .packs, .plats { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 820px) {
+            .hero { padding: calc(var(--nav-h) + 3rem) 0 3rem; }
+            .stages, .entries, .packs, .plats { grid-template-columns: 1fr; }
+            .loop-viz { padding: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body data-stream="allabouthr">
+<a class="skip" href="#main">Skip to content</a>
+
+<a class="wa" href="https://wa.me/919876701788?text=Hi%20AllAboutHR%2C%20I%27d%20like%20to%20talk%20about%20our%20people%20systems." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span>
+</a>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav">
+    <div class="nav-in">
+        <a class="brand" href="allabouthr.html" aria-label="AllAboutHR — home">
+            <img src="assets/allabouthr-mark.png" alt="" width="36" height="17">
+            <span class="wm">
+                <span class="wm-aahr">AllAboutHR</span>
+                <span class="endorse">Talent · Technology · Transformation</span>
+            </span>
+        </a>
+        <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">☰</button>
+        <ul class="nav-links" id="navlinks">
+            <li><a href="#loop">The Growth Loop</a></li>
+            <li><a href="#packs">Packages</a></li>
+            <li><a href="alvora.html">Alvora</a></li>
+            <li><a href="index.html">Kinexus</a></li>
+            <li><a href="blog.html">Insights</a></li>
+            <li><a href="#talk" class="nav-cta">Talk to us</a></li>
+        </ul>
+    </div>
+    <div class="stream-rule" aria-hidden="true"></div>
+</nav>
+
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+    <div class="wrap hero-grid">
+        <div>
+            <div class="kicker">Strategic HR consulting</div>
+            <h1>The Growth Loop.</h1>
+            <p class="lead-p">
+                We help businesses grow faster by making their people and their systems perform.
+                Five stages, seventeen programmes, three platforms — and a loop that closes, so the
+                last stage sells the first again.
+            </p>
+            <div class="hero-cta">
+                <a href="#talk" class="btn btn-1">Start with a diagnostic <span class="arw">→</span></a>
+                <a href="#packs" class="btn btn-2">See the packages</a>
+            </div>
+            <div class="facts">
+                <div class="fact"><div class="n">5</div><div class="l">stages</div></div>
+                <div class="fact"><div class="n">17</div><div class="l">programmes</div></div>
+                <div class="fact"><div class="n">3</div><div class="l">platforms</div></div>
+                <div class="fact"><div class="n">6</div><div class="l">packages, 10 to 2,500+ people</div></div>
+            </div>
+        </div>
+
+        <div class="loop-viz">
+            <div class="stream-rule" aria-hidden="true"></div>
+            <div class="loop-ring" style="margin-top:.75rem;">
+                <div class="lr"><span class="i">1</span><span><span class="t">SEE</span> <span class="s">— know what's true</span></span></div>
+                <div class="lr"><span class="i">2</span><span><span class="t">SHAPE</span> <span class="s">— design the system</span></span></div>
+                <div class="lr"><span class="i">3</span><span><span class="t">SOURCE</span> <span class="s">— bring the right people in</span></span></div>
+                <div class="lr"><span class="i">4</span><span><span class="t">STRENGTHEN</span> <span class="s">— enable and engage them</span></span></div>
+                <div class="lr"><span class="i">5</span><span><span class="t">SUSTAIN</span> <span class="s">— perform, reward, prove</span></span></div>
+            </div>
+            <p class="loop-close">
+                <span aria-hidden="true">↻</span>
+                <span>Stage 5 re-measures the baseline set in stage 1. <b>The proof becomes the next diagnosis.</b></span>
+            </p>
+        </div>
+    </div>
+</header>
+
+<!-- ============================ WHY A LOOP ============================ -->
+<section class="sec" id="why">
+    <div class="wrap narrow">
+        <div class="kicker rv">Why a loop and not a menu</div>
+        <h2 class="rv">Most firms present a menu. A menu invites you to buy one thing and leave.</h2>
+        <p class="lead-p rv" style="margin-top:1.25rem;">
+            This closes instead. <strong>Lens</strong> finds it. <strong>Blueprint</strong> and
+            <strong>Calibrate</strong> fix it. The <strong>Alvora</strong> platforms instrument it.
+            <strong>Proof</strong> measures the delta twelve months on — against a locked baseline,
+            using identical instruments. Then the proof becomes the next diagnosis.
+        </p>
+        <p class="lead-p rv" style="margin-top:1rem;">
+            Consulting and software are usually two companies pretending to be one. Here they are the
+            same business read twice: the loop the services run is the same loop the platform runs —
+            evidence in, decision out, outcome measured, evidence back in.
+        </p>
+    </div>
+</section>
+
+<!-- ============================ THE FIVE STAGES ============================ -->
+<section class="sec paper" id="loop">
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">Stage by stage</div>
+            <h2 class="rv">Seventeen programmes, and every one of them traces to a stage.</h2>
+            <p class="lead-p rv" style="margin-top:1.15rem;">
+                Every stage is a legitimate entry point. What matters is that nobody stops at one —
+                the next stage should always be named in the closing conversation.
+            </p>
+        </div>
+
+        <div class="stages">
+            <div class="card stage rv">
+                <div class="stage-head"><span class="n">01</span><h3>See</h3></div>
+                <p>Know what's true. The only stage that opens the top of the house — the buyer is the MD.</p>
+                <div class="prog">
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Lens</div>
+                        <p>The six-week diagnostic. Three pillars, fifteen dimensions, scored 0.00–1.00 with evidence and a confidence flag behind every number.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Signals</div>
+                        <p>Cohort survival, attrition decomposition, turnover cost, pay equity regression, compression index.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Assure</div>
+                        <p>HR audit and POSH compliance.</p>
+                    </div>
+                </div>
+                <p class="stage-foot">Buyer: <b>the MD.</b> Highest value, hardest to sell cold.</p>
+            </div>
+
+            <div class="card stage rv">
+                <div class="stage-head"><span class="n">02</span><h3>Shape</h3></div>
+                <p>Design the system. Calibrate is the bridge — the service that makes the platform land.</p>
+                <div class="prog">
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Blueprint</div>
+                        <p>HR function setup, operating model, workforce planning, KPI framework.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Calibrate</div>
+                        <p>Competency architecture, leadership principles, rating anchors, calibration facilitation.</p>
+                    </div>
+                </div>
+                <p class="stage-foot">Without this stage a platform rollout has nothing to instrument.</p>
+            </div>
+
+            <div class="card stage rv">
+                <div class="stage-head"><span class="n">03</span><h3>Source</h3></div>
+                <p>Bring the right people in — every source, zero duplicates, evidence rather than memory.</p>
+                <div class="prog">
+                    <div class="prog-item">
+                        <div class="pn">Alvora Hire <span class="plat">Platform</span></div>
+                        <p>Every source, zero duplicates, evidence not memory. From ₹5,000 a month for the whole firm.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Search</div>
+                        <p>Executive and leadership hiring.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Flow</div>
+                        <p>Permanent and volume staffing. RecruitXcel is the flagship programme inside this.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Campus</div>
+                        <p>Institution partnerships.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Verify</div>
+                        <p>Background verification.</p>
+                    </div>
+                </div>
+                <p class="stage-foot">Lowest value on its own — <b>qualify hard, then walk it up the loop.</b></p>
+            </div>
+
+            <div class="card stage rv">
+                <div class="stage-head"><span class="n">04</span><h3>Strengthen</h3></div>
+                <p>Enable and engage them, on evidence-first, closed-loop people intelligence.</p>
+                <div class="prog">
+                    <div class="prog-item">
+                        <div class="pn">Alvora HR <span class="plat">Platform</span></div>
+                        <p>Full HCM coverage — core HR, goals, performance, calibration, compensation, learning, talent, culture.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Academy</div>
+                        <p>Corporate training, technical upskilling, communication, HR workshops, internships.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Lead</div>
+                        <p>Leadership development — the natural follow-on from a Lens finding.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Pulse</div>
+                        <p>Engagement, pulse surveys, eNPS, action tracking.</p>
+                    </div>
+                </div>
+                <p class="stage-foot">Every rating traces to evidence — or it isn't a rating.</p>
+            </div>
+
+            <div class="card stage rv">
+                <div class="stage-head"><span class="n">05</span><h3>Sustain</h3></div>
+                <p>Perform, reward, retain — and prove it against a baseline nobody can move afterwards.</p>
+                <div class="prog">
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Perform</div>
+                        <p>Performance management rollout — goals, evidence, calibration, distribution.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Reward</div>
+                        <p>Compensation cycle design, merit guidelines, pay equity remediation.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Retain</div>
+                        <p>Retention and exit intelligence, supervisor variance, stay interviews.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Proof</div>
+                        <p>The loop-closer. Remediation plus re-measurement at 9–12 months against a locked baseline, using identical instruments.</p>
+                    </div>
+                </div>
+                <p class="stage-foot">This is where the next Lens engagement comes from.</p>
+            </div>
+
+            <div class="card stage rv">
+                <div class="stage-head"><span class="n">00</span><h3>Managed</h3></div>
+                <p>Cross-cutting — not a stage on the loop, but a way of buying any stage on it.</p>
+                <div class="prog">
+                    <div class="prog-item">
+                        <div class="pn">AllAboutHR Managed</div>
+                        <p>Fractional and outsourced HR. Not a point on the loop — a way of buying any stage on it. This is the annuity line.</p>
+                    </div>
+                    <div class="prog-item">
+                        <div class="pn">Alvora Gig <span class="plat">Platform</span></div>
+                        <p>Contractor and vendor workforce. Parallel to the loop, different buyer — the COO rather than the CHRO.</p>
+                    </div>
+                </div>
+                <p class="stage-foot">Buy a stage, or buy the capacity to run every stage.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ WHY IT COMPOUNDS ============================ -->
+<section class="sec ink" id="compounds">
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">Why it compounds</div>
+            <h2 class="rv">The diagnostic is not a side business. It is the platform's discovery motion.</h2>
+            <p class="rv" style="margin-top:1.15rem;font-size:1.1rem;">
+                That is why the story holds together, and why it is hard to copy.
+            </p>
+        </div>
+        <div class="chain">
+            <div class="link rv"><div class="k">Lens</div><div class="v">diagnoses</div></div>
+            <div class="link rv"><div class="k">Calibrate</div><div class="v">designs the framework</div></div>
+            <div class="link rv"><div class="k">Alvora HR</div><div class="v">instruments it</div></div>
+            <div class="link rv"><div class="k">Proof</div><div class="v">re-measures at 12 months</div></div>
+            <div class="link rv"><div class="k">↻ And then</div><div class="v">the proof becomes the next diagnosis</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ ENTRY POINTS ============================ -->
+<section class="sec" id="entry">
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">Where clients come in</div>
+            <h2 class="rv">Three doors. All of them lead to the same loop.</h2>
+        </div>
+        <div class="entries">
+            <div class="card hoverable rv">
+                <div class="tag" style="color:var(--plum-d)">Top-down</div>
+                <h3>The MD buys Lens</h3>
+                <p style="color:var(--slate);margin-top:.5rem;">Highest value, opens the whole house, hardest to sell cold. Everything else follows from what the diagnostic finds.</p>
+            </div>
+            <div class="card hoverable rv">
+                <div class="tag" style="color:var(--plum-d)">Side-door</div>
+                <h3>The HR head buys Signals or Assure</h3>
+                <p style="color:var(--slate);margin-top:.5rem;">Fast, quantitative, low friction — and the best-converting door into the loop.</p>
+            </div>
+            <div class="card hoverable rv">
+                <div class="tag" style="color:var(--plum-d)">Transactional</div>
+                <h3>A vacancy brings in Search or Flow</h3>
+                <p style="color:var(--slate);margin-top:.5rem;">Lowest value alone. Qualify hard, then walk it up the loop rather than sitting in it.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ PACKAGES ============================ -->
+<section class="sec mist" id="packs">
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">Packages</div>
+            <h2 class="rv">Six packs across the micro-to-enterprise journey.</h2>
+            <p class="lead-p rv" style="margin-top:1.15rem;">
+                For each one: who it's for, the outcome it delivers, and the signal that the next pack
+                has become the right one. Nothing changes as you grow except the depth — that is what a
+                client is buying when they stay in a pack and simply get bigger.
+            </p>
+        </div>
+
+        <div class="packs">
+            <div class="card pack rv">
+                <div class="range">Up to 10 employees</div>
+                <h3>Comply Essentials</h3>
+                <div class="price">₹10,000 / month</div>
+                <p class="who">An owner with a handful of people, no HR, and a growing worry about what they are legally supposed to be doing.</p>
+                <p class="out">Legally sound, fully documented, and off your desk. Nothing more — because nothing more is needed yet.</p>
+                <ul class="tick">
+                    <li>Statutory compliance calendar with filing reminders</li>
+                    <li>POSH policy and Internal Committee guidance</li>
+                    <li>Registration guidance — EPF, ESIC, S&amp;E, PT</li>
+                    <li>Contract and letter templates, core policy pack</li>
+                    <li>Payroll and statutory deduction check</li>
+                    <li>Alvora HR Essentials + one quarterly review call</li>
+                </ul>
+                <p class="next"><b>When to move on:</b> at 11 people this pack closes. Move to Comply — the policy set becomes yours rather than a template.</p>
+            </div>
+
+            <div class="card pack rv">
+                <div class="range">11 – 500 employees</div>
+                <h3>Comply</h3>
+                <div class="price">₹20,000 – ₹60,000 / month</div>
+                <p class="who">A business that has crossed the statutory thresholds and needs someone accountable for keeping it clean.</p>
+                <p class="out">Every statutory obligation met, evidenced and provable — with a named person answerable for it.</p>
+                <ul class="tick">
+                    <li>HR policy audit and drafting, written for your business</li>
+                    <li>Labour law guidance across EPF, ESIC, Gratuity, Bonus, Maternity</li>
+                    <li>POSH — policy, IC, annual return, awareness session</li>
+                    <li>Compliance calendar plus an evidence log you can show an inspector</li>
+                    <li>Full contract and letter set, onboarding and exit SOPs</li>
+                    <li>Payroll processing support, statutory filings, named consultant</li>
+                </ul>
+                <p class="next"><b>When to move on:</b> when policy compliance is solved but the process still lives in the owner's head.</p>
+            </div>
+
+            <div class="card pack rv">
+                <div class="range">11 – 500 employees</div>
+                <h3>Operate</h3>
+                <div class="price">₹23,000 – ₹95,000 / month</div>
+                <p class="who">An owner who has stopped knowing everyone's name, and is now the bottleneck in every people decision.</p>
+                <p class="out">HR runs on a system instead of on you. Leave, attendance, payroll and hiring happen without your involvement.</p>
+                <ul class="tick">
+                    <li>Everything in Comply</li>
+                    <li>Alvora HR core — employee master, leave, attendance, shifts, payroll, documents</li>
+                    <li>Employee self-service on web and mobile</li>
+                    <li>Org structure, grade framework and role definitions</li>
+                    <li>Workforce plan, headcount forecast, department KPI framework</li>
+                    <li>Recruitment and background verification at member rates</li>
+                </ul>
+                <p class="next"><b>When to move on:</b> when the system runs but you still cannot tell who is performing.</p>
+            </div>
+
+            <div class="card pack rv">
+                <div class="range">21 – 500 employees</div>
+                <h3>Perform</h3>
+                <div class="price">₹62,000 – ₹1,70,000 / month</div>
+                <p class="who">A business where the managers are inconsistent, ratings mean nothing, and good people have started leaving.</p>
+                <p class="out">You can see who is performing and prove why. Reviews are evidence-linked, calibrated and defensible.</p>
+                <ul class="tick">
+                    <li>Everything in Operate</li>
+                    <li>Alvora HR Goals &amp; Performance — cascaded KPIs, evidence-linked reviews</li>
+                    <li>Competency framework with behavioural rating anchors</li>
+                    <li>Review cycle and calibration facilitation, with documented rationale</li>
+                    <li>Engagement pulse, eNPS and action tracking</li>
+                    <li>Attrition analysis, exit intelligence and stay interviews</li>
+                </ul>
+                <p class="next"><b>When to move on:</b> when performance is visible but pay does not follow it.</p>
+            </div>
+
+            <div class="card pack rv">
+                <div class="range">41 – 500 employees</div>
+                <h3>Partner</h3>
+                <div class="price">₹1,18,000 – ₹2,30,000 / month</div>
+                <p class="who">A business where pay decisions are becoming grievances and the owner needs the whole loop closed.</p>
+                <p class="out">Every people decision is defensible, and the improvement is provable against a locked baseline.</p>
+                <ul class="tick">
+                    <li>Everything in Perform</li>
+                    <li>Alvora HR Compensation — merit cycles, budgets, policy checks, letters</li>
+                    <li>Alvora Hire — every source, zero duplicates, evidence-based shortlists</li>
+                    <li>Salary banding, compa-ratio, merit guideline matrix</li>
+                    <li>Pay equity analysis and remediation plan</li>
+                    <li>People analytics, annual re-measurement, quarterly business review</li>
+                </ul>
+                <p class="next"><b>When to move on:</b> when the client builds their own HR team, move them to Counsel rather than losing them.</p>
+            </div>
+
+            <div class="card pack rv">
+                <div class="range">251+ employees</div>
+                <h3>Counsel</h3>
+                <div class="price">From ₹1,50,000 / month</div>
+                <p class="who">An organisation with its own HR function that is running, but is not yet telling leadership anything it can act on.</p>
+                <p class="out">Your HR team, made sharper. We advise, benchmark and prove — we do not run it for you.</p>
+                <ul class="tick">
+                    <li>Retained senior advisor — strategy, org design, escalations</li>
+                    <li>Alvora HR at scale, licensed to your team with admin enablement</li>
+                    <li>Annual Lens diagnostic and annual Proof re-measurement</li>
+                    <li>Organisation design and operating-model advisory</li>
+                    <li>Executive search at preferential rates, leadership development</li>
+                    <li>Benchmarking against your own history, not borrowed industry figures</li>
+                </ul>
+                <p class="next"><b>The end of the ladder.</b> From here the relationship deepens rather than escalates.</p>
+            </div>
+        </div>
+
+        <p class="pack-note rv">
+            Indicative monthly fees, scoped to headcount. Every service above traces to one of the 17
+            Growth Loop programmes or the three Alvora platforms. Delivery quantities — sessions per
+            month, on-site days, review cycles — are confirmed in writing before contracting.
+        </p>
+    </div>
+</section>
+
+<!-- ============================ PLATFORMS ============================ -->
+<section class="sec" id="platforms">
+    <div class="wrap">
+        <div class="narrow">
+            <div class="kicker rv">The software underneath</div>
+            <h2 class="rv">The services design it. The platforms run it.</h2>
+            <p class="lead-p rv" style="margin-top:1.15rem;">
+                Alvora is the platform line that instruments the loop, and Kinexus Systems builds the
+                operating systems the rest of the business runs on.
+            </p>
+        </div>
+        <div class="plats">
+            <a class="card hoverable plat-card rv" href="alvora.html">
+                <img src="assets/alvora-mark.png" alt="Alvora">
+                <h3>Alvora</h3>
+                <p>Alvora HR, Alvora Hire, Alvora Gig and Alvora Learning — evidence-first people software where every rating traces back to the document that produced it.</p>
+                <span class="go">See the platforms →</span>
+            </a>
+            <a class="card hoverable plat-card rv" href="alvora-hire.html">
+                <img src="assets/alvora-mark.png" alt="Alvora Hire">
+                <h3>Alvora Hire</h3>
+                <p>The applicant tracking system for small recruitment and HR consulting firms. Ask in plain English, get client-ready briefings in a click. From ₹5,000 a month.</p>
+                <span class="go">See what it does →</span>
+            </a>
+            <a class="card hoverable plat-card rv" href="index.html">
+                <img src="assets/kinexus-mark.png" alt="Kinexus Systems">
+                <h3>Kinexus Systems</h3>
+                <p>Operations excellence — custom digital solutions where no system exists, and agentic AI workflows on the systems that do.</p>
+                <span class="go">See the operations work →</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================ TALK ============================ -->
+<section class="sec paper" id="talk">
+    <div class="wrap narrow" style="text-align:center;">
+        <div class="kicker rv">Start here</div>
+        <h2 class="rv">Start where the evidence is.</h2>
+        <p class="lead-p rv" style="margin:1.15rem auto 0;">
+            Tell us what's not working. We'll tell you which stage of the loop you're actually in,
+            what we'd measure first, and what we'd leave alone.
+        </p>
+        <form class="form rv" data-lead data-source="allabouthr" data-brand="AllAboutHR" data-wa="919876701788">
+            <div class="fg">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="fg">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" autocomplete="organization" required>
+            </div>
+            <div class="fg">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+            </div>
+            <div class="fg">
+                <label for="sector">How many people?</label>
+                <select id="sector" name="sector" required>
+                    <option value="">Choose one</option>
+                    <option value="up-to-10">Up to 10</option>
+                    <option value="11-40">11 – 40</option>
+                    <option value="41-100">41 – 100</option>
+                    <option value="101-250">101 – 250</option>
+                    <option value="251-500">251 – 500</option>
+                    <option value="500-plus">More than 500</option>
+                </select>
+            </div>
+            <div class="fg full">
+                <label for="message">What's not working right now?</label>
+                <input type="text" id="message" name="message" placeholder="Say it however you'd say it out loud" required>
+            </div>
+            <button type="submit" class="btn btn-1 submit">Send via WhatsApp <span class="arw">→</span></button>
+            <p class="form-note">
+                Opens WhatsApp with your details filled in. Prefer email?
+                <a href="mailto:hello@kinexus.co.in?subject=AllAboutHR%20enquiry">hello@kinexus.co.in</a> · +91 98767 01788
+            </p>
+        </form>
+    </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="foot-wrap">
+    <div class="stream-rule" aria-hidden="true"></div>
+    <div class="wrap foot">
+        <div>
+            <a class="brand" href="allabouthr.html">
+                <img src="assets/allabouthr-mark-white.png" alt="" width="36" height="17">
+                <span class="wm">
+                    <span class="wm-aahr">AllAboutHR</span>
+                    <span class="endorse">Talent · Technology · Transformation</span>
+                </span>
+            </a>
+            <p class="foot-blurb">
+                Evidence in, decision out, outcome measured. Strategic HR consulting run as a loop
+                that closes.
+            </p>
+        </div>
+        <div>
+            <h4>The Growth Loop</h4>
+            <ul>
+                <li><a href="#loop">See · Shape · Source</a></li>
+                <li><a href="#loop">Strengthen · Sustain</a></li>
+                <li><a href="#entry">Entry points</a></li>
+                <li><a href="#packs">Packages</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>The house</h4>
+            <ul>
+                <li><a href="alvora.html">Alvora platforms</a></li>
+                <li><a href="alvora-hire.html">Alvora Hire</a></li>
+                <li><a href="index.html">Kinexus Systems</a></li>
+                <li><a href="blog.html">Insights</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Talk</h4>
+            <ul>
+                <li><a href="#talk">Start a conversation</a></li>
+                <li><a href="mailto:hello@kinexus.co.in">hello@kinexus.co.in</a></li>
+                <li><a href="https://wa.me/919876701788" target="_blank" rel="noopener">WhatsApp</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap foot-bottom">
+        <span>© 2026 AllAboutHR · Mohali, Punjab, India</span>
+        <span>Alvora and Kinexus Systems are part of the AllAboutHR group.</span>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
