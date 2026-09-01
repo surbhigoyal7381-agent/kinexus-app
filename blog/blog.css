@@ -62,7 +62,9 @@ nav.site {
 .nav-logo .wm { display: flex; flex-direction: column; line-height: 1; }
 .nav-logo .wm-kinexus { font-family: var(--display); font-weight: 300; font-size: 1.16rem;
     letter-spacing: .14em; color: var(--navy); text-transform: uppercase; }
-.nav-logo .endorse { font-size: 0.62rem; color: var(--slate); margin-top: 0.28rem; letter-spacing: 0.04em; }
+/* The tagline, set as it appears in the mark itself. */
+.nav-logo .wm-tagline { font-family: var(--display); font-size: 0.56rem; font-weight: 400;
+    letter-spacing: 0.17em; text-transform: uppercase; color: var(--navy); margin-top: 0.34rem; }
 .nav-logo img { height: 34px; width: auto; }
 .nav-logo:hover { text-decoration: none; }
 .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
