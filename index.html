@@ -203,25 +203,45 @@
         .hcard.current { background: var(--mist); }
         .hcard.current .go { color: var(--faint); }
 
-        /* ---------- founder ---------- */
-        .solo {
-            margin-top: 3.25rem; background: var(--card); border: 1px solid var(--rule); border-radius: 24px;
-            padding: 2.6rem; box-shadow: var(--sh-1);
-            display: grid; grid-template-columns: 230px 1fr; gap: 3rem; align-items: start;
+        /* ---------- the two principals ---------- */
+        .people { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3.25rem; }
+        .person {
+            display: flex; flex-direction: column; position: relative; overflow: hidden;
+            background: var(--card); border: 1px solid var(--rule); border-radius: 24px;
+            padding: 2.25rem; box-shadow: var(--sh-1);
         }
-        .solo-side { text-align: center; }
-        .avatar {
-            width: 112px; height: 112px; border-radius: 50%; margin: 0 auto 1rem; display: block;
-            object-fit: cover; background: var(--mist); border: 3px solid #fff; box-shadow: var(--sh-2);
+        .person::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; }
+        .person.p-kin::before { background: var(--teal); }
+        .person.p-hr::before  { background: var(--plum); }
+        .person-head { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 1.5rem; }
+        /* The monogram sits under the photo, so a missing file reads as a design
+           choice rather than a broken image. */
+        .shot {
+            position: relative; width: 92px; height: 92px; flex-shrink: 0; border-radius: 50%;
+            display: grid; place-items: center; overflow: hidden;
+            border: 3px solid #fff; box-shadow: var(--sh-2); background: var(--mist);
         }
-        .solo .nm { font-family: Poppins, sans-serif; font-weight: 600; font-size: 1.22rem; letter-spacing: -0.02em; }
-        .solo .rl { font-size: .88rem; color: var(--faint); margin-top: .1rem; }
-        .solo .ln { display: inline-block; margin-top: .9rem; font-size: .9rem; font-weight: 600; color: var(--lead-d); text-decoration: none; }
-        .solo .ln:hover { text-decoration: underline; }
-        .solo-body p { color: var(--slate); }
-        .solo-body p + p { margin-top: .9rem; }
+        .shot .mono {
+            font-family: Poppins, sans-serif; font-weight: 300; font-size: 1.5rem;
+            letter-spacing: .06em; color: var(--slate);
+        }
+        .shot img {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .p-kin .shot { background: rgba(1,116,160,.10); }
+        .p-hr  .shot { background: rgba(147,54,134,.10); }
+        .person .nm { display: block; font-family: Poppins, sans-serif; font-weight: 600; font-size: 1.22rem; letter-spacing: -0.02em; }
+        .person .rl { display: block; font-size: .88rem; color: var(--faint); margin-top: .15rem; }
+        .person .ln { display: inline-block; margin-top: .7rem; font-size: .9rem; font-weight: 600; text-decoration: none; }
+        .p-kin .ln { color: var(--teal-d); }
+        .p-hr  .ln { color: var(--plum-d); }
+        .person .ln:hover { text-decoration: underline; }
+        .person-body p { color: var(--slate); font-size: .99rem; }
+        .person-body p + p { margin-top: .85rem; }
+        .p-hr .pull { border-left-color: var(--plum); }
         .pull {
-            margin-top: 1.4rem; padding-left: 1.15rem; border-left: 3px solid var(--lead);
+            margin-top: auto; padding-top: 1.4rem; padding-left: 1.15rem; border-left: 3px solid var(--lead);
             font-family: Poppins, sans-serif; font-weight: 500; font-size: 1.1rem;
             color: var(--ink); letter-spacing: -0.02em; line-height: 1.42;
         }
@@ -261,11 +281,10 @@
             .callout { padding: 2.25rem 1.5rem; border-radius: 20px; }
             .chip-a { left: 0; }
             .chip-b { right: 0; }
-            .solo { grid-template-columns: 1fr; gap: 1.75rem; padding: 2rem 1.5rem; }
-            .solo-side { text-align: left; display: flex; align-items: center; gap: 1rem; }
-            .solo-id { display: flex; flex-direction: column; align-items: flex-start; }
-            .avatar { width: 66px; height: 66px; margin: 0; flex-shrink: 0; border-width: 2px; }
-            .solo .ln { margin-top: .45rem; }
+            .people { grid-template-columns: 1fr; }
+            .person { padding: 1.9rem 1.5rem; }
+            .shot { width: 68px; height: 68px; border-width: 2px; }
+            .shot .mono { font-size: 1.15rem; }
         }
     </style>
 </head>
@@ -665,43 +684,87 @@
     </div>
 </section>
 
-<!-- ============================ FOUNDER ============================ -->
+<!-- ============================ THE TWO PRINCIPALS ============================ -->
 <section class="sec mist" id="us">
     <span class="anchor-alias" id="about"></span>
     <div class="wrap">
         <div class="narrow">
             <div class="kicker rv">Who you'd be working with</div>
-            <h2 class="rv">You'll be working with me.</h2>
+            <h2 class="rv">Two principals. Both in the room.</h2>
             <p class="lead-p rv" style="margin-top:1.15rem;">
-                Not an account manager. Not a bench of consultants you'll meet once at the pitch and
-                never again. I'm in the room when it's going well and when it isn't — and where the
-                work needs an HR practice next to the software, AllAboutHR works alongside me.
+                Not account managers. Not a bench of consultants you'll meet once at the pitch and
+                never again. The systems side and the people side each have a name against them, and
+                both are there when it's going well and when it isn't.
             </p>
         </div>
-        <div class="solo rv">
-            <div class="solo-side">
-                <img class="avatar" src="assets/surbhi.jpg" alt="Surbhi Goyal, founder of Kinexus Systems" width="112" height="112" loading="lazy" decoding="async">
-                <div class="solo-id">
-                    <div class="nm">Surbhi Goyal</div>
-                    <div class="rl">Founder, Kinexus Systems</div>
-                    <a class="ln" href="https://www.linkedin.com/in/surbhigoyal-aiproductleader/" target="_blank" rel="noopener">On LinkedIn →</a>
+
+        <div class="people">
+            <div class="person p-kin rv">
+                <div class="person-head">
+                    <span class="shot">
+                        <span class="mono" aria-hidden="true">SG</span>
+                        <img src="assets/surbhi.jpg" alt="Surbhi Goyal" width="92" height="92"
+                             loading="lazy" decoding="async" onerror="this.remove()">
+                    </span>
+                    <span>
+                        <span class="nm">Surbhi Goyal</span>
+                        <span class="rl">Founder, Kinexus Systems</span>
+                        <a class="ln" href="https://www.linkedin.com/in/surbhigoyal-aiproductleader/" target="_blank" rel="noopener">On LinkedIn →</a>
+                    </span>
+                </div>
+                <div class="person-body">
+                    <p>
+                        Twenty-two years building software products. Fifteen of them at
+                        <strong>CatalystOne</strong>, a European HR platform, running product and
+                        development for India and growing that team from one person to 150+ — with
+                        attrition under 2%. Most recently VP of Products at Applify, building AI
+                        systems for enterprises. ISO&nbsp;27001 lead auditor, which is a boring
+                        credential right up until your data is involved.
+                    </p>
+                    <p>
+                        She started out writing code for government offices in Haryana, where the
+                        software either worked for the clerk at the counter or it didn't work at all.
+                        That lesson never left.
+                    </p>
+                    <div class="pull">“I've spent a career watching good software get installed and never used. Adoption is the deliverable, not installation.”</div>
                 </div>
             </div>
-            <div class="solo-body">
-                <p>
-                    Twenty-two years building software products. Fifteen of them at <strong>CatalystOne</strong>,
-                    a European HR platform, where I ran product and development for India and grew the team from
-                    one person to 150+ — with attrition under 2%. Most recently VP of Products at Applify,
-                    building AI systems for enterprises. ISO&nbsp;27001 lead auditor, which is a boring
-                    credential right up until your data is involved.
-                </p>
-                <p>
-                    I started out writing code for government offices in Haryana, where the software either
-                    worked for the clerk at the counter or it didn't work at all. That lesson never left.
-                </p>
-                <div class="pull">I've spent a career watching good software get installed and never used. Adoption is the deliverable, not installation.</div>
+
+            <div class="person p-hr rv">
+                <div class="person-head">
+                    <span class="shot">
+                        <span class="mono" aria-hidden="true">MS</span>
+                        <img src="assets/mahavir-singh.jpg" alt="Mahavir Singh" width="92" height="92"
+                             style="object-position:50% 20%" loading="lazy" decoding="async" onerror="this.remove()">
+                    </span>
+                    <span>
+                        <span class="nm">Mahavir Singh</span>
+                        <span class="rl">Founder &amp; CEO, AllAboutHR</span>
+                        <a class="ln" href="https://www.linkedin.com/in/ceomahavirsingh/" target="_blank" rel="noopener">On LinkedIn →</a>
+                    </span>
+                </div>
+                <div class="person-body">
+                    <p>
+                        Over fifteen years of HR expertise, delivering tailored HR solutions for
+                        startups, SMEs, enterprises and educational institutions. His practice covers
+                        talent acquisition, training and development, and placement — helping
+                        organisations and individuals reach their goals with precision and efficiency.
+                    </p>
+                    <p>
+                        He builds high-performing teams for businesses and supports professionals and
+                        students in unlocking their potential, with a commitment to excellence in
+                        global human resource management and to the detail that makes it hold up.
+                    </p>
+                    <div class="pull">“My mission is to redefine HR consulting by combining modern practices with a client-centric approach.”</div>
+                </div>
             </div>
         </div>
+
+        <p class="rv" style="margin-top:2rem;font-size:.95rem;color:var(--slate);max-width:46rem;">
+            Where the work needs an HR practice next to the software, the two run the same
+            engagement — <a href="allabouthr.html">AllAboutHR</a> designs the framework and
+            Kinexus builds the system it runs on.
+        </p>
     </div>
 </section>
 
