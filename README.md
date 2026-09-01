@@ -59,12 +59,15 @@ Reversed panels use plum-dark `#6E2564` (white on it is 9.94:1); white on plum
 ## Pain statements and the WhatsApp call to action
 
 No fees, plans or packages are published anywhere on the site. In their place
-every page carries the audience's own sentences as `.pain` cards (see
-`assets/brand.css`). Each card is a link to `wa.me/919876701788` with that
-sentence already URL-encoded into the message, so a visitor who recognises
-their week arrives in the chat with the problem statement written for them and
-nothing to fill in. Each section closes with a green "none of these — here's
-ours" button that opens an empty-ended message.
+every page carries the audience's own sentences, each one a link to
+`wa.me/919876701788` with that sentence already URL-encoded into the message —
+so a visitor who recognises their week arrives in the chat with the problem
+statement written for them and nothing to fill in. Every section closes with a
+green "none of these — here's ours" button that opens an open-ended message.
+
+Two implementations, same idea: `.pain` cards from `assets/brand.css` on the
+three house pages and on `alvora-hire.html`, and the existing "Reality" cards
+on the industry pages, which became anchors carrying the same links.
 
 To add one, copy an existing `.pain` anchor and encode the new sentence into
 the `text=` parameter — the visible text and the message must stay identical,
