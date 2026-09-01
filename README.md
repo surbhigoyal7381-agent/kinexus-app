@@ -82,14 +82,17 @@ Hire lockup is composed from the Alvora mark plus the product word set in
 Poppins; `assets/alvora-hrms-logo.png` is the stacked Alvora HRMS lockup as
 supplied.
 
-## Outstanding asset
+## Portraits
 
-`assets/mahavir-singh.jpg` is referenced by the two-principal section on
-`index.html` but is not in the repo. Until it is added, the avatar renders an
-"MS" monogram in the AllAboutHR plum rather than a broken image (the `<img>`
-removes itself on error), so the page is safe to deploy without it. Drop a
-square portrait in at that path and it takes over; the crop is set to
-`object-position: 50% 20%` to favour the upper third of a portrait shot.
+`assets/mahavir-singh.jpeg` is the supplied portrait, kept at full size as the
+source. `assets/mahavir-singh-avatar.jpg` is the square head-and-shoulders crop
+the homepage actually uses — 512x512, cropped so his head reads at the same
+scale as Surbhi's in the pair. Re-crop from the source rather than upscaling
+this one if the framing ever needs to change.
+
+Both avatars sit inside a `.shot` wrapper that holds a monogram behind the
+image, and each `<img>` removes itself on error — so a missing or renamed file
+degrades to initials in the brand colour rather than a broken image.
 
 ## Deploy
 
