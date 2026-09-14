@@ -7,7 +7,8 @@ is driven by one manifest file. Adding a post takes about five minutes.
 
 ```
 /blog.html              ← the listing page (auto-renders cards from posts.js)
-/blog/blog.css          ← shared styles for the whole blog (edit once, restyle all)
+/blog/blog.css          ← blog-only styles; loads after /assets/brand.css (the house
+                           design system), which supplies nav, footer, type and buttons
 /blog/posts.js          ← THE MANIFEST: one entry per post. Single source of truth.
 /blog/post.js           ← shared script: auto prev/next + related on every post
 /blog/_template.html    ← copy this to create a new post
@@ -38,7 +39,6 @@ Put it at the **top** of the `KINEXUS_POSTS` array (newest first):
   category: "Engineering & Auto",   // must match a value in KINEXUS_CATEGORIES
   date: "2026-08-12",               // YYYY-MM-DD, drives ordering
   readMins: 4,
-  emoji: "🧾",
   tags: ["GST", "costing", "compliance"]
 },
 ```

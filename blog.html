@@ -10,7 +10,7 @@
       gtag('js', new Date());
       gtag('config', 'G-G4J9X47QDT');
     </script>
-    <meta name="theme-color" content="#01536F">
+    <meta name="theme-color" content="#FBF9FC">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Insights — Kinexus Blog for Manufacturing MSMEs</title>
@@ -34,10 +34,16 @@
     <meta name="twitter:description" content="Straight talk for factory owners: buyer audits, quality proof, and cash discipline.">
     <meta name="twitter:image" content="https://www.kinexus.co.in/logo.png">
 
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
     <link rel="alternate" type="application/rss+xml" title="Kinexus Insights" href="https://www.kinexus.co.in/blog/feed.xml">
+    <link rel="preload" href="/assets/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/brand.css">
     <link rel="stylesheet" href="/blog/blog.css">
+    <script>document.documentElement.className += ' js';</script>
 
     <!-- Structured data: the blog itself -->
     <script type="application/ld+json">
@@ -68,38 +74,58 @@
     }
     </script>
 </head>
-<body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <a class="wa-float" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20I%27d%20like%20to%20discuss%20my%20factory%27s%20bottlenecks." target="_blank" rel="noopener" aria-label="Chat with Kinexus on WhatsApp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span>
-    </a>
+<body data-stream="kinexus">
+<a class="skip" href="#main">Skip to content</a>
 
-    <!-- Navigation -->
-    <nav class="site">
-        <div class="nav-container">
-            <a class="nav-logo" href="/index.html" aria-label="Kinexus Systems — home"><img src="/logo.png" alt=""><span class="wm"><span class="wm-kinexus">Kinexus</span><span class="wm-tagline">Automation to Excellence</span></span></a>
-            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-            <ul class="nav-links">
-                <li><a href="/index.html#automation">How it works</a></li>
-                <li><a href="/allabouthr.html">AllAboutHR</a></li>
-                <li><a href="/alvora.html">Alvora</a></li>
-                <li><a href="/portfolio.html">Portfolio</a></li>
-                <li><a href="/blog.html" aria-current="page">Insights</a></li>
-                <li><a href="/index.html#contact" class="nav-cta">Book a diagnostic</a></li>
-            </ul>
-        </div>
-    </nav>
+<a class="wa" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20I%27d%20like%20to%20discuss%20my%20factory%27s%20bottlenecks." target="_blank" rel="noopener" aria-label="Chat with Kinexus on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span>
+</a>
 
-    <header class="blog-hero">
-        <div class="eyebrow">Insights</div>
-        <h1>Straight talk for factory owners</h1>
-        <p>Buyer audits, quality proof, data integrity, cash discipline — what's actually happening, what it means for your floor, and what to do about it. Written plainly, grounded in what we see in the clusters, and honest about what may change.</p>
-    </header>
+<!-- ============================ NAV ============================ -->
+<nav class="nav">
+    <div class="nav-in">
+        <a class="brand" href="/index.html" aria-label="Kinexus Systems — home">
+            <img src="/assets/kinexus-mark.png" alt="" width="34" height="19">
+            <span class="wm">
+                <span class="wm-kinexus">Kinexus</span>
+                <span class="wm-tagline">Automation to Excellence</span>
+            </span>
+        </a>
+        <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">☰</button>
+        <ul class="nav-links" id="navlinks">
+            <li><a href="/index.html#what">What we do</a></li>
+            <li><a href="/index.html#how">How we work</a></li>
+            <li><a href="/index.html#proof">Proof</a></li>
+            <li><a href="/allabouthr.html">AllAboutHR</a></li>
+            <li><a href="/alvora.html">Alvora</a></li>
+            <li><a href="/blog.html" aria-current="page">Insights</a></li>
+            <li><a href="/index.html#talk" class="nav-cta">Talk to us</a></li>
+        </ul>
+    </div>
+    <div class="stream-rule" aria-hidden="true"></div>
+</nav>
 
-    <main id="main">
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<header class="blog-hero">
+    <div class="wrap">
+        <div class="kicker rv">Insights</div>
+        <h1 class="rv">Straight talk for factory owners.</h1>
+        <p class="lead-p rv">
+            Buyer audits, quality proof, data integrity, cash discipline — what's actually happening,
+            what it means for your floor, and what to do about it. Written plainly, grounded in what
+            we see in the clusters, and honest about what may change.
+        </p>
+    </div>
+</header>
+
+<!-- ============================ POSTS ============================ -->
+<section class="sec tight" style="padding-top:1rem;">
+    <div class="wrap">
         <div class="blog-controls">
             <div class="blog-search">
-                <label for="q" class="skip-link">Search posts</label>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
                 <input type="search" id="q" placeholder="Search insights…" autocomplete="off" aria-label="Search insights">
             </div>
             <div class="blog-filters" id="filters" role="group" aria-label="Filter by category"></div>
@@ -108,58 +134,68 @@
         <div class="post-grid" id="grid" aria-live="polite"></div>
 
         <noscript>
-            <div class="container" style="padding-bottom:3rem;">
-                <p style="color:var(--muted);margin-bottom:1rem;">Browse all insights:</p>
-                <ul style="margin-left:1.2rem;line-height:2;">
-                    <li><a href="/blog/buyers-first-question-is-proof-not-price.html">The buyer's first question isn't price anymore. It's proof.</a></li>
-                    <li><a href="/blog/audit-won-or-lost-in-your-records.html">Your next audit will be won or lost in your records, not your lab</a></li>
-                </ul>
-            </div>
+            <ul style="margin:2rem 0 0 1.2rem;line-height:2;">
+                <li><a href="/blog/buyers-first-question-is-proof-not-price.html">The buyer's first question isn't price anymore. It's proof.</a></li>
+                <li><a href="/blog/audit-won-or-lost-in-your-records.html">Your next audit will be won or lost in your records, not your lab</a></li>
+            </ul>
         </noscript>
+    </div>
+</section>
 
-    </main>
+</main>
 
-    <!-- Footer -->
-    <footer class="site">
-        <div class="footer-content">
-            <div>
-                <h4>Product</h4>
-                <ul>
-                    <li><a href="/index.html#automation">How it works</a></li>
-                    <li><a href="/allabouthr.html">AllAboutHR</a></li>
-                    <li><a href="/alvora.html">Alvora platforms</a></li>
-                    <li><a href="/alvora-hire.html">Alvora Hire</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="/index.html#contact">Contact us</a></li>
-                    <li><a href="/index.html#about">About</a></li>
-                    <li><a href="/portfolio.html">Portfolio</a></li>
-                    <li><a href="/blog.html">Insights</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Industries</h4>
-                <ul>
-                    <li><a href="/engineering.html">Engineering &amp; Auto</a></li>
-                    <li><a href="/textiles.html">Hosiery &amp; Textiles</a></li>
-                    <li><a href="/wellness.html">Pharma &amp; Wellness</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Subscribe</h4>
-                <ul>
-                    <li><a href="/blog/feed.xml">RSS feed</a></li>
-                    <li><a href="https://wa.me/919876701788" target="_blank" rel="noopener">WhatsApp us</a></li>
-                </ul>
-            </div>
+<!-- ============================ FOOTER ============================ -->
+<footer class="foot-wrap">
+    <div class="stream-rule" aria-hidden="true"></div>
+    <div class="wrap foot">
+        <div>
+            <a class="brand" href="/index.html">
+                <img src="/assets/kinexus-mark-white.png" alt="" width="34" height="19">
+                <span class="wm">
+                    <span class="wm-kinexus">Kinexus</span>
+                    <span class="wm-tagline">Automation to Excellence</span>
+                </span>
+            </a>
+            <p class="foot-blurb">
+                We build the system where you don't have one, and put AI agents to work on the
+                systems you already have. AI only where it earns its place.
+            </p>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 Kinexus Systems · Mohali, Punjab, India · Kinexus Systems — an <a href="/allabouthr.html">AllAboutHR</a> company</p>
+        <div>
+            <h4>What we do</h4>
+            <ul>
+                <li><a href="/index.html#what">Custom digital solutions</a></li>
+                <li><a href="/index.html#what">Agentic AI workflows</a></li>
+                <li><a href="/index.html#areas">Where it lands</a></li>
+                <li><a href="/portfolio.html">Portfolio</a></li>
+                <li><a href="/index.html#proof">Proof</a></li>
+            </ul>
         </div>
-    </footer>
+        <div>
+            <h4>The house</h4>
+            <ul>
+                <li><a href="/allabouthr.html">AllAboutHR</a></li>
+                <li><a href="/alvora.html">Alvora platforms</a></li>
+                <li><a href="/alvora-hire.html">Alvora Hire</a></li>
+                <li><a href="/index.html#us">Who we are</a></li>
+                <li><a href="/blog.html">Insights</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Talk</h4>
+            <ul>
+                <li><a href="/index.html#talk">Start a conversation</a></li>
+                <li><a href="mailto:hello@kinexus.co.in">hello@kinexus.co.in</a></li>
+                <li><a href="https://wa.me/919876701788" target="_blank" rel="noopener">WhatsApp</a></li>
+                <li><a href="/blog/feed.xml">RSS feed</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap foot-bottom">
+        <span>© 2026 Kinexus Systems · Mohali, Punjab, India</span>
+        <span>Kinexus Systems — an <a href="/allabouthr.html">AllAboutHR</a> company</span>
+    </div>
+</footer>
 
     <script src="/blog/posts.js"></script>
     <script>
@@ -209,14 +245,13 @@
             grid.innerHTML = shown.map(function (p) {
                 var url = '/blog/' + p.slug + '.html';
                 return '<article class="post-card">'
-                    + '<a class="thumb" href="' + url + '" aria-hidden="true" tabindex="-1">' + (p.emoji || '📄') + '</a>'
-                    + '<div class="body">'
                     + '<div class="cat">' + esc(p.category) + '</div>'
                     + '<h3><a href="' + url + '">' + esc(p.title) + '</a></h3>'
                     + '<p class="excerpt">' + esc(p.excerpt) + '</p>'
                     + '<div class="meta"><time datetime="' + p.date + '">' + fmtDate(p.date) + '</time>'
-                    + '<span class="dot">·</span><span>' + (p.readMins || 3) + ' min read</span></div>'
-                    + '</div></article>';
+                    + '<span class="dot">·</span><span>' + (p.readMins || 3) + ' min read</span>'
+                    + '<span class="go" aria-hidden="true">Read <span class="arw">→</span></span></div>'
+                    + '</article>';
             }).join('');
         }
 
@@ -228,15 +263,8 @@
 
         buildFilters();
         render();
-
-        // Mobile nav
-        var tgl = document.querySelector('.nav-toggle');
-        if (tgl) tgl.addEventListener('click', function () {
-            var links = document.querySelector('.nav-links');
-            var open = links.classList.toggle('open');
-            tgl.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
     })();
     </script>
+<script src="/assets/site.js"></script>
 </body>
 </html>

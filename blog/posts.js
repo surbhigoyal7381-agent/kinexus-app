@@ -13,7 +13,7 @@
      category   must match one of the CATEGORIES list below for filtering
      date       ISO date "YYYY-MM-DD" (drives ordering + "published" label)
      readMins   estimated reading time in minutes
-     emoji      icon shown on the card thumbnail
+     emoji      (legacy, no longer displayed — safe to omit)
      tags       array of keyword strings (used for search)
    ========================================================================== */
 

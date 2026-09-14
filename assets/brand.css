@@ -328,7 +328,7 @@ body[data-stream="allabouthr"] .stream-rule { background: var(--grad); }
 }
 
 /* ---------- footer ---------- */
-.foot-wrap { background: var(--ink); color: #C8BFCE; padding: 4.5rem 0 2rem; }
+.foot-wrap { background: var(--ink); color: #C8BFCE; padding: 0 0 2rem; }
 .foot-wrap .stream-rule { margin-bottom: 4.5rem; }
 .foot { display: grid; grid-template-columns: 2.1fr 1fr 1fr 1fr; gap: 2.5rem; }
 .foot h4 {
@@ -350,6 +350,7 @@ body[data-stream="allabouthr"] .stream-rule { background: var(--grad); }
     font-size: .86rem; color: #A99FB0;
     display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
 }
+.foot-bottom a { color: #fff; text-underline-offset: 3px; }
 .house-line { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
 .house-line a { text-decoration: underline; text-underline-offset: 3px; }
 

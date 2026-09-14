@@ -28,7 +28,7 @@
         if (newer) html += '<a class="prev" href="' + url(newer) + '"><div class="dir">← Newer</div><div class="t">' + esc(newer.title) + '</div></a>';
         else html += '<a class="prev" href="/blog.html"><div class="dir">←</div><div class="t">All insights</div></a>';
         if (older) html += '<a class="next" href="' + url(older) + '"><div class="dir">Older →</div><div class="t">' + esc(older.title) + '</div></a>';
-        else html += '<a class="next" href="/index.html#contact"><div class="dir">Next step →</div><div class="t">Book a diagnostic</div></a>';
+        else html += '<a class="next" href="/index.html#talk"><div class="dir">Next step →</div><div class="t">Book a diagnostic</div></a>';
         navEl.innerHTML = html;
     }
 
@@ -44,19 +44,12 @@
         rel = rel.slice(0, 3);
         if (rel.length) {
             relGrid.innerHTML = rel.map(function (p) {
-                return '<article class="post-card"><a class="thumb" href="' + url(p) + '" aria-hidden="true" tabindex="-1">' + (p.emoji || '📄') + '</a>'
-                    + '<div class="body"><div class="cat">' + esc(p.category) + '</div>'
+                return '<article class="post-card"><div class="cat">' + esc(p.category) + '</div>'
                     + '<h3><a href="' + url(p) + '">' + esc(p.title) + '</a></h3>'
-                    + '<div class="meta"><time datetime="' + p.date + '">' + fmtDate(p.date) + '</time></div></div></article>';
+                    + '<p class="excerpt">' + esc(p.excerpt) + '</p>'
+                    + '<div class="meta"><time datetime="' + p.date + '">' + fmtDate(p.date) + '</time>'
+                    + '<span class="go" aria-hidden="true">Read <span class="arw">→</span></span></div></article>';
             }).join('');
         } else if (relWrap) { relWrap.style.display = 'none'; }
     }
-
-    // Mobile nav toggle
-    var tgl = document.querySelector('.nav-toggle');
-    if (tgl) tgl.addEventListener('click', function () {
-        var links = document.querySelector('.nav-links');
-        var open = links.classList.toggle('open');
-        tgl.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
 })();

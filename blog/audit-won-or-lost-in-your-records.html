@@ -10,7 +10,7 @@
       gtag('js', new Date());
       gtag('config', 'G-G4J9X47QDT');
     </script>
-    <meta name="theme-color" content="#01536F">
+    <meta name="theme-color" content="#FBF9FC">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Your next audit is won or lost in your records — Kinexus Insights</title>
@@ -34,10 +34,16 @@
     <meta name="twitter:description" content="Not bad medicine. Bad record-keeping about good medicine. Here's the fix.">
     <meta name="twitter:image" content="https://www.kinexus.co.in/logo.png">
 
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
     <link rel="alternate" type="application/rss+xml" title="Kinexus Insights" href="https://www.kinexus.co.in/blog/feed.xml">
+    <link rel="preload" href="/assets/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/brand.css">
     <link rel="stylesheet" href="/blog/blog.css">
+    <script>document.documentElement.className += ' js';</script>
 
     <script type="application/ld+json">
     {
@@ -67,25 +73,36 @@
     }
     </script>
 </head>
-<body data-slug="audit-won-or-lost-in-your-records">
-    <a class="skip-link" href="#main">Skip to content</a>
-    <a class="wa-float" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20I%20read%20your%20article%20and%20want%20to%20discuss%20my%20factory." target="_blank" rel="noopener" aria-label="Chat with Kinexus on WhatsApp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span>
-    </a>
+<body data-stream="kinexus" data-slug="audit-won-or-lost-in-your-records">
+<a class="skip" href="#main">Skip to content</a>
 
-    <nav class="site">
-        <div class="nav-container">
-            <a class="nav-logo" href="/index.html" aria-label="Kinexus Systems — home"><img src="/logo.png" alt=""><span class="wm"><span class="wm-kinexus">Kinexus</span><span class="wm-tagline">Automation to Excellence</span></span></a>
-            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-            <ul class="nav-links">
-                <li><a href="/index.html#automation">How it works</a></li>
-                <li><a href="/allabouthr.html">AllAboutHR</a></li>
-                <li><a href="/alvora.html">Alvora</a></li>
-                <li><a href="/blog.html" aria-current="page">Insights</a></li>
-                <li><a href="/index.html#contact" class="nav-cta">Book a diagnostic</a></li>
-            </ul>
-        </div>
-    </nav>
+<a class="wa" href="https://wa.me/919876701788?text=Hi%20Kinexus%2C%20I%20read%20your%20article%20and%20want%20to%20discuss%20my%20factory." target="_blank" rel="noopener" aria-label="Chat with Kinexus on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.8-1.1A9 9 0 1 0 12 3z" fill="#fff"/></svg><span>WhatsApp</span>
+</a>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav">
+    <div class="nav-in">
+        <a class="brand" href="/index.html" aria-label="Kinexus Systems — home">
+            <img src="/assets/kinexus-mark.png" alt="" width="34" height="19">
+            <span class="wm">
+                <span class="wm-kinexus">Kinexus</span>
+                <span class="wm-tagline">Automation to Excellence</span>
+            </span>
+        </a>
+        <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">☰</button>
+        <ul class="nav-links" id="navlinks">
+            <li><a href="/index.html#what">What we do</a></li>
+            <li><a href="/index.html#how">How we work</a></li>
+            <li><a href="/index.html#proof">Proof</a></li>
+            <li><a href="/allabouthr.html">AllAboutHR</a></li>
+            <li><a href="/alvora.html">Alvora</a></li>
+            <li><a href="/blog.html" aria-current="page">Insights</a></li>
+            <li><a href="/index.html#talk" class="nav-cta">Talk to us</a></li>
+        </ul>
+    </div>
+    <div class="stream-rule" aria-hidden="true"></div>
+</nav>
 
     <main id="main">
         <article class="post-wrap">
@@ -94,7 +111,7 @@
             </nav>
 
             <header class="post-header">
-                <a class="cat" href="/wellness.html">Pharma, Nutraceuticals &amp; Wellness</a>
+                <a class="kicker cat" href="/wellness.html">Pharma, Nutraceuticals &amp; Wellness</a>
                 <h1>Your next audit will be won or lost in your records, not your lab</h1>
                 <div class="post-meta">
                     <time datetime="2026-06-24">24 June 2026</time>
@@ -102,8 +119,6 @@
                     <span class="dot">·</span><span>Kinexus Systems</span>
                 </div>
             </header>
-
-            <figure class="post-hero-figure" aria-hidden="true">📋</figure>
 
             <div class="post-body">
                 <p>Ask around Baddi about failed regulatory inspections and buyer audits, and a pattern shows up that has little to do with product quality: the product was fine; the paperwork wasn't. Data-integrity findings — gaps in batch records, transcription mismatches, records that couldn't be traced back to source — have long been among the most common reasons Indian pharma facilities get cited by regulators. Not bad medicine. Bad record-keeping about good medicine.</p>
@@ -131,46 +146,76 @@
             <div class="post-cta">
                 <h2>Be audit-ready permanently, not in a panic.</h2>
                 <p>The diagnostic gives you a scored baseline and your top three bottlenecks in two weeks.</p>
-                <a class="btn-primary" href="/index.html#contact">Book your diagnostic →</a>
+                <a class="btn btn-light" href="/index.html#talk">Book your diagnostic <span class="arw">→</span></a>
             </div>
 
             <nav class="post-nav" id="post-nav" aria-label="More posts"></nav>
         </article>
 
         <section class="related" id="related">
-            <h2>More from Insights</h2>
-            <div class="related-grid" id="related-grid"></div>
+            <div class="wrap">
+                <div class="kicker">Keep reading</div>
+                <h2>More from Insights</h2>
+                <div class="post-grid" id="related-grid"></div>
+            </div>
         </section>
     </main>
 
-    <footer class="site">
-        <div class="footer-content">
-            <div><h4>Product</h4><ul>
-                <li><a href="/index.html#automation">How it works</a></li>
-                <li><a href="/index.html#roi">ROI &amp; value</a></li>
-                <li><a href="/people.html">People</a></li>
-            </ul></div>
-            <div><h4>Company</h4><ul>
-                <li><a href="/index.html#contact">Contact us</a></li>
-                <li><a href="/index.html#about">About</a></li>
+<!-- ============================ FOOTER ============================ -->
+<footer class="foot-wrap">
+    <div class="stream-rule" aria-hidden="true"></div>
+    <div class="wrap foot">
+        <div>
+            <a class="brand" href="/index.html">
+                <img src="/assets/kinexus-mark-white.png" alt="" width="34" height="19">
+                <span class="wm">
+                    <span class="wm-kinexus">Kinexus</span>
+                    <span class="wm-tagline">Automation to Excellence</span>
+                </span>
+            </a>
+            <p class="foot-blurb">
+                We build the system where you don't have one, and put AI agents to work on the
+                systems you already have. AI only where it earns its place.
+            </p>
+        </div>
+        <div>
+            <h4>What we do</h4>
+            <ul>
+                <li><a href="/index.html#what">Custom digital solutions</a></li>
+                <li><a href="/index.html#what">Agentic AI workflows</a></li>
+                <li><a href="/index.html#areas">Where it lands</a></li>
+                <li><a href="/portfolio.html">Portfolio</a></li>
+                <li><a href="/index.html#proof">Proof</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>The house</h4>
+            <ul>
+                <li><a href="/allabouthr.html">AllAboutHR</a></li>
+                <li><a href="/alvora.html">Alvora platforms</a></li>
+                <li><a href="/alvora-hire.html">Alvora Hire</a></li>
+                <li><a href="/index.html#us">Who we are</a></li>
                 <li><a href="/blog.html">Insights</a></li>
-            </ul></div>
-            <div><h4>Industries</h4><ul>
-                <li><a href="/engineering.html">Engineering &amp; Auto</a></li>
-                <li><a href="/textiles.html">Hosiery &amp; Textiles</a></li>
-                <li><a href="/wellness.html">Pharma &amp; Wellness</a></li>
-            </ul></div>
-            <div><h4>Subscribe</h4><ul>
+            </ul>
+        </div>
+        <div>
+            <h4>Talk</h4>
+            <ul>
+                <li><a href="/index.html#talk">Start a conversation</a></li>
+                <li><a href="mailto:hello@kinexus.co.in">hello@kinexus.co.in</a></li>
+                <li><a href="https://wa.me/919876701788" target="_blank" rel="noopener">WhatsApp</a></li>
                 <li><a href="/blog/feed.xml">RSS feed</a></li>
-                <li><a href="https://wa.me/919876701788" target="_blank" rel="noopener">WhatsApp us</a></li>
-            </ul></div>
+            </ul>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 Kinexus Systems · Mohali, Punjab, India · Kinexus Systems — an <a href="/allabouthr.html">AllAboutHR</a> company</p>
-        </div>
-    </footer>
+    </div>
+    <div class="wrap foot-bottom">
+        <span>© 2026 Kinexus Systems · Mohali, Punjab, India</span>
+        <span>Kinexus Systems — an <a href="/allabouthr.html">AllAboutHR</a> company</span>
+    </div>
+</footer>
 
     <script src="/blog/posts.js"></script>
     <script src="/blog/post.js"></script>
+<script src="/assets/site.js"></script>
 </body>
 </html>
