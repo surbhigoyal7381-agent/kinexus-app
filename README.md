@@ -41,8 +41,9 @@ Reversed panels use plum-dark `#6E2564` (white on it is 9.94:1); white on plum
 - `alvora.html` — the Alvora platform line: Alvora HRMS, Hire, Gig, Learning
 - `alvora-hire.html` — the Alvora Hire product page
 - `portfolio.html`, `blog.html`, `blog/` — portfolio and Insights
-- `engineering.html`, `textiles.html`, `wellness.html`, `people.html` — earlier
-  industry pages, kept and re-skinned but no longer in the primary navigation
+- `case-studies.html` — one case per industry, each linking to its industry page
+- `engineering.html`, `textiles.html`, `wellness.html` — earlier industry pages,
+  kept and re-skinned, reached from the case studies page
 - `assets/brand.css` — design tokens and shared components for the three house
   pages. Streams are switched with `data-stream="kinexus|alvora|allabouthr"` on
   `<body>`
